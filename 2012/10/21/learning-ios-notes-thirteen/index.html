@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS笔记 (13) | 萧宸宇</title>
+  <meta name="author" content="萧宸宇">
+  
+  <meta name="description" content="fuck">
+  
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+  <meta property="og:title" content="iOS笔记 (13)"/>
+  <meta property="og:site_name" content="萧宸宇"/>
+
+  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">萧宸宇</a></h1>
+  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+
+<article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-10-21T09:50:00.000Z"><a href="/2012/10/21/learning-ios-notes-thirteen/">Oct 21 2012</a></time>
+      
+      
+  
+    <h1 class="title">iOS笔记 (13)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>UIViewController的一些事儿</h1>
+<h2>序</h2>
+<p>这篇主要是想写 Contaner View Controller。然后才好写我计划里面的下一篇讲UIStoryboardSegue的blog。
+
+</p>
+<p>先贴一个链接 <a href="http://geeklu.com/2012/05/custom-container-view-controller/">Container View Controller</a>.他写的很好，算是中文blog里面我见过写 Container View Controller最好的一篇blog。
+
+</p>
+<p>另外一篇中文blog<a href="http://www.onevcat.com/2012/02/uiviewcontroller/">UIViewController的误用</a>
+
+</p>
+<p>然后是apple的官方文档
+
+</p>
+<p><a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIViewController_Class/Reference/Reference.html">UIViewController Class Reference</a>
+
+</p>
+<p><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html">View Controller Programming Guide for iOS</a>
+
+</p>
+<span id="more"></span>
+
+
+<h2>什么是UIViewController</h2>
+<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote">
+
+</p>
+<p>UIViewController就是MVC模型在iOS当中对应Controller的具体类型。最基础普通的情况下，每一个屏就要对应一个UIViewController的子类。也就是说你向storyboard拖入一个view controller的时候。你还必须新建一个接管你这个storyboard的UIViewController子类。然后把他们两个连接起来。这样就可以获得了一个MVC里面的VC了。然后这个UIViewController其实是管理着一组View Hierarchy。因为你的屏幕上可能有各种控件。每一个控件都是一个View。他们构成了一组View Hierarchy。
+
+</p>
+<p>so这个UIViewController的子类控制着这组View的行为。包括View的显示，消失，改变，动画等等。
+这种说明有点抽象了，来点简单的。UIViewController就是View的主子。一个ViewController应该且只应该管理一个view hierarchy，而通常来说一个完整的view hierarchy指的是整整占满的一个屏幕。
+
+</p>
+<p>之前有一篇讲过了一点View Controller生命周期的blog<a href="http://www.iiiyu.com/blog/2012/04/03/learning-ios-notes-five/">iOS笔记(5)</a>。可以看看。
+
+
+
+</p>
+<h2>什么是Contaner View Controller</h2>
+<p><img src="http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Art/navigation_interface_2x.png" alt="Contaner View Controller">
+
+</p>
+<p>通常情况下，我们的App不会只有一个View Controller这么简单。会有很多个View conroller。我们不能让我们的App里面的View Controller杂乱无章。我们需要一个东西来能够管理这些View Controller。这个东西就叫Contaner View Controller。Contaner View Controller也是继承于UIViewController。这里我们可以得到两个信息: 
+
+</p>
+<ol>
+<li>UIViewController其实可以自己管理自己。我们就可能自己写Contaner View Controller。</li>
+<li>加上上图的描述。Contaner View Conroller（Navigation Controller）其实是一直存在的。</li>
+</ol>
+<h3>常见的Contaner View Controller</h3>
+<p>其实常见的Contaner View Controller也就两个UINavigationController和UITabbarController。他们肯定都有一些特征：(摘抄第一篇blog)
+
+</p>
+<ol>
+<li>提供对Child View Controller进行管理的接口,比如添加Child View Controller,切换Child View Controller的显示,移除Child View Controller 等</li>
+<li>容器“拥有”所有的Child View Controller</li>
+<li>容器需要负责 Child View Controller的appearance callback的调用(viewWillAppear,viewDidAppear,viewWillDisaapper,viewDidDisappear),以及旋转事件的传递</li>
+<li>保证view hierarchy 和 view controller hierarchy 层级关系一致,通过parent view controller将child view controller和容器进行关联</li>
+</ol>
+<p>其实如果我们进行一般的iPhone App快速开发。这两个Contaner View Controller已经足够用了。
+
+</p>
+<h2>UINavigationController</h2>
+<p>简单的UINavigationController如系统的Setting。
+
+</p>
+<p><img src="http://developer.apple.com/library/ios/documentation/uikit/reference/UINavigationController_Class/Art/navigation_interface.jpg" alt="Setting">
+
+</p>
+<p>很简单。就是一个满屏一个满屏的推进，然后回退。学过程序的你看到那些描述也很亲切。可以简单理解为数据结构中的栈的图形方式。Push为进栈，Pop出栈。你还可以Pop全部已经压入的数据。
+
+</p>
+<p>当然UINavigationController肯定要比一个栈复杂的多。下图是UINavigationController的层次结构
+
+</p>
+<p><img src="http://developer.apple.com/library/ios/documentation/uikit/reference/UINavigationController_Class/Art/NavigationViews.jpg" alt="The views of a navigation controller">
+
+</p>
+<p>肯定的，我们在相应的场景里面可以选择把Navigation bar或者 Naviagtion toolbar设置为显示或者不显示。这完全取决于你的设计。
+
+
+</p>
+<h2>UITabbarController</h2>
+<p>和UINavigationController不同，UITabbarController使用的场景更可能是不太相关连的View Controller组合到一起。而UINaviagtionController强调的是层层递进的关系。
+<img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_compare.jpg" alt="The tab bar interface in the Clock application">
+
+</p>
+<p>所以，UITabbarController管理下的View Controller所做的操作是切换，而不是Push。
+
+</p>
+<p>UITabbarController的层次结构
+<img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_controllerviews.jpg" alt="The primary views of a tab bar controller">
+
+</p>
+<h2>后记</h2>
+<p>当然UINavigationController和UITabbarController是可以放到一起使用的。UINavigationController代表的纵向的View Controller推进方向。UITabbarController代表着横向的View Controller切换方向。 
+
+</p>
+<p>喜欢这些碎碎叨对你有用。欢迎批评指正错误。thx。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/iOS/">iOS</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+<div class="search">
+  <form action="http://google.com/search" method="get" accept-charset="utf-8">
+    <input type="text" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:iiiyu.com">
+  </form>
+</div>
+
+
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
+  
+    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+  
+    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+
+
+<div class="widget twitter">
+  <h3 class="title">推文</h3>
+  <ul id="tweets"></ul>
+</div>
+
+<script type="text/javascript">
+var twitter_stream = ['iyunsn', 5, true];
+</script>
+<script src="/js/twitter.js"></script>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 萧宸宇
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'iiiyu';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

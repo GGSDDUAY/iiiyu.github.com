@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>调教Emacs(一)——存活 | 萧宸宇</title>
+  <meta name="author" content="萧宸宇">
+  
+  <meta name="description" content="fuck">
+  
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+  <meta property="og:title" content="调教Emacs(一)——存活"/>
+  <meta property="og:site_name" content="萧宸宇"/>
+
+  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">萧宸宇</a></h1>
+  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+
+<article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-02-26T14:59:00.000Z"><a href="/2012/02/26/emacs-set-up-1/">Feb 26 2012</a></time>
+      
+      
+  
+    <h1 class="title">调教Emacs(一)——存活</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>序</h1>
+<p>  一直以来，各界对编辑器的争论由来依旧。最后都会沦为Emacs vs Vim。这里就不在过多的讨论了。
+
+</p>
+<p>  不管是Emacs还是Vim都是需要一个长期的调教过程。才会让你用的很爽。如果你妄想今天安上他们，明天就变得像魔术师一样的按键。那你洗洗睡吧亲。明天去泡妞别做宅男了。它们会耗费你大量的时间，用那些时间说不定你都可以找一个妹子了。
+
+</p>
+<p>  在我学习使用Emacs的时候，入门资料相当少。有一些写的好的，却又各种Lisp配置。可是要了亲的命了。就想找一个先教我用的爽的，那些各种配置，各种文件能不能先放放。就只是先让我用的爽爽。
+
+</p>
+<p>  我提供了一些基本配置。几乎没有改里面的内容，但是可以用。可能用的不是很爽，但是基本的功能都有了。先用用心里有个谱。然后再去研究高深的使用。
+
+</p>
+<p>  我不会Lisp，所以这些配置最多算我这个工具仔拼凑起来的。
+
+</p>
+<p>  所以，看这系列Blog的亲们。
+
+</p>
+<ul>
+<li>只要安装Emacs 23.3-23.4 (其他版本不知)</li>
+<li>会git clone</li>
+<li>知道~/目录</li>
+<li><p>不需要会Lisp</p>
+<p>就可以开始了。</p>
+<span id="more"></span>
+
+
+
+</li>
+</ul>
+<h1>安装</h1>
+<p>首先确认你已经安装了Emacs。
+
+</p>
+<p>然后备份你之前的配置文件
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div></code></pre></td><td class="code"><pre><code><div class="line">mv ~/<span class="variable">.emacs</span> ~/emacs<span class="variable">.conf</span><span class="variable">.bak</span></div><div class="line">mv ~/<span class="variable">.emacs</span><span class="variable">.d</span> ~/emacs<span class="variable">.d</span><span class="variable">.bak</span></div></code></pre></td></tr></table></figure>
+然后clone我的配置
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line">git clone git://github<span class="preprocessor">.com</span>/iiiyu/<span class="preprocessor">.emacs</span><span class="preprocessor">.d</span><span class="preprocessor">.git</span></div></code></pre></td></tr></table></figure>
+
+
+<p>然后你点开你的Emacs，如果他是这样的颜色并且下面没有提示报错的话。恭喜你。我们开始存活在Emacs中吧。
+
+</p>
+<p><img src="http://farm8.staticflickr.com/7058/6934750127_d78b255104.jpg" alt="Emacs">
+
+</p>
+<h1>存活</h1>
+<ul>
+<li>启动Emacs 什么都别干</li>
+<li>阅读Emacs Tutorial（它就再你启动Emacs的那个图片下面第一个，而且如果你的环境是中文的话，它应该是中文的）</li>
+</ul>
+<h3>科普键位</h3>
+<ul>
+<li>大写字母C == Ctrl</li>
+<li>大写字母M == command（Mac）or alt（PC）</li>
+<li>C-c == 按住Ctrl不放 然后按c</li>
+<li>M-x == 按住command不放 然后按x</li>
+<li>C-x C-f == 按住Ctrl不放 然后按x（此时可以两个键位都放开）再按Ctrl不放 然后按f <strong>小技巧：你可以按住Ctrl一直不放 分别按x键 f键</strong></li>
+<li>C-M-x == 按住Ctrl和command不放， 然后按x</li>
+<li>RET == 回车</li>
+<li><strong>高级键位：一般情况下，用Emacs或者Vim的人都会把右边的Ctrl键和Caps Lock键交换位置，这可以大大提高使用Emacs的按键舒适度。强烈建议交换。Mac os在系统设置里面有。Gnome在键盘设置里面也有。Windows据说可以改注册表和软件修改具体要自己google哈。我用的是KBC proker 40%的键盘，硬件就支持了交换。</strong></li>
+</ul>
+<h3>幸存在Emacs</h3>
+<p>   当你安装好一个编辑器后，你一定会想在其中输入点什么东西，然后看看这个编辑器是什么样子。但Emacs不是这样的，请按照下面的命令操作：
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div></code></pre></td><td class="code"><pre><code><div class="line">C-x C-f (会在Emacs的底部让你输入你想编辑的文件路径，输入完成以后，Emacs打开一个<span class="keyword">buffer</span>，然后你就可以再里面尽情的输入文字了。)</div><div class="line">C-d 删除一个字符</div><div class="line">C-x C-s 保存文件</div><div class="line">C-x C-c 退出Emacs</div></code></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div></code></pre></td><td class="code"><pre><code><div class="line">推荐移动光标方法</div><div class="line">C-p 上一行 </div><div class="line">C-n 下一行</div><div class="line">C-f 下一个字符</div><div class="line">C-b 上一个字符</div><div class="line">(强例推荐使用其移动光标，但不必需) →你也可以使用光标键 (←↓↑→).</div></code></pre></td></tr></table></figure>
+
+
+
+<p>你能在Emacs幸存下来只需要上述的那8个命令，你就可以编辑文本了，你一定要把这些命令练成一种下意识的状态。恭喜你，你已经在Emacs里面存活了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Emacs/">Emacs</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+<div class="search">
+  <form action="http://google.com/search" method="get" accept-charset="utf-8">
+    <input type="text" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:iiiyu.com">
+  </form>
+</div>
+
+
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
+  
+    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+  
+    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+
+
+<div class="widget twitter">
+  <h3 class="title">推文</h3>
+  <ul id="tweets"></ul>
+</div>
+
+<script type="text/javascript">
+var twitter_stream = ['iyunsn', 5, true];
+</script>
+<script src="/js/twitter.js"></script>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 萧宸宇
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'iiiyu';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

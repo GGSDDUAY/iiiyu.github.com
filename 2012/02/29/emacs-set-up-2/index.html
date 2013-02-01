@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>调教Emacs(二)——更好 更强 更快 | 萧宸宇</title>
+  <meta name="author" content="萧宸宇">
+  
+  <meta name="description" content="fuck">
+  
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+  <meta property="og:title" content="调教Emacs(二)——更好 更强 更快"/>
+  <meta property="og:site_name" content="萧宸宇"/>
+
+  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">萧宸宇</a></h1>
+  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+
+<article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-02-29T08:38:00.000Z"><a href="/2012/02/29/emacs-set-up-2/">Feb 29 2012</a></time>
+      
+      
+  
+    <h1 class="title">调教Emacs(二)——更好 更强 更快</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>更好 更强 更快</h1>
+<p><a href="/blog/2012/02/26/emacs-set-up-1/">上次</a>的那些操作只能让你存活下来。
+
+
+
+
+</p>
+<p>现在让我们感觉更好一些。
+
+</p>
+<p>有时候，你可能按了一次C-c或者M-x。然后发现自己按错了。想消除这些命令这时候你可是使用
+
+</p>
+<pre><code><div class="line">C-g 取消操作</div></code></pre>
+<p>如果你不确定你现在按没有按命令。你可以狂按几次C-g。
+
+</p>
+<span id="more"></span>
+
+<h2>光标移动</h2>
+<h3>更好的光标移动</h3>
+<pre><code><div class="line">C-a 行首</div><div class="line">C-e 行尾</div><div class="line">M-f 下一个单词</div><div class="line">M-b 上一个单词</div></code></pre>
+<h3>更快的光标移动</h3>
+<pre><code><div class="line">M-m 移动到第一个非空格字符 (back-to-indentation)</div><div class="line">M-a 句子头</div><div class="line">M-e 句子尾</div><div class="line">M-{ 段落头</div><div class="line">M-} 段落尾</div><div class="line">C-v 下一页</div><div class="line">M-v 上一页</div><div class="line">M-&lt; 文件头</div><div class="line">M-&gt; 文件尾 </div><div class="line">M-r 窗口中间</div><div class="line">M-x <span class="keyword">goto</span>-<span class="keyword">char</span> RET N 文件的第 N 字节</div><div class="line">M-x <span class="keyword">goto</span>-line RET N 文件第 N 行</div></code></pre>
+<h3>更强的光标移动</h3>
+<pre><code><div class="line">C-M-a 到函数头</div><div class="line">C-M-e 到函数尾</div><div class="line">C-M-f 到下一个同级语法结构 </div><div class="line">C-M-b 到上一个同级语法结构</div><div class="line">C-M-d 进入到下一级结构里</div><div class="line">C-M-u 进入到上一级结构里</div></code></pre>
+<p>   文档一般都有各种结构，比如LISP里有S表达式，C语言里的函数，LaTeX 里的 \begin{...}...\end{...} ... 如果我们能够已文档的语法单位来移动，就会使操作非常高效。
+
+</p>
+<p>   defun。efun 在 LISP 里就是最高一级的 sexp，而在 C 语言里，它的含义就是函数。
+
+</p>
+<p>C-M-a   到 defun 头
+C-M-e   到 defun 尾
+
+</p>
+<p>这样，我们在C语言程序里可以一个函数一个函数的跳过。也可以从一个函数中间一下跳到函数开头或末尾。
+
+</p>
+<p>语法单位(sexp)。语法单位在各种 major mode 有不同的定义：
+
+</p>
+<p>lisp-mode: 一个S表达式。
+
+</p>
+<p>c-mode: 一个变量名，一个 (...), 一个 {...}, 一个 [...], ...
+所以在 Emacs 里，寻找匹配的括号可以在括号处使用 C-M-f 和 C-M-b.
+
+</p>
+<p>Gnus: 一个thread。包括所有的 Re:
+其实 defun 可以被看作最高一级的 sexp。所以范围小一点的移动操作就是在同级 sexp 之间移动。
+
+</p>
+<p>C-M-f   到下一个同级语法结构
+C-M-b   到上一个同级语法结构
+
+</p>
+<p>注意，这种移动不能越过语法结构的边界而进入上一级结构。所以，你如果在
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) { <span class="keyword">...</span>}</div></code></pre></td></tr></table></figure>
+
+<p>的 for 循环的括号里向右移动，到达右边括号时，就会被提示到达边界。
+注意，文档中的注释在这两个操作中会被跳过，这是非常方便的。
+
+</p>
+<p>进入和退出子结构:
+
+</p>
+<p>在LISP中，S表达式是嵌套的括号，进入子结构就是进入到这一级 (...) 里面。而在 C 语言中，进入子结构就是进入 (...), {...}, [...] 的里面。 C-M-d: 进入到下一级结构里。C-M-u: 进入到上一级结构里。
+
+</p>
+<p>C-M-a, C-M-e, C-M-f, C-M-b, C-M-d, C-M-u 这几个命令组合起来可以迅速的在程序里移动。往往手可以按住 C-M 不放，所以还是很顺手的。
+
+</p>
+<p>如果你还对光标移动欲罢不能，<a href="http://mmmyddd.freeshell.net/wiki/emacs/moving-cursor.html">这里</a>有高清大图让你慢慢把玩。
+
+</p>
+<h2>操作</h2>
+<pre><code><div class="line">C-g 取消操作</div><div class="line">C-<span class="built_in">space</span> = C-@ 选择操作区</div><div class="line">C-d 删除一个字符</div><div class="line">M-d 删除一个单词</div><div class="line">C-u xxx 多次命令</div><div class="line">C-k 删除到尾</div><div class="line">C-w 删除区域</div><div class="line">M-w 复制区域</div><div class="line">C-y 粘贴</div><br><div class="line">M-<span class="number">0</span> C-y 向前剪切</div><div class="line">M-z x 从光标删除到第一x</div><br><br><div class="line">C-s 搜索</div><div class="line">C-r 逆向搜索</div><div class="line">C-M-s 正则搜索</div><br><div class="line">M-x <span class="built_in">replace</span>-<span class="built_in">string</span> 替换文本</div></code></pre>
+<p>其实不管是Emacs还是Vim。这些动作你都要在不断的使用中变成下意识的动作。这样，你在键盘上的效率就会越来越高。
+
+</p>
+<p>随便说一句，推荐学Emacs的原因还有。在终端里面我用过的bash和zsh都是支持Emacs按键的。Mac OS里面所有的文本输入框也是部分支持Emacs的。虽然man等是支持vim的按键方式，可是我们不是还有info是Emacs的方式么。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Emacs/">Emacs</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+<div class="search">
+  <form action="http://google.com/search" method="get" accept-charset="utf-8">
+    <input type="text" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:iiiyu.com">
+  </form>
+</div>
+
+
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
+  
+    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+  
+    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+
+
+<div class="widget twitter">
+  <h3 class="title">推文</h3>
+  <ul id="tweets"></ul>
+</div>
+
+<script type="text/javascript">
+var twitter_stream = ['iyunsn', 5, true];
+</script>
+<script src="/js/twitter.js"></script>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 萧宸宇
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'iiiyu';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

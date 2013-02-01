@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>调教Emacs(三)——完结篇 | 萧宸宇</title>
+  <meta name="author" content="萧宸宇">
+  
+  <meta name="description" content="fuck">
+  
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+  <meta property="og:title" content="调教Emacs(三)——完结篇"/>
+  <meta property="og:site_name" content="萧宸宇"/>
+
+  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">萧宸宇</a></h1>
+  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+
+<article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-03-14T10:56:00.000Z"><a href="/2012/03/14/emacs-set-up-3/">Mar 14 2012</a></time>
+      
+      
+  
+    <h1 class="title">调教Emacs(三)——完结篇</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>调教Emacs(完结篇)</h1>
+<h2>Buffer</h2>
+<p>我記得剛開始用emacs，每次都被buffer嚇到：buffer, buffer，怎麼到處都是buffer？那我要怎麼編檔案（file）？
+
+</p>
+<p>其實概略的說，buffer就是file。所以呢，每次看到buffer，你就想是file。那用我們平日的概念，就可以明白了。叫buffer更精確。為什麼呢？比方說你用XX文書處理，我們都用New去建一個新檔，還沒存的時候就叫什麼「未命名的檔案」之類的。其實，還沒存，硬碟都還沒紀錄下來，怎麼能叫檔案？所以，emacs叫buffer。
+
+</p>
+<p>再深入一點，buffer的名字和檔案通常一樣，但也可以不一樣。還有呢，emacs的buffer可以有很多模式，有些buffer還真的不準備變成檔案的。
+
+</p>
+<p>因此呢，buffer的函意比檔案廣。不過我們初學，就把buffer當檔案好了。
+
+</p>
+<p><a href="http://homepage.mac.com/yenlung/WebWiki/EmacsTutor.html">来自</a>
+
+
+</p>
+<span id="more"></span>
+
+<h3>buffer的快捷键</h3>
+<pre><code><div class="line">C-x b 切换<span class="keyword">buffer</span>（要输入<span class="keyword">buffer</span>名字）</div><div class="line">C-x 方向键也可以切换<span class="keyword">buffer</span></div><div class="line">C-x C-w 保存<span class="keyword">buffer</span>（也可以看做是另存为）</div><div class="line">C-x l : 显示文件(<span class="keyword">buffer</span>)总行数</div><div class="line">C-x <span class="number">1</span> : 当前窗口最大化</div><div class="line">C-x <span class="number">2</span> : 上下两窗口模式</div><div class="line">C-x <span class="number">3</span> : 左右两窗口模式</div><div class="line">C-x <span class="number">0</span> : 关闭当前窗口(<span class="keyword">Buffer</span>仍然存在)</div><div class="line">C-x o : 切换窗口</div></code></pre>
+<h2>mode</h2>
+<h3>什么是mode</h3>
+<p>当我们启动某一文件时，Emacs会判断文件的类型，从而自动选择相应的模式。当然，我们也可以手动启动各种模式。先按M-x，然后输入模式的名称。
+
+</p>
+<h3>mode有什么好处</h3>
+<p>mode的好处是不同的mode里面有不同的功能，比如“C模式”里面的源码可以高亮，可以缩进。org-mode里面可以分层等。不同的mode对于不同的文件类型做出正确的操作。这就用着很爽了嘛。
+
+</p>
+<h3>怎样启动mode</h3>
+<p>一般来说Emacs是根据你的文件后缀名来判断你的文件类型，进而自动启动相应的模式。比如.py就启动python-mode，.c就启动c-mode等。如果你想自己启动某一模式：
+比如启动“C模式”，就是M-x c-mode。直接按下M-x，然后按两下Tab键，你将得到所有可执行的命令，这里面当然包括所有的模式。因此，你要想不起来某个命令的名称，就用这个方法。 
+如果是perl就是， M-x perl-mode或者是M-x cperl-mode 
+
+</p>
+<h2>块操作</h2>
+<p>emacs以C-x r开头的命令来进行矩形操作。先用C-space或者C-@设一个mark，移动光标到另一点，用以下命令进行列操作：
+
+</p>
+<pre><code><div class="line">C-x r k 剪切一个矩形块</div><div class="line">C-x r y 粘贴一个矩形块</div><div class="line">C-x r o 插入一个矩形块</div><div class="line">C-x r c 清除一个矩形块(使其变成空白)</div><div class="line">C-x r t 在选定区域的所有列前插入样的字符</div></code></pre>
+<h3>鼠标操作</h3>
+<pre><code><div class="line"><span class="comment">按住鼠标左键移动</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记文本块</span></div><div class="line"><span class="comment">鼠标右键单击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">将标记的文本块复制到剪贴板</span></div><div class="line"><span class="comment">鼠标左键双击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记单词</span></div><div class="line"><span class="comment">鼠标左键三击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记行</div></code></pre>
+<h3>cua-mode</h3>
+<p>cua-mode支持的可视化块模式
+
+</p>
+<p>除了emacs本身支持的列模式外，emacs还可以通过cua-mode支持一种可视化的列模式。在cua-mode下，按[C-return]会进入cua rectangle模式。在这个模式下可以通过鼠标点击确认起点，然后通过光标键来选中一个rect范围，这个rect会用另外的颜色显示出来。
+
+</p>
+<p>之后我们 就可以很方便地对这个rect进行操作。比如[M-up],[M-down],[M-left],[M-right]可以移动这个rect，[C- return]可以取消这个rect，[C-space]可以退出cua-rect模式并激活普通模式下的选择。
+cua-mode下可以用以下命令进行列操作：
+
+</p>
+<pre><code><div class="line">直接输入字符: 在每行前(或后)都插入这个字符</div><div class="line"><span class="attr_selector">[M-a]</span>: 将<span class="tag">rect</span>中的文字左对齐</div><div class="line"><span class="attr_selector">[M-b]</span>: 用空格(<span class="tag">tabs</span>或者<span class="tag">spaces</span>)替换所有<span class="tag">rect</span>中的字符</div><div class="line"><span class="attr_selector">[M-c]</span>: 去掉所有行左侧的空格</div><div class="line"><span class="attr_selector">[M-f]</span>: 用单个字符替换所有<span class="tag">rect</span>中的字符(提示输入一个字符)</div><div class="line"><span class="attr_selector">[M-i]</span>: 对每行中第一个找到的数字进行加1操作(自动把0<span class="tag">x</span>开头的当作十六进制数字)</div><div class="line"><span class="attr_selector">[M-k]</span>: 剪切<span class="tag">rect</span></div><div class="line"><span class="attr_selector">[M-l]</span>: 把<span class="tag">rect</span>中的内容全部转换为小写</div><div class="line"><span class="attr_selector">[M-m]</span>: 拷贝<span class="tag">rect</span></div><div class="line"><span class="attr_selector">[M-n]</span>: 用一串自增的数字替换<span class="tag">rect</span>中的每一行(这个功能可以用来给每行编号)</div><div class="line"><span class="attr_selector">[M-o]</span>: <span class="tag">rect</span>的内容右移，选中的<span class="tag">rect</span>用空格填充</div><div class="line"><span class="attr_selector">[M-r]</span>: 用字符串替换符满足正则表达式的字符串</div><div class="line"><span class="attr_selector">[M-R]</span>: 上下反转</div><div class="line"><span class="attr_selector">[M-s]</span>: 把<span class="tag">rect</span>中的每一行替换为一个字符串(提示输入)</div><div class="line"><span class="attr_selector">[M-t]</span>: 把<span class="tag">rect</span>整个替换为一个字符串(提示输入)</div><div class="line"><span class="attr_selector">[M-u]</span>: 把<span class="tag">rect</span>中的内容全部转换为大写</div><div class="line"><span class="attr_selector">[M-|]</span>: 对<span class="tag">rect</span>执行一个<span class="tag">shell</span>命令</div></code></pre>
+<h2>我的配置的Emacs的独有功能</h2>
+<p>说是独有功能其实也是很多配置文件拼凑起来的。只是之前介绍的都是emacs默认的东西。下面的功能对于大神来说都是很常见，我只是绑定了几个快捷键或者记录了几个常用的快捷键而已
+怎样用我的配置的Emacs，
+
+</p>
+<p><a href="http://www.iiiyu.com/blog/2012/02/26/emacs-set-up-1/">看这里</a>
+
+
+</p>
+<h3>tabbar-mode</h3>
+<p><img src="http://farm8.staticflickr.com/7048/6981474533_0dd3e252a8.jpg" alt="Emacs tabbar">
+
+</p>
+<p>看到上面图上面那一排像标签页的东西了么，这个就是tabbar-mode的效果。启动配置了我的配置Emacs就默认启动了。
+这些像标签的东西都是buffer。
+
+</p>
+<h4>tabbar-mode切换buffer快捷键</h4>
+<pre><code><div class="line">M-n 下一个<span class="keyword">buffer</span></div><div class="line">M-p 上一个<span class="keyword">buffer</span></div></code></pre>
+<h3>ecb-active</h3>
+<p><img src="http://farm8.staticflickr.com/7048/6835347694_e3727987d8.jpg" alt="Emacs ecb">
+
+</p>
+<p>哈哈有点IDE的感觉吧。
+
+</p>
+<h4>启动ecb</h4>
+<p>先打开一个你的源文件。
+然后
+
+</p>
+<pre><code><div class="line">M-x ecb-<span class="command">activate</span></div></code></pre>
+<p>就启动ecb了
+
+</p>
+<p>使用ecb的好处是你可以在左边的第一个小窗口选择文件夹，第二个小窗口选择文件，第三个小窗口选择当前文件里面的函数，第四个小窗口选择你打开过的文件。
+
+
+</p>
+<h3>python-mode</h3>
+<p>只说一个 执行当前文件按
+
+</p>
+<pre><code><div class="line">C-c C-c</div></code></pre>
+<p>有个bug，执行的python是Emacs启动的，如果python文件里面有中文，那在Emacs启动的这个python线程下执行会报错。编码问题，但是没有找到解决的方法。
+
+</p>
+<h3>c-mode or cc-mode</h3>
+<p>该模式下，tab被我替换成空格，一个tab设置为4个空格，缩进也是4个空格。
+
+</p>
+<h4>整理代码</h4>
+<p>有一个比较常用的就是格式整理代码
+可以选择部分代码整理，也可以整理全部代码。这样你的代码缩进就会非常漂亮了。
+
+</p>
+<pre><code><div class="line">C-M-<span class="command">\ </span>整理代码</div></code></pre>
+<h4>跳入函数</h4>
+<p>但我们查看某个函数想知道它实现的地方的时候
+
+</p>
+<pre><code><div class="line">C-M-0 跳到函数实现的地方</div><div class="line">C-M-9 跳回来</div></code></pre>
+<h4>高亮</h4>
+<p>这个高亮功能大爱
+
+</p>
+<p><img src="http://farm8.staticflickr.com/7203/6981473973_d1e6262cf1.jpg" alt="Emacs gao liang">
+
+</p>
+<p>看见这些花花绿绿没有，相同的函数或者变量是同一个颜色。非常好区分。
+使用方法非常简单
+
+</p>
+<pre><code><div class="line"><span class="type">C</span>-f3 第一次标记颜色，第二次取消</div><div class="line"><span class="title">f3</span>   查找相同的下一个</div></code></pre>
+<h3>快捷键补遗</h3>
+<pre><code><div class="line">S-方向键 可以在不同的窗口切换</div></code></pre>
+<h2>完结语</h2>
+<p>零零碎碎，我把能一次想到的都一股脑的全部写完了。当然不可能面面俱到，比如强大如org-mode只字未提。而且大部份都是快捷键的说明而已。本来开始打算写调教Emacs系列能写十几篇。但个人思想上发生了一些变化，所以可能以后Emacs不会是主力编辑器了。
+
+</p>
+<p>不过也指不定那天抽风的有写出调教Emacs第二季强势归来
+
+</p>
+<p>写了两小篇在blog上挂着也不是事啊。就像写小说写了太监一样，不舒服。所以还是来完结一下。有始有终。做一个真男人。:)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Emacs/">Emacs</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+<div class="search">
+  <form action="http://google.com/search" method="get" accept-charset="utf-8">
+    <input type="text" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:iiiyu.com">
+  </form>
+</div>
+
+
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
+  
+    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+  
+    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+
+
+<div class="widget twitter">
+  <h3 class="title">推文</h3>
+  <ul id="tweets"></ul>
+</div>
+
+<script type="text/javascript">
+var twitter_stream = ['iyunsn', 5, true];
+</script>
+<script src="/js/twitter.js"></script>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 萧宸宇
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'iiiyu';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

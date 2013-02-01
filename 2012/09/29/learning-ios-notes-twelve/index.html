@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS笔记 (12) | 萧宸宇</title>
+  <meta name="author" content="萧宸宇">
+  
+  <meta name="description" content="fuck">
+  
+  
+  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+  <meta property="og:title" content="iOS笔记 (12)"/>
+  <meta property="og:site_name" content="萧宸宇"/>
+
+  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">萧宸宇</a></h1>
+  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+
+<article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-09-29T04:37:00.000Z"><a href="/2012/09/29/learning-ios-notes-twelve/">Sep 29 2012</a></time>
+      
+      
+  
+    <h1 class="title">iOS笔记 (12)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>Block简单使用</h1>
+<h2>序</h2>
+<p>这篇blog主要想介绍这么用block做回调。因为跟之前的是想关联的。
+
+</p>
+<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote">
+
+</p>
+<p>这图中的Controller和View我之前已经讲过Delegate和Traget-Action了。Data source和Delegate差不多。有机会再TableView里面详细说说。当然，按照计划我这次要写block的回调。
+
+</p>
+<span id="more"></span>
+
+<h2>什么是block</h2>
+<p>老规矩wiki <a href="http://zh.wikipedia.org/wiki/块_(C语言扩展">http://zh.wikipedia.org/wiki/块_(C语言扩展</a>)
+
+</p>
+<p>来自<a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/00_Introduction.html">apple</a>的第一手资料。
+
+</p>
+<p>所以block这种语法要在OS X 10.6 和 iOS4.0以后才支持。不过考虑到iOS的版本问题并不像Android一样屌丝。so可以默认block这种语法是都可以支持的。
+
+</p>
+<p>block出现据说是为了<a href="http://developer.apple.com/library/ios/#documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html">GCD</a>的实现apple大力推进的。GCD(Grand Central Dispatch)简单说来就是进行多线程并行操作的一种机制。使得iOS和Mac的多线程程序编写很容易。如果你搞过Linux的多线程再来看GCD的话，会觉得生活在幸福中。
+
+</p>
+<p>当然block的使用不仅仅只有GCD一个地方。block是一个标准Objective-C对象。因为block是对象，所以block可以作为参数传递、作为方法或函数的返回值、赋值给变量。使用block我们编写自己的接口时候就可以写的很现代。或者在我们需要暴露一些方法给其他人调用的时候，就不仅可用delegate，还可以用block这种现代的方法。
+
+</p>
+<p>在没有Block之前，如果我们想在之后的某个时间回调一个方法，你一般会用代理或者NSNotificationCenter。 这样也不错， 除了一点，它会让你的代码到处都是——你在一个地方开启了一个任务， 然后在另外一个地方处理它的结果。如果使用Block的话，则不用遇到这样的问题。因为它能将和一个任务相关的所有代码都放在一个地方， 你马上就会看到。这样代码就可以开起来很清晰和具有现代感。
+
+</p>
+<p>关于block，你可以在<a href="http://www.raywenderlich.com/9438/how-to-use-blocks-in-ios-5-tutorial-part-2">绿皮</a>学习到更加详细的例子。
+
+</p>
+<p><img src="http://developer.apple.com/library/ios/documentation/cocoa/Conceptual/Blocks/Art/blocks.jpg" alt="block">
+
+
+</p>
+<h2>创建一个block</h2>
+<p>我以为在Objective-C里面,因为是C的超集。为了扩张出各式各样的面向对象的功能。就加入了各种特殊的符号。比如常见的@用来告知这是一个对象等等。所以，我觉得block也用了一个特殊的符号来开头的话，符合一贯作风。我们的block就使用「^」来表示一个block。so如果你在代码里面看见有「^」符号的话。肯定你看见了一个block。
+
+</p>
+<h3>声明block引用</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="function"><span class="title">void</span> <span class="params">(^block<span class="variable">ReturningVoidWithVoidArgument</span>)</span><span class="params">(void)</span>;</div><div class="line"><span class="title">int</span> <span class="params">(^block<span class="variable">ReturningIntWithIntAndCharArguments</span>)</span><span class="params">(int, char)</span>;</div><div class="line"><span class="title">void</span> <span class="params">(^array<span class="variable">OfTenBlocksReturningVoidWithIntArgument</span>[<span class="number">10</span>])</span><span class="params">(int)</span>;</div></code></pre></td></tr></table></figure>
+
+<p><strong>小技巧</strong>
+
+</p>
+<p>如果我自己定义了一个block并且想让他使用到多处的话。可以这样写
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div></code></pre></td><td class="code"><pre><code><div class="line">typedef float (^MyBlockType)(float, float);</div><div class="line"> </div><div class="line">MyBlockType myFirstBlock = // <span class="keyword">...</span> ;</div><div class="line">MyBlockType mySecondBlock = // <span class="keyword">...</span> ;</div></code></pre></td></tr></table></figure>
+
+<h3>实现block</h3>
+<p>刚刚知道了怎么定义block，定义好了以后。我们就可以在合适的地方来实现这个block
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="function"><span class="title">int</span> <span class="params">(^one<span class="variable">From</span>)</span><span class="params">(int)</span>;</div><div class="line"> </div><div class="line"><span class="title">oneFrom</span> = ^<span class="params">(int an<span class="variable">Int</span>)</span> {</div><div class="line">    <span class="title">return</span> <span class="title">anInt</span> - 1;</div><div class="line">};</div></code></pre></td></tr></table></figure>
+
+<h2>block的应用场景</h2>
+<h3>调用block</h3>
+<p>如果是声明了一个block变量的话。可以直接调用block，如下面的两个例子。
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">int</span> (^oneFrom)(<span class="keyword">int</span>) = ^(<span class="keyword">int</span> anInt) {</div><div class="line">    <span class="keyword">return</span> anInt - <span class="number">1</span>;</div><div class="line">};</div><br><div class="line">printf(<span class="string">"1 from 10 is %d"</span>, oneFrom(<span class="number">10</span>));</div><div class="line"><span class="comment">// Prints "1 from 10 is 9"</span></div><br><div class="line"><span class="keyword">float</span> (^distanceTraveled)(<span class="keyword">float</span>, <span class="keyword">float</span>, <span class="keyword">float</span>) =</div><div class="line">    ^(<span class="keyword">float</span> startingSpeed, <span class="keyword">float</span> acceleration, <span class="keyword">float</span> time) {</div><div class="line">    <span class="keyword">float</span> distance = (startingSpeed * time) + (<span class="number">0.5</span> * acceleration * time * time);</div><div class="line">    <span class="keyword">return</span> distance;</div><div class="line">};</div><br><div class="line"><span class="keyword">float</span> howFar = distanceTraveled(<span class="number">0.0</span>, <span class="number">9.8</span>, <span class="number">1.0</span>);</div><div class="line"><span class="comment">// howFar = 4.9</span></div></code></pre></td></tr></table></figure>
+
+<h3>在C函数中使用block作为参数</h3>
+<p>在平时使用中其实系统里面有很多函数已经是用block作为参数的了。我们不必去定义block。下面用qsort_b来作为例子(qsort_b跟qsort_r是类似的快速排序函数，只是最后一个参数用了block)
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">char</span> *myCharacters[<span class="number">3</span>] = { <span class="string">"TomJohn"</span>, <span class="string">"George"</span>, <span class="string">"Charles Condomine"</span> };</div><br><div class="line">qsort_b(myCharacters, <span class="number">3</span>, <span class="keyword">sizeof</span>(<span class="keyword">char</span> *), ^(<span class="keyword">const</span> <span class="keyword">void</span> *l, <span class="keyword">const</span> <span class="keyword">void</span> *r) {</div><div class="line">            <span class="keyword">char</span> *left = *(<span class="keyword">char</span> **)l;</div><div class="line">            <span class="keyword">char</span> *right = *(<span class="keyword">char</span> **)r;</div><div class="line">            <span class="keyword">return</span> strncmp(left, right, <span class="number">1</span>);</div><div class="line">        });</div><div class="line"><span class="comment">// Block implementation ends at "}"</span></div><br><div class="line"><span class="comment">// myCharacters is now { "Charles Condomine", "George", "TomJohn" }</span></div></code></pre></td></tr></table></figure>
+
+<p>可以明显的看出，使用block参数的优势在于调用函数的地方可以自己处理一些事情。这样同样的函数，在细节上有不通处理的时候，使用block将变的更方便直接。
+
+</p>
+<p>当然，其实在iOS编程中，我目前使用最多的C函数带有block肯定是GCD里面的函数。使用dispatch_apply来举例子
+
+</p>
+<p><strong>函数原型</strong>
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">void</span> dispatch_apply(size_t iterations, <span class="built_in">dispatch_queue_t</span> queue, <span class="keyword">void</span> (^block)(size_t));</div></code></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="preprocessor">#include &lt;dispatch/dispatch.h&gt;</span></div><div class="line">size_t           count = <span class="number">10</span><span class="comment">;</span></div><div class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)<span class="comment">;</span></div><br><div class="line">dispatch_apply(count, queue, ^(size_t i) {</div><div class="line">                   printf(<span class="string">"%u\n"</span>, i)<span class="comment">;</span></div><div class="line">               })<span class="comment">;</span></div></code></pre></td></tr></table></figure>
+
+<p>上面这个例子可以应用到需要放到多线程里面的循环
+
+
+</p>
+<h3>在Cocoa方法中使用block作为参数</h3>
+<p>当然，我们可以在cocoa方法中使用block。
+
+</p>
+<p>下面是我学习中的例子。第一个函数是声明一个带block的方法。后面的是Action方法。展示怎么调用一个自己声明的带block参数的方法。
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div></code></pre></td><td class="code"><pre><code><div class="line">- (<span class="built_in">NSString</span> *)Calculator:(<span class="built_in">NSString</span> * (^)(<span class="keyword">double</span> one, <span class="keyword">double</span> two))block</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> block([<span class="keyword">self</span><span class="variable">.oneNumber</span><span class="variable">.text</span> doubleValue], [<span class="keyword">self</span><span class="variable">.twoNumber</span><span class="variable">.text</span> doubleValue]);</div><div class="line">}</div><br><br><div class="line">- (<span class="keyword">IBAction</span>)add:(<span class="keyword">id</span>)sender</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.lable</span><span class="variable">.text</span> = [<span class="keyword">self</span> Calculator:^<span class="built_in">NSString</span> * (<span class="keyword">double</span> one, <span class="keyword">double</span> two) {</div><div class="line">                           <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:@<span class="string">"%lf"</span>, one + two];</div><div class="line">                       }];</div><div class="line">}</div></code></pre></td></tr></table></figure>
+
+<p>这个例子是我能想到最简单的例子了。需要注意的是(NSString * (^)(double one, double two))声明的时候需要多一对()括号。不然会报错。而调用时候则不用。而且调用和声明时候^的位置区别。
+
+</p>
+<p>复杂一些的例子
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div><div class="line-number">20</div><div class="line-number">21</div><div class="line-number">22</div><div class="line-number">23</div></code></pre></td><td class="code"><pre><code><div class="line">NSArray <span class="variable">*array</span>     = [NSArray arrayWithObjects:<span class="variable">@"</span>A<span class="string">", <span class="variable">@"</span>B"</span>, <span class="variable">@"</span>C<span class="string">", <span class="variable">@"</span>A"</span>, <span class="variable">@"</span>B<span class="string">", <span class="variable">@"</span>Z"</span>, <span class="variable">@"</span>G<span class="string">", <span class="variable">@"</span>are"</span>, <span class="variable">@"</span>Q<span class="string">", nil];</div><div class="line">NSSet   <span class="variable">*filterSet</span> = [NSSet setWithObjects:<span class="variable">@"</span>A"</span>, <span class="variable">@"</span>Z<span class="string">", <span class="variable">@"</span>Q"</span>, nil];</div><br><div class="line">BOOL (^test)(id obj, NSUInteger idx, BOOL * stop);</div><br><div class="line">test = ^ (id obj, NSUInteger idx, BOOL * stop) {</div><div class="line">    <span class="keyword">if</span>(idx &<span class="keyword">lt</span>; <span class="number">5</span>) {</div><div class="line">        <span class="keyword">if</span>([filterSet containsObject:obj]) {</div><div class="line">            <span class="keyword">return</span> YES;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> NO;</div><div class="line">};</div><br><div class="line">NSIndexSet <span class="variable">*indexes</span> = [array indexesOfObjectsPassingTest:test];</div><br><div class="line">NSLog(<span class="variable">@"</span>indexes: <span class="variable">%@</span><span class="string">", indexes);</div><br><div class="line">/*</div><div class="line"> * Output:</div><div class="line"> * indexes: &lt;NSIndexSet: 0x10236f0&gt;[number of indexes: 2 (in 2 ranges), indexes: (0 3)]</div><div class="line"> <span class="variable">*/</span></div><br></code></pre></td></tr></table></figure>
+
+<p>NSSet里面自带的函数例子, 遍历Set
+
+</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div></code></pre></td><td class="code"><pre><code><div class="line">__block <span class="built_in">BOOL</span> found   = <span class="literal">NO</span>;</div><div class="line">NSSet        *aSet   = [NSSet setWithObjects:@<span class="string">"Alpha"</span>, @<span class="string">"Beta"</span>, @<span class="string">"Gamma"</span>, @<span class="string">"X"</span>, <span class="literal">nil</span>];</div><div class="line"><span class="built_in">NSString</span>     *string = @<span class="string">"gamma"</span>;</div><br><div class="line">[aSet enumerateObjectsUsingBlock:^(<span class="keyword">id</span> obj, <span class="built_in">BOOL</span> * stop) {</div><div class="line">     <span class="keyword">if</span>([obj localizedCaseInsensitiveCompare:string] == NSOrderedSame) {</div><div class="line">         *stop = <span class="literal">YES</span>;</div><div class="line">         found = <span class="literal">YES</span>;</div><div class="line">     }</div><div class="line"> }];</div><br><div class="line"><span class="comment">// At this point, found == YES</span></div></code></pre></td></tr></table></figure>
+
+
+
+<h2>补漏</h2>
+<p>貌似有一个重要的关键字忘记提了__blcok.这个让你的变量能在block修改。具体内容在第一段里面的链接里面都有。这里只是提一下。
+
+</p>
+<h2>优点 vs 缺点</h2>
+<p>优点：个人觉得就是上面提到过的使用block参数的优势在于调用函数的地方可以自己处理一些事情。这样同样的函数，在细节上有不通处理的时候，使用block将变的更方便直接。而且让GCD得以足够简单的方法进行多线程的编写。GCD让多线程编程从来没有想过如此之简单易用。
+
+</p>
+<p>缺点：学习有一定曲线。闭包概念难懂。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/iOS/">iOS</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+<div class="search">
+  <form action="http://google.com/search" method="get" accept-charset="utf-8">
+    <input type="text" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:iiiyu.com">
+  </form>
+</div>
+
+
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
+  
+    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+  
+    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+
+
+
+<div class="widget twitter">
+  <h3 class="title">推文</h3>
+  <ul id="tweets"></ul>
+</div>
+
+<script type="text/javascript">
+var twitter_stream = ['iyunsn', 5, true];
+</script>
+<script src="/js/twitter.js"></script>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 萧宸宇
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'iiiyu';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
