@@ -70,38 +70,37 @@
       
         <h1>sizeof 深入理解</h1>
 <p>sizeof你们觉得是什么呢。函数？其实是操作符。
-wiki解释
-
-</p>
+wiki解释</p>
 <blockquote>
-<p>In the programming languages C and C++, the unary operator &#39;sizeof&#39; is used to calculate the sizes of datatypes, in number of bytes. sizeof can be applied to all datatypes, be they primitive types such as the integer and floating-point types defined in the language, pointers to memory addresses, or the compound datatypes (unions, structs, or C++ classes) defined by the programmer. sizeof is an operator that returns the size in bytes of the type of the variable or parenthesized type-specifier that it precedes as a size_t type value.
-
-
-</p>
+<p>In the programming languages C and C++, the unary operator &#39;sizeof&#39; is used to calculate the sizes of datatypes, in number of bytes. sizeof can be applied to all datatypes, be they primitive types such as the integer and floating-point types defined in the language, pointers to memory addresses, or the compound datatypes (unions, structs, or C++ classes) defined by the programmer. sizeof is an operator that returns the size in bytes of the type of the variable or parenthesized type-specifier that it precedes as a size_t type value.</p>
 </blockquote>
 <p>sizeof is an operator：sizeof是一个操作符。擦 这货居然是操作符。
-最后一句我们可以得到的信息还有sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned　int类型。该类型保证能容纳实现所建立的最大对象的字节大小。
+最后一句我们可以得到的信息还有sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned　int类型。该类型保证能容纳实现所建立的最大对象的字节大小。</p>
+<a name="more"></a>
 
-</p>
-<span id="more"></span>
-
-<p>我们先记住什么时候可能用到sizeof,因为我们毕竟是学了用的.sizeof的应用场景一般是神马呢：
-
-</p>
+<p>我们先记住什么时候可能用到sizeof,因为我们毕竟是学了用的.sizeof的应用场景一般是神马呢：</p>
 <ul>
 <li>sizeof操作符的一个主要用途是与存储分配和I/O系统那样的例程进行通信。例如：</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div></code></pre></td><td class="code"><pre><code><div class="line">void　<span class="variable">*malloc</span>(size_t　<span class="keyword">size</span>)</div><div class="line">size_t　<span class="keyword">fread</span>(void　*　ptr,size_t　<span class="keyword">size</span>,size_t　nmemb,FILE　*　stream)</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>void　<span class="variable">*malloc</span>(size_t　<span class="keyword">size</span>)
+size_t　<span class="keyword">fread</span>(void　*　ptr,size_t　<span class="keyword">size</span>,size_t　nmemb,FILE　*　stream)
+</pre></td></tr></table></figure>
 
 <ul>
 <li>用它可以看看一类型的对象在内存中所占的单元字节。</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">void</span>　*　memset(<span class="keyword">void</span>　*　s,<span class="keyword">int</span>　c,<span class="keyword">sizeof</span>(s))</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="keyword">void</span>　*　memset(<span class="keyword">void</span>　*　s,<span class="keyword">int</span>　c,<span class="keyword">sizeof</span>(s))
+</pre></td></tr></table></figure>
 
 <ul>
 <li>在动态分配一对象时,可以让系统知道要分配多少内存。</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">int</span> * pointer = malloc(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">10</span>)</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="keyword">int</span> * pointer = malloc(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">10</span>)
+</pre></td></tr></table></figure>
 
 <ul>
 <li><p>便于一些类型的扩充,在windows中就有很多结构内型就有一个专用的字段是用来放该类型的字节大小。</p>
@@ -112,35 +111,109 @@ wiki解释
 </li>
 </ul>
 <p>知道怎么用以后我们来深入的蛋疼的讨论一下吧：
-那我们考虑一下它既然是操作符那是一元的呢还是一元的呢还是一元的呢。。。。。。。。。。。。。
-
-</p>
+那我们考虑一下它既然是操作符那是一元的呢还是一元的呢还是一元的呢。。。。。。。。。。。。。</p>
 <p>网上有人说sizeof是一元操作符，网上还有人说sizeof更像一个特殊的宏，它是在编译阶段求值的。
-举个例子：
+举个例子：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">#include &lt;stdio.h&gt;</span>
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> a = <span class="number">0</span>;
+    <span class="keyword">printf</span>(<span class="string">"sizeof(a=3):<span class="variable">%d</span>\n"</span>,sizeof(a = <span class="number">3</span>));
+    <span class="keyword">printf</span>(<span class="string">"a:<span class="variable">%d</span>\n"</span>,a);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
 
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(a=3):<span class="variable">%d</span>\n"</span>,sizeof(a = <span class="number">3</span>));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"a:<span class="variable">%d</span>\n"</span>,a);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></code></pre></td></tr></table></figure>
+<p>输出为什么是4，0而不是期望中的4，3？？？就在于sizeof在编译阶段处理的特性。由于sizeof不能被编译成机器码，所以sizeof作用范围内，也就是()里面的内容也不能被编译，而是被替换成类型。=操作符返回左操作数的类型，所以a=3相当于int，而代码也被替换为：</p>
+<figure class="highlight lang-c "><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"sizeof(a=3):%d\n"</span>,<span class="number">4</span>)</span>;
+</pre></td></tr></table></figure>
 
-<p>输出为什么是4，0而不是期望中的4，3？？？就在于sizeof在编译阶段处理的特性。由于sizeof不能被编译成机器码，所以sizeof作用范围内，也就是()里面的内容也不能被编译，而是被替换成类型。=操作符返回左操作数的类型，所以a=3相当于int，而代码也被替换为：
-
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"sizeof(a=3):%d\n"</span>,<span class="number">4</span>)</span>;</div></code></pre></td></tr></table></figure>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"a:%d\n"</span>,a)</span>;</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"a:%d\n"</span>,a)</span>;
+</pre></td></tr></table></figure>
 
 <p>所以，sizeof是不可能支持链式表达式的，这也是和一元操作符不一样的地方。
-结论：好，记住：sizeof 在 计算变量所占空间大小时， 括号可以省略， 而计算类型(模子)大小时不能省略。 一般情况下， 咱也别偷这个懒， 乖乖的写上括号， 继续装作一个 “函数” 做一个 ， “披着函数皮的操作符” 。 做我的操作符，让人家认为是函数去吧。 不要把sizeof当成函数，也不要看作一元操作符，把他当成一个特殊的编译预处理。
+结论：好，记住：sizeof 在 计算变量所占空间大小时， 括号可以省略， 而计算类型(模子)大小时不能省略。 一般情况下， 咱也别偷这个懒， 乖乖的写上括号， 继续装作一个 “函数” 做一个 ， “披着函数皮的操作符” 。 做我的操作符，让人家认为是函数去吧。 不要把sizeof当成函数，也不要看作一元操作符，把他当成一个特殊的编译预处理。</p>
+<p>其实说到这里也差不多了，最后看一下几个比较飘逸的例子：</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="keyword">sizeof</span>（<span class="keyword">int</span>）*p 表示什么意思？
+<span class="keyword">int</span> *p = <span class="literal">NULL</span>;
+<span class="keyword">sizeof</span>(p)的值是多少？
+<span class="keyword">sizeof</span>(*p)呢？
+<span class="keyword">int</span> a[<span class="number">100</span>];
+<span class="keyword">sizeof</span> (a) 的值是多少？
+<span class="keyword">sizeof</span>(a[<span class="number">100</span>])呢？<span class="comment">//请尤其注意本例。</span>
+<span class="keyword">sizeof</span>(&a)呢？
+<span class="keyword">sizeof</span>(&a[<span class="number">0</span>])呢？
+<span class="keyword">int</span> b[<span class="number">100</span>];
+<span class="keyword">void</span> fun(<span class="keyword">int</span> b[<span class="number">100</span>])
+{
+<span class="keyword">sizeof</span>(b);<span class="comment">// sizeof (b) 的值是多少？</span>
+}
+</pre></td></tr></table></figure>
 
-</p>
-<p>其实说到这里也差不多了，最后看一下几个比较飘逸的例子：
-
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="keyword">sizeof</span>（<span class="keyword">int</span>）*p 表示什么意思？</div><div class="line"><span class="keyword">int</span> *p = <span class="literal">NULL</span>;</div><div class="line"><span class="keyword">sizeof</span>(p)的值是多少？</div><div class="line"><span class="keyword">sizeof</span>(*p)呢？</div><div class="line"><span class="keyword">int</span> a[<span class="number">100</span>];</div><div class="line"><span class="keyword">sizeof</span> (a) 的值是多少？</div><div class="line"><span class="keyword">sizeof</span>(a[<span class="number">100</span>])呢？<span class="comment">//请尤其注意本例。</span></div><div class="line"><span class="keyword">sizeof</span>(&a)呢？</div><div class="line"><span class="keyword">sizeof</span>(&a[<span class="number">0</span>])呢？</div><div class="line"><span class="keyword">int</span> b[<span class="number">100</span>];</div><div class="line"><span class="keyword">void</span> fun(<span class="keyword">int</span> b[<span class="number">100</span>])</div><div class="line">{</div><div class="line"><span class="keyword">sizeof</span>(b);<span class="comment">// sizeof (b) 的值是多少？</span></div><div class="line">}</div></code></pre></td></tr></table></figure>
-
-<p>时间不早了  1点多了 明天还要上班  睡了  结果自己看吧。
-
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="comment">#inlcude &lt;stdio.h&gt; </span></div><div class="line">void fun(<span class="keyword">int</span> b[<span class="number">100</span>])</div><div class="line">{</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"fun()sizeof(b):<span class="variable">%d</span>\n"</span>,sizeof(b));</div><div class="line">}</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">{</div><div class="line">    <span class="keyword">int</span> <span class="variable">*p</span> = NULL;</div><div class="line">    <span class="keyword">int</span> a[<span class="number">100</span>];</div><div class="line">    <span class="keyword">int</span> b[<span class="number">100</span>]; </div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(p):<span class="variable">%d</span>\n"</span>,sizeof(p));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(<span class="variable">*p</span>):<span class="variable">%d</span>\n"</span>,sizeof(<span class="variable">*p</span>));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(a):<span class="variable">%d</span>\n"</span>,sizeof(a));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(a[100]):<span class="variable">%d</span>\n"</span>,sizeof(a[<span class="number">100</span>]));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(&a):<span class="variable">%d</span>\n"</span>,sizeof(&a));</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"sizeof(&a[0]):<span class="variable">%d</span>\n"</span>,sizeof(&a[<span class="number">0</span>]));</div><div class="line">    fun(a);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></code></pre></td></tr></table></figure>
+<p>时间不早了  1点多了 明天还要上班  睡了  结果自己看吧。</p>
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="comment">#inlcude &lt;stdio.h&gt; </span>
+void fun(<span class="keyword">int</span> b[<span class="number">100</span>])
+{
+    <span class="keyword">printf</span>(<span class="string">"fun()sizeof(b):<span class="variable">%d</span>\n"</span>,sizeof(b));
+}
+<span class="keyword">int</span> main()
+{
+    <span class="keyword">int</span> <span class="variable">*p</span> = NULL;
+    <span class="keyword">int</span> a[<span class="number">100</span>];
+    <span class="keyword">int</span> b[<span class="number">100</span>]; 
+    <span class="keyword">printf</span>(<span class="string">"sizeof(p):<span class="variable">%d</span>\n"</span>,sizeof(p));
+    <span class="keyword">printf</span>(<span class="string">"sizeof(<span class="variable">*p</span>):<span class="variable">%d</span>\n"</span>,sizeof(<span class="variable">*p</span>));
+    <span class="keyword">printf</span>(<span class="string">"sizeof(a):<span class="variable">%d</span>\n"</span>,sizeof(a));
+    <span class="keyword">printf</span>(<span class="string">"sizeof(a[100]):<span class="variable">%d</span>\n"</span>,sizeof(a[<span class="number">100</span>]));
+    <span class="keyword">printf</span>(<span class="string">"sizeof(&a):<span class="variable">%d</span>\n"</span>,sizeof(&a));
+    <span class="keyword">printf</span>(<span class="string">"sizeof(&a[0]):<span class="variable">%d</span>\n"</span>,sizeof(&a[<span class="number">0</span>]));
+    fun(a);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -152,6 +225,11 @@ wiki解释
   </div>
 
         
+  
+  <div class="tags">
+    
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -197,15 +275,17 @@ wiki解释
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
-  
     <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
   
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
   </ul>
 </div>

@@ -63,6 +63,178 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2012-08-12T06:56:00.000Z"><a href="/2012/08/12/learning-ios-notes-nine/">Aug 12 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/12/learning-ios-notes-nine/">iOS笔记 (9)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>xCode4 配色主题</h1>
+<p>一直以来，我对写代码的各种颜色就乱折腾不不管是Vim还是Emacs花在上面的时间都蛮多的。也不知道是哪里来的精神。
+这次换xCode了。也折腾过很多。今天小文问了一下。恩，觉得这个东西可以拿出来写一篇blog，来填补我还差3篇的坑。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/08/12/learning-ios-notes-nine/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-07-07T13:15:00.000Z"><a href="/2012/07/07/learning-ios-notes-eight/">Jul 7 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/07/learning-ios-notes-eight/">iOS笔记 (8)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS笔记 基于MKNetworkKit的断点续传</h1>
+<h2>背景</h2>
+<p>上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。</p>
+<p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/">这里</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/07/07/learning-ios-notes-eight/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-05-06T02:28:00.000Z"><a href="/2012/05/06/learning-ios-notes-seven/">May 6 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/05/06/learning-ios-notes-seven/">iOS笔记 (7)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS笔记 Core Location定位</h1>
+<h2>主要问题</h2>
+<p>很多应用上需要获得当前用户所在的位置，有或者需要在地图上根据座标显示一些点一些信息。这次主要分享Core Location定位当前位置我遇到的问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/05/06/learning-ios-notes-seven/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-04-24T17:40:00.000Z"><a href="/2012/04/25/learning-ios-notes-six/">Apr 25 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/04/25/learning-ios-notes-six/">iOS笔记 (6)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS笔记 利用ASIHTTPRequest做断点续传</h1>
+<h2>主要问题</h2>
+<p>需要请求Http协议，下载一个zip包。包比较大，希望能后台下载。退出应用再次打开的时候能接着上一次的下载。专业名称：断点续传。</p>
+<h2>寻找方案</h2>
+<p>iOS目前三大开源网络库</p>
+<ul>
+<li>ASIHTTPRequest</li>
+<li>AFNetWorking</li>
+<li>MKNetworkKit</li>
+</ul>
+<p>个人以Google出来的信息得出的对比：</p>
+<p>| 网络库 | 优点 | 缺点 |</p>
+<p>| ------------ | ------------- | ------------ |</p>
+<p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
+<p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
+<p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
+<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。
+候选AFNetWorking。</p>
+<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
+<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">原理在这里</a></p>
+<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">实现的例子</a></p>
+<p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/04/25/learning-ios-notes-six/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-04-03T15:31:00.000Z"><a href="/2012/04/03/learning-ios-notes-five/">Apr 3 2012</a></time>
       
       
@@ -75,12 +247,8 @@
       
         <h1>iOS笔记——ViewController的生命周期</h1>
 <h2>生命周期</h2>
-<p>这个宇宙中，我们认知当中所有事物都是有一个起点然后到达一个终点。在四维的世界里面，衡量的介质就是时间。所以我们写的程序也是一样的，不管是C还是iOS程序里面，每一个东西在时间流逝中它都有自己的一个起点，终点。
-
-</p>
-<p>了解程序里面大部分东西的起点和终点的意义是，我们想在这个东西诞生时候和结束的时候做一些事情，一些是我们自愿加入的(比如初始化一个美女的图片)，有些是不得不做的(比如指向这个图片已经销毁，但是这个指针你没有赋值nil，其他的地方还在调用它，就会出错)。
-
-</p>
+<p>这个宇宙中，我们认知当中所有事物都是有一个起点然后到达一个终点。在四维的世界里面，衡量的介质就是时间。所以我们写的程序也是一样的，不管是C还是iOS程序里面，每一个东西在时间流逝中它都有自己的一个起点，终点。</p>
+<p>了解程序里面大部分东西的起点和终点的意义是，我们想在这个东西诞生时候和结束的时候做一些事情，一些是我们自愿加入的(比如初始化一个美女的图片)，有些是不得不做的(比如指向这个图片已经销毁，但是这个指针你没有赋值nil，其他的地方还在调用它，就会出错)。</p>
 
       
     </div>
@@ -100,197 +268,13 @@
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-21T05:38:00.000Z"><a href="/2012/03/21/learning-ios-notes-four/">Mar 21 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/21/learning-ios-notes-four/">iOS笔记 (4)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS笔记——九宫解锁基础部分</h1>
-<h2>目的</h2>
-<p>为了第一个App，一步一步的做出来。所以先弄最基本的想做一个类似Android九宫解锁的View。一开始完全没有思路啊。后来看了好几遍老头的画笑脸以后才有点思路。所以来一步一步做吧。
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/21/learning-ios-notes-four/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-07T16:34:00.000Z"><a href="/2012/03/08/learning-ios-notes-three/">Mar 8 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/08/learning-ios-notes-three/">iOS笔记 (3)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS笔记番外篇</h1>
-<h2>开始之前的扯淡</h2>
-<p>反正在等IPad3的发布，就顺手写篇blog。本来觉得这个时候写IOS笔记3还有点过早。因为好像没有太多的干货能拿出来。可是在看了老头用xcode、git来教怎么管理代码的时候，我彻底崩溃了。VS新版没见过，目前Xcode是体验最好的IDE，没有之一。Emacs系列突然觉得没有必要更新的冲动。
-
-</p>
-<p>虽然我们居住在神奇的天朝，但是我们还是要感谢这个时代。因为科技和人类文明的进步，使得我们可以看到一流名校的课程。就算那个号称天朝最公平的考试失败以后，只要你想学，还是可以学到这个世界上一流的课程。
-
-</p>
-<p>多媒体的表现力要远远丰富于文字。清楚直观的5分钟视频，可能换成文字描述写一个小时都写不好。所以如果这篇看不懂的话直接看视频吧。（没找到链接）
-
-</p>
-<pre><code><div class="line"><span class="title">Xcode</span> and Source Code Management (October <span class="number">7</span>, <span class="number">2011</span>) - HD</div></code></pre>
-<blockquote>
-<p>人生是一场冒险。对我来说：活下去，然后活的爽一些。就够了。
-
-</p>
-</blockquote>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/08/learning-ios-notes-three/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-04T16:25:00.000Z"><a href="/2012/03/05/learning-ios-notes-two/">Mar 5 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/05/learning-ios-notes-two/">iOS笔记 (2)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
-
-</p>
-<h2>iOS的MVC初级代码说明</h2>
-<p>上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
-
-</p>
-<p>斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到12课而已。所以现在只讨论IOS5开发中的view和controller。
-
-</p>
-<p>IOS5中，我们可以看到一个叫storyboard的文件。这个文件就是view。或者说是view的载体。UIKit上所有的控件都可以往上面拖。这里我简单的把storyboard以及带UI前缀的类都统一看成view。view就是再ios设备上你能看见的整个屏幕。
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/05/learning-ios-notes-two/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-02-28T14:46:00.000Z"><a href="/2012/02/28/learning-ios-notes-one/">Feb 28 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/02/28/learning-ios-notes-one/">iOS笔记 (1)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2>iOS 系统架构</h2>
-<h4>iOS</h4>
-<pre><code><div class="line"><span class="title">Cocoa</span> Touch</div><div class="line">Media</div><div class="line">Core Services</div><div class="line">Core OS</div></code></pre>
-<h4>Core OS</h4>
-<pre><code><div class="line">OSX kernel</div><div class="line">Power Management</div><div class="line">Mach <span class="number">3.0</span></div><div class="line">Keychain <span class="keyword">Access</span></div><div class="line">BSD</div><div class="line">Certificates</div><div class="line">Sockets</div><div class="line"><span class="keyword">File</span> System</div><div class="line">Security </div><div class="line">Bonjour  </div></code></pre>
-<h4>Core Services</h4>
-<pre><code><div class="line">Collections </div><div class="line">Core Location</div><div class="line">Address Book</div><div class="line">Net Services</div><div class="line">networking </div><div class="line">Threading</div><div class="line"><span class="keyword">File</span> <span class="keyword">Access</span></div><div class="line">Preferences</div><div class="line">SQLite</div><div class="line">URL Utilities</div></code></pre>
-<h4>Media</h4>
-<pre><code><div class="line"><span class="title">Core</span> Audio</div><div class="line">JPEG PNG TIFF</div><div class="line">OpenAL </div><div class="line">PDF</div><div class="line">Audio Mixing </div><div class="line">Quartz(2D)</div><div class="line">Audio Recording</div><div class="line">Core Animation</div><div class="line">Video Playback</div><div class="line">OpenGL ES</div></code></pre>
-<h4>Cocoa Touch</h4>
-<pre><code><div class="line">Multi-Touch</div><div class="line">Alerts</div><div class="line">Core Motion</div><div class="line">Web View</div><div class="line">View Hierarchy</div><div class="line"><span class="keyword">Map</span> Kit</div><div class="line">Localization</div><div class="line">Image Picker</div><div class="line">Controls</div><div class="line">Camera</div></code></pre>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/02/28/learning-ios-notes-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
 
   <nav id="pagination">
   
     <a href="/categories/iOS/page/2/" class="alignleft prev">上一页</a>
   
+  
+    <a href="/categories/iOS/page/4/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav>
@@ -308,15 +292,17 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
-  
     <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
   
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
   </ul>
 </div>

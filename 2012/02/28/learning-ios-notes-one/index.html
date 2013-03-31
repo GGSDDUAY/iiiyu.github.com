@@ -70,66 +70,108 @@
       
         <h2>iOS 系统架构</h2>
 <h4>iOS</h4>
-<pre><code><div class="line"><span class="title">Cocoa</span> Touch</div><div class="line">Media</div><div class="line">Core Services</div><div class="line">Core OS</div></code></pre>
+<pre><code><span class="title">Cocoa</span> Touch
+Media
+Core Services
+Core OS
+</code></pre>
 <h4>Core OS</h4>
-<pre><code><div class="line">OSX kernel</div><div class="line">Power Management</div><div class="line">Mach <span class="number">3.0</span></div><div class="line">Keychain <span class="keyword">Access</span></div><div class="line">BSD</div><div class="line">Certificates</div><div class="line">Sockets</div><div class="line"><span class="keyword">File</span> System</div><div class="line">Security </div><div class="line">Bonjour  </div></code></pre>
+<pre><code>OSX kernel
+Power Management
+Mach <span class="number">3.0</span>
+Keychain <span class="keyword">Access</span>
+BSD
+Certificates
+Sockets
+<span class="keyword">File</span> System
+Security 
+Bonjour  
+</code></pre>
 <h4>Core Services</h4>
-<pre><code><div class="line">Collections </div><div class="line">Core Location</div><div class="line">Address Book</div><div class="line">Net Services</div><div class="line">networking </div><div class="line">Threading</div><div class="line"><span class="keyword">File</span> <span class="keyword">Access</span></div><div class="line">Preferences</div><div class="line">SQLite</div><div class="line">URL Utilities</div></code></pre>
+<pre><code>Collections 
+Core Location
+Address Book
+Net Services
+networking 
+Threading
+<span class="keyword">File</span> <span class="keyword">Access</span>
+Preferences
+SQLite
+URL Utilities
+</code></pre>
 <h4>Media</h4>
-<pre><code><div class="line"><span class="title">Core</span> Audio</div><div class="line">JPEG PNG TIFF</div><div class="line">OpenAL </div><div class="line">PDF</div><div class="line">Audio Mixing </div><div class="line">Quartz(2D)</div><div class="line">Audio Recording</div><div class="line">Core Animation</div><div class="line">Video Playback</div><div class="line">OpenGL ES</div></code></pre>
+<pre><code><span class="title">Core</span> Audio
+JPEG PNG TIFF
+OpenAL 
+PDF
+Audio Mixing 
+Quartz(2D)
+Audio Recording
+Core Animation
+Video Playback
+OpenGL ES
+</code></pre>
 <h4>Cocoa Touch</h4>
-<pre><code><div class="line">Multi-Touch</div><div class="line">Alerts</div><div class="line">Core Motion</div><div class="line">Web View</div><div class="line">View Hierarchy</div><div class="line"><span class="keyword">Map</span> Kit</div><div class="line">Localization</div><div class="line">Image Picker</div><div class="line">Controls</div><div class="line">Camera</div></code></pre>
-<span id="more"></span>
+<pre><code>Multi-Touch
+Alerts
+Core Motion
+Web View
+View Hierarchy
+<span class="keyword">Map</span> Kit
+Localization
+Image Picker
+Controls
+Camera
+</code></pre>
+<a name="more"></a>
 
 <h2>MVC</h2>
 <blockquote>
-<p>Model Controller View
-
-</p>
+<p>Model Controller View</p>
 </blockquote>
-<p>斯坦福老头的课上是这么定义的：
+<p>斯坦福老头的课上是这么定义的：</p>
+<pre><code>model = What your application <span class="keyword">is</span> (but <span class="keyword">not</span> how it <span class="keyword">is</span> displayed)
+controller = How your model <span class="keyword">is</span> presented to the user (UI logic)
+view = Your Controlle<span class="string">r's minions
+</code></pre>
+<p>这个定义太经典了。</p>
+<p>以本人乡村洋文的水平理解如下：</p>
+<pre><code><span class="title">model</span>里面有你应用需要的数据啥的。（只有东西但是不知道怎么显示）
 
-</p>
-<pre><code><div class="line">model = What your application <span class="keyword">is</span> (but <span class="keyword">not</span> how it <span class="keyword">is</span> displayed)</div><div class="line">controller = How your model <span class="keyword">is</span> presented to the user (UI logic)</div><div class="line">view = Your Controlle<span class="string">r's minions</div></code></pre>
-<p>这个定义太经典了。
+<span class="title">controller</span>帮你把model里面的东西用<span class="type">UI</span> logic给呈现给用户
 
-</p>
-<p>以本人乡村洋文的水平理解如下：
+<span class="title">view</span>是什么呢，view是controller呈现数据时候负责跑腿的狗腿子。
+</code></pre>
+<p>在MVC里面有下面的规矩    </p>
+<pre><code><span class="title">controllers</span>一直是直接跟他们的model进行交流。也跟他们的view直接交流。
 
-</p>
-<pre><code><div class="line"><span class="title">model</span>里面有你应用需要的数据啥的。（只有东西但是不知道怎么显示）</div><br><div class="line"><span class="title">controller</span>帮你把model里面的东西用<span class="type">UI</span> logic给呈现给用户</div><br><div class="line"><span class="title">view</span>是什么呢，view是controller呈现数据时候负责跑腿的狗腿子。</div></code></pre>
-<p>在MVC里面有下面的规矩    
-
-</p>
-<pre><code><div class="line"><span class="title">controllers</span>一直是直接跟他们的model进行交流。也跟他们的view直接交流。</div><br><div class="line"><span class="title">model</span>跟view是永远不知道对方的。（<span class="type">MVC</span>精髓之一）</div></code></pre>
-<p>下面我来说一个故事：
-
-</p>
-<p>   controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致（synchronize 同步）这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置（协议。哈哈 objective-c的语法出现了。）
-
-</p>
+<span class="title">model</span>跟view是永远不知道对方的。（<span class="type">MVC</span>精髓之一）
+</code></pre>
+<p>下面我来说一个故事：</p>
+<p>   controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致（synchronize 同步）这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置（协议。哈哈 objective-c的语法出现了。）</p>
 <p>   view狗腿是不会拥有显示的数据，如果狗腿需要数据的时候数据会通过协议来取得。controllers几乎都是data source（但不是model），因为controller是把model里面的信息格式化以后给view的。
 那model能直接跟controller交流么？答案是不，model必须独立于UI之外。（好一个不为五斗米折腰）。
 那model有一些忠义之言（信息更新）要进谏给controller怎么办。
-model就自己想办法弄了一个广播电台（类似broadcast mechanism广播机制。PS：学过设计模式的童鞋还hold住么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，但是很可能收到的不是model这个台。
-
-</p>
-<p>MVC就是这样一个模式。
-
-</p>
-<p>至此，乡村版的MVC介绍完毕。如果发现写的太烂直接导致看不懂。那就听斯坦福老头的第一课。
-
-</p>
+model就自己想办法弄了一个广播电台（类似broadcast mechanism广播机制。PS：学过设计模式的童鞋还hold住么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，但是很可能收到的不是model这个台。</p>
+<p>MVC就是这样一个模式。</p>
+<p>至此，乡村版的MVC介绍完毕。如果发现写的太烂直接导致看不懂。那就听斯坦福老头的第一课。</p>
 <h2>Objective-C简介</h2>
-<p>本来自己整理了一些，然后看到有一篇写的超好，就搞过来了。原帖也找不到了，如果侵犯了原作者，请联系我。
-
-</p>
+<p>本来自己整理了一些，然后看到有一篇写的超好，就搞过来了。原帖也找不到了，如果侵犯了原作者，请联系我。</p>
 <h4>一句话</h4>
-<pre><code><div class="line">首先<span class="constant">Objective</span>-<span class="constant">C</span>是<span class="constant">C</span>的一个超集。</div><br><div class="line">其次<span class="constant">Objective</span>-<span class="constant">C</span>是一个面向对象的语言。</div><br><div class="line"><span class="comment">#import = #include</span></div><br><div class="line">在头文件定义的都是公共的（方法 <span class="keyword">or</span> 变量）</div><br><div class="line">在m文件里面定义的都是私有的（方法 <span class="keyword">or</span> 变量）</div><br><div class="line"><span class="variable">@property</span> 这个后面的变量在声明的时候就一起声明了两个方法（getter setter）</div></code></pre>
-<h4>第一节 总括</h4>
-<p>  这一节是对Objective-C(以后简称ObjC)的简要介绍,目的是使读者对ObjC有一个概括的认识。
+<pre><code>首先<span class="constant">Objective</span>-<span class="constant">C</span>是<span class="constant">C</span>的一个超集。
 
-</p>
+其次<span class="constant">Objective</span>-<span class="constant">C</span>是一个面向对象的语言。
+
+<span class="comment">#import = #include</span>
+
+在头文件定义的都是公共的（方法 <span class="keyword">or</span> 变量）
+
+在m文件里面定义的都是私有的（方法 <span class="keyword">or</span> 变量）
+
+<span class="variable">@property</span> 这个后面的变量在声明的时候就一起声明了两个方法（getter setter）
+</code></pre>
+<h4>第一节 总括</h4>
+<p>  这一节是对Objective-C(以后简称ObjC)的简要介绍,目的是使读者对ObjC有一个概括的认识。</p>
 <ul>
 <li><p>面象的读者：在阅读本文之前,应具备使用与C类似的编程语言(如C,C++,JAVA)的一些经验,同时熟悉面向对象编程。  </p>
 </li>
@@ -141,11 +183,57 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 <li>框架： ObjC编程中主要用到的框架是Cocoa,它是MacOS X中五大API之一,它由两个不同的框架组成FoundationKit 和ApplicationKit。 Foundation框架拥有100多个类,其中有很多有用的、面向数据的低级类和数据类型,如NSString,NSArray, NSEnumerator和NSNumber。ApplicationKit包含了所有的用户接口对象和高级类。这些框架本文不做重点介绍,如果要深入了解可以去看Xcode自带的文档。</li>
 <li>特别之处：初次接触ObjC时,会发现许多和其它语言不同的地方,会看到很多的+,-,[ ,] ,@, NS等符号,这些符号在以后的编程中将经常看到,这部分内容在第二节中介绍。先熟悉一下ObjC的代码</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div><div class="line-number">20</div><div class="line-number">21</div><div class="line-number">22</div><div class="line-number">23</div><div class="line-number">24</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="comment">#import "ClassA.h"</span></div><div class="line"><span class="comment">#import &lt;stdio.h&gt;</span></div><div class="line">            </div><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> argc, const char <span class="variable">*argv</span>[] ) {</div><div class="line">	ClassA <span class="variable">*c1</span> = [[ClassA alloc] init];</div><div class="line">    ClassA            <span class="variable">*c2</span> = [[ClassA alloc] init];</div><div class="line">            </div><div class="line">            </div><div class="line">    <span class="regexp">//</span>            <span class="keyword">print</span> count</div><div class="line">    <span class="keyword">printf</span>(            <span class="string">"ClassA count: <span class="variable">%i</span>\n"</span>, [ClassA initCount] );</div><div class="line">             </div><div class="line">    ClassA            <span class="variable">*c3</span> = [[ClassA alloc] init];</div><div class="line">            </div><div class="line">            </div><div class="line">    <span class="regexp">//</span>            <span class="keyword">print</span> count again</div><div class="line">    <span class="keyword">printf</span>(            <span class="string">"ClassA count: <span class="variable">%i</span>\n"</span>, [ClassA initCount] );</div><div class="line">            </div><div class="line">            </div><div class="line">    [c1            release];</div><div class="line">    [c2            release];</div><div class="line">    [c3            release];</div><div class="line">             </div><div class="line">    <span class="keyword">return</span>            <span class="number">0</span>;</div><div class="line">}</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre><span class="comment">#import "ClassA.h"</span>
+<span class="comment">#import &lt;stdio.h&gt;</span>
+            
+<span class="keyword">int</span> main( <span class="keyword">int</span> argc, const char <span class="variable">*argv</span>[] ) {
+	ClassA <span class="variable">*c1</span> = [[ClassA alloc] init];
+    ClassA            <span class="variable">*c2</span> = [[ClassA alloc] init];
+            
+            
+    <span class="regexp">//</span>            <span class="keyword">print</span> count
+    <span class="keyword">printf</span>(            <span class="string">"ClassA count: <span class="variable">%i</span>\n"</span>, [ClassA initCount] );
+             
+    ClassA            <span class="variable">*c3</span> = [[ClassA alloc] init];
+            
+            
+    <span class="regexp">//</span>            <span class="keyword">print</span> count again
+    <span class="keyword">printf</span>(            <span class="string">"ClassA count: <span class="variable">%i</span>\n"</span>, [ClassA initCount] );
+            
+            
+    [c1            release];
+    [c2            release];
+    [c3            release];
+             
+    <span class="keyword">return</span>            <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
 
-<p>  除了这些语言要素上的不同,ObjC也提供了一些很好的特性,如类别,扮演(Posing)等,这些在运行时的特性使得编程更加灵活。
-
-</p>
+<p>  除了这些语言要素上的不同,ObjC也提供了一些很好的特性,如类别,扮演(Posing)等,这些在运行时的特性使得编程更加灵活。</p>
 <ul>
 <li><p>优缺点: 每一个语言都有其优缺点,ObjC也不例外,这就要求在选择语言时权衡利弊。对于ObjC,只要善于利用它的优点,你会发现它是一个简单,灵活,高效的语言。以下列举了它的一些特点:</p>
 <p>优点: 类别、扮演(Posing)、动态类型、指针计算、弹性信息传递、不是一个过度复杂的c衍生语言、可通过Objective-c++与c++结合</p>
@@ -153,24 +241,158 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 </li>
 </ul>
 <h4>第二节对C的扩展</h4>
-<p>1.扩展名
+<p>1.扩展名</p>
+<p>  ObjC是ANSI版本C的一个超集,它支持相同的C语言基本语法。与C一样,文件分为头文件和源文件,扩展名分别为.h和.m。如果要加入c++的语法,需要用到.mm,这里不做介绍。</p>
+<pre><code><span class="string">.</span><span class="comment">h</span> <span class="comment">头文件。头文件包涵类的定义、类型、方法以及常量的声明</span>
 
-</p>
-<p>  ObjC是ANSI版本C的一个超集,它支持相同的C语言基本语法。与C一样,文件分为头文件和源文件,扩展名分别为.h和.m。如果要加入c++的语法,需要用到.mm,这里不做介绍。
-
-
-
-
-</p>
-<pre><code><div class="line"><span class="string">.</span><span class="comment">h</span> <span class="comment">头文件。头文件包涵类的定义、类型、方法以及常量的声明</span></div><br><div class="line"><span class="string">.</span><span class="comment">m</span> <span class="comment">源文件。这个典型的扩展名用来定义源文件，可以同时包含C和Objective</span>-<span class="comment">C的代码。</div></code></pre>
-<p>2.#import   
-
-</p>
+<span class="string">.</span><span class="comment">m</span> <span class="comment">源文件。这个典型的扩展名用来定义源文件，可以同时包含C和Objective</span>-<span class="comment">C的代码。
+</code></pre>
+<p>2.#import   </p>
 <p>在ObjC里,包含头文件有比#include更好的方法#import。它的使用和#include相同,并且可以保证你的程序只包含相同的头文件一次。相当于#include+ #pragma once的组合。
-例如要包含Foundation框架中的Foundation.h文件,可以像下面这样。
+例如要包含Foundation框架中的Foundation.h文件,可以像下面这样。</p>
+   <figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+</pre></td><td class="code"><pre>   <span class="preprocessor">#import&lt;Foundation/Foundation.h&gt;</span>
+   ```      
+   
+   注:每个框架有一个主的头文件,只要包含了这个文件,框架中的所有特性都可以被使用。
 
-</p>
-   <figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div><div class="line-number">20</div><div class="line-number">21</div><div class="line-number">22</div><div class="line-number">23</div><div class="line-number">24</div><div class="line-number">25</div><div class="line-number">26</div><div class="line-number">27</div><div class="line-number">28</div><div class="line-number">29</div><div class="line-number">30</div><div class="line-number">31</div><div class="line-number">32</div><div class="line-number">33</div><div class="line-number">34</div><div class="line-number">35</div><div class="line-number">36</div><div class="line-number">37</div><div class="line-number">38</div><div class="line-number">39</div><div class="line-number">40</div><div class="line-number">41</div><div class="line-number">42</div><div class="line-number">43</div><div class="line-number">44</div><div class="line-number">45</div><div class="line-number">46</div><div class="line-number">47</div><div class="line-number">48</div><div class="line-number">49</div><div class="line-number">50</div><div class="line-number">51</div><div class="line-number">52</div><div class="line-number">53</div><div class="line-number">54</div><div class="line-number">55</div><div class="line-number">56</div><div class="line-number">57</div><div class="line-number">58</div><div class="line-number">59</div><div class="line-number">60</div><div class="line-number">61</div><div class="line-number">62</div><div class="line-number">63</div><div class="line-number">64</div><div class="line-number">65</div><div class="line-number">66</div><div class="line-number">67</div><div class="line-number">68</div><div class="line-number">69</div><div class="line-number">70</div><div class="line-number">71</div></code></pre></td><td class="code"><pre><code><div class="line">   <span class="preprocessor">#import&lt;Foundation/Foundation.h&gt;</span></div><div class="line">   ```      </div><div class="line">   </div><div class="line">   注:每个框架有一个主的头文件,只要包含了这个文件,框架中的所有特性都可以被使用。</div><br><br><br><br><div class="line"><span class="number">3.</span>@符号</div><div class="line">        </div><div class="line">   @符号是ObjC在C基础上新加的特性之一。常见到的形式有@”字符串”,%@ , @<span class="keyword">interface</span>,@implement等。@”字符串”表示引用的字符串应该作为Cocoa的<span class="built_in">NSString</span>元素来处理。@<span class="keyword">interface</span>等则是对于C的扩展,是ObjC面向对象特性的体现。</div><div class="line">注:这里提一个小技巧,只要看到@符号,就可以认为它是对于C的一个扩展。</div><br><br><br><br><div class="line"><span class="number">4.</span><span class="built_in">NSLog</span>()</div><br><div class="line">   在ObjC中用的打印函数是<span class="built_in">NSLog</span>(),因为ObjC是加了一点”特殊语料”的C语言,所以也可以用printf()但是<span class="built_in">NSLog</span>()提供了一些特性,如时间戳,日期戳和自动加换行符等,用起来更方便,所以推荐使用<span class="built_in">NSLog</span>()。下面是两种输出的对比。</div><div class="line">   </div><div class="line">   使用<span class="built_in">NSLog</span>()输出任意对象的值时,都会使用%@格式说明。在使用这个说明符时,对象通过一个名为description的方法提供自己的<span class="built_in">NSLog</span>()格式。</div><div class="line">   </div><div class="line">  下面分别是使用<span class="built_in">NSLog</span>()和使用printf()的相应输出:</div><br><div class="line">     <span class="number">2010</span>-<span class="number">10</span>-<span class="number">15</span> <span class="number">14</span>:<span class="number">54</span>:<span class="number">21</span>。<span class="number">42610</span>_15[<span class="number">1973</span>:<span class="number">207</span>] Hello World!</div><div class="line">     </div><div class="line">     Hello World!</div><div class="line">         </div><br><div class="line">注:NS前缀告诉你函数来自Cocoa而不是其他工具包。</div><br><br><br><br><div class="line"><span class="number">5.</span><span class="built_in">BOOL</span></div><div class="line">   </div><div class="line">   <span class="built_in">BOOL</span>是ObjC中的布尔类型,它和C中的<span class="keyword">bool</span>有如下区别</div><br><div class="line">                                                        </div><div class="line">    <span class="built_in">BOOL</span> <span class="literal">YES</span>(<span class="number">1</span>),<span class="literal">NO</span>(<span class="number">0</span>)</div><div class="line">         </div><div class="line">    <span class="keyword">bool</span> <span class="literal">true</span>(!<span class="number">0</span>),<span class="literal">false</span>(<span class="number">0</span>)</div><div class="line">         </div><br><div class="line"><span class="number">6.</span><span class="keyword">id</span></div><div class="line">    </div><div class="line">   这是ObjC新加的一个数据类型,它是一般的对象类型,能够存储任何类型的方法。</div><br><br><br><br><div class="line"><span class="number">7.</span><span class="literal">nil</span></div><br><div class="line">   在ObjC中,相对于C中的<span class="literal">NULL</span>,用的是<span class="literal">nil</span>。这两者是等价的。下面是<span class="literal">nil</span>的定义。</div><br><div class="line">	<span class="preprocessor">#define nil NULL</span></div><div class="line">         </div><br><br><br><div class="line"><span class="preprocessor">#### 第三节创建对象</span></div><br><br><br><br><div class="line"><span class="number">1.</span>接口和实现</div><br><div class="line">在ObjC中定义一个类需要有两个部分:接口和实现。接口文件包含了类的声明,定义了实例变量和方法。实现文件包含了具体的函数的实现代码。下图显示了一个叫MyClass的类,它继承自<span class="built_in">NSObject</span>基类。类的定义总是从@<span class="keyword">interface</span>开始到@<span class="keyword">end</span>结束。在类名后面的是父类的名称。实例变量被定义在两个花括号之间。在实例变量下面的是方法的定义。一个分号用来结束一个变量或者方法。</div><br><div class="line">下面的代码显示了MyClass这个类的实现代码。就像类的定义规则一样,类实现文件也被两个标识框起来,一个是@<span class="keyword">implementation</span>,还有一个是@<span class="keyword">end</span>。这两个指令标识符告诉编译器程序从哪里开始编译到哪里结束。类中的方法名称的定义和它接口文件中的定义是一样的,除了实现文件中有具体的代码以外。</div><br></code></pre></td></tr></table></figure> c
+
+
+
+<span class="number">3.</span>@符号
+        
+   @符号是ObjC在C基础上新加的特性之一。常见到的形式有@”字符串”,%@ , @<span class="keyword">interface</span>,@implement等。@”字符串”表示引用的字符串应该作为Cocoa的<span class="built_in">NSString</span>元素来处理。@<span class="keyword">interface</span>等则是对于C的扩展,是ObjC面向对象特性的体现。
+注:这里提一个小技巧,只要看到@符号,就可以认为它是对于C的一个扩展。
+
+
+
+
+<span class="number">4.</span><span class="built_in">NSLog</span>()
+
+   在ObjC中用的打印函数是<span class="built_in">NSLog</span>(),因为ObjC是加了一点”特殊语料”的C语言,所以也可以用printf()但是<span class="built_in">NSLog</span>()提供了一些特性,如时间戳,日期戳和自动加换行符等,用起来更方便,所以推荐使用<span class="built_in">NSLog</span>()。下面是两种输出的对比。
+   
+   使用<span class="built_in">NSLog</span>()输出任意对象的值时,都会使用%@格式说明。在使用这个说明符时,对象通过一个名为description的方法提供自己的<span class="built_in">NSLog</span>()格式。
+   
+  下面分别是使用<span class="built_in">NSLog</span>()和使用printf()的相应输出:
+
+     <span class="number">2010</span>-<span class="number">10</span>-<span class="number">15</span> <span class="number">14</span>:<span class="number">54</span>:<span class="number">21</span>。<span class="number">42610</span>_15[<span class="number">1973</span>:<span class="number">207</span>] Hello World!
+     
+     Hello World!
+         
+
+注:NS前缀告诉你函数来自Cocoa而不是其他工具包。
+
+
+
+
+<span class="number">5.</span><span class="built_in">BOOL</span>
+   
+   <span class="built_in">BOOL</span>是ObjC中的布尔类型,它和C中的<span class="keyword">bool</span>有如下区别
+
+                                                        
+    <span class="built_in">BOOL</span> <span class="literal">YES</span>(<span class="number">1</span>),<span class="literal">NO</span>(<span class="number">0</span>)
+         
+    <span class="keyword">bool</span> <span class="literal">true</span>(!<span class="number">0</span>),<span class="literal">false</span>(<span class="number">0</span>)
+         
+
+<span class="number">6.</span><span class="keyword">id</span>
+    
+   这是ObjC新加的一个数据类型,它是一般的对象类型,能够存储任何类型的方法。
+
+
+
+
+<span class="number">7.</span><span class="literal">nil</span>
+
+   在ObjC中,相对于C中的<span class="literal">NULL</span>,用的是<span class="literal">nil</span>。这两者是等价的。下面是<span class="literal">nil</span>的定义。
+
+	<span class="preprocessor">#define nil NULL</span>
+         
+
+
+
+<span class="preprocessor">#### 第三节创建对象</span>
+
+
+
+
+<span class="number">1.</span>接口和实现
+
+在ObjC中定义一个类需要有两个部分:接口和实现。接口文件包含了类的声明,定义了实例变量和方法。实现文件包含了具体的函数的实现代码。下图显示了一个叫MyClass的类,它继承自<span class="built_in">NSObject</span>基类。类的定义总是从@<span class="keyword">interface</span>开始到@<span class="keyword">end</span>结束。在类名后面的是父类的名称。实例变量被定义在两个花括号之间。在实例变量下面的是方法的定义。一个分号用来结束一个变量或者方法。
+
+下面的代码显示了MyClass这个类的实现代码。就像类的定义规则一样,类实现文件也被两个标识框起来,一个是@<span class="keyword">implementation</span>,还有一个是@<span class="keyword">end</span>。这两个指令标识符告诉编译器程序从哪里开始编译到哪里结束。类中的方法名称的定义和它接口文件中的定义是一样的,除了实现文件中有具体的代码以外。
+
+</pre></td></tr></table></figure> c
 @implementation MyClass
 -(id)initWithString:(NSString <em>) aName
 {
@@ -186,28 +408,142 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
     return [[[self alloc] initWithString:aName] autorelease];
 }
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="objectivec">               </div><div class="line">            </div><div class="line">         </div><div class="line">   当你要把一个对象保存进变量，要使用指针类型。ObjC同时支持强和弱变量对象。强类型对象在变量类型定义的时候包含了类名。弱对象使用<span class="keyword">id</span>类型作为实例变量。下面的例子同时显示了定义MyClass中的强弱两种类型的变量</div><div class="line"></span></div></code></pre></td></tr></table></figure> c
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>
+
+<span class="objectivec">               
+            
+         
+   当你要把一个对象保存进变量，要使用指针类型。ObjC同时支持强和弱变量对象。强类型对象在变量类型定义的时候包含了类名。弱对象使用<span class="keyword">id</span>类型作为实例变量。下面的例子同时显示了定义MyClass中的强弱两种类型的变量
+</span>
+</pre></td></tr></table></figure> c
 MyClass</em> myObject1;    // Strong typing
 id myObject2;    // Weak typing
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="smalltalk"><span class="number">2.</span>方法</div><div class="line">        </div><div class="line">   一个方法定义包含了方法类型，返回类型，一个或者多个关键词，参数类型和参数名。在<span class="class">ObjC</span>中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)表明,通过下图可以看到,前面有一个(-)号,说明这是一个实例方法。</div><br><div class="line">   在<span class="class">ObjC</span>中，调用一个方法相当于传递一个消息，这里的消息指的是方法名和参数。所有的消息的分派都是动态的，这个体现了<span class="class">ObjC</span>的多态性。消息调用的方式是使用方括号。如下面的例子中，向myArray对象发送<span class="method">insertObject:</span><span class="method">atIndex:</span>这个消息。</div><br><br><div class="line"></span></div></code></pre></td></tr></table></figure> c
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+
+<span class="smalltalk"><span class="number">2.</span>方法
+        
+   一个方法定义包含了方法类型，返回类型，一个或者多个关键词，参数类型和参数名。在<span class="class">ObjC</span>中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)表明,通过下图可以看到,前面有一个(-)号,说明这是一个实例方法。
+
+   在<span class="class">ObjC</span>中，调用一个方法相当于传递一个消息，这里的消息指的是方法名和参数。所有的消息的分派都是动态的，这个体现了<span class="class">ObjC</span>的多态性。消息调用的方式是使用方括号。如下面的例子中，向myArray对象发送<span class="method">insertObject:</span><span class="method">atIndex:</span>这个消息。
+
+
+</span>
+</pre></td></tr></table></figure> c
 [myArray insertObject:anObj atIndex:0];
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div></code></pre></td><td class="code"><pre><code><div class="line">这种消息传递允许嵌套</div><br></code></pre></td></tr></table></figure> c
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>这种消息传递允许嵌套
+
+</pre></td></tr></table></figure> c
 [[myAppObject getArray] insertObject:[myAppObject getObjectToInsert] atIndex:0];
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div></code></pre></td><td class="code"><pre><code><br><div class="line"><span class="comment">前面的例子都是把消息传递给实例变量，你也可以把消息传递给类本身。这时要用类方法来替代实例方法</span> <span class="comment">。你可以</span> <span class="comment">把他想象成静态C</span>+<span class="literal">+</span><span class="comment">类（当然不完全相同）。</span></div><div class="line"><span class="comment">类方法的定义只有一个不一样那就是用加号（</span>+<span class="comment">）代替减号（</span>-<span class="comment">）。下面就是使用一个类方法。</span></div><br></code></pre></td></tr></table></figure> c
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>
+<span class="comment">前面的例子都是把消息传递给实例变量，你也可以把消息传递给类本身。这时要用类方法来替代实例方法</span> <span class="comment">。你可以</span> <span class="comment">把他想象成静态C</span>+<span class="literal">+</span><span class="comment">类（当然不完全相同）。</span>
+<span class="comment">类方法的定义只有一个不一样那就是用加号（</span>+<span class="comment">）代替减号（</span>-<span class="comment">）。下面就是使用一个类方法。</span>
+
+</pre></td></tr></table></figure> c
 NSMutableArray<em> myArray = nil;    // nil is essentially the same as NULL
 //            Create a new array and assign it to the myArray variable.
 myArray = [NSMutableArray arrayWithCapacity:0];
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div></code></pre></td><td class="code"><pre><code><br><div class="line"><span class="number">3.</span>属性</div><div class="line">      </div><div class="line">   属性提供了比方法更方便的访问方式。通过<span class="keyword">property</span>标识符来替代getter和setter方法。使用方法就是在类接口文件中用@<span class="keyword">property</span>标识符，后面跟着变量的属性，包括 copy, tetain, <span class="keyword">assign</span> ,<span class="keyword">readonly</span> , readwrite,<span class="keyword">nonatomic</span>，然后是变量名。同时在实现文件中用@<span class="keyword">synthesize</span>标识符来取代getter和setter方法。</div><br></code></pre></td></tr></table></figure> c
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>
+<span class="number">3.</span>属性
+      
+   属性提供了比方法更方便的访问方式。通过<span class="keyword">property</span>标识符来替代getter和setter方法。使用方法就是在类接口文件中用@<span class="keyword">property</span>标识符，后面跟着变量的属性，包括 copy, tetain, <span class="keyword">assign</span> ,<span class="keyword">readonly</span> , readwrite,<span class="keyword">nonatomic</span>，然后是变量名。同时在实现文件中用@<span class="keyword">synthesize</span>标识符来取代getter和setter方法。
+
+</pre></td></tr></table></figure> c
 @property BOOL flag;
 @property (copy) NSString</em> nameObject;<br>//            Copy the object during assignment.
 @property (readonly) UIView<em> rootView;  // Create only a getter method
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div></code></pre></td><td class="code"><pre><code><br><div class="line">接口文件中使用<span class="variable">@property</span></div><br></code></pre></td></tr></table></figure> objc
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>
+接口文件中使用<span class="variable">@property</span>
+
+</pre></td></tr></table></figure> objc
 @synthesize            flag,nameObject,rootView;
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div></code></pre></td><td class="code"><pre><code><br><div class="line">实现文件中使用<span class="variable">@synthesize</span></div><br><div class="line">属性的另一个好处就是，可以使用点（.）语法来访问，如下所示：</div><div class="line">   </div></code></pre></td></tr></table></figure><br>  myObject.flag = YES;
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>
+实现文件中使用<span class="variable">@synthesize</span>
+
+属性的另一个好处就是，可以使用点（.）语法来访问，如下所示：
+   
+</pre></td></tr></table></figure><br>  myObject.flag = YES;
   CGRect viewFrame = myObject.rootView.frame;
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="http"></div><br><div class="line"><span class="http"></div><br><div class="line"><span class="vala"><span class="preprocessor">#### 第四节继承</span></div><br><div class="line"> 继承的语法如下，冒号后的标识符是需要继承的类。</div><div class="line"></span></span></span></div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+
+<span class="http">
+
+<span class="http">
+
+<span class="vala"><span class="preprocessor">#### 第四节继承</span>
+
+ 继承的语法如下，冒号后的标识符是需要继承的类。
+</span></span></span>
+</pre></td></tr></table></figure>
  @interface            Circle : NSObject
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="ruby"></div><div class="line"><span class="number">1</span>.不支持多继承</div><br><div class="line">  要注意的是<span class="constant">ObjC</span>只支持单继承，如果要实现多继承的话，可以通过类别和协议的方式来实现，这两种方法将在后面进行介绍。</div><div class="line">  </div><div class="line"><span class="number">2</span>.<span class="constant">Super</span>关键字</div><br><div class="line"><span class="constant">ObjC</span>提供某种方式来重写方法，并且仍然调用超类的实现方式。当需要超类实现自身的功能，同时在前面或后面执行某些额外的工作时，这种机制非常有用。为了调用继承方法的实现，需要使用<span class="keyword">super</span>作为方法调用的目标。下面是代码示例：</div><div class="line"></span></div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>
+
+<span class="ruby">
+<span class="number">1</span>.不支持多继承
+
+  要注意的是<span class="constant">ObjC</span>只支持单继承，如果要实现多继承的话，可以通过类别和协议的方式来实现，这两种方法将在后面进行介绍。
+  
+<span class="number">2</span>.<span class="constant">Super</span>关键字
+
+<span class="constant">ObjC</span>提供某种方式来重写方法，并且仍然调用超类的实现方式。当需要超类实现自身的功能，同时在前面或后面执行某些额外的工作时，这种机制非常有用。为了调用继承方法的实现，需要使用<span class="keyword">super</span>作为方法调用的目标。下面是代码示例：
+</span>
+</pre></td></tr></table></figure>
 @implementation Circle
 -(void)setFillColor: (ShapeColor) c
 {
@@ -217,12 +553,46 @@ myArray = [NSMutableArray arrayWithCapacity:0];
     [super setFillColor: c];
 }
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div></code></pre></td><td class="code"><pre><code><div class="line">Super来自哪里呢？它既不是参数也不是实例变量，而是由ObjC编译器提供的某种神奇功能。向super发送消息时，实际上是在请求ObjC向该类的超类发送消息。如果超类中没在定义该消息，ObjC将按照通常的方式在继承链中继续查找对应的消息。</div><br><br><div class="line">#### 第五节 对象初始化</div><br><div class="line"><span class="number">1.</span>分配与初始化</div><br><div class="line">   对象的初始化有两种方法：一种是[类名new], 第二种是<span class="string">[[类名 alloc]init]。这两种方法是等价的，不过，通常的Cocoa惯例是使用alloc和init,而不使用new.一般情况下，Cocoa程序员只是在他们不具备足够的水平来熟练使用alloc和init方法时，才将new作为辅助方法使用。</div><div class="line">         </div><div class="line">   [[类名alloc]init]有两个动作。alloc是分配动作，是从操作系统获得一块内存并将其指定为存放对象的实例变量的位置。同时，alloc方法还将这块内存区域全部初始化为0。与分配动作对应的是初始化。有如下两种初始化写法。</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>Super来自哪里呢？它既不是参数也不是实例变量，而是由ObjC编译器提供的某种神奇功能。向super发送消息时，实际上是在请求ObjC向该类的超类发送消息。如果超类中没在定义该消息，ObjC将按照通常的方式在继承链中继续查找对应的消息。
+
+
+#### 第五节 对象初始化
+
+<span class="number">1.</span>分配与初始化
+
+   对象的初始化有两种方法：一种是[类名new], 第二种是<span class="string">[[类名 alloc]init]。这两种方法是等价的，不过，通常的Cocoa惯例是使用alloc和init,而不使用new.一般情况下，Cocoa程序员只是在他们不具备足够的水平来熟练使用alloc和init方法时，才将new作为辅助方法使用。
+         
+   [[类名alloc]init]有两个动作。alloc是分配动作，是从操作系统获得一块内存并将其指定为存放对象的实例变量的位置。同时，alloc方法还将这块内存区域全部初始化为0。与分配动作对应的是初始化。有如下两种初始化写法。
+
+</pre></td></tr></table></figure>
 Car </em>car = [[Class alloc] init];
 //写法1<br>Car <em>car = [Car alloc];
 [car init];
 //写法2
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div></code></pre></td><td class="code"><pre><code><div class="line">应该使用第一种写法，因为init返回的对象可能不是以前的那个。</div><br><div class="line">2.编写初始化方法</div><br><div class="line">下面是一段初始化的代码</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>应该使用第一种写法，因为init返回的对象可能不是以前的那个。
+
+2.编写初始化方法
+
+下面是一段初始化的代码
+
+</pre></td></tr></table></figure>
 -(id)init
 {
     if(self = [super init]){
@@ -230,15 +600,59 @@ Car </em>car = [[Class alloc] init];
         …
             }
 }
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div></code></pre></td><td class="code"><pre><code><div class="line">使用<span class="keyword">self</span>= [<span class="keyword">super</span> init]的作用是使超类完成它们自己的初始化工作。同时因为init可能返回的是不同的对象，实例变量所在的内存位置到隐藏的<span class="keyword">self</span>参数之间的跳离又是固定的，所以要这样使用。</div><div class="line">注：这部分可以参考书[<span class="number">1</span>]<span class="number">144</span>页。</div><br><br><br><br><div class="line"><span class="comment">#### 第六节协议</span></div><br><div class="line">   这里的协议是正式协议，相对的还有非正式协议，这在类别一节中有介绍。正式协议是一个命名的方法列表。它要求显式地采用协议。采用协议意味着要实现协议的所有方法。否则，编译器会通过生成警告来提醒你。</div><div class="line"><span class="number">1</span>.声明协议</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>使用<span class="keyword">self</span>= [<span class="keyword">super</span> init]的作用是使超类完成它们自己的初始化工作。同时因为init可能返回的是不同的对象，实例变量所在的内存位置到隐藏的<span class="keyword">self</span>参数之间的跳离又是固定的，所以要这样使用。
+注：这部分可以参考书[<span class="number">1</span>]<span class="number">144</span>页。
+
+
+
+
+<span class="comment">#### 第六节协议</span>
+
+   这里的协议是正式协议，相对的还有非正式协议，这在类别一节中有介绍。正式协议是一个命名的方法列表。它要求显式地采用协议。采用协议意味着要实现协议的所有方法。否则，编译器会通过生成警告来提醒你。
+<span class="number">1</span>.声明协议
+
+</pre></td></tr></table></figure>
 @protocol NSCopying
 -(id) copyWithZone：（NSZone </em>)zone;
-@end<br><figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div></code></pre></td><td class="code"><pre><code><div class="line">        </div><br><div class="line"><span class="undefined">2.采用协议</div><div class="line"></span></div></code></pre></td></tr></table></figure><br>@interface Car : NSObject <NSCopying , NSCoding>
+@end<br><figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>        
+
+<span class="undefined">2.采用协议
+</span>
+</pre></td></tr></table></figure><br>@interface Car : NSObject <NSCopying , NSCoding>
 {
     // instance            variables
 }
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div></code></pre></td><td class="code"><pre><code><div class="line">协议可以采用多个，并且可以按任意顺序列出这些协议，没有什么影响。</div><br><div class="line"><span class="number">3</span>.<span class="constant">ObjC</span> <span class="number">2.0</span>的新特性</div><br><div class="line">  <span class="constant">ObjC2</span>.<span class="number">0</span>增加了两个新的协议修饰符：<span class="variable">@optional</span>和<span class="variable">@required</span>,因此你可以像下面这样编写代码：</div><br><br></code></pre></td></tr></table></figure><br>@protocol BaseballPlayer
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>协议可以采用多个，并且可以按任意顺序列出这些协议，没有什么影响。
+
+<span class="number">3</span>.<span class="constant">ObjC</span> <span class="number">2.0</span>的新特性
+
+  <span class="constant">ObjC2</span>.<span class="number">0</span>增加了两个新的协议修饰符：<span class="variable">@optional</span>和<span class="variable">@required</span>,因此你可以像下面这样编写代码：
+
+
+</pre></td></tr></table></figure><br>@protocol BaseballPlayer
 -(void)drawHugeSalary;
 @optional
 -(void)slideHome;
@@ -246,7 +660,29 @@ Car </em>car = [[Class alloc] init];
 @required
 -(void)swingBat;
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div></code></pre></td><td class="code"><pre><code><div class="line">因此，一个采用BaseballPlayer协议的类有两个要求实现的方法：-drawHugeSalary和-swingBat,还有<span class="number">3</span>个不可选择实现的方法：slideHome,catchBall和throwBall。</div><br><br><br><br><div class="line"><span class="preprocessor">#### 第七节委托</span></div><br><div class="line">Cocoa中的类经常使用一种名为委托（<span class="keyword">delegate</span>）的技术，委托是一种对象，另一个类的对象会要求委托对象执行它的某些操作。常用的是，编写委托对象并将其提供给其他一些对象，通常是提供给Cocoa生成的对象。通过实现特定的方法，你可以控制Cocoa中的对象的行为。</div><br><div class="line"> 通过下面的例子，可以更清楚地理解委托的实现原理。其中A对象需要把一些方法委托给其它对象来实现，例子中就是对象B，B实现了含A对象特定方法的协议ADelegate，从而可以在B中实现A委托的方法。</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>因此，一个采用BaseballPlayer协议的类有两个要求实现的方法：-drawHugeSalary和-swingBat,还有<span class="number">3</span>个不可选择实现的方法：slideHome,catchBall和throwBall。
+
+
+
+
+<span class="preprocessor">#### 第七节委托</span>
+
+Cocoa中的类经常使用一种名为委托（<span class="keyword">delegate</span>）的技术，委托是一种对象，另一个类的对象会要求委托对象执行它的某些操作。常用的是，编写委托对象并将其提供给其他一些对象，通常是提供给Cocoa生成的对象。通过实现特定的方法，你可以控制Cocoa中的对象的行为。
+
+ 通过下面的例子，可以更清楚地理解委托的实现原理。其中A对象需要把一些方法委托给其它对象来实现，例子中就是对象B，B实现了含A对象特定方法的协议ADelegate，从而可以在B中实现A委托的方法。
+
+</pre></td></tr></table></figure>
 @protocol ADelegate <NSObject>
 - (void)aDelegateMethod;
 ……<br>
@@ -295,10 +731,64 @@ id<ADelegate> delegate;
 @end
 
 //B类
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="http"></div><div class="line">           </div><br><div class="line"><span class="http"></div><br><div class="line"><span class="vala"></div><div class="line">注：实现委托还可以使用类别，在第八节中将做介绍</div><br><br><br><br><div class="line"><span class="preprocessor">#### 第八节 类别</span></div><br><div class="line"> 类别允许你在现有的类中加入新功能，这些类可以是框架中的类，并且不需要扩充它。</div><div class="line"> </div><div class="line"><span class="number">1.</span>声明类别</div><div class="line"></span></span></span></div></code></pre></td></tr></table></figure><br>@interface NSString (NumberConvenience)
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre>
+
+<span class="http">
+           
+
+<span class="http">
+
+<span class="vala">
+注：实现委托还可以使用类别，在第八节中将做介绍
+
+
+
+
+<span class="preprocessor">#### 第八节 类别</span>
+
+ 类别允许你在现有的类中加入新功能，这些类可以是框架中的类，并且不需要扩充它。
+ 
+<span class="number">1.</span>声明类别
+</span></span></span>
+</pre></td></tr></table></figure><br>@interface NSString (NumberConvenience)
 -(NSNumber <em>) lengthAsNumber;
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div></code></pre></td><td class="code"><pre><code><br><div class="line">该声明表示，类别的名称是NumberConvenience，而且该类别将向<span class="built_in">NSString</span>类中添加方法。</div><br><br><br><br><div class="line"><span class="number">2.</span>实现类别</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>
+该声明表示，类别的名称是NumberConvenience，而且该类别将向<span class="built_in">NSString</span>类中添加方法。
+
+
+
+
+<span class="number">2.</span>实现类别
+
+</pre></td></tr></table></figure>
 @implementation NSString (NumberConvenience)
 -(NSNumber </em>) lengthAsNumber
 {
@@ -306,14 +796,72 @@ id<ADelegate> delegate;
     return ([NSNumber numberWithUnsignedInt: length]);
 }
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div></code></pre></td><td class="code"><pre><code><br><br><div class="line"><span class="objectivec"><span class="number">3.</span>局限性</div><br><div class="line">   类别有两方面的局限性。第一，无法向类中添加新的实例变量。类别没有位置容纳实例变量。第二，名称冲突，即类别中的方法与现有的方法重名。当发生名称冲突时，类别具有更高的优先级。这点可以通过增加一个前缀的方法解决。</div><div class="line">   </div><div class="line"><span class="number">4.</span>非正式协议和委托类别</div><br><div class="line">实现委托除了第七节中应用协议的方式，还可以使用类别。具体做法就是把委托对象要实现的方法声明为一个<span class="built_in">NSObject</span>的类别。如下面的代码所示:</div><div class="line"></span></div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+
+<span class="objectivec"><span class="number">3.</span>局限性
+
+   类别有两方面的局限性。第一，无法向类中添加新的实例变量。类别没有位置容纳实例变量。第二，名称冲突，即类别中的方法与现有的方法重名。当发生名称冲突时，类别具有更高的优先级。这点可以通过增加一个前缀的方法解决。
+   
+<span class="number">4.</span>非正式协议和委托类别
+
+实现委托除了第七节中应用协议的方式，还可以使用类别。具体做法就是把委托对象要实现的方法声明为一个<span class="built_in">NSObject</span>的类别。如下面的代码所示:
+</span>
+</pre></td></tr></table></figure>
 @interface NSObject(NSSomeDelegateMethods)
 -(void)someMethod;
 …
 @end
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div></code></pre></td><td class="code"><pre><code><br><div class="line">  通过将这些方法声明为<span class="built_in">NSObject</span>的类别，使得只要对象实现了委托方法，任何类的对象都可以成为委托对象。创建一个<span class="built_in">NSObject</span>的类别称为“创建一个非正式协议”。非正式协议只是一种表达方式，它表示“这里有一些你可能想实现的方法”,第六节介绍的协议可以叫做正式协议。</div><div class="line">  </div><div class="line">   非正式协议的作用类似于使用许多@<span class="keyword">optional</span>的正式协议，并且前者正逐渐被后者所代替。</div><div class="line">   </div><div class="line"><span class="number">5.</span>选择器</div><br><div class="line">   选择器只是一个方法名称，它以ObjC运行时使用的特殊方式编码，以快速执行查询。你可以使用@<span class="keyword">selector</span>()预编译指令指定选择器，其中方法名位于圆括号中。如一个类中setEngine:方法的选择器是：</div><div class="line">   </div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>
+  通过将这些方法声明为<span class="built_in">NSObject</span>的类别，使得只要对象实现了委托方法，任何类的对象都可以成为委托对象。创建一个<span class="built_in">NSObject</span>的类别称为“创建一个非正式协议”。非正式协议只是一种表达方式，它表示“这里有一些你可能想实现的方法”,第六节介绍的协议可以叫做正式协议。
+  
+   非正式协议的作用类似于使用许多@<span class="keyword">optional</span>的正式协议，并且前者正逐渐被后者所代替。
+   
+<span class="number">5.</span>选择器
+
+   选择器只是一个方法名称，它以ObjC运行时使用的特殊方式编码，以快速执行查询。你可以使用@<span class="keyword">selector</span>()预编译指令指定选择器，其中方法名位于圆括号中。如一个类中setEngine:方法的选择器是：
+   
+</pre></td></tr></table></figure>
 @selector(setEngine:)
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div></code></pre></td><td class="code"><pre><code><br><div class="line">   因为选择器可以被传递，可以作为方法的参数使用，甚至可以作为实例变量存储。这样可以生成一些非常强大和灵活的构造。</div><br><br><br><br><div class="line"><span class="preprocessor">#### 第九节Posing</span></div><br><div class="line">Posing有点像类别，但不太一样。它允许你扩充一个类，并且全面性地扮演(pose)这个超类。例如：你有一个扩充NSArry的NSArrayChild对象。如果你让NSArrayChild扮演NSArry,则在你的代码中所有的NSArray都会自动被替代为NSArrayChild.</div><br></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+   因为选择器可以被传递，可以作为方法的参数使用，甚至可以作为实例变量存储。这样可以生成一些非常强大和灵活的构造。
+
+
+
+
+<span class="preprocessor">#### 第九节Posing</span>
+
+Posing有点像类别，但不太一样。它允许你扩充一个类，并且全面性地扮演(pose)这个超类。例如：你有一个扩充NSArry的NSArrayChild对象。如果你让NSArrayChild扮演NSArry,则在你的代码中所有的NSArray都会自动被替代为NSArrayChild.
+
+</pre></td></tr></table></figure>
 @interface FractionB: Fraction
 -(void) print;
 @end
@@ -325,29 +873,247 @@ id<ADelegate> delegate;
 @end
 
 //Fraction.m
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div><div class="line-number">20</div><div class="line-number">21</div><div class="line-number">22</div><div class="line-number">23</div><div class="line-number">24</div><div class="line-number">25</div><div class="line-number">26</div><div class="line-number">27</div><div class="line-number">28</div><div class="line-number">29</div><div class="line-number">30</div></code></pre></td><td class="code"><pre><code><div class="line">```                    </div><div class="line">int main( int argc, const char *argv[] ) {</div><div class="line">    Fraction *frac = <span class="string">[[Fraction alloc] initWithNumerator: 3 denominator: 10];</div><div class="line">    //print it</div><div class="line">    printf("The fraction is: " );</div><div class="line">    [frac print];</div><div class="line">    printf("\n" );</div><div class="line">            </div><br><div class="line">            </div><br><div class="line">    //make FractionB pose as Fraction</div><div class="line">    [FractionB poseAsClass: [Fraction class]]</span>;</div><div class="line">    Fraction *frac2 = <span class="string">[[Fraction alloc] initWithNumerator: 3 denominator: 10];</div><div class="line">            </div><br><div class="line">            </div><br><div class="line">    // print it</div><div class="line">    printf("The fraction is: " );</div><div class="line">    [frac2  print];</div><div class="line">    printf( "\n" );</div><div class="line">    //free memory</div><div class="line">    [frac release];</div><div class="line">    [frac2 release];</div><div class="line">    </div><div class="line">    return 0;</div><div class="line">}</div><div class="line">         </div><div class="line">// Main.m</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="code"><pre>```                    
+int main( int argc, const char *argv[] ) {
+    Fraction *frac = <span class="string">[[Fraction alloc] initWithNumerator: 3 denominator: 10];
+    //print it
+    printf("The fraction is: " );
+    [frac print];
+    printf("\n" );
+            
 
-<pre><code><div class="line">输出</div><div class="line">The fraction <span class="keyword">is</span>: <span class="number">3</span>/<span class="number">10</span></div><div class="line">The fraction <span class="keyword">is</span>: (<span class="number">3</span>/<span class="number">10</span>)</div></code></pre>
-<p>这个程序的输出中，第一个fraction会输出3/10,而第二个会输出（3/10)，这是FractionB中实现的方式。poseAsClass这个方法是NSObject的一部分，它允许子类扮演超类。
+            
 
+    //make FractionB pose as Fraction
+    [FractionB poseAsClass: [Fraction class]]</span>;
+    Fraction *frac2 = <span class="string">[[Fraction alloc] initWithNumerator: 3 denominator: 10];
+            
 
+            
 
+    // print it
+    printf("The fraction is: " );
+    [frac2  print];
+    printf( "\n" );
+    //free memory
+    [frac release];
+    [frac2 release];
+    
+    return 0;
+}
+         
+// Main.m
+</pre></td></tr></table></figure>
 
-</p>
+<pre><code>输出
+The fraction <span class="keyword">is</span>: <span class="number">3</span>/<span class="number">10</span>
+The fraction <span class="keyword">is</span>: (<span class="number">3</span>/<span class="number">10</span>)
+</code></pre>
+<p>这个程序的输出中，第一个fraction会输出3/10,而第二个会输出（3/10)，这是FractionB中实现的方式。poseAsClass这个方法是NSObject的一部分，它允许子类扮演超类。</p>
 <h4>第十节动态识别 （Dynamictypes)</h4>
-<p>下面是应用动态识别时所用到的方法:
+<p>下面是应用动态识别时所用到的方法:</p>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre>-(<span class="built_in">BOOL</span>)isKindOfClass: classObj
+    <span class="comment">//是否是其子孙或一员</span>
+         
+-(<span class="built_in">BOOL</span>)isMemberOfClass: classObj
+    <span class="comment">// 是否是其一员</span>
+         
+-(<span class="built_in">BOOL</span>)respondsToSelector: <span class="keyword">selector</span>
+    <span class="comment">// 是否有这种方法</span>
+         
++(<span class="built_in">BOOL</span>)instancesRespondToSelector: <span class="keyword">selector</span>
+    <span class="comment">// 类的对象是否有这种方法</span>
 
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div></code></pre></td><td class="code"><pre><code><div class="line">-(<span class="built_in">BOOL</span>)isKindOfClass: classObj</div><div class="line">    <span class="comment">//是否是其子孙或一员</span></div><div class="line">         </div><div class="line">-(<span class="built_in">BOOL</span>)isMemberOfClass: classObj</div><div class="line">    <span class="comment">// 是否是其一员</span></div><div class="line">         </div><div class="line">-(<span class="built_in">BOOL</span>)respondsToSelector: <span class="keyword">selector</span></div><div class="line">    <span class="comment">// 是否有这种方法</span></div><div class="line">         </div><div class="line">+(<span class="built_in">BOOL</span>)instancesRespondToSelector: <span class="keyword">selector</span></div><div class="line">    <span class="comment">// 类的对象是否有这种方法</span></div><br><div class="line">-(<span class="keyword">id</span>)performSelector: <span class="keyword">selector</span></div><div class="line">    <span class="comment">// 执行对象的方法</span></div></code></pre></td></tr></table></figure>
+-(<span class="keyword">id</span>)performSelector: <span class="keyword">selector</span>
+    <span class="comment">// 执行对象的方法</span>
+</pre></td></tr></table></figure>
 
 
 
-<p>通过下面的代码可以更清楚地理解动态类型的使用：
+<p>通过下面的代码可以更清楚地理解动态类型的使用：</p>
+<figure class="highlight lang-c                 "><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+</pre></td><td class="code"><pre><span class="preprocessor">#import <span class="title">"Square.h"</span></span>
+<span class="preprocessor">#import <span class="title">"Rectangle.h"</span></span>
+<span class="preprocessor">#import &lt;stdio.h&gt;  </span>
 
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div><div class="line-number">9</div><div class="line-number">10</div><div class="line-number">11</div><div class="line-number">12</div><div class="line-number">13</div><div class="line-number">14</div><div class="line-number">15</div><div class="line-number">16</div><div class="line-number">17</div><div class="line-number">18</div><div class="line-number">19</div><div class="line-number">20</div><div class="line-number">21</div><div class="line-number">22</div><div class="line-number">23</div><div class="line-number">24</div><div class="line-number">25</div><div class="line-number">26</div><div class="line-number">27</div><div class="line-number">28</div><div class="line-number">29</div><div class="line-number">30</div><div class="line-number">31</div><div class="line-number">32</div><div class="line-number">33</div><div class="line-number">34</div><div class="line-number">35</div><div class="line-number">36</div><div class="line-number">37</div><div class="line-number">38</div><div class="line-number">39</div><div class="line-number">40</div><div class="line-number">41</div><div class="line-number">42</div><div class="line-number">43</div><div class="line-number">44</div><div class="line-number">45</div><div class="line-number">46</div><div class="line-number">47</div><div class="line-number">48</div><div class="line-number">49</div><div class="line-number">50</div><div class="line-number">51</div><div class="line-number">52</div><div class="line-number">53</div><div class="line-number">54</div><div class="line-number">55</div><div class="line-number">56</div><div class="line-number">57</div><div class="line-number">58</div><div class="line-number">59</div><div class="line-number">60</div><div class="line-number">61</div><div class="line-number">62</div><div class="line-number">63</div><div class="line-number">64</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="preprocessor">#import <span class="title">"Square.h"</span></span></div><div class="line"><span class="preprocessor">#import <span class="title">"Rectangle.h"</span></span></div><div class="line"><span class="preprocessor">#import &lt;stdio.h&gt;  </span></div><br><div class="line"><span class="keyword">int</span> main( <span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> *argv[] ) {</div><div class="line">    Rectangle *rec = [[Rectangle alloc] initWithWidth: <span class="number">10</span> height: <span class="number">20</span>];</div><div class="line">    Square *sq = [[Square alloc] initWithSize: <span class="number">15</span>];</div><div class="line">    <span class="comment">//            isMemberOfClass</span></div><div class="line">    <span class="comment">//            true             </span></div><br><div class="line">    <span class="keyword">if</span>( [sq isMemberOfClass: [Square <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf( <span class="string">"square is a member of square class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            false</span></div><div class="line">    <span class="keyword">if</span> ( [sq isMemberOfClass: [Rectangle <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf( <span class="string">"square is a member of rectangle class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            false</span></div><div class="line">    <span class="keyword">if</span>( [sq isMemberOfClass: [<span class="built_in">NSObject</span> <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square is a member of object class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            isKindOfClass</span></div><div class="line">    <span class="comment">//            true             </span></div><br><div class="line">    <span class="keyword">if</span> ( [sq isKindOfClass: [Square <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square is a kind of square class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            true</span></div><div class="line">    <span class="keyword">if</span>( [sq isKindOfClass: [Rectangle <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square is a kind of rectangle class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            true</span></div><div class="line">    <span class="keyword">if</span>( [sq isKindOfClass: [<span class="built_in">NSObject</span> <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square is a kind of object class\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            respondsToSelector</span></div><div class="line">    <span class="comment">//            true</span></div><div class="line">    <span class="keyword">if</span>( [sq respondsToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square responds to setSize: method\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            false</span></div><div class="line">    <span class="keyword">if</span>( [sq respondsToSelector: @<span class="keyword">selector</span>( nonExistant )] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square responds to nonExistant method\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            true</span></div><div class="line">    <span class="keyword">if</span>( [Square respondsToSelector: @<span class="keyword">selector</span>( alloc )] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square class responds to alloc method\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            instancesRespondToSelector</span></div><div class="line">    <span class="comment">//            false</span></div><div class="line">    <span class="keyword">if</span>( [Rectangle instancesRespondToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"rectangle instance responds to setSize: method\n"</span> );</div><div class="line">    }</div><div class="line">    <span class="comment">//            true</span></div><div class="line">    <span class="keyword">if</span>( [Square instancesRespondToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {</div><div class="line">        printf(<span class="string">"square instance responds to setSize: method\n"</span> );</div><div class="line">    }</div><div class="line"><span class="comment">//            free memory</span></div><div class="line">    [rec release];</div><div class="line">    [sq  release];</div><div class="line">             </div><br><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></code></pre></td></tr></table></figure>
+<span class="keyword">int</span> main( <span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> *argv[] ) {
+    Rectangle *rec = [[Rectangle alloc] initWithWidth: <span class="number">10</span> height: <span class="number">20</span>];
+    Square *sq = [[Square alloc] initWithSize: <span class="number">15</span>];
+    <span class="comment">//            isMemberOfClass</span>
+    <span class="comment">//            true             </span>
 
-<pre><code><div class="line">输出：</div><div class="line">square <span class="keyword">is</span> a member of square <span class="class"><span class="keyword">class</span></div><div class="line"><span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">square</span> <span class="title">class</span></div><div class="line"><span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">rectangle</span> <span class="title">class</span></div><div class="line"><span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">object</span> <span class="title">class</span></div><div class="line"><span class="title">square</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span></div><div class="line"><span class="title">square</span> <span class="title">class</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">alloc</span> <span class="title">method</span></div><div class="line"><span class="title">square</span> <span class="title">instance</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span></div></code></pre>
+    <span class="keyword">if</span>( [sq isMemberOfClass: [Square <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf( <span class="string">"square is a member of square class\n"</span> );
+    }
+    <span class="comment">//            false</span>
+    <span class="keyword">if</span> ( [sq isMemberOfClass: [Rectangle <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf( <span class="string">"square is a member of rectangle class\n"</span> );
+    }
+    <span class="comment">//            false</span>
+    <span class="keyword">if</span>( [sq isMemberOfClass: [<span class="built_in">NSObject</span> <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square is a member of object class\n"</span> );
+    }
+    <span class="comment">//            isKindOfClass</span>
+    <span class="comment">//            true             </span>
+
+    <span class="keyword">if</span> ( [sq isKindOfClass: [Square <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square is a kind of square class\n"</span> );
+    }
+    <span class="comment">//            true</span>
+    <span class="keyword">if</span>( [sq isKindOfClass: [Rectangle <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square is a kind of rectangle class\n"</span> );
+    }
+    <span class="comment">//            true</span>
+    <span class="keyword">if</span>( [sq isKindOfClass: [<span class="built_in">NSObject</span> <span class="built_in">class</span>]] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square is a kind of object class\n"</span> );
+    }
+    <span class="comment">//            respondsToSelector</span>
+    <span class="comment">//            true</span>
+    <span class="keyword">if</span>( [sq respondsToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square responds to setSize: method\n"</span> );
+    }
+    <span class="comment">//            false</span>
+    <span class="keyword">if</span>( [sq respondsToSelector: @<span class="keyword">selector</span>( nonExistant )] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square responds to nonExistant method\n"</span> );
+    }
+    <span class="comment">//            true</span>
+    <span class="keyword">if</span>( [Square respondsToSelector: @<span class="keyword">selector</span>( alloc )] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square class responds to alloc method\n"</span> );
+    }
+    <span class="comment">//            instancesRespondToSelector</span>
+    <span class="comment">//            false</span>
+    <span class="keyword">if</span>( [Rectangle instancesRespondToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"rectangle instance responds to setSize: method\n"</span> );
+    }
+    <span class="comment">//            true</span>
+    <span class="keyword">if</span>( [Square instancesRespondToSelector: @<span class="keyword">selector</span>( setSize: )] == <span class="literal">YES</span> ) {
+        printf(<span class="string">"square instance responds to setSize: method\n"</span> );
+    }
+<span class="comment">//            free memory</span>
+    [rec release];
+    [sq  release];
+             
+
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>
+
+<pre><code>输出：
+square <span class="keyword">is</span> a member of square <span class="class"><span class="keyword">class</span>
+<span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">square</span> <span class="title">class</span>
+<span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">rectangle</span> <span class="title">class</span>
+<span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">object</span> <span class="title">class</span>
+<span class="title">square</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span>
+<span class="title">square</span> <span class="title">class</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">alloc</span> <span class="title">method</span>
+<span class="title">square</span> <span class="title">instance</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span>
+</code></pre>
 
       
     </div>
@@ -360,6 +1126,11 @@ id<ADelegate> delegate;
   </div>
 
         
+  
+  <div class="tags">
+    
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -405,15 +1176,17 @@ id<ADelegate> delegate;
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
-  
     <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
   
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
   </ul>
 </div>

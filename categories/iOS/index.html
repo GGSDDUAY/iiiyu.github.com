@@ -63,6 +63,190 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-03-28T16:04:37.000Z"><a href="/2013/03/29/learning-ios-notes-eighteen/">Mar 29 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/29/learning-ios-notes-eighteen/">iOS笔记(18)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>Core Data (一)</h1>
+<h2>序</h2>
+<p>恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。</p>
+<h2>为什么要用Core Data</h2>
+<p>CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api取回来就好了。</p>
+<p>我们要用Core Data的理由有以下几点：</p>
+<ol>
+<li>Core Data是对底层存储的一次封装。封装了以后就变成ORM的框架。这样就变成操作对象。Core Data自己去进行数据的保存。</li>
+<li>使用Core Data而不是FMDB，让整个程序架构更加的面向对象。</li>
+<li>Core Data仅仅使用了Objective-C和Core Foundation，你不必去加入一些第三方的库。</li>
+<li>Core Data是Apple的原生技术。每年的WWDC都能看到新特性的加入和讲授。</li>
+<li>Core Data支持iCloud。而使用iCloud的App。Apple推荐的可能性增加。</li>
+<li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
+</ol>
+<p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/03/29/learning-ios-notes-eighteen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-11T15:18:49.000Z"><a href="/2013/03/11/learning-ios-notes-seventeen/">Mar 11 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/11/learning-ios-notes-seventeen/">iOS笔记(17)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS读写文件</h1>
+<h2>序</h2>
+<p>由于iOS App的机制和限定，我们在App里面的权限就仅限于App内部。这个打包好的内部称为沙箱。沙箱有利有弊。我觉得这个世界上没有绝对的好坏。虽然沙箱的作用限制了一些功能的实现。但是也确保了iPhone的安全机制。对于普通用户来说我觉得的利大于弊的。(MAS上架的软件也接受这一约束)</p>
+<h2>第一步 路径</h2>
+<p>不管是读文件还是写文件我们都要需要知道文件的位置。这个位置在iOS里面就是沙箱的Document文件夹的位置。关于沙箱里面各个文件夹的功能和作用。Apple的某文档里面写的很清楚建议Google以后详细查看（懒得去找来贴了）。获取代码如下：</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="title">NSArray</span>  *paths              = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+<span class="title">NSString</span> *documentsDirectory = [paths objectAtIndex:<span class="number">0</span>];
+</pre></td></tr></table></figure>
+
+<p>NSDocumentDirectoryz这个参数你点过去可以找到一堆类似的定义比如常用的NSLibraryDirectory，NSApplicationDirectory。这样就可以直接获取到对应的文件夹路径。其他的你照抄就好。想知道意思就点过去看呗。其实看变量名也可以猜测一二。</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>NSString <span class="variable">*filePath</span> = [documentsDirectory stringByAppendingString:<span class="variable">@"</span>/hello.txt<span class="string">"];
+</pre></td></tr></table></figure>
+
+<p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
+<p>这样我们就获得一个文件路径了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/03/11/learning-ios-notes-seventeen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-28T18:38:47.000Z"><a href="/2013/03/01/learning-ios-notes-sixteen/">Mar 1 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/01/learning-ios-notes-sixteen/">iOS笔记(16)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>配置自己的CocoaPods库</h1>
+<h2>序</h2>
+<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。
+如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/03/01/learning-ios-notes-sixteen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-22T10:31:10.000Z"><a href="/2013/02/22/learning-ios-notes-fifteen/">Feb 22 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/02/22/learning-ios-notes-fifteen/">iOS笔记 (15)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>Mogenerator的初级使用</h1>
+<h2>什么是Mogenerator</h2>
+<p>最近在用Core Data来进行开发。Core Data其实封装的很好了。把存储底层都屏蔽了（sqlite，xml，内存）。不管是用那种方式存储下来。用Core Data都是在操作对象了。但是Core Data一套东西下来，单是学习就学习的泪流满面。天资有限，只能找一些看上去更简单的第三方类库来使用。</p>
+<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
+<p>而<a href="http://rentzsch.github.com/mogenerator/">Mogenerator</a>是什么东西呢。</p>
+<p>它漂亮的主页上是这样写的：</p>
+<p>mogenerator为你定义了的Core Data生成默认的数据类。与xCode不一样的是(xCode一个Entity只生成一个NSManagedObject的子类)，mogenerator会为每一个Entity生成两个类。一个为机器准备，一个为人类准备。为机器准备的类一直去匹配data model。为人类准备的类就给你轻松愉快的去修改和保存。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/02/22/learning-ios-notes-fifteen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-10-25T23:42:00.000Z"><a href="/2012/10/26/learning-ios-nontes-fourteen/">Oct 26 2012</a></time>
       
       
@@ -75,9 +259,7 @@
       
         <h1>使用CocoaPods</h1>
 <h2>序</h2>
-<p>在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。
-
-</p>
+<p>在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。</p>
 
       
     </div>
@@ -86,193 +268,6 @@
         
           <div class="alignleft">
             <a href="/2012/10/26/learning-ios-nontes-fourteen/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-10-25T15:01:00.000Z"><a href="/2012/10/25/ios-notes-navigation/">Oct 25 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/10/25/ios-notes-navigation/">iOS笔记导航</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS笔记导航</h1>
-<h2>说明</h2>
-<p>发现我的笔记是越来越多了(混蛋，才10几篇而已这种能叫多)XD. 查看起来不是很方便。所以，我预见性的写一篇blog来导航一下。方便大家(其实是自己吧，混蛋)查看。
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/10/25/ios-notes-navigation/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-10-21T09:50:00.000Z"><a href="/2012/10/21/learning-ios-notes-thirteen/">Oct 21 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/10/21/learning-ios-notes-thirteen/">iOS笔记 (13)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>UIViewController的一些事儿</h1>
-<h2>序</h2>
-<p>这篇主要是想写 Contaner View Controller。然后才好写我计划里面的下一篇讲UIStoryboardSegue的blog。
-
-</p>
-<p>先贴一个链接 <a href="http://geeklu.com/2012/05/custom-container-view-controller/">Container View Controller</a>.他写的很好，算是中文blog里面我见过写 Container View Controller最好的一篇blog。
-
-</p>
-<p>另外一篇中文blog<a href="http://www.onevcat.com/2012/02/uiviewcontroller/">UIViewController的误用</a>
-
-</p>
-<p>然后是apple的官方文档
-
-</p>
-<p><a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIViewController_Class/Reference/Reference.html">UIViewController Class Reference</a>
-
-</p>
-<p><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html">View Controller Programming Guide for iOS</a>
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/10/21/learning-ios-notes-thirteen/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-09-29T04:37:00.000Z"><a href="/2012/09/29/learning-ios-notes-twelve/">Sep 29 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/09/29/learning-ios-notes-twelve/">iOS笔记 (12)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>Block简单使用</h1>
-<h2>序</h2>
-<p>这篇blog主要想介绍这么用block做回调。因为跟之前的是想关联的。
-
-</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote">
-
-</p>
-<p>这图中的Controller和View我之前已经讲过Delegate和Traget-Action了。Data source和Delegate差不多。有机会再TableView里面详细说说。当然，按照计划我这次要写block的回调。
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/09/29/learning-ios-notes-twelve/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-09-02T03:29:00.000Z"><a href="/2012/09/02/learning-ios-notes-eleven/">Sep 2 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/09/02/learning-ios-notes-eleven/">iOS笔记 (11)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>关于Target-Action设计模式</h1>
-<h2>序</h2>
-<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。
-
-</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote">
-
-</p>
-<p>这次我们来说Target Action这种View跟Controller的交流方法。
-
-</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/09/02/learning-ios-notes-eleven/#more" class="more-link">阅读更多</a>
           </div>
         
         
@@ -306,15 +301,17 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
-  
     <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
   
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
   </ul>
 </div>

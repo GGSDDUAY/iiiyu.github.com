@@ -70,80 +70,91 @@
       
         <h1>关于Target-Action设计模式</h1>
 <h2>序</h2>
-<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。
-
-</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote">
-
-</p>
-<p>这次我们来说Target Action这种View跟Controller的交流方法。
-
-</p>
-<span id="more"></span>
+<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
+<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
+<p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
+<a name="more"></a>
 
 <h2>什么是selector</h2>
-<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">这里</a>
-
-</p>
-<p>在Objective-C里面, selector有两种意思:
-
-</p>
+<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">这里</a></p>
+<p>在Objective-C里面, selector有两种意思:</p>
 <ol>
 <li>当用源码向一个对象发送消息的时候,表示简单的方法名字。</li>
 <li>作为一个方法的唯一标识符去替换源码编译的时候的方法。</li>
 </ol>
-<p>突然觉得我再怎么写也没有官方文档写的好。那就看文档把。
-
-</p>
-<p>总结几个我理解以后的要点
-
-
-</p>
+<p>突然觉得我再怎么写也没有官方文档写的好。那就看文档把。</p>
+<p>总结几个我理解以后的要点</p>
 <ol>
 <li>SEL是一种类型，跟int float一样。</li>
 <li>@selector 其实就是取得一个SEL。</li>
 </ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="comment">SEL</span>   <span class="comment">press;</span></div><div class="line"><span class="comment">press</span> <span class="comment">=</span> <span class="comment">@selector(pressed:);</span></div><div class="line"><span class="comment">UIButton*</span>  <span class="comment">btn</span> <span class="comment">=</span> <span class="title">[</span><span class="comment">UIButton</span> <span class="comment">alloc</span>]<span class="comment">init</span>]<span class="comment">;</span></div><div class="line"><span class="title">[</span><span class="comment">btn</span> <span class="comment">addTarget:self</span> <span class="comment">action:press</span> <span class="comment">forControlEvents:UIControlEventTouchUpInside</span>]<span class="comment">;</span></div><div class="line"><span class="literal">-</span><span class="comment">(void)pressed:(id)sender</span></div><div class="line"><span class="comment">{</span></div><div class="line">    <span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span></div><div class="line"><span class="comment">}</div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="comment">SEL</span>   <span class="comment">press;</span>
+<span class="comment">press</span> <span class="comment">=</span> <span class="comment">@selector(pressed:);</span>
+<span class="comment">UIButton*</span>  <span class="comment">btn</span> <span class="comment">=</span> <span class="title">[</span><span class="comment">UIButton</span> <span class="comment">alloc</span>]<span class="comment">init</span>]<span class="comment">;</span>
+<span class="title">[</span><span class="comment">btn</span> <span class="comment">addTarget:self</span> <span class="comment">action:press</span> <span class="comment">forControlEvents:UIControlEventTouchUpInside</span>]<span class="comment">;</span>
+<span class="literal">-</span><span class="comment">(void)pressed:(id)sender</span>
+<span class="comment">{</span>
+    <span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+<span class="comment">}
+</pre></td></tr></table></figure>
 3. @selector()取得的其实一个ASCII的方法名字符串
 4. 我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector
 
 
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div></code></pre></td><td class="code"><pre><code><div class="line">id   helper = getTheReceiver()<span class="comment">;</span></div><div class="line">SEL  request = getTheSelector()<span class="comment">;</span></div><div class="line">[helper performSelector:request]<span class="comment">;</span></div></code></pre></td></tr></table></figure>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>id   helper = getTheReceiver()<span class="comment">;</span>
+SEL  request = getTheSelector()<span class="comment">;</span>
+[helper performSelector:request]<span class="comment">;</span>
+</pre></td></tr></table></figure>
 
 <h2>什么是Target-Action设计模式</h2>
 <p>官方解释在<a href="Target-Action设计模式">这里</a>
-target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：
-
-</p>
+target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
 <ul>
 <li>action selector，定义要调用的方法名称标识；</li>
 <li>target，接收消息的对象。</li>
 </ul>
-<p>当被称作action message的事件发生，将向target发送action selector定义的方法消息。
-
-</p>
-<p>target-action模式一般用于自定义的controller按照应用规范定义的方式处理action message。
-
-</p>
-<p><img src="http://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Art/target_action.jpg" alt="ta">
-
-</p>
+<p>当被称作action message的事件发生，将向target发送action selector定义的方法消息。</p>
+<p>target-action模式一般用于自定义的controller按照应用规范定义的方式处理action message。</p>
+<p><img src="http://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Art/target_action.jpg" alt="ta"></p>
 <h2>怎么用Target-Action</h2>
 <h3>UIButton用法</h3>
-<p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。
+<p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents
+</pre></td></tr></table></figure>
 
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents</div></code></pre></td></tr></table></figure>
+<p>UIControl的子类都可以覆盖这个方法，来调用自己的事件对应的函数。</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="class">UIButton</span> *btn = [<span class="class">UIButton</span> <span class="method">buttonWithType:</span><span class="class">UIButtonTypeInfoLight</span>];
+[btn <span class="method">addTarget:</span><span class="keyword">self</span> <span class="method">action:</span>@selector(<span class="method">method:</span>) <span class="method">forControlEvents:</span><span class="class">UIControlEventTouchUpInside</span>];
+[view <span class="method">addSubview:</span>btn];
 
-<p>UIControl的子类都可以覆盖这个方法，来调用自己的事件对应的函数。
+- (void)<span class="method">method:</span>(id)sender
+{
+// do something
+}
+</pre></td></tr></table></figure>
 
-</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><code><div class="line-number">1</div><div class="line-number">2</div><div class="line-number">3</div><div class="line-number">4</div><div class="line-number">5</div><div class="line-number">6</div><div class="line-number">7</div><div class="line-number">8</div></code></pre></td><td class="code"><pre><code><div class="line"><span class="class">UIButton</span> *btn = [<span class="class">UIButton</span> <span class="method">buttonWithType:</span><span class="class">UIButtonTypeInfoLight</span>];</div><div class="line">[btn <span class="method">addTarget:</span><span class="keyword">self</span> <span class="method">action:</span>@selector(<span class="method">method:</span>) <span class="method">forControlEvents:</span><span class="class">UIControlEventTouchUpInside</span>];</div><div class="line">[view <span class="method">addSubview:</span>btn];</div><br><div class="line">- (void)<span class="method">method:</span>(id)sender</div><div class="line">{</div><div class="line">// do something</div><div class="line">}</div></code></pre></td></tr></table></figure>
 
-
-<p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。
-
-</p>
+<p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。</p>
 <p>简单的用@selector还有另外一个应用场景就是Notification。这个另外写一篇把。</p>
 
       
@@ -157,6 +168,11 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
   </div>
 
         
+  
+  <div class="tags">
+    
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -202,15 +218,17 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>15</small></li>
-  
     <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
   
+    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
+  
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+  
+    <li><a href="/categories/iOS/">iOS</a><small>19</small></li>
+  
+    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
+  
+    <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
   </ul>
 </div>
