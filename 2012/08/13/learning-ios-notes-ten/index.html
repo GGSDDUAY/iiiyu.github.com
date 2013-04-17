@@ -1,56 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>iOS笔记 (10) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="fuck">
-  
-  
-  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
-  <meta property="og:title" content="iOS笔记 (10)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-29764460-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-</head>
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/about-me">关于我</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
 
 <article class="post">
   
@@ -140,7 +88,7 @@
 <p>对于delegate不是一个具体的技术，它是一个设计模式。这是我上篇开头说的。那objective-c当中怎么实现delegate呢。用protocol。</p>
 <p>一般会这样写</p>
 <p>狗腿.h</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -174,7 +122,7 @@
 <p>还有一个注意的地方是optional这个key，如果没有这个key，那成为这个狗腿的主子都要把这些方法实现了(比如xxx侵犯了我朝领土，请圣上发令。这种肯定要处理，不处理的话就是臭sb。不配做老大)。而有这个key的话，在这个key(上面的方法一定实现)，key下面的方法是可选的不必一定实现(比如抢来花姑娘，可以不去做任何动作)。</p>
 <p>这样，我们就完成了狗腿的delegate声明。</p>
 <p>狗腿.m</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -216,7 +164,7 @@
 
 <p>这里要注意的是[self.delegate respondsToSelector:xxx]方法。这个方法用于检验主子有没有实现xxx方法，如果实现了，在做xxx。没有没有实现的话就不做xxx了。如代码所示.</p>
 <p>主子.m</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -242,32 +190,32 @@
 24
 25
 26
-</pre></td><td class="code"><pre>@<span class="class"><span class="keyword">interface</span> 主子()&<span class="id">lt</span>;<span class="id">MyClassDelegate</span>&<span class="id">gt</span>;{</span>
+</pre></td><td class="code"><pre>@interface 主子()&lt;MyClassDelegate&gt;{
     MyClass *myClass;
 }
-@<span class="keyword">end</span>
+@end
 
-@<span class="class"><span class="keyword">implementation</span> 主子</span>
-- (<span class="keyword">void</span>)init
+@implementation 主子
+- (void)init
 {
-   ….
+   <span class="keyword">...</span>
    myClass = [MyClass new];
-   myClass<span class="variable">.delegate</span> = <span class="keyword">self</span>;
+   myClass.delegate = self;
    [myClass 抢花姑娘];
-   ....
+   <span class="keyword">...</span>
 }
 
-- (<span class="keyword">void</span>) will抢花姑娘:(MyClass*)myClass
+- (void) will抢花姑娘:(MyClass*)myClass
 {
-    myClass<span class="variable">.flowerGirl</span> = flowerGirl(腿长，A);
+    myClass.flowerGirl = flowerGirl(腿长，A);
 }
 
-- (<span class="keyword">void</span>) did抢花姑娘:(MyClass *)myClass
+- (void) did抢花姑娘:(MyClass *)myClass
 {
-    [<span class="keyword">self</span> 送去xxx宫:myClass<span class="variable">.flowerGirl</span>];
+    [self 送去xxx宫:myClass.flowerGirl];
 }
 
-@<span class="keyword">end</span>
+@end
 </pre></td></tr></table></figure>
 
 <p>具体就是这样。代码是伪码一般，只是写着写着就想着对应我的恶趣味例子。鄙视一下自己。</p>
@@ -321,83 +269,3 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-<div class="search">
-  <form action="http://google.com/search" method="get" accept-charset="utf-8">
-    <input type="text" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
-
-
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>20</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-
-
-
-<div class="widget twitter">
-  <h3 class="title">推文</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-</script>
-<script src="/js/twitter.js"></script>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2013 萧宸宇
-  
-</div>
-<div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-</body>
-</html>

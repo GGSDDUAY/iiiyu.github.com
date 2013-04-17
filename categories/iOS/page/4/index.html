@@ -63,6 +63,63 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2012-04-24T17:40:00.000Z"><a href="/2012/04/25/learning-ios-notes-six/">Apr 25 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/04/25/learning-ios-notes-six/">iOS笔记 (6)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS笔记 利用ASIHTTPRequest做断点续传</h1>
+<h2>主要问题</h2>
+<p>需要请求Http协议，下载一个zip包。包比较大，希望能后台下载。退出应用再次打开的时候能接着上一次的下载。专业名称：断点续传。</p>
+<h2>寻找方案</h2>
+<p>iOS目前三大开源网络库</p>
+<ul>
+<li>ASIHTTPRequest</li>
+<li>AFNetWorking</li>
+<li>MKNetworkKit</li>
+</ul>
+<p>个人以Google出来的信息得出的对比：</p>
+<p>| 网络库 | 优点 | 缺点 |</p>
+<p>| ------------ | ------------- | ------------ |</p>
+<p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
+<p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
+<p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
+<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。
+候选AFNetWorking。</p>
+<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
+<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">原理在这里</a></p>
+<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">实现的例子</a></p>
+<p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/04/25/learning-ios-notes-six/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-04-03T15:31:00.000Z"><a href="/2012/04/03/learning-ios-notes-five/">Apr 3 2012</a></time>
       
       
@@ -219,101 +276,13 @@
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-02-28T14:46:00.000Z"><a href="/2012/02/28/learning-ios-notes-one/">Feb 28 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/02/28/learning-ios-notes-one/">iOS笔记 (1)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2>iOS 系统架构</h2>
-<h4>iOS</h4>
-<pre><code><span class="title">Cocoa</span> Touch
-Media
-Core Services
-Core OS
-</code></pre>
-<h4>Core OS</h4>
-<pre><code>OSX kernel
-Power Management
-Mach <span class="number">3.0</span>
-Keychain <span class="keyword">Access</span>
-BSD
-Certificates
-Sockets
-<span class="keyword">File</span> System
-Security 
-Bonjour  
-</code></pre>
-<h4>Core Services</h4>
-<pre><code>Collections 
-Core Location
-Address Book
-Net Services
-networking 
-Threading
-<span class="keyword">File</span> <span class="keyword">Access</span>
-Preferences
-SQLite
-URL Utilities
-</code></pre>
-<h4>Media</h4>
-<pre><code><span class="title">Core</span> Audio
-JPEG PNG TIFF
-OpenAL 
-PDF
-Audio Mixing 
-Quartz(2D)
-Audio Recording
-Core Animation
-Video Playback
-OpenGL ES
-</code></pre>
-<h4>Cocoa Touch</h4>
-<pre><code>Multi-Touch
-Alerts
-Core Motion
-Web View
-View Hierarchy
-<span class="keyword">Map</span> Kit
-Localization
-Image Picker
-Controls
-Camera
-</code></pre>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/02/28/learning-ios-notes-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
 
   <nav id="pagination">
   
     <a href="/categories/iOS/page/3/" class="alignleft prev">上一页</a>
   
+  
+    <a href="/categories/iOS/page/5/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav>
@@ -337,7 +306,7 @@ Camera
   
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>20</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>21</small></li>
   
     <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
   
