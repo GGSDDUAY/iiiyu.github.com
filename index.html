@@ -59,6 +59,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-04-29T04:03:11.000Z"><a href="/2013/04/29/learning-ios-notes-twenty-two/">Apr 29 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/29/learning-ios-notes-twenty-two/">iOS笔记(22) CoreData (四) 监听NSFetchedResultsController</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>CoreDate (四)</h1>
+<h2>监听NSFetchedResultsController</h2>
+<p>之前说过, NSFetchedResultsController是有两个重要的功能。</p>
+<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
+<p>第二:但Model改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
+<p>上一篇写了第一点. 现在写第二点.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/04/29/learning-ios-notes-twenty-two/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">Apr 17 2013</a></time>
       
       
@@ -237,44 +278,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-19T15:45:25.000Z"><a href="/2013/03/19/learning-mac-notes-one/">Mar 19 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/03/19/learning-mac-notes-one/">Mac笔记 (1)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>ssh远程登录Mac OS X</h1>
-<h2>序</h2>
-<p>近一年抱了Apple大腿之后，各种表弟、师兄、朋友陆续也开始抱Apple大腿。难免遇到各种问题，这个时候在QQ交流效率低下，简直不可忍受。也不知大腾讯啥时候支持一下QQ for Mac的远程协助。这样有时候也可以帮助一下在家的老爸老妈解决一些PC上的问题。大神们绕道无鄙视。OS X乃纯Unix血统。教科书上都写了*nix系统可以ssh登录过去搞定一切。就想着可以用ssh来解决问题。无奈网络基础确实是挂课的水平曾经尝试过一次没有成功。这次又再次遇到远程协助的问题就好好Google了一次。研究了好一会儿终于搞定，在此记录。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/03/19/learning-mac-notes-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -302,7 +305,7 @@
   
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>22</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>23</small></li>
   
     <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
   

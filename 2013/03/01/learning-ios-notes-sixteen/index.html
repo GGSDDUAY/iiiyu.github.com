@@ -1,56 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>iOS笔记(16) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="fuck">
-  
-  
-  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
-  <meta property="og:title" content="iOS笔记(16)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-29764460-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-</head>
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/about-me">关于我</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
 
 <article class="post">
   
@@ -82,7 +30,7 @@
 <h4>第二步删除git submodule</h4>
 <p>git submodule虽然也可以实现第三方库的管理，但是相对于cocoapods来说太麻烦了。删除就不是想cocoapods这样在Podfile里面删除配置就好的。</p>
 <p><strong>先删掉目录</strong></p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="comment">$git</span> <span class="comment">rm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">cached</span> <span class="comment">Vendor/MagicalRecord</span> 
@@ -91,14 +39,14 @@
 </pre></td></tr></table></figure>
 
 <p><strong>删掉.gitmodules</strong></p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$rm</span> .gitmodules
 </pre></td></tr></table></figure>
 
 <p><strong>修改.git/config</strong></p>
 <p>把MagicalRecord和SVProgressHUD的条目删除</p>
 <p><strong>最后commit一下</strong></p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment">$</span> <span class="comment">git</span> <span class="comment">add</span> <span class="string">.</span>
 <span class="comment">$</span> <span class="comment">git</span> <span class="comment">commit</span> <span class="literal">-</span><span class="comment">m</span> <span class="comment">"Remove</span> <span class="comment">a</span> <span class="comment">submodule"
@@ -108,7 +56,7 @@
 <p><strong>先把项目里面引用submodule的地方删除</strong></p>
 <p><strong>添加Podfile到项目目录里面</strong></p>
 <p>内容为</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>platform :ios,  '<span class="number">6.0</span>'
@@ -121,12 +69,12 @@ pod <span class="attribute">'SVProgressHUD</span>'
 第二行因为MagicalRecord我们改了几行代码，因此用我们自己的版本。指定git地址。和tag标签。除了tag还可以指定branch和commit。格式一样
 第三行用官方的最新版本</p>
 <p><strong>安装Pod</strong></p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$pod</span> install
 </pre></td></tr></table></figure>
 
 <p>我的安装结束以后提示</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>[!] The target `SIStore [Debug - Release]' overrides <span class="keyword">the</span> `HEADER_SEARCH_PATHS' build setting defined <span class="keyword">in</span> `Pods/Pods.xcconfig'.
@@ -134,11 +82,11 @@ pod <span class="attribute">'SVProgressHUD</span>'
     - Remove <span class="keyword">the</span> build settings <span class="keyword">from</span> <span class="keyword">the</span> target.
 </pre></td></tr></table></figure>
 
-<p>安装提示修改项目的Build Settings就ok了。</p>
+<p>按照提示修改项目的Build Settings就ok了。</p>
 <p><strong>进入项目中把之前是包入“”的第三方头文件地方改为&lt;&gt;</strong></p>
 <p><strong>添加.gitignore</strong></p>
 <p>.gitignore内容为</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -162,12 +110,12 @@ pod <span class="attribute">'SVProgressHUD</span>'
 <p>这样就之前的库就可以跑在cocoapods的配置下了</p>
 <h4>第四步创建自己的Podspec文件</h4>
 <p>初始化一个Podspec文件</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$pod spec <span class="operator"><span class="keyword">create</span> SIStore
 </pre></td></tr></table></figure>
 
 <p>SIStore.podspec内容如下</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -431,7 +379,7 @@ end
 
 <p>注释里面描写的很详细，建议全部看完</p>
 <p>去掉注释版本</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -466,7 +414,7 @@ end
 </ul>
 <p>我们要认真填写的有s.name、s.version、s.source、s.source_files。我们有依赖其他库所以还要写s.dependency。还有一个bundle还要写s.resourcs。</p>
 <p>最终的结果内容如下:</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -556,83 +504,3 @@ end
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-<div class="search">
-  <form action="http://google.com/search" method="get" accept-charset="utf-8">
-    <input type="text" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
-
-
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>22</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-
-
-
-<div class="widget twitter">
-  <h3 class="title">推文</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-</script>
-<script src="/js/twitter.js"></script>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2013 萧宸宇
-  
-</div>
-<div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-</body>
-</html>
