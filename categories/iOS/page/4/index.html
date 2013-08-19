@@ -1,56 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>第 4 页 | iOS | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="fuck">
-  
-  
-  <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
-  
-  <meta property="og:site_name" content="萧宸宇"/>
-
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-29764460-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-</head>
-
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/about-me">关于我</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
 
 
 <h2 class="archive-title category">iOS</h2>
@@ -63,7 +11,47 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-08-13T06:17:00.000Z"><a href="/2012/08/13/learning-ios-notes-ten/">Aug 13 2012</a></time>
+        <time datetime="2012-09-02T03:29:00.000Z"><a href="/2012/09/02/learning-ios-notes-eleven/">9月 2 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/09/02/learning-ios-notes-eleven/">iOS笔记 (11)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>关于Target-Action设计模式</h1>
+<h2>序</h2>
+<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
+<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
+<p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/09/02/learning-ios-notes-eleven/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-13T06:17:00.000Z"><a href="/2012/08/13/learning-ios-notes-ten/">8月 13 2012</a></time>
       
       
   
@@ -116,7 +104,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-08-12T06:56:00.000Z"><a href="/2012/08/12/learning-ios-notes-nine/">Aug 12 2012</a></time>
+        <time datetime="2012-08-12T06:56:00.000Z"><a href="/2012/08/12/learning-ios-notes-nine/">8月 12 2012</a></time>
       
       
   
@@ -154,7 +142,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-07-07T13:15:00.000Z"><a href="/2012/07/07/learning-ios-notes-eight/">Jul 7 2012</a></time>
+        <time datetime="2012-07-07T13:15:00.000Z"><a href="/2012/07/07/learning-ios-notes-eight/">7月 7 2012</a></time>
       
       
   
@@ -193,7 +181,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-05-06T02:28:00.000Z"><a href="/2012/05/06/learning-ios-notes-seven/">May 6 2012</a></time>
+        <time datetime="2012-05-06T02:28:00.000Z"><a href="/2012/05/06/learning-ios-notes-seven/">5月 6 2012</a></time>
       
       
   
@@ -225,63 +213,6 @@
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-04-24T17:40:00.000Z"><a href="/2012/04/25/learning-ios-notes-six/">Apr 25 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/04/25/learning-ios-notes-six/">iOS笔记 (6)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS笔记 利用ASIHTTPRequest做断点续传</h1>
-<h2>主要问题</h2>
-<p>需要请求Http协议，下载一个zip包。包比较大，希望能后台下载。退出应用再次打开的时候能接着上一次的下载。专业名称：断点续传。</p>
-<h2>寻找方案</h2>
-<p>iOS目前三大开源网络库</p>
-<ul>
-<li>ASIHTTPRequest</li>
-<li>AFNetWorking</li>
-<li>MKNetworkKit</li>
-</ul>
-<p>个人以Google出来的信息得出的对比：</p>
-<p>| 网络库 | 优点 | 缺点 |</p>
-<p>| ------------ | ------------- | ------------ |</p>
-<p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
-<p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
-<p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
-<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。
-候选AFNetWorking。</p>
-<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
-<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">原理在这里</a></p>
-<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">实现的例子</a></p>
-<p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/04/25/learning-ios-notes-six/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
 
   <nav id="pagination">
   
@@ -292,83 +223,3 @@
   
   <div class="clearfix"></div>
 </nav>
-</div></div>
-    <aside id="sidebar" class="alignright">
-<div class="search">
-  <form action="http://google.com/search" method="get" accept-charset="utf-8">
-    <input type="text" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
-
-
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>25</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-
-
-
-<div class="widget twitter">
-  <h3 class="title">推文</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-</script>
-<script src="/js/twitter.js"></script>
-
-</aside>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2013 萧宸宇
-  
-</div>
-<div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-</body>
-</html>
