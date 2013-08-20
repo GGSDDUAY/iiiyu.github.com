@@ -103,7 +103,7 @@
 </pre></td></tr></table></figure>
 
 <p>initWithFrame虽然看起来像初始化函数的样子，但是如果我们想初始化做一些事情的时候。是要重新写一个函数</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -120,14 +120,14 @@
 <p>如果需要初始化做一些事情，请重载awakeFromNib。</p>
 <p>drawRect函数一开始是被注释掉。但是此函数可以在view上进行绘画。关于Quartz请参考相关官方文档。</p>
 <p>仅仅记录我觉得重要的地方。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>// 这个<span class="keyword">context</span>就是画布，官方叫上下文。每次作画前要有。
 CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext();
 </pre></td></tr></table></figure>
 
 <p>一开始我不会设置view的背景，就想把画一个和view相等的矩形。这样不就是背景了。后来发现是可以直接设置的。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment">// 设置view的背景颜色</span>
 <span class="keyword">self</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> darkGrayColor];
@@ -138,7 +138,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 <p>然后是线的绘制。当手指触碰到宫的时候，才吧宫的中心作为起点开始绘制线。绘制的线在没有遇到第二个宫的时候跟随手指，如果遇到宫。就绘制完成一条直线。然后把终点的坐标为下一条线的起点。直到手指离开屏幕。</p>
 <h3>ViewController类分析（UIViewController）</h3>
 <p>手指触摸开始</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -149,7 +149,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 </pre></td></tr></table></figure>
 
 <p>手指移动</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -160,7 +160,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 </pre></td></tr></table></figure>
 
 <p>触摸结束</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -169,7 +169,6 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
     
 }
 </pre></td></tr></table></figure>
-
 
 <h3>最后</h3>
 <p>大概在山寨这个九宫的时候就遇到很多问题。隔了一天，能想到一一记录。当然，还有更多的问题。所以最好就直接看github项目里面有更详细的注释和完整的代码。很多时候，觉得写代码比写blog轻松多了。</p>

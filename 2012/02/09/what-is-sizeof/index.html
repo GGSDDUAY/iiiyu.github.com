@@ -81,13 +81,14 @@ size_t　<span class="keyword">fread</span>(void　*　ptr,size_t　<span class=
 </pre></td></tr></table></figure>
 
 <p>输出为什么是4，0而不是期望中的4，3？？？就在于sizeof在编译阶段处理的特性。由于sizeof不能被编译成机器码，所以sizeof作用范围内，也就是()里面的内容也不能被编译，而是被替换成类型。=操作符返回左操作数的类型，所以a=3相当于int，而代码也被替换为：</p>
-<figure class="highlight lang-c "><table><tr><td class="gutter"><pre>1
+<figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"sizeof(a=3):%d\n"</span>,<span class="number">4</span>)</span>;
 </pre></td></tr></table></figure>
 
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="function"><span class="title">printf</span><span class="params">(<span class="string">"a:%d\n"</span>,a)</span>;
 </pre></td></tr></table></figure>
+
 
 <p>所以，sizeof是不可能支持链式表达式的，这也是和一元操作符不一样的地方。
 结论：好，记住：sizeof 在 计算变量所占空间大小时， 括号可以省略， 而计算类型(模子)大小时不能省略。 一般情况下， 咱也别偷这个懒， 乖乖的写上括号， 继续装作一个 “函数” 做一个 ， “披着函数皮的操作符” 。 做我的操作符，让人家认为是函数去吧。 不要把sizeof当成函数，也不要看作一元操作符，把他当成一个特殊的编译预处理。</p>
@@ -162,6 +163,8 @@ void fun(<span class="keyword">int</span> b[<span class="number">100</span>])
     <span class="keyword">return</span> <span class="number">0</span>;
 }
 </pre></td></tr></table></figure>
+
+
       
     </div>
     <footer>

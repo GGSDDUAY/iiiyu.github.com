@@ -56,7 +56,6 @@
 </pre></td><td class="code"><pre><span class="title">[context deleteObject:managedObject]</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-
 <p>初始化NSPredicate</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">NSUInteger</span>  numberOfServings = <span class="number">10</span>;<span class="title">NSPredicate</span> *predicate = nil;<span class="title">predicate</span> = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings];
@@ -71,15 +70,13 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>NSManagedObjectContext *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription entityForName:@"Recipe"
-                                                                                                                                                            inManagedObjectContext:moc]]</span>;  
+                                                                                                                                                            inManagedObjectContext:moc]]</span>;
 </pre></td></tr></table></figure>
-
 
 <p>带有NSPredicate的初始化NSFetchRequest</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>NSUInteger              numberOfServings = <span class="number">10</span>;NSManagedObjectContext  *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription    entityForName:@"Recipe"                                                                                                                                                                inManagedObjectContext:moc]]</span>;NSPredicate *predicate = <span class="keyword">nil</span>;predicate = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings]; [request setPredicate:predicate];
 </pre></td></tr></table></figure>
-
 
 <p>带有NSSortDescriptor的初始化NSFetchRequest</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -91,6 +88,8 @@ fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@<span class="string">
 NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]]</span>;
 </pre></td></tr></table></figure>
+
+
       
     </div>
     <footer>

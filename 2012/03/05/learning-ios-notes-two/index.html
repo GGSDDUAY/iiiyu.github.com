@@ -36,7 +36,7 @@
 <p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
 <p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向
 XXXViewController.m文件里面拖，就会形成一个Action。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -52,9 +52,9 @@ XXXViewController.m文件里面拖，就会形成一个Action。</p>
 <p>新的IOS5引入了ARC（Automatic Referencing Counting）机制。当然，你可以在创建项目的时候不选择，或者再项目创建以后关闭它来手动释放内存。</p>
 <p>可惜我直接是从IOS5开始学习，而且不喜欢旧的东西。所以坚决使用ARC和storyboard。而且再内存管理上，我觉得编译器比人靠谱多了。当然我也是初学IOS。理解上可能有错误，欢迎指导。</p>
 <p>窃以为使用ARC，一开始接触到的是：</p>
-<pre><code><span class="title">strong</span>
+<pre><code><figure class="highlight"><pre><span class="title">strong</span>
 <span class="title">weak</span>
-</code></pre>
+</pre></figure></code></pre>
 <p>在我的记录中老头是这样定义的：</p>
 <blockquote>
 <p>Strong and weak are descriptions or attributes parentheses.
@@ -70,7 +70,7 @@ This is refernce counting done automatically for you.</p>
 <h4>声明初始化类</h4>
 <p>一句话:</p>
 <p>alloc后面永远跟着init</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="string">[[CalculatorBrain alloc] init];
@@ -81,14 +81,14 @@ This is refernce counting done automatically for you.</p>
 <h4>面向对象的封装</h4>
 <p>小时候还在用过几天java写web的时候，很纳闷为什么每一个属性都要写get、set方法。直到现在才慢慢明白这是封装。封装的好处。</p>
 <p>在IOS5编程里面。通常是用@property来声明属性，然后使用@synthesize来默认使用get、set方法。当然，再objective-c里面可以重写get、set方法。而且我觉得@property和@synthesize应该像alloc和init一样配套使用。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 </pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
 
 
-@<span class="keyword">synthesize</span> operandStack = _operandStack; 
+@<span class="keyword">synthesize</span> operandStack = _operandStack;
 </pre></td></tr></table></figure>
 
 <h4>编译器的强大</h4>

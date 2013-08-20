@@ -389,15 +389,15 @@ end
 8
 9
 10
-</pre></td><td class="code"><pre>Pod::Spec.new <span class="keyword">do</span> |<span class="keyword">s</span>|
-  <span class="keyword">s</span>.name         = <span class="string">"SIStore"</span>
-  <span class="keyword">s</span>.version      = <span class="string">"0.0.1"</span>
-  <span class="keyword">s</span>.summary      = <span class="string">"A short description of SIStore."</span>
-  <span class="keyword">s</span>.homepage     = <span class="string">"http://EXAMPLE/SIStore"</span>
-  <span class="keyword">s</span>.license      = <span class="string">'MIT (example)'</span>
-  <span class="keyword">s</span>.author       = { <span class="string">"Xiao ChenYu"</span> =&<span class="keyword">gt</span>; <span class="string">"apple.iiiyu<span class="variable">@gmail</span>.com"</span> }
-  <span class="keyword">s</span>.source       = { :git =&<span class="keyword">gt</span>; <span class="string">"http://EXAMPLE/SIStore.git"</span>, :tag =&<span class="keyword">gt</span>; <span class="string">"0.0.1"</span> }
-  <span class="keyword">s</span>.source_files = <span class="string">'Classes'</span>, <span class="string">'Classes/**/*.{h,m}'</span>
+</pre></td><td class="code"><pre>Pod::Spec.<span class="keyword">new</span> <span class="keyword">do</span> |s|
+  s.name         = <span class="string">"SIStore"</span>
+  s.version      = <span class="string">"0.0.1"</span>
+  s.summary      = <span class="string">"A short description of SIStore."</span>
+  s.homepage     = <span class="string">"http://EXAMPLE/SIStore"</span>
+  s.license      = <span class="string">'MIT (example)'</span>
+  s.author       = { <span class="string">"Xiao ChenYu"</span> =&gt; <span class="string">"apple.iiiyu@gmail.com"</span> }
+  s.source       = { :git =&gt; <span class="string">"http://EXAMPLE/SIStore.git"</span>, :tag =&gt; <span class="string">"0.0.1"</span> }
+  s.source_files = <span class="string">'Classes'</span>, <span class="string">'Classes/**/*.{h,m}'</span>
 end
 </pre></td></tr></table></figure>
 
@@ -449,7 +449,6 @@ end
   s.platform     = :ios
 <span class="keyword">end</span>
 </pre></td></tr></table></figure>
-
 
 <h2>坑</h2>
 <p>cocoapods有缓存。 我一直测试刚刚搞好的自己的库一直不对。 改了2小时。 才反应过来我一直打的标签是同一个，然后cocoapods在本地缓存了一个。只对比了标签以至于我改的东西都没有用。哭。。。。</p>

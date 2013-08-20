@@ -20,20 +20,20 @@
 <p><a href="/blog/2012/02/26/emacs-set-up-1/">上次</a>的那些操作只能让你存活下来。</p>
 <p>现在让我们感觉更好一些。</p>
 <p>有时候，你可能按了一次C-c或者M-x。然后发现自己按错了。想消除这些命令这时候你可是使用</p>
-<pre><code>C-g 取消操作
-</code></pre>
+<pre><code><figure class="highlight"><pre>C-g 取消操作
+</pre></figure></code></pre>
 <p>如果你不确定你现在按没有按命令。你可以狂按几次C-g。</p>
 <a name="more"></a>
 
 <h2>光标移动</h2>
 <h3>更好的光标移动</h3>
-<pre><code>C-a 行首
+<pre><code><figure class="highlight"><pre>C-a 行首
 C-e 行尾
 M-f 下一个单词
 M-b 上一个单词
-</code></pre>
+</pre></figure></code></pre>
 <h3>更快的光标移动</h3>
-<pre><code>M-m 移动到第一个非空格字符 (back-to-indentation)
+<pre><code><figure class="highlight"><pre>M-m 移动到第一个非空格字符 (back-to-indentation)
 M-a 句子头
 M-e 句子尾
 M-{ 段落头
@@ -45,15 +45,15 @@ M-&gt; 文件尾
 M-r 窗口中间
 M-x <span class="keyword">goto</span>-<span class="keyword">char</span> RET N 文件的第 N 字节
 M-x <span class="keyword">goto</span>-line RET N 文件第 N 行
-</code></pre>
+</pre></figure></code></pre>
 <h3>更强的光标移动</h3>
-<pre><code>C-M-a 到函数头
+<pre><code><figure class="highlight"><pre>C-M-a 到函数头
 C-M-e 到函数尾
 C-M-f 到下一个同级语法结构 
 C-M-b 到上一个同级语法结构
 C-M-d 进入到下一级结构里
 C-M-u 进入到上一级结构里
-</code></pre>
+</pre></figure></code></pre>
 <p>   文档一般都有各种结构，比如LISP里有S表达式，C语言里的函数，LaTeX 里的 \begin{...}...\end{...} ... 如果我们能够已文档的语法单位来移动，就会使操作非常高效。</p>
 <p>   defun。efun 在 LISP 里就是最高一级的 sexp，而在 C 语言里，它的含义就是函数。</p>
 <p>C-M-a   到 defun 头
@@ -79,7 +79,7 @@ C-M-b   到上一个同级语法结构</p>
 <p>C-M-a, C-M-e, C-M-f, C-M-b, C-M-d, C-M-u 这几个命令组合起来可以迅速的在程序里移动。往往手可以按住 C-M 不放，所以还是很顺手的。</p>
 <p>如果你还对光标移动欲罢不能，<a href="http://mmmyddd.freeshell.net/wiki/emacs/moving-cursor.html">这里</a>有高清大图让你慢慢把玩。</p>
 <h2>操作</h2>
-<pre><code>C-g 取消操作
+<pre><code><figure class="highlight"><pre>C-g 取消操作
 C-<span class="built_in">space</span> = C-@ 选择操作区
 C-d 删除一个字符
 M-d 删除一个单词
@@ -98,7 +98,7 @@ C-r 逆向搜索
 C-M-s 正则搜索
 
 M-x <span class="built_in">replace</span>-<span class="built_in">string</span> 替换文本
-</code></pre>
+</pre></figure></code></pre>
 <p>其实不管是Emacs还是Vim。这些动作你都要在不断的使用中变成下意识的动作。这样，你在键盘上的效率就会越来越高。</p>
 <p>随便说一句，推荐学Emacs的原因还有。在终端里面我用过的bash和zsh都是支持Emacs按键的。Mac OS里面所有的文本输入框也是部分支持Emacs的。虽然man等是支持vim的按键方式，可是我们不是还有info是Emacs的方式么。</p>
 

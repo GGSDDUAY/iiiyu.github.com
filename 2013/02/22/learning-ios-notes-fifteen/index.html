@@ -28,36 +28,31 @@
 <h2>为什么需要Mogenerator</h2>
 <h2>安装Mogenerator</h2>
 <p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew">homebrew</a>去安装。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>brew install mogenerator
 </pre></td></tr></table></figure>
 
 <p>升级</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ brew <span class="operator"><span class="keyword">update</span> && brew upgrade mogenerator
 </pre></td></tr></table></figure>
 
 <h2>在项目里面添加Mogenerator</h2>
 <p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/">这篇</a>的教程我添加了脚本以后运行不成功</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
 <span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
 </pre></td></tr></table></figure>
-提示:
 
-    /Volumes/Data/iYu/Library/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-5B80B84A16D9EC8F00E8E3A3.sh: line 3: mogenerator: command not found Command /bin/sh failed with exit code 127
-
-自己打命令测试Mogenerator是成功的
-
-<img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator">
-
-
-xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的
-
-思考以后在命令之前之前导入mogenerator的路径。 由于我是用homebrew按照的自然在homebrew的路径下面
-
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<p>提示:</p>
+<pre><code><figure class="highlight"><pre>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span>
+</pre></figure></code></pre>
+<p>自己打命令测试Mogenerator是成功的</p>
+<p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator"></p>
+<p>xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的</p>
+<p>思考以后在命令之前之前导入mogenerator的路径。 由于我是用homebrew按照的自然在homebrew的路径下面</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
@@ -65,12 +60,11 @@ xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode�
 <span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
 </pre></td></tr></table></figure>
 
-
 <p>这次mogenerator是找到了，但是xcadatamodeld又没有找到。看到</p>
-<pre><code>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
-</code></pre>
+<pre><code><figure class="highlight"><pre>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
+</pre></figure></code></pre>
 <p>pwd出来路径观察以后把cd去掉</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="keyword">export</span> PATH=<span class="string">"/usr/local/Cellar/mogenerator/1.27/bin:$PATH"</span>
 mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<span class="variable">.xcdatamodel</span>/
@@ -86,7 +80,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>运行以后生成的文件在这里</p>
 <p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e25pk5ribkj.jpg" alt=""></p>
 <p>PS: 第一次生成的文件位置不对。所以脚本又改了一下</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
@@ -98,14 +92,13 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>如果是一个新的entity，需要你自己加入自己的工程里面工程，如果Entity已经加入现在只是更新了Entity的话。就不用加入工程了。</p>
 <p><img src="http://ww3.sinaimg.cn/large/a74eed94jw1e25q0ub23qj.jpg" alt=""></p>
 <p>最后编译的时候还是不对 脚本继续改 囧</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
 <span class="comment">export</span> <span class="comment">PATH="/usr/local/Cellar/mogenerator/1</span>.<span class="comment">27/bin:$PATH"</span>
 <span class="comment">mogenerator</span> <span class="literal">-</span><span class="comment">m</span> <span class="string">.</span><span class="string">.</span><span class="comment">/myDataBase</span>.<span class="comment">xcdatamodeld/myDataBase</span>.<span class="comment">xcdatamodel/</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">template</span>-<span class="comment">var</span> <span class="comment">arc=YES
 </pre></td></tr></table></figure>
-
 
 <h2>总结</h2>
 <p>断断续续折腾了两天。大概明白了mogenerator怎么一个事情。但是好用好还有带研究。这篇blog先发吧。不然又难产了。</p>

@@ -53,10 +53,11 @@
     <span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
 <span class="comment">}
 </pre></td></tr></table></figure>
-3. @selector()取得的其实一个ASCII的方法名字符串
-4. 我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector
 
-
+<ol>
+<li>@selector()取得的其实一个ASCII的方法名字符串</li>
+<li>我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector</li>
+</ol>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -78,7 +79,7 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
 <h2>怎么用Target-Action</h2>
 <h3>UIButton用法</h3>
 <p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents
 </pre></td></tr></table></figure>
 
@@ -100,7 +101,6 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
 // do something
 }
 </pre></td></tr></table></figure>
-
 
 <p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。</p>
 <p>简单的用@selector还有另外一个应用场景就是Notification。这个另外写一篇把。</p>

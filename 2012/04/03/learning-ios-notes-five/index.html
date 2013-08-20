@@ -65,11 +65,10 @@
 <h3>viewDidUnload</h3>
 <p>如果iOS中内存过低，这时候，系统会自动的卸载view。意味着系统把viewController从内存里面干掉，也就是停止所有指向viewController的strong类型的指针。做完这些以后，viewDidUnLoad会被调用。也就是self.view设置为nil时候调用。</p>
 <p>直觉上来说，这时候貌似不用做什么事情。可是为了最佳实践。虽然你的outlets都是weak类型的。但是你还是需要手动在viewDidUnload把它们设置为nil。这起码算是一种好的iOS编程习惯,我们应该把所有的outlet都设置为nil。</p>
-<pre><code>- (<span class="keyword">void</span>)viewDidUnload
-{
-    <span class="keyword">self</span><span class="variable">.faceView</span> = <span class="literal">nil</span>;
-}
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>- (<span class="keyword">void</span>)viewDidUnload{    <span class="keyword">self</span><span class="variable">.faceView</span> = <span class="literal">nil</span>;}
+</pre></td></tr></table></figure>
+
 <p>如果你还是想知其然：大概就是可能在其他地方，有个指向这里某个outlet的strong类型的指针。根据ARC，这时候你的outlet是已经释放了。但是那个strong指针仍然指向了之前的那个内存地址，如果这时候使用，内存就会错误，而设置了为nil以后，向nil是可以发送任何消息，不会错误的。(我是这样理解，可能跟现实有出入。欢迎指正。)</p>
 <p>随便说一声，不管内存有多低，正在现实的view是不会被unload的。所以只是针对屏幕以外的viewController进行unload。</p>
 

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2013-08-20T09:42:09.683Z</updated>
+  <updated>2013-08-20T09:43:48.214Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -603,7 +603,6 @@
 }
 </pre></td></tr></table></figure>
 
-
 <p>然后改写insert方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -651,16 +650,12 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>[newManagedObject setValue:<span class="string">[[NSDate date] dateAtStartOfMinutes]  forKey:@"sectionMinute"];
 </pre></td></tr></table></figure>
-这句.
 
-这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.
-当然因为建立的工程模板原因.很大一部分都是xCode搞定的.
-
-
-### 被遗忘的地方
-
-Sections数量,决定了有多少组
-
+<p>这句.</p>
+<p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.
+当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
+<h3>被遗忘的地方</h3>
+<p>Sections数量,决定了有多少组</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -711,7 +706,6 @@ Sections数量,决定了有多少组
     cell<span class="variable">.textLabel</span><span class="variable">.text</span> = [[object valueForKey:@<span class="string">"timeStamp"</span>] description];
 }
 </pre></td></tr></table></figure>
-
 
 <h3>show</h3>
 <p><img src="http://ww3.sinaimg.cn/large/a74ecc4cjw1e3tydp5hsqj208w0geabq.jpg" alt=""></p>
@@ -820,7 +814,6 @@ Sections数量,决定了有多少组
 }
 </pre></td></tr></table></figure>
 
-
 <p>重要的是UITableView的dequeueReusableCellWithIdentifier方法。</p>
 <p>dequeueReusableCellWithIdentifier去一个队列里面需找有没有相同ID的的Cell。如果有就提出来重用。可以重用的部分。如果没有就跳进if里面去创建。所以我们在if里面创建的时候，不会改变的内容都可以在里面创建，这样就只用创建一次。需要改变的内容我们就放到if后面去写。 这样我们就能完成高效的UITableView。当然，理论上来说，你可以不用这样的机制，而去直接每次创建一个Cell。不过这是非常浪费资源的一个做法，直接不提倡。</p>
 <h2>UITableView Delegate</h2>
@@ -924,7 +917,6 @@ Sections数量,决定了有多少组
 </pre></td><td class="code"><pre><span class="title">[context deleteObject:managedObject]</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-
 <p>初始化NSPredicate</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">NSUInteger</span>  numberOfServings = <span class="number">10</span>;<span class="title">NSPredicate</span> *predicate = nil;<span class="title">predicate</span> = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings];
@@ -939,15 +931,13 @@ Sections数量,决定了有多少组
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>NSManagedObjectContext *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription entityForName:@"Recipe"
-                                                                                                                                                            inManagedObjectContext:moc]]</span>;  
+                                                                                                                                                            inManagedObjectContext:moc]]</span>;
 </pre></td></tr></table></figure>
-
 
 <p>带有NSPredicate的初始化NSFetchRequest</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>NSUInteger              numberOfServings = <span class="number">10</span>;NSManagedObjectContext  *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription    entityForName:@"Recipe"                                                                                                                                                                inManagedObjectContext:moc]]</span>;NSPredicate *predicate = <span class="keyword">nil</span>;predicate = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings]; [request setPredicate:predicate];
 </pre></td></tr></table></figure>
-
 
 <p>带有NSSortDescriptor的初始化NSFetchRequest</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -958,7 +948,9 @@ Sections数量,决定了有多少组
 fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@<span class="string">"Recipe"</span>];
 NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]]</span>;
-</pre></td></tr></table></figure>]]></content>
+</pre></td></tr></table></figure>
+
+]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
   <entry>
@@ -1053,12 +1045,12 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 <p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/">Zarra on Locking</a></p>
 <p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
 <h4>代码加载NSManagedObjectContext</h4>
-<pre><code>NSManagedObjectContext                  *moc = <span class="keyword">nil</span>;
-NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;
-moc = <span class="string">[[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];
-[moc setPersistentStoreCoordinator:psc];
-[self setManagedObjectContext:moc];
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>NSManagedObjectContext                  *moc = <span class="keyword">nil</span>;NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;moc = <span class="string">[[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];[moc setPersistentStoreCoordinator:psc];[self setManagedObjectContext:moc];
+</pre></td></tr></table></figure>
+
+
+
 <h3>总结</h3>
 <p><img src="http://ww2.sinaimg.cn/large/a7480316jw1e39dc0y8o2j.jpg" alt=""></p>
 <p>至此，三个Core Data的核心类就已经简单说完了一次。他们的关系在上面的图片中表示的很清楚的样子。</p>
@@ -1209,8 +1201,8 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
 <p>值得注意的是参数中YES的意思为如果为YES则保证文件的写入原子性,就是说会先创建一个临时文件,成功了就改名为正式的文件。如果为NO,直接写入目标文件目录里.writeToFile:atomically:的这个方法都为覆盖。如果想要是追加的效果。建议先读出原文件内容然后在后面加入新内容。最后一起写入。这样就覆盖了老的文件。</p>
 <h2>总结</h2>
 <p>之前一直想写的blog想深入一些。以至于不敢动手开始写。总觉得还没有准备好。自己也懂的不够透彻。这样不知不觉欠了几十篇blog了。在todo list里面都要变成谍中谍了。最近关注了几个微信公众帐号。见到人家天天画时间去更新。比我优秀的人比我更加努力。惭愧的很。所以现在就拿着简单的内容写起来。</p>
-<pre><code>故不积 跬步，无以至千里；不积小流，无以成江海。
-</code></pre>
+<pre><code><figure class="highlight"><pre>故不积 跬步，无以至千里；不积小流，无以成江海。
+</pre></figure></code></pre>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
@@ -1593,15 +1585,15 @@ end
 8
 9
 10
-</pre></td><td class="code"><pre>Pod::Spec.new <span class="keyword">do</span> |<span class="keyword">s</span>|
-  <span class="keyword">s</span>.name         = <span class="string">"SIStore"</span>
-  <span class="keyword">s</span>.version      = <span class="string">"0.0.1"</span>
-  <span class="keyword">s</span>.summary      = <span class="string">"A short description of SIStore."</span>
-  <span class="keyword">s</span>.homepage     = <span class="string">"http://EXAMPLE/SIStore"</span>
-  <span class="keyword">s</span>.license      = <span class="string">'MIT (example)'</span>
-  <span class="keyword">s</span>.author       = { <span class="string">"Xiao ChenYu"</span> =&<span class="keyword">gt</span>; <span class="string">"apple.iiiyu<span class="variable">@gmail</span>.com"</span> }
-  <span class="keyword">s</span>.source       = { :git =&<span class="keyword">gt</span>; <span class="string">"http://EXAMPLE/SIStore.git"</span>, :tag =&<span class="keyword">gt</span>; <span class="string">"0.0.1"</span> }
-  <span class="keyword">s</span>.source_files = <span class="string">'Classes'</span>, <span class="string">'Classes/**/*.{h,m}'</span>
+</pre></td><td class="code"><pre>Pod::Spec.<span class="keyword">new</span> <span class="keyword">do</span> |s|
+  s.name         = <span class="string">"SIStore"</span>
+  s.version      = <span class="string">"0.0.1"</span>
+  s.summary      = <span class="string">"A short description of SIStore."</span>
+  s.homepage     = <span class="string">"http://EXAMPLE/SIStore"</span>
+  s.license      = <span class="string">'MIT (example)'</span>
+  s.author       = { <span class="string">"Xiao ChenYu"</span> =&gt; <span class="string">"apple.iiiyu@gmail.com"</span> }
+  s.source       = { :git =&gt; <span class="string">"http://EXAMPLE/SIStore.git"</span>, :tag =&gt; <span class="string">"0.0.1"</span> }
+  s.source_files = <span class="string">'Classes'</span>, <span class="string">'Classes/**/*.{h,m}'</span>
 end
 </pre></td></tr></table></figure>
 
@@ -1654,7 +1646,6 @@ end
 <span class="keyword">end</span>
 </pre></td></tr></table></figure>
 
-
 <h2>坑</h2>
 <p>cocoapods有缓存。 我一直测试刚刚搞好的自己的库一直不对。 改了2小时。 才反应过来我一直打的标签是同一个，然后cocoapods在本地缓存了一个。只对比了标签以至于我改的东西都没有用。哭。。。。</p>
 <h2>参考文章</h2>
@@ -1681,36 +1672,31 @@ end
 <h2>为什么需要Mogenerator</h2>
 <h2>安装Mogenerator</h2>
 <p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew">homebrew</a>去安装。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>brew install mogenerator
 </pre></td></tr></table></figure>
 
 <p>升级</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ brew <span class="operator"><span class="keyword">update</span> && brew upgrade mogenerator
 </pre></td></tr></table></figure>
 
 <h2>在项目里面添加Mogenerator</h2>
 <p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/">这篇</a>的教程我添加了脚本以后运行不成功</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
 <span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
 </pre></td></tr></table></figure>
-提示:
 
-    /Volumes/Data/iYu/Library/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-5B80B84A16D9EC8F00E8E3A3.sh: line 3: mogenerator: command not found Command /bin/sh failed with exit code 127
-
-自己打命令测试Mogenerator是成功的
-
-<img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator">
-
-
-xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的
-
-思考以后在命令之前之前导入mogenerator的路径。 由于我是用homebrew按照的自然在homebrew的路径下面
-
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<p>提示:</p>
+<pre><code><figure class="highlight"><pre>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span>
+</pre></figure></code></pre>
+<p>自己打命令测试Mogenerator是成功的</p>
+<p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator"></p>
+<p>xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的</p>
+<p>思考以后在命令之前之前导入mogenerator的路径。 由于我是用homebrew按照的自然在homebrew的路径下面</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
@@ -1718,12 +1704,11 @@ xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode�
 <span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
 </pre></td></tr></table></figure>
 
-
 <p>这次mogenerator是找到了，但是xcadatamodeld又没有找到。看到</p>
-<pre><code>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
-</code></pre>
+<pre><code><figure class="highlight"><pre>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
+</pre></figure></code></pre>
 <p>pwd出来路径观察以后把cd去掉</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="keyword">export</span> PATH=<span class="string">"/usr/local/Cellar/mogenerator/1.27/bin:$PATH"</span>
 mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<span class="variable">.xcdatamodel</span>/
@@ -1739,7 +1724,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>运行以后生成的文件在这里</p>
 <p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e25pk5ribkj.jpg" alt=""></p>
 <p>PS: 第一次生成的文件位置不对。所以脚本又改了一下</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
@@ -1751,14 +1736,13 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>如果是一个新的entity，需要你自己加入自己的工程里面工程，如果Entity已经加入现在只是更新了Entity的话。就不用加入工程了。</p>
 <p><img src="http://ww3.sinaimg.cn/large/a74eed94jw1e25q0ub23qj.jpg" alt=""></p>
 <p>最后编译的时候还是不对 脚本继续改 囧</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
 <span class="comment">export</span> <span class="comment">PATH="/usr/local/Cellar/mogenerator/1</span>.<span class="comment">27/bin:$PATH"</span>
 <span class="comment">mogenerator</span> <span class="literal">-</span><span class="comment">m</span> <span class="string">.</span><span class="string">.</span><span class="comment">/myDataBase</span>.<span class="comment">xcdatamodeld/myDataBase</span>.<span class="comment">xcdatamodel/</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">template</span>-<span class="comment">var</span> <span class="comment">arc=YES
 </pre></td></tr></table></figure>
-
 
 <h2>总结</h2>
 <p>断断续续折腾了两天。大概明白了mogenerator怎么一个事情。但是好用好还有带研究。这篇blog先发吧。不然又难产了。</p>
@@ -1911,7 +1895,6 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">[debugger disconnect]</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>更多用法 参考
 <a href="https://github.com/square/PonyDebugger">主页</a></p>
@@ -2088,7 +2071,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <h3>搜索</h3>
 <p>我们可以用cocoapods来先看看有没有我们需要添加的第三方库</p>
 <p>比如我们想用一个json库</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -2132,42 +2115,42 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 42
 </pre></td><td class="code"><pre><span class="comment">pod</span> <span class="comment">search</span> <span class="comment">json</span>                                                                                                                                   
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">AnyJSON</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">1)</span>
+<span class="literal">-</span>&gt; <span class="comment">AnyJSON</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">1)</span>
    <span class="comment">Encode</span> <span class="comment">/</span> <span class="comment">Decode</span> <span class="comment">JSON</span> <span class="comment">by</span> <span class="comment">any</span> <span class="comment">means</span> <span class="comment">possible</span>.
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">https://github</span>.<span class="comment">com/mattt/AnyJSON</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">https://github</span>.<span class="comment">com/mattt/AnyJSON</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Versions:</span> <span class="comment">0</span>.<span class="comment">0</span>.<span class="comment">1</span> <span class="title">[</span><span class="comment">master</span> <span class="comment">repo</span>]
 
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">JSONKit</span> <span class="comment">(1</span>.<span class="comment">5pre)</span>
+<span class="literal">-</span>&gt; <span class="comment">JSONKit</span> <span class="comment">(1</span>.<span class="comment">5pre)</span>
    <span class="comment">A</span> <span class="comment">Very</span> <span class="comment">High</span> <span class="comment">Performance</span> <span class="comment">Objective</span>-<span class="comment">C</span> <span class="comment">JSON</span> <span class="comment">Library</span>.
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">https://github</span>.<span class="comment">com/johnezang/JSONKit</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">git://github</span>.<span class="comment">com/johnezang/JSONKit</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Versions:</span> <span class="comment">1</span>.<span class="comment">5pre</span>, <span class="comment">1</span>.<span class="comment">4</span> <span class="title">[</span><span class="comment">master</span> <span class="comment">repo</span>]
 
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">MTJSONDictionary</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">4)</span>
+<span class="literal">-</span>&gt; <span class="comment">MTJSONDictionary</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">4)</span>
    <span class="comment">An</span> <span class="comment">NSDictionary</span> <span class="comment">category</span> <span class="comment">for</span> <span class="comment">when</span> <span class="comment">you're</span> <span class="comment">working</span> <span class="comment">with</span> <span class="comment">it</span> <span class="comment">converting</span> <span class="comment">to/from</span> <span class="comment">JSON</span>. <span class="comment">DEPRECATED</span>, <span class="comment">use</span> <span class="comment">MTJSONUtils</span> <span class="comment">instead</span>.
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">https://github</span>.<span class="comment">com/mysterioustrousers/MTJSONDictionary</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">https://github</span>.<span class="comment">com/mysterioustrousers/MTJSONDictionary</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Versions:</span> <span class="comment">0</span>.<span class="comment">0</span>.<span class="comment">4</span>, <span class="comment">0</span>.<span class="comment">0</span>.<span class="comment">3</span>, <span class="comment">0</span>.<span class="comment">0</span>.<span class="comment">2</span> <span class="title">[</span><span class="comment">master</span> <span class="comment">repo</span>]
 
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">MTJSONUtils</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">1)</span>
+<span class="literal">-</span>&gt; <span class="comment">MTJSONUtils</span> <span class="comment">(0</span>.<span class="comment">0</span>.<span class="comment">1)</span>
    <span class="comment">NSObject</span> <span class="comment">category</span> <span class="comment">for</span> <span class="comment">working</span> <span class="comment">JSON</span> <span class="comment">convertions</span> <span class="comment">with</span> <span class="comment">suport</span> <span class="comment">keypaths</span> <span class="comment">(</span>[<span class="comment">dict</span> <span class="comment">valueForComplexKeyPath:@"parents</span>[<span class="comment">0</span>]<span class="string">.</span><span class="comment">children</span>[<span class="comment">first</span>]<span class="string">.</span><span class="comment">toys</span>[<span class="comment">last</span>]<span class="comment">"</span>]<span class="comment">)</span>
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">https://github</span>.<span class="comment">com/mysterioustrousers/MTJSONUtils</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">https://github</span>.<span class="comment">com/mysterioustrousers/MTJSONUtils</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Versions:</span> <span class="comment">0</span>.<span class="comment">0</span>.<span class="comment">1</span> <span class="title">[</span><span class="comment">master</span> <span class="comment">repo</span>]
 
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">SBJson</span> <span class="comment">(3</span>.<span class="comment">1</span>.<span class="comment">1)</span>
+<span class="literal">-</span>&gt; <span class="comment">SBJson</span> <span class="comment">(3</span>.<span class="comment">1</span>.<span class="comment">1)</span>
    <span class="comment">This</span> <span class="comment">library</span> <span class="comment">implements</span> <span class="comment">strict</span> <span class="comment">JSON</span> <span class="comment">parsing</span> <span class="comment">and</span> <span class="comment">generation</span> <span class="comment">in</span> <span class="comment">Objective</span>-<span class="comment">C</span>.
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">http://stig</span>.<span class="comment">github</span>.<span class="comment">com/json</span>-<span class="comment">framework/</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">https://github</span>.<span class="comment">com/stig/json</span>-<span class="comment">framework</span>.<span class="comment">git</span>
    <span class="literal">-</span> <span class="comment">Versions:</span> <span class="comment">3</span>.<span class="comment">1</span>.<span class="comment">1</span>, <span class="comment">3</span>.<span class="comment">1</span>, <span class="comment">3</span>.<span class="comment">0</span>.<span class="comment">4</span>, <span class="comment">2</span>.<span class="comment">2</span>.<span class="comment">3</span> <span class="title">[</span><span class="comment">master</span> <span class="comment">repo</span>]
 
 
-<span class="literal">-</span><span class="comment">&gt;</span> <span class="comment">TouchJSON</span> <span class="comment">(1</span>.<span class="comment">0)</span>
+<span class="literal">-</span>&gt; <span class="comment">TouchJSON</span> <span class="comment">(1</span>.<span class="comment">0)</span>
    <span class="comment">TouchJSON</span> <span class="comment">is</span> <span class="comment">an</span> <span class="comment">Objective</span>-<span class="comment">C</span> <span class="comment">based</span> <span class="comment">parser</span> <span class="comment">and</span> <span class="comment">generator</span> <span class="comment">for</span> <span class="comment">JSON</span> <span class="comment">encoded</span> <span class="comment">data</span>.
    <span class="literal">-</span> <span class="comment">Homepage:</span> <span class="comment">https://github</span>.<span class="comment">com/TouchCode/TouchJSON</span>
    <span class="literal">-</span> <span class="comment">Source:</span>   <span class="comment">https://github</span>.<span class="comment">com/TouchCode/TouchJSON</span>.<span class="comment">git</span>
@@ -2177,14 +2160,14 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>恩出现很多 我们选一个自己会用的就好了。</p>
 <h3>添加</h3>
 <p>我们进入我们的iOS项目目录下，然后新建立一个配置文件Podfile</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">touch</span> <span class="type">Podfile</span>
 <span class="title">vim</span> <span class="type">Podfile</span>
 </pre></td></tr></table></figure>
 
 <p>然后加入我们想要的第三方库和库的Version号(Podfile内容)</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">platform</span> :ios
 <span class="title">dependency</span><span class="string"> 'JSONKit'</span>,<span class="string"> '~&gt; 1.5pre'</span>
@@ -2192,7 +2175,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 
 <p>保存</p>
 <p>执行  </p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">pod</span> install
 </pre></td></tr></table></figure>
 
@@ -2202,10 +2185,11 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 打开看以后会发现其实cocoapods做了一个事情就是他把第三方库都编译成了一个库文件。然后你的项目中去包含头文件，libPods.a被作为framework集成到目标项目。Pods.xcconfig 中配置了XCode编译的查找路径，通过这种方式将所有的第三方包来引入到项目中。</p>
 <p>啊哈哈，立马感觉引入一个第三方包都变得很现代有木有。</p>
 <p>如果需要加入新的库编写Podfile里面 再次执行</p>
-<p><figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="title">pod</span> install
 </pre></td></tr></table></figure>
-就好了。</p>
+
+<p>就好了。</p>
 <h3>向cocoapods提交新的第三方库</h3>
 <p>如果你在pod search里面没有找到你想要的库怎么弄。cocoapods允许你自己提交，然后他们审核发布。(太人性化了，感动的想哭啊)</p>
 <p>简单的说，Spec就是每个包在CocoaPods中的配置文件，其中包括Package的名字，版本号，每个版本对应的下载地址，编译时的参数。等等。</p>

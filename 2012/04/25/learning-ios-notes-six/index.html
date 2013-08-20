@@ -121,7 +121,7 @@
 <h4>保持进度条</h4>
 <p>解决无法跟踪多个UIProgressView的问题。
 为了跟踪到UIProgressView，我在单例的类里面实现了</p>
-<p><figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -135,7 +135,6 @@
 12
 13
 14
-15
 </pre></td><td class="code"><pre><span class="comment">// 增加下载的request进入队列</span>
 - (<span class="keyword">void</span>)addDownloadRequestInQueue:(<span class="built_in">NSURL</span> *)paramURL 
                      withTempPath:(<span class="built_in">NSString</span> *)paramTempPath 
@@ -150,11 +149,11 @@
 
 <span class="comment">// 恢复progressview的进度</span>
 - (<span class="keyword">void</span>)requestsDelegateSettingWithDictonary:(<span class="built_in">NSDictionary</span> *) paramDictonary;
-
 </pre></td></tr></table></figure>
-这些方法。
+
+<p>这些方法。
 值得注意的是</p>
-<p><figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -163,18 +162,20 @@
                  withDownloadPath:<span class="params">(<span class="variable">NSString</span> *)</span>paramDownloadPath 
                  withProgressView:<span class="params">(<span class="variable">UIProgressView</span> *)</span>paramProgressView;
 </pre></td></tr></table></figure>
-这里的paramProgressView对应于你的请求下载的URL(request)。</p>
-<p><figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+
+<p>这里的paramProgressView对应于你的请求下载的URL(request)。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment">// 恢复progressview的进度</span>
 - (<span class="keyword">void</span>)requestsDelegateSettingWithDictonary:(<span class="built_in">NSDictionary</span> *) paramDictonary;
 </pre></td></tr></table></figure>
-这里的字典key是URL，object是UIProgressView。我在view controller中的viewDidLoad方法调用。</p>
+
+<p>这里的字典key是URL，object是UIProgressView。我在view controller中的viewDidLoad方法调用。</p>
 <h2>总结</h2>
 <p>我改写的很简单，特别的地方都在上面注明了。如果不明白就留言吧。大神们也请轻拍，我在慢慢努力中。</p>
 <p>改写的github地址：</p>
-<pre><code><span class="title">git</span> clone <span class="url">git://github.com/iiiyu/TestDownload.git
-</code></pre>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> clone <span class="url">git://github.com/iiiyu/TestDownload.git
+</pre></figure></code></pre>
 <p>最后附送两篇队列优先级的文章</p>
 <p>[使用NSOperationQueue简化多线程开发]
 <a href="http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/">http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/</a></p>

@@ -26,7 +26,7 @@
 <a name="more"></a>
 
 <h3>buffer的快捷键</h3>
-<pre><code>C-x b 切换<span class="keyword">buffer</span>（要输入<span class="keyword">buffer</span>名字）
+<pre><code><figure class="highlight"><pre>C-x b 切换<span class="keyword">buffer</span>（要输入<span class="keyword">buffer</span>名字）
 C-x 方向键也可以切换<span class="keyword">buffer</span>
 C-x C-w 保存<span class="keyword">buffer</span>（也可以看做是另存为）
 C-x l : 显示文件(<span class="keyword">buffer</span>)总行数
@@ -35,7 +35,7 @@ C-x <span class="number">2</span> : 上下两窗口模式
 C-x <span class="number">3</span> : 左右两窗口模式
 C-x <span class="number">0</span> : 关闭当前窗口(<span class="keyword">Buffer</span>仍然存在)
 C-x o : 切换窗口
-</code></pre>
+</pre></figure></code></pre>
 <h2>mode</h2>
 <h3>什么是mode</h3>
 <p>当我们启动某一文件时，Emacs会判断文件的类型，从而自动选择相应的模式。当然，我们也可以手动启动各种模式。先按M-x，然后输入模式的名称。</p>
@@ -47,24 +47,24 @@ C-x o : 切换窗口
 如果是perl就是， M-x perl-mode或者是M-x cperl-mode </p>
 <h2>块操作</h2>
 <p>emacs以C-x r开头的命令来进行矩形操作。先用C-space或者C-@设一个mark，移动光标到另一点，用以下命令进行列操作：</p>
-<pre><code>C-x r k 剪切一个矩形块
+<pre><code><figure class="highlight"><pre>C-x r k 剪切一个矩形块
 C-x r y 粘贴一个矩形块
 C-x r o 插入一个矩形块
 C-x r c 清除一个矩形块(使其变成空白)
 C-x r t 在选定区域的所有列前插入样的字符
-</code></pre>
+</pre></figure></code></pre>
 <h3>鼠标操作</h3>
-<pre><code><span class="comment">按住鼠标左键移动</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记文本块</span>
+<pre><code><figure class="highlight"><pre><span class="comment">按住鼠标左键移动</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记文本块</span>
 <span class="comment">鼠标右键单击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">将标记的文本块复制到剪贴板</span>
 <span class="comment">鼠标左键双击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记单词</span>
 <span class="comment">鼠标左键三击</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">标记行
-</code></pre>
+</pre></figure></code></pre>
 <h3>cua-mode</h3>
 <p>cua-mode支持的可视化块模式</p>
 <p>除了emacs本身支持的列模式外，emacs还可以通过cua-mode支持一种可视化的列模式。在cua-mode下，按[C-return]会进入cua rectangle模式。在这个模式下可以通过鼠标点击确认起点，然后通过光标键来选中一个rect范围，这个rect会用另外的颜色显示出来。</p>
 <p>之后我们 就可以很方便地对这个rect进行操作。比如[M-up],[M-down],[M-left],[M-right]可以移动这个rect，[C- return]可以取消这个rect，[C-space]可以退出cua-rect模式并激活普通模式下的选择。
 cua-mode下可以用以下命令进行列操作：</p>
-<pre><code>直接输入字符: 在每行前(或后)都插入这个字符
+<pre><code><figure class="highlight"><pre>直接输入字符: 在每行前(或后)都插入这个字符
 <span class="attr_selector">[M-a]</span>: 将<span class="tag">rect</span>中的文字左对齐
 <span class="attr_selector">[M-b]</span>: 用空格(<span class="tag">tabs</span>或者<span class="tag">spaces</span>)替换所有<span class="tag">rect</span>中的字符
 <span class="attr_selector">[M-c]</span>: 去掉所有行左侧的空格
@@ -81,7 +81,7 @@ cua-mode下可以用以下命令进行列操作：</p>
 <span class="attr_selector">[M-t]</span>: 把<span class="tag">rect</span>整个替换为一个字符串(提示输入)
 <span class="attr_selector">[M-u]</span>: 把<span class="tag">rect</span>中的内容全部转换为大写
 <span class="attr_selector">[M-|]</span>: 对<span class="tag">rect</span>执行一个<span class="tag">shell</span>命令
-</code></pre>
+</pre></figure></code></pre>
 <h2>我的配置的Emacs的独有功能</h2>
 <p>说是独有功能其实也是很多配置文件拼凑起来的。只是之前介绍的都是emacs默认的东西。下面的功能对于大神来说都是很常见，我只是绑定了几个快捷键或者记录了几个常用的快捷键而已
 怎样用我的配置的Emacs，</p>
@@ -91,47 +91,47 @@ cua-mode下可以用以下命令进行列操作：</p>
 <p>看到上面图上面那一排像标签页的东西了么，这个就是tabbar-mode的效果。启动配置了我的配置Emacs就默认启动了。
 这些像标签的东西都是buffer。</p>
 <h4>tabbar-mode切换buffer快捷键</h4>
-<pre><code>M-n 下一个<span class="keyword">buffer</span>
+<pre><code><figure class="highlight"><pre>M-n 下一个<span class="keyword">buffer</span>
 M-p 上一个<span class="keyword">buffer</span>
-</code></pre>
+</pre></figure></code></pre>
 <h3>ecb-active</h3>
 <p><img src="http://farm8.staticflickr.com/7048/6835347694_e3727987d8.jpg" alt="Emacs ecb"></p>
 <p>哈哈有点IDE的感觉吧。</p>
 <h4>启动ecb</h4>
 <p>先打开一个你的源文件。
 然后</p>
-<pre><code>M-x ecb-<span class="command">activate</span>
-</code></pre>
+<pre><code><figure class="highlight"><pre>M-x ecb-<span class="command">activate</span>
+</pre></figure></code></pre>
 <p>就启动ecb了</p>
 <p>使用ecb的好处是你可以在左边的第一个小窗口选择文件夹，第二个小窗口选择文件，第三个小窗口选择当前文件里面的函数，第四个小窗口选择你打开过的文件。</p>
 <h3>python-mode</h3>
 <p>只说一个 执行当前文件按</p>
-<pre><code>C-c C-c
-</code></pre>
+<pre><code><figure class="highlight"><pre>C-c C-c
+</pre></figure></code></pre>
 <p>有个bug，执行的python是Emacs启动的，如果python文件里面有中文，那在Emacs启动的这个python线程下执行会报错。编码问题，但是没有找到解决的方法。</p>
 <h3>c-mode or cc-mode</h3>
 <p>该模式下，tab被我替换成空格，一个tab设置为4个空格，缩进也是4个空格。</p>
 <h4>整理代码</h4>
 <p>有一个比较常用的就是格式整理代码
 可以选择部分代码整理，也可以整理全部代码。这样你的代码缩进就会非常漂亮了。</p>
-<pre><code>C-M-<span class="command">\ </span>整理代码
-</code></pre>
+<pre><code><figure class="highlight"><pre>C-M-<span class="command">\ </span>整理代码
+</pre></figure></code></pre>
 <h4>跳入函数</h4>
 <p>但我们查看某个函数想知道它实现的地方的时候</p>
-<pre><code>C-M-0 跳到函数实现的地方
+<pre><code><figure class="highlight"><pre>C-M-0 跳到函数实现的地方
 C-M-9 跳回来
-</code></pre>
+</pre></figure></code></pre>
 <h4>高亮</h4>
 <p>这个高亮功能大爱</p>
 <p><img src="http://farm8.staticflickr.com/7203/6981473973_d1e6262cf1.jpg" alt="Emacs gao liang"></p>
 <p>看见这些花花绿绿没有，相同的函数或者变量是同一个颜色。非常好区分。
 使用方法非常简单</p>
-<pre><code><span class="type">C</span>-f3 第一次标记颜色，第二次取消
+<pre><code><figure class="highlight"><pre><span class="type">C</span>-f3 第一次标记颜色，第二次取消
 <span class="title">f3</span>   查找相同的下一个
-</code></pre>
+</pre></figure></code></pre>
 <h3>快捷键补遗</h3>
-<pre><code>S-方向键 可以在不同的窗口切换
-</code></pre>
+<pre><code><figure class="highlight"><pre>S-方向键 可以在不同的窗口切换
+</pre></figure></code></pre>
 <h2>完结语</h2>
 <p>零零碎碎，我把能一次想到的都一股脑的全部写完了。当然不可能面面俱到，比如强大如org-mode只字未提。而且大部份都是快捷键的说明而已。本来开始打算写调教Emacs系列能写十几篇。但个人思想上发生了一些变化，所以可能以后Emacs不会是主力编辑器了。</p>
 <p>不过也指不定那天抽风的有写出调教Emacs第二季强势归来</p>

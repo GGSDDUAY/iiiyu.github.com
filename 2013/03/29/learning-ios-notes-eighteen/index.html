@@ -102,12 +102,12 @@
 <p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/">Zarra on Locking</a></p>
 <p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
 <h4>代码加载NSManagedObjectContext</h4>
-<pre><code>NSManagedObjectContext                  *moc = <span class="keyword">nil</span>;
-NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;
-moc = <span class="string">[[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];
-[moc setPersistentStoreCoordinator:psc];
-[self setManagedObjectContext:moc];
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>NSManagedObjectContext                  *moc = <span class="keyword">nil</span>;NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;moc = <span class="string">[[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];[moc setPersistentStoreCoordinator:psc];[self setManagedObjectContext:moc];
+</pre></td></tr></table></figure>
+
+
+
 <h3>总结</h3>
 <p><img src="http://ww2.sinaimg.cn/large/a7480316jw1e39dc0y8o2j.jpg" alt=""></p>
 <p>至此，三个Core Data的核心类就已经简单说完了一次。他们的关系在上面的图片中表示的很清楚的样子。</p>

@@ -21,8 +21,8 @@
 <p>iOS笔记也终于迈入两位数之列。在此里程碑下。明显要拿出点诚意来好好写一写。所以，我决定写一下早已改写的delegate。</p>
 <h2>什么是回调函数</h2>
 <p>我们先不管delegate，我们先来说说回调函数(callback).<a href="http://zh.wikipedia.org/wiki/回调函数">wiki</a>的解释在这里。</p>
-<pre><code>回调函数，或简称回调，是指通过函数参数传递到其它代码的，某一块可执行代码的引用。
-</code></pre>
+<pre><code><figure class="highlight"><pre>回调函数，或简称回调，是指通过函数参数传递到其它代码的，某一块可执行代码的引用。
+</pre></figure></code></pre>
 <p>好我来说所自己理解过后的解释:</p>
 <ol>
 <li>如果不用回调函数可不可以写程序。(明显可以)</li>
@@ -39,7 +39,7 @@
 <h2>那什么是delegate</h2>
 <p>找了一个比较专业的解释<a href="http://www.uml.org.cn/j2ee/200411036.htm">这里</a></p>
 <p>对于delegate不是一个具体的技术，它是一个设计模式。他是面向对象编程思想里面的一种基础方法。好如果你看了我的第一个笔记的话，还记得我描述MVC的比喻么<a href="http://www.iiiyu.com/blog/2012/02/28/learning-ios-notes-one/">这里</a>为了描述方便我还是搬运一次来这里把。</p>
-<pre><code><span class="title">controller</span>一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想
+<pre><code><figure class="highlight"><pre><span class="title">controller</span>一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想
 
 在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置
 
@@ -64,7 +64,7 @@
 么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，
 
 但是很可能收到的不是model这个台。
-</code></pre>
+</pre></figure></code></pre>
 <p>其实这个故事是根据老头第一课的视频加keynote自己联想出来的。来回顾一下这张经典的keynote
 <img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
 <ol>
@@ -102,7 +102,7 @@
 12
 13
 14
-</pre></td><td class="code"><pre>@<span class="class"><span class="keyword">protocol</span> <span class="id">MyClassDelegate</span> &<span class="id">lt</span>;<span class="id">NSObject</span>&<span class="id">gt</span>;</span>
+</pre></td><td class="code"><pre>@<span class="class"><span class="keyword">protocol</span> <span class="id">MyClassDelegate</span> &lt;<span class="id">NSObject</span>&gt;</span>
 @<span class="keyword">optional</span>
 - (<span class="keyword">void</span>) will抢花姑娘:(MyClass*)myClass;
 - (<span class="keyword">void</span>) did抢花姑娘:(MyClass *)myClass;

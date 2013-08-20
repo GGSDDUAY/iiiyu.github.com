@@ -21,8 +21,8 @@
 <p>反正在等IPad3的发布，就顺手写篇blog。本来觉得这个时候写IOS笔记3还有点过早。因为好像没有太多的干货能拿出来。可是在看了老头用xcode、git来教怎么管理代码的时候，我彻底崩溃了。VS新版没见过，目前Xcode是体验最好的IDE，没有之一。Emacs系列突然觉得没有必要更新的冲动。</p>
 <p>虽然我们居住在神奇的天朝，但是我们还是要感谢这个时代。因为科技和人类文明的进步，使得我们可以看到一流名校的课程。就算那个号称天朝最公平的考试失败以后，只要你想学，还是可以学到这个世界上一流的课程。</p>
 <p>多媒体的表现力要远远丰富于文字。清楚直观的5分钟视频，可能换成文字描述写一个小时都写不好。所以如果这篇看不懂的话直接看视频吧。（没找到链接）</p>
-<pre><code><span class="title">Xcode</span> and Source Code Management (October <span class="number">7</span>, <span class="number">2011</span>) - HD
-</code></pre>
+<pre><code><figure class="highlight"><pre><span class="title">Xcode</span> and Source Code Management (October <span class="number">7</span>, <span class="number">2011</span>) - HD
+</pre></figure></code></pre>
 <blockquote>
 <p>人生是一场冒险。对我来说：活下去，然后活的爽一些。就够了。</p>
 </blockquote>
@@ -31,12 +31,12 @@
 
 <h2>补遗笔记二</h2>
 <p>上次忘记写一个很有特色的东西。方法之前的+、-符号。这个其实很简单。在笔记一里面就有：</p>
-<pre><code>在ObjC中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)
-</code></pre>
+<pre><code><figure class="highlight"><pre>在ObjC中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)
+</pre></figure></code></pre>
 <p>可是我这个人对专有名词都他喵的没感觉。比较喜欢通俗易懂的解释。</p>
-<pre><code><span class="literal">+</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类名字</span> <span class="comment">方法</span>]
+<pre><code><figure class="highlight"><pre><span class="literal">+</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类名字</span> <span class="comment">方法</span>]
 <span class="literal">-</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类实例</span> <span class="comment">方法</span>]
-</code></pre>
+</pre></figure></code></pre>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>NSString *str = <span class="string">[[NSString alloc] init];//这个 alloc就是+号定义的
@@ -55,13 +55,13 @@
 <h2>Xcode</h2>
 <h4>编辑魔法</h4>
 <p>首先说一个编辑的小魔法，当你想修改源码中相同一个地方，而不想点xcode的Refactor的话。你可以完全通过键盘来实现</p>
-<pre><code><span class="title">Command</span> + c <span class="comment">#copy你想替换成的文本</span>
+<pre><code><figure class="highlight"><pre><span class="title">Command</span> + c <span class="comment">#copy你想替换成的文本</span>
 <span class="comment">#选择你要替换的文本 Command + e</span>
 Command + v <span class="comment">#替换了第一个地方</span>
 Command + g <span class="comment">#到了下一个替换的地方</span>
 <span class="comment">#重复 Command + v和 Command + g</span>
 <span class="comment">#完成替换</span>
-</code></pre>
+</pre></figure></code></pre>
 <p>其实这个小技巧你可以再Mac的任意编辑文本处使用。</p>
 <h4>一些界面说明</h4>
 <p><img src="http://farm8.staticflickr.com/7040/6816041908_bc88f08c2b.jpg" alt="xcode1"></p>
