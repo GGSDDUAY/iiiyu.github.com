@@ -65,6 +65,96 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2012-02-28T14:46:00.000Z"><a href="/2012/02/28/learning-ios-notes-one/">2月 28 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/02/28/learning-ios-notes-one/">iOS笔记 (1)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2>iOS 系统架构</h2>
+<h4>iOS</h4>
+<pre><code><figure class="highlight"><pre><span class="title">Cocoa</span> Touch
+Media
+Core Services
+Core OS
+</pre></figure></code></pre>
+<h4>Core OS</h4>
+<pre><code><figure class="highlight"><pre>OSX kernel
+Power Management
+Mach <span class="number">3.0</span>
+Keychain <span class="keyword">Access</span>
+BSD
+Certificates
+Sockets
+<span class="keyword">File</span> System
+Security 
+Bonjour  
+</pre></figure></code></pre>
+<h4>Core Services</h4>
+<pre><code><figure class="highlight"><pre>Collections 
+Core Location
+Address Book
+Net Services
+networking 
+Threading
+<span class="keyword">File</span> <span class="keyword">Access</span>
+Preferences
+SQLite
+URL Utilities
+</pre></figure></code></pre>
+<h4>Media</h4>
+<pre><code><figure class="highlight"><pre><span class="title">Core</span> Audio
+JPEG PNG TIFF
+OpenAL 
+PDF
+Audio Mixing 
+Quartz(2D)
+Audio Recording
+Core Animation
+Video Playback
+OpenGL ES
+</pre></figure></code></pre>
+<h4>Cocoa Touch</h4>
+<pre><code><figure class="highlight"><pre>Multi-Touch
+Alerts
+Core Motion
+Web View
+View Hierarchy
+<span class="keyword">Map</span> Kit
+Localization
+Image Picker
+Controls
+Camera
+</pre></figure></code></pre>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/02/28/learning-ios-notes-one/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-02-26T14:59:00.000Z"><a href="/2012/02/26/emacs-set-up-1/">2月 26 2012</a></time>
       
       
@@ -250,49 +340,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-02-09T08:01:00.000Z"><a href="/2012/02/09/what-is-sizeof/">2月 9 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/02/09/what-is-sizeof/">sizeof 深入理解</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>sizeof 深入理解</h1>
-<p>sizeof你们觉得是什么呢。函数？其实是操作符。
-wiki解释</p>
-<blockquote>
-<p>In the programming languages C and C++, the unary operator &#39;sizeof&#39; is used to calculate the sizes of datatypes, in number of bytes. sizeof can be applied to all datatypes, be they primitive types such as the integer and floating-point types defined in the language, pointers to memory addresses, or the compound datatypes (unions, structs, or C++ classes) defined by the programmer. sizeof is an operator that returns the size in bytes of the type of the variable or parenthesized type-specifier that it precedes as a size_t type value.</p>
-</blockquote>
-<p>sizeof is an operator：sizeof是一个操作符。擦 这货居然是操作符。
-最后一句我们可以得到的信息还有sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned　int类型。该类型保证能容纳实现所建立的最大对象的字节大小。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/02/09/what-is-sizeof/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -324,7 +371,7 @@ wiki解释</p>
   
     <li><a href="/categories/iOS/">iOS</a><small>26</small></li>
   
-    <li><a href="/categories/just-talk/">just-talk</a><small>12</small></li>
+    <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
     <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
   
