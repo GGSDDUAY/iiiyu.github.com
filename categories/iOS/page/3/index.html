@@ -69,6 +69,98 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-03-11T15:18:49.000Z"><a href="/2013/03/11/learning-ios-notes-seventeen/">3月 11 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/11/learning-ios-notes-seventeen/">iOS笔记(17)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS读写文件</h1>
+<h2>序</h2>
+<p>由于iOS App的机制和限定，我们在App里面的权限就仅限于App内部。这个打包好的内部称为沙箱。沙箱有利有弊。我觉得这个世界上没有绝对的好坏。虽然沙箱的作用限制了一些功能的实现。但是也确保了iPhone的安全机制。对于普通用户来说我觉得的利大于弊的。(MAS上架的软件也接受这一约束)</p>
+<h2>第一步 路径</h2>
+<p>不管是读文件还是写文件我们都要需要知道文件的位置。这个位置在iOS里面就是沙箱的Document文件夹的位置。关于沙箱里面各个文件夹的功能和作用。Apple的某文档里面写的很清楚建议Google以后详细查看（懒得去找来贴了）。获取代码如下：</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="title">NSArray</span>  *paths              = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+<span class="title">NSString</span> *documentsDirectory = [paths objectAtIndex:<span class="number">0</span>];
+</pre></td></tr></table></figure>
+
+<p>NSDocumentDirectoryz这个参数你点过去可以找到一堆类似的定义比如常用的NSLibraryDirectory，NSApplicationDirectory。这样就可以直接获取到对应的文件夹路径。其他的你照抄就好。想知道意思就点过去看呗。其实看变量名也可以猜测一二。</p>
+<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>NSString <span class="variable">*filePath</span> = [documentsDirectory stringByAppendingString:<span class="variable">@"</span>/hello.txt<span class="string">"];
+</pre></td></tr></table></figure>
+
+<p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
+<p>这样我们就获得一个文件路径了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/03/11/learning-ios-notes-seventeen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-28T18:38:47.000Z"><a href="/2013/03/01/learning-ios-notes-sixteen/">3月 1 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/01/learning-ios-notes-sixteen/">iOS笔记(16)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>配置自己的CocoaPods库</h1>
+<h2>序</h2>
+<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。
+如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/03/01/learning-ios-notes-sixteen/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-02-22T10:31:10.000Z"><a href="/2013/02/22/learning-ios-notes-fifteen/">2月 22 2013</a></time>
       
       
@@ -181,89 +273,6 @@
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-10-21T09:50:00.000Z"><a href="/2012/10/21/learning-ios-notes-thirteen/">10月 21 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/10/21/learning-ios-notes-thirteen/">iOS笔记 (13)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>UIViewController的一些事儿</h1>
-<h2>序</h2>
-<p>这篇主要是想写 Contaner View Controller。然后才好写我计划里面的下一篇讲UIStoryboardSegue的blog。</p>
-<p>先贴一个链接 <a href="http://geeklu.com/2012/05/custom-container-view-controller/">Container View Controller</a>.他写的很好，算是中文blog里面我见过写 Container View Controller最好的一篇blog。</p>
-<p>另外一篇中文blog<a href="http://www.onevcat.com/2012/02/uiviewcontroller/">UIViewController的误用</a></p>
-<p>然后是apple的官方文档</p>
-<p><a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIViewController_Class/Reference/Reference.html">UIViewController Class Reference</a></p>
-<p><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html">View Controller Programming Guide for iOS</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/10/21/learning-ios-notes-thirteen/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-09-29T04:37:00.000Z"><a href="/2012/09/29/learning-ios-notes-twelve/">9月 29 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/09/29/learning-ios-notes-twelve/">iOS笔记 (12)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>Block简单使用</h1>
-<h2>序</h2>
-<p>这篇blog主要想介绍这么用block做回调。因为跟之前的是想关联的。</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
-<p>这图中的Controller和View我之前已经讲过Delegate和Traget-Action了。Data source和Delegate差不多。有机会再TableView里面详细说说。当然，按照计划我这次要写block的回调。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/09/29/learning-ios-notes-twelve/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
 
   <nav id="pagination">
   
@@ -294,7 +303,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>26</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   

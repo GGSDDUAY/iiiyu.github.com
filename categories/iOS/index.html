@@ -69,6 +69,100 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-09-02T14:21:13.000Z"><a href="/2013/09/02/learning-ios-notes-twenty-seven/">9月 2 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/09/02/learning-ios-notes-twenty-seven/">iOS学习笔记(27) iCloud(三) key-Value Stroe</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2>什么是NSUserDefaults</h2>
+<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/09/02/learning-ios-notes-twenty-seven/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-08-26T14:43:11.000Z"><a href="/2013/08/26/learning-ios-notes-twenty-six/">8月 26 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/08/26/learning-ios-notes-twenty-six/">iOS学习笔记(26) iCloud(二) 准备工作</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2>开发支持iCloud的上半部分前期准备</h2>
+<ul>
+<li><p>需要申请一个开发者的帐号。理论上iOS和Mac OSX的都OK。考虑到我只有iOS的情况下，我的文章里面的例子默认只是iOS的。</p>
+</li>
+<li><p>你需要一台iOS设备，并且iOS版本必须大于等于5.最好大于等于6. 最最好大于等于7。</p>
+</li>
+<li><p>Xcode不用说至少是MAS里面最新的</p>
+</li>
+<li><p>然后去建立App Bundle ID的页面去把iCloud支持打开。</p>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hq7q78aj20sa0g2tav.jpg" alt="1"></p>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="2"></p>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="3"></p>
+<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e88hts5dkpj20k70en75m.jpg" alt="4"></p>
+<ul>
+<li>bundle id需要生成带你测试设备的证书</li>
+</ul>
+<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e88htyxylrj20rw0egmzm.jpg" alt="5"></p>
+<p>(PS:截图太累了 换成文章描述)</p>
+<p>这样才能算iCloud的前期工作做完了一半。</p>
+<p><strong>以下涉及到NDA内容请自行屏蔽</strong>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/08/26/learning-ios-notes-twenty-six/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-08-19T14:29:37.000Z"><a href="/2013/08/19/learning-ios-notes-twenty-five/">8月 19 2013</a></time>
       
       
@@ -205,90 +299,6 @@
 
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-29T04:03:11.000Z"><a href="/2013/04/29/learning-ios-notes-twenty-two/">4月 29 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/04/29/learning-ios-notes-twenty-two/">iOS笔记(22) CoreData (四) 监听NSFetchedResultsController</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>CoreData (四)</h1>
-<h2>监听NSFetchedResultsController</h2>
-<p>之前说过, NSFetchedResultsController是有两个重要的功能。</p>
-<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
-<p>第二:但Model改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-<p>上一篇写了第一点. 现在写第二点.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/04/29/learning-ios-notes-twenty-two/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">4月 17 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/04/17/learning-ios-notes-twenty-one/">iOS笔记(21) CoreData (三) NSFetchedResultsController</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>CoreData (三)</h1>
-<h2>NSFetchedResultsController</h2>
-<h3>什么是NSFetchedResultsController</h3>
-<p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
-<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C--NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
-<p>NSFetchedResultsController是有两个重要的功能。</p>
-<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
-<p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/04/17/learning-ios-notes-twenty-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-  
 
   <nav id="pagination">
   
@@ -317,7 +327,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>26</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   

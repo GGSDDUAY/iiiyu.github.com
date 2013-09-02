@@ -65,6 +65,104 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-05-23T06:51:31.000Z"><a href="/2013/05/23/learning-ios-notes-twenty-three/">5月 23 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/05/23/learning-ios-notes-twenty-three/">iOS笔记(23) iOS进行单元测试OCUnit+xctool</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS进行单元测试OCUnit+xctool</h1>
+<h2>单元测试</h2>
+<h3>什么是单元测试</h3>
+<p><a href="http://zh.wikipedia.org/wiki/单元测试">wiki解释</a></p>
+<p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
+<h3>我为什么要单元测试</h3>
+<p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
+<h3>单元测试的一般方法</h3>
+<p>关于测试的书，一搜就一大把。都有高深的理论和方法来指导怎么写单元测试的方法。我觉得嘛不用搞了这么复杂。 无非就3种时候会去想写测试：</p>
+<ol>
+<li>代码完成以后</li>
+<li>开始写代码之前</li>
+<li>修复了一个bug以后</li>
+</ol>
+<p>第一种是完成了代码，恩我要测试一下我写的这些方法可靠不可靠。那这时候可以写测试。</p>
+<p>第二种一个著名的方法论TDD。主要思想就是在写代码之前，就全部设计好借口。函数名字什么的。然后在写能通过测试的函数。</p>
+<p>第三种就是发现了bug，我修复了这个bug。为了确保修复是成功的。那就写个测试吧。</p>
+<p>我觉得啊，着三种都没有什么好或差。能写测试的少年都是好少年。何必这么在意什么时候去写呢。</p>
+<p>一个完整的测试类组成像下图</p>
+<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58jl2toiej20fh0a1aam.jpg" alt=""></p>
+<p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
+<p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/05/23/learning-ios-notes-twenty-three/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-29T04:03:11.000Z"><a href="/2013/04/29/learning-ios-notes-twenty-two/">4月 29 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/29/learning-ios-notes-twenty-two/">iOS笔记(22) CoreData (四) 监听NSFetchedResultsController</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>CoreData (四)</h1>
+<h2>监听NSFetchedResultsController</h2>
+<p>之前说过, NSFetchedResultsController是有两个重要的功能。</p>
+<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
+<p>第二:但Model改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
+<p>上一篇写了第一点. 现在写第二点.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/04/29/learning-ios-notes-twenty-two/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">4月 17 2013</a></time>
       
       
@@ -193,94 +291,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-28T16:04:37.000Z"><a href="/2013/03/29/learning-ios-notes-eighteen/">3月 29 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/03/29/learning-ios-notes-eighteen/">iOS笔记(18)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>Core Data (一)</h1>
-<h2>序</h2>
-<p>恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。</p>
-<h2>为什么要用Core Data</h2>
-<p>CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api取回来就好了。</p>
-<p>我们要用Core Data的理由有以下几点：</p>
-<ol>
-<li>Core Data是对底层存储的一次封装。封装了以后就变成ORM的框架。这样就变成操作对象。Core Data自己去进行数据的保存。</li>
-<li>使用Core Data而不是FMDB，让整个程序架构更加的面向对象。</li>
-<li>Core Data仅仅使用了Objective-C和Core Foundation，你不必去加入一些第三方的库。</li>
-<li>Core Data是Apple的原生技术。每年的WWDC都能看到新特性的加入和讲授。</li>
-<li>Core Data支持iCloud。而使用iCloud的App。Apple推荐的可能性增加。</li>
-<li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
-</ol>
-<p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/03/29/learning-ios-notes-eighteen/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-19T15:45:25.000Z"><a href="/2013/03/19/learning-mac-notes-one/">3月 19 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/03/19/learning-mac-notes-one/">Mac笔记 (1)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>ssh远程登录Mac OS X</h1>
-<h2>序</h2>
-<p>近一年抱了Apple大腿之后，各种表弟、师兄、朋友陆续也开始抱Apple大腿。难免遇到各种问题，这个时候在QQ交流效率低下，简直不可忍受。也不知大腾讯啥时候支持一下QQ for Mac的远程协助。这样有时候也可以帮助一下在家的老爸老妈解决一些PC上的问题。大神们绕道无鄙视。OS X乃纯Unix血统。教科书上都写了*nix系统可以ssh登录过去搞定一切。就想着可以用ssh来解决问题。无奈网络基础确实是挂课的水平曾经尝试过一次没有成功。这次又再次遇到远程协助的问题就好好Google了一次。研究了好一会儿终于搞定，在此记录。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/03/19/learning-mac-notes-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -310,7 +320,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>26</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
