@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -76,13 +75,12 @@
       
         <h2>iOS 系统架构</h2>
 <h4>iOS</h4>
-<pre><code><figure class="highlight"><pre><span class="title">Cocoa</span> Touch
+<pre><code><span class="title">Cocoa</span> Touch
 Media
 Core Services
-Core OS
-</pre></figure></code></pre>
+Core OS</code></pre>
 <h4>Core OS</h4>
-<pre><code><figure class="highlight"><pre>OSX kernel
+<pre><code>OSX kernel
 Power Management
 Mach <span class="number">3.0</span>
 Keychain <span class="keyword">Access</span>
@@ -91,10 +89,9 @@ Certificates
 Sockets
 <span class="keyword">File</span> System
 Security 
-Bonjour  
-</pre></figure></code></pre>
+Bonjour  </code></pre>
 <h4>Core Services</h4>
-<pre><code><figure class="highlight"><pre>Collections 
+<pre><code>Collections 
 Core Location
 Address Book
 Net Services
@@ -103,10 +100,9 @@ Threading
 <span class="keyword">File</span> <span class="keyword">Access</span>
 Preferences
 SQLite
-URL Utilities
-</pre></figure></code></pre>
+URL Utilities</code></pre>
 <h4>Media</h4>
-<pre><code><figure class="highlight"><pre><span class="title">Core</span> Audio
+<pre><code><span class="title">Core</span> Audio
 JPEG PNG TIFF
 OpenAL 
 PDF
@@ -115,10 +111,9 @@ Quartz(2D)
 Audio Recording
 Core Animation
 Video Playback
-OpenGL ES
-</pre></figure></code></pre>
+OpenGL ES</code></pre>
 <h4>Cocoa Touch</h4>
-<pre><code><figure class="highlight"><pre>Multi-Touch
+<pre><code>Multi-Touch
 Alerts
 Core Motion
 Web View
@@ -127,55 +122,42 @@ View Hierarchy
 Localization
 Image Picker
 Controls
-Camera
-</pre></figure></code></pre>
-<a name="more"></a>
+Camera</code></pre>
+<a id="more"></a>
 
 <h2>MVC</h2>
 <blockquote>
 <p>Model Controller View</p>
 </blockquote>
 <p>斯坦福老头的课上是这么定义的：</p>
-<pre><code><figure class="highlight"><pre>model = What your application <span class="keyword">is</span> (but <span class="keyword">not</span> how it <span class="keyword">is</span> displayed)
+<pre><code>model = What your application <span class="keyword">is</span> (but <span class="keyword">not</span> how it <span class="keyword">is</span> displayed)
 controller = How your model <span class="keyword">is</span> presented to the user (UI logic)
-view = Your Controlle<span class="string">r's minions
-</pre></figure></code></pre>
+view = Your Controlle<span class="string">r's minions</code></pre>
 <p>这个定义太经典了。</p>
 <p>以本人乡村洋文的水平理解如下：</p>
-<pre><code><figure class="highlight"><pre><span class="title">model</span>里面有你应用需要的数据啥的。（只有东西但是不知道怎么显示）
+<pre><code><span class="title">model</span>里面有你应用需要的数据啥的。（只有东西但是不知道怎么显示）
 
 <span class="title">controller</span>帮你把model里面的东西用<span class="type">UI</span> logic给呈现给用户
 
-<span class="title">view</span>是什么呢，view是controller呈现数据时候负责跑腿的狗腿子。
-</pre></figure></code></pre>
-<p>在MVC里面有下面的规矩    </p>
-<pre><code><figure class="highlight"><pre><span class="title">controllers</span>一直是直接跟他们的model进行交流。也跟他们的view直接交流。
-
-<span class="title">model</span>跟view是永远不知道对方的。（<span class="type">MVC</span>精髓之一）
-</pre></figure></code></pre>
+<span class="title">view</span>是什么呢，view是controller呈现数据时候负责跑腿的狗腿子。</code></pre>
+<p>在MVC里面有下面的规矩<br>    controllers一直是直接跟他们的model进行交流。也跟他们的view直接交流。<br>    model跟view是永远不知道对方的。（MVC精髓之一）</p>
 <p>下面我来说一个故事：</p>
 <p>   controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致（synchronize 同步）这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置（协议。哈哈 objective-c的语法出现了。）</p>
-<p>   view狗腿是不会拥有显示的数据，如果狗腿需要数据的时候数据会通过协议来取得。controllers几乎都是data source（但不是model），因为controller是把model里面的信息格式化以后给view的。
-那model能直接跟controller交流么？答案是不，model必须独立于UI之外。（好一个不为五斗米折腰）。
-那model有一些忠义之言（信息更新）要进谏给controller怎么办。
-model就自己想办法弄了一个广播电台（类似broadcast mechanism广播机制。PS：学过设计模式的童鞋还hold住么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，但是很可能收到的不是model这个台。</p>
+<p>   view狗腿是不会拥有显示的数据，如果狗腿需要数据的时候数据会通过协议来取得。controllers几乎都是data source（但不是model），因为controller是把model里面的信息格式化以后给view的。<br>那model能直接跟controller交流么？答案是不，model必须独立于UI之外。（好一个不为五斗米折腰）。<br>那model有一些忠义之言（信息更新）要进谏给controller怎么办。<br>model就自己想办法弄了一个广播电台（类似broadcast mechanism广播机制。PS：学过设计模式的童鞋还hold住么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，但是很可能收到的不是model这个台。</p>
 <p>MVC就是这样一个模式。</p>
 <p>至此，乡村版的MVC介绍完毕。如果发现写的太烂直接导致看不懂。那就听斯坦福老头的第一课。</p>
 <h2>Objective-C简介</h2>
 <p>本来自己整理了一些，然后看到有一篇写的超好，就搞过来了。原帖也找不到了，如果侵犯了原作者，请联系我。</p>
 <h4>一句话</h4>
-<pre><code><figure class="highlight"><pre>首先<span class="constant">Objective</span>-<span class="constant">C</span>是<span class="constant">C</span>的一个超集。
+<pre><code>首先<span class="constant">Objective</span>-<span class="constant">C</span>是<span class="constant">C</span>的一个超集。
 
 其次<span class="constant">Objective</span>-<span class="constant">C</span>是一个面向对象的语言。
 
 <span class="comment">#import = #include</span>
 
 在头文件定义的都是公共的（方法 <span class="keyword">or</span> 变量）
-
 在m文件里面定义的都是私有的（方法 <span class="keyword">or</span> 变量）
-
-<span class="variable">@property</span> 这个后面的变量在声明的时候就一起声明了两个方法（getter setter）
-</pre></figure></code></pre>
+<span class="variable">@property</span> 这个后面的变量在声明的时候就一起声明了两个方法（getter setter）</code></pre>
 <h4>第一节 总括</h4>
 <p>  这一节是对Objective-C(以后简称ObjC)的简要介绍,目的是使读者对ObjC有一个概括的认识。</p>
 <ul>
@@ -184,8 +166,7 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 <li><p>ObjC简介：ObjC是以SmallTalk为基础，建立在C语言之上，是C语言的超集。20世纪80年代早期由 Brad J.Cox设计,2007年苹果公司发布了ObjC 2.0,并在iPhone上使用ObjC进行开发。</p>
 </li>
 <li>ObjC学习内容：习的内容主要包括语法和Cocoa框架两部分。本文主要对语法进行介绍。</li>
-<li>IDE：编写ObjC程序最主要的编译环境是Xcode,它是苹果官方提供的IDE,官网中的SDK包括Xcode,可以通过下载SDK来获得它。但是Xcode只支持MacOS X,所以如果要在其它环境下编写ObjC程序,要使用其它IDE。Linux/FreeBSD用GNUStep,Windows NT5.x(2000,XP)要先安装cywin或mingw,然后安装GNUStep。同时仅仅通过文本编辑器,GCC的make工具也可以用于开发。
-注:如果要使用到Cocoa的话，只能在Apple公司的Xcode上。  </li>
+<li>IDE：编写ObjC程序最主要的编译环境是Xcode,它是苹果官方提供的IDE,官网中的SDK包括Xcode,可以通过下载SDK来获得它。但是Xcode只支持MacOS X,所以如果要在其它环境下编写ObjC程序,要使用其它IDE。Linux/FreeBSD用GNUStep,Windows NT5.x(2000,XP)要先安装cywin或mingw,然后安装GNUStep。同时仅仅通过文本编辑器,GCC的make工具也可以用于开发。<br>注:如果要使用到Cocoa的话，只能在Apple公司的Xcode上。  </li>
 <li>框架： ObjC编程中主要用到的框架是Cocoa,它是MacOS X中五大API之一,它由两个不同的框架组成FoundationKit 和ApplicationKit。 Foundation框架拥有100多个类,其中有很多有用的、面向数据的低级类和数据类型,如NSString,NSArray, NSEnumerator和NSNumber。ApplicationKit包含了所有的用户接口对象和高级类。这些框架本文不做重点介绍,如果要深入了解可以去看Xcode自带的文档。</li>
 <li>特别之处：初次接触ObjC时,会发现许多和其它语言不同的地方,会看到很多的+,-,[ ,] ,@, NS等符号,这些符号在以后的编程中将经常看到,这部分内容在第二节中介绍。先熟悉一下ObjC的代码</li>
 </ul>
@@ -249,13 +230,11 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 <h4>第二节对C的扩展</h4>
 <p>1.扩展名</p>
 <p>  ObjC是ANSI版本C的一个超集,它支持相同的C语言基本语法。与C一样,文件分为头文件和源文件,扩展名分别为.h和.m。如果要加入c++的语法,需要用到.mm,这里不做介绍。</p>
-<pre><code><figure class="highlight"><pre><span class="string">.</span><span class="comment">h</span> <span class="comment">头文件。头文件包涵类的定义、类型、方法以及常量的声明</span>
+<pre><code><span class="string">.</span><span class="comment">h</span> <span class="comment">头文件。头文件包涵类的定义、类型、方法以及常量的声明</span>
 
-<span class="string">.</span><span class="comment">m</span> <span class="comment">源文件。这个典型的扩展名用来定义源文件，可以同时包含C和Objective</span>-<span class="comment">C的代码。
-</pre></figure></code></pre>
+<span class="string">.</span><span class="comment">m</span> <span class="comment">源文件。这个典型的扩展名用来定义源文件，可以同时包含C和Objective</span>-<span class="comment">C的代码。</code></pre>
 <p>2.#import   </p>
-<p>在ObjC里,包含头文件有比#include更好的方法#import。它的使用和#include相同,并且可以保证你的程序只包含相同的头文件一次。相当于#include+ #pragma once的组合。
-例如要包含Foundation框架中的Foundation.h文件,可以像下面这样。</p>
+<p>在ObjC里,包含头文件有比#include更好的方法#import。它的使用和#include相同,并且可以保证你的程序只包含相同的头文件一次。相当于#include+ #pragma once的组合。<br>例如要包含Foundation框架中的Foundation.h文件,可以像下面这样。</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>   #import<span class="tag">&lt;<span class="title">Foundation</span>/<span class="attribute">Foundation.h</span>&gt;</span>
 </pre></td></tr></table></figure>
@@ -263,29 +242,25 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 
 <p>   注:每个框架有一个主的头文件,只要包含了这个文件,框架中的所有特性都可以被使用。</p>
 <p>3.@符号</p>
-<p>   @符号是ObjC在C基础上新加的特性之一。常见到的形式有@”字符串”,%@ , @interface,@implement等。@”字符串”表示引用的字符串应该作为Cocoa的NSString元素来处理。@interface等则是对于C的扩展,是ObjC面向对象特性的体现。
-注:这里提一个小技巧,只要看到@符号,就可以认为它是对于C的一个扩展。</p>
+<p>   @符号是ObjC在C基础上新加的特性之一。常见到的形式有@”字符串”,%@ , @interface,@implement等。@”字符串”表示引用的字符串应该作为Cocoa的NSString元素来处理。@interface等则是对于C的扩展,是ObjC面向对象特性的体现。<br>注:这里提一个小技巧,只要看到@符号,就可以认为它是对于C的一个扩展。</p>
 <p>4.NSLog()</p>
 <p>   在ObjC中用的打印函数是NSLog(),因为ObjC是加了一点”特殊语料”的C语言,所以也可以用printf()但是NSLog()提供了一些特性,如时间戳,日期戳和自动加换行符等,用起来更方便,所以推荐使用NSLog()。下面是两种输出的对比。</p>
 <p>   使用NSLog()输出任意对象的值时,都会使用%@格式说明。在使用这个说明符时,对象通过一个名为description的方法提供自己的NSLog()格式。</p>
 <p>  下面分别是使用NSLog()和使用printf()的相应输出:</p>
-<pre><code><figure class="highlight"><pre> 2010-10-15 14<span class="pseudo">:54</span><span class="pseudo">:21</span>。42610_15<span class="attr_selector">[1973:207]</span> <span class="tag">Hello</span> <span class="tag">World</span>!
+<pre><code> 2010-10-15 14<span class="pseudo">:54</span><span class="pseudo">:21</span>。42610_15<span class="attr_selector">[1973:207]</span> <span class="tag">Hello</span> <span class="tag">World</span>!
 
- <span class="tag">Hello</span> <span class="tag">World</span>!
-</pre></figure></code></pre>
+ <span class="tag">Hello</span> <span class="tag">World</span>!</code></pre>
 <p>注:NS前缀告诉你函数来自Cocoa而不是其他工具包。</p>
 <p>5.BOOL</p>
 <p>   BOOL是ObjC中的布尔类型,它和C中的bool有如下区别</p>
-<pre><code><figure class="highlight"><pre><span class="built_in">BOOL</span> <span class="literal">YES</span>(<span class="number">1</span>),<span class="literal">NO</span>(<span class="number">0</span>)
+<pre><code><span class="built_in">BOOL</span> <span class="literal">YES</span>(<span class="number">1</span>),<span class="literal">NO</span>(<span class="number">0</span>)
 
-<span class="keyword">bool</span> <span class="literal">true</span>(!<span class="number">0</span>),<span class="literal">false</span>(<span class="number">0</span>)
-</pre></figure></code></pre>
+<span class="keyword">bool</span> <span class="literal">true</span>(!<span class="number">0</span>),<span class="literal">false</span>(<span class="number">0</span>)</code></pre>
 <p>6.id</p>
 <p>   这是ObjC新加的一个数据类型,它是一般的对象类型,能够存储任何类型的方法。</p>
 <p>7.nil</p>
 <p>   在ObjC中,相对于C中的NULL,用的是nil。这两者是等价的。下面是nil的定义。</p>
-<pre><code><figure class="highlight"><pre><span class="preprocessor">#<span class="keyword">define</span> nil NULL</span>
-</pre></figure></code></pre>
+<pre><code><span class="preprocessor">#<span class="keyword">define</span> nil NULL</span></code></pre>
 <h4>第三节创建对象</h4>
 <p>1.接口和实现</p>
 <p>在ObjC中定义一个类需要有两个部分:接口和实现。接口文件包含了类的声明,定义了实例变量和方法。实现文件包含了具体的函数的实现代码。下图显示了一个叫MyClass的类,它继承自NSObject基类。类的定义总是从@interface开始到@end结束。在类名后面的是父类的名称。实例变量被定义在两个花括号之间。在实例变量下面的是方法的定义。一个分号用来结束一个变量或者方法。</p>
@@ -344,8 +319,7 @@ model就自己想办法弄了一个广播电台（类似broadcast mechanism广�
 </pre></td><td class="code"><pre><span class="string">[[myAppObject getArray] insertObject:[myAppObject getObjectToInsert] atIndex:0];
 </pre></td></tr></table></figure>
 
-<p>前面的例子都是把消息传递给实例变量，你也可以把消息传递给类本身。这时要用类方法来替代实例方法 。你可以 把他想象成静态C++类（当然不完全相同）。
-类方法的定义只有一个不一样那就是用加号（+）代替减号（-）。下面就是使用一个类方法。</p>
+<p>前面的例子都是把消息传递给实例变量，你也可以把消息传递给类本身。这时要用类方法来替代实例方法 。你可以 把他想象成静态C++类（当然不完全相同）。<br>类方法的定义只有一个不一样那就是用加号（+）代替减号（-）。下面就是使用一个类方法。</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -445,11 +419,9 @@ Car *car = [Car alloc];
 }
 </pre></td></tr></table></figure>
 
-<p>使用self= [super init]的作用是使超类完成它们自己的初始化工作。同时因为init可能返回的是不同的对象，实例变量所在的内存位置到隐藏的self参数之间的跳离又是固定的，所以要这样使用。
-注：这部分可以参考书[1]144页。</p>
+<p>使用self= [super init]的作用是使超类完成它们自己的初始化工作。同时因为init可能返回的是不同的对象，实例变量所在的内存位置到隐藏的self参数之间的跳离又是固定的，所以要这样使用。<br>注：这部分可以参考书[1]144页。</p>
 <h4>第六节协议</h4>
-<p>   这里的协议是正式协议，相对的还有非正式协议，这在类别一节中有介绍。正式协议是一个命名的方法列表。它要求显式地采用协议。采用协议意味着要实现协议的所有方法。否则，编译器会通过生成警告来提醒你。
-1.声明协议</p>
+<p>   这里的协议是正式协议，相对的还有非正式协议，这在类别一节中有介绍。正式协议是一个命名的方法列表。它要求显式地采用协议。采用协议意味着要实现协议的所有方法。否则，编译器会通过生成警告来提醒你。<br>1.声明协议</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -748,10 +720,9 @@ Car *car = [Car alloc];
 // Main.m
 </pre></td></tr></table></figure>
 
-<pre><code><figure class="highlight"><pre>输出
+<pre><code>输出
 The fraction <span class="keyword">is</span>: <span class="number">3</span>/<span class="number">10</span>
-The fraction <span class="keyword">is</span>: (<span class="number">3</span>/<span class="number">10</span>)
-</pre></figure></code></pre>
+The fraction <span class="keyword">is</span>: (<span class="number">3</span>/<span class="number">10</span>)</code></pre>
 <p>这个程序的输出中，第一个fraction会输出3/10,而第二个会输出（3/10)，这是FractionB中实现的方式。poseAsClass这个方法是NSObject的一部分，它允许子类扮演超类。</p>
 <h4>第十节动态识别 （Dynamictypes)</h4>
 <p>下面是应用动态识别时所用到的方法:</p>
@@ -916,15 +887,14 @@ The fraction <span class="keyword">is</span>: (<span class="number">3</span>/<sp
 }
 </pre></td></tr></table></figure>
 
-<pre><code><figure class="highlight"><pre>输出：
+<pre><code>输出：
 square <span class="keyword">is</span> a member of square <span class="class"><span class="keyword">class</span>
 <span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">square</span> <span class="title">class</span>
 <span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">rectangle</span> <span class="title">class</span>
 <span class="title">square</span> <span class="title">is</span> <span class="title">a</span> <span class="title">kind</span> <span class="title">of</span> <span class="title">object</span> <span class="title">class</span>
 <span class="title">square</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span>
 <span class="title">square</span> <span class="title">class</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">alloc</span> <span class="title">method</span>
-<span class="title">square</span> <span class="title">instance</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span>
-</pre></figure></code></pre>
+<span class="title">square</span> <span class="title">instance</span> <span class="title">responds</span> <span class="title">to</span> <span class="title">setSize</span>: <span class="title">method</span></code></pre>
 
       
     </div>
@@ -988,11 +958,11 @@ square <span class="keyword">is</span> a member of square <span class="class"><s
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -1001,20 +971,6 @@ square <span class="keyword">is</span> a member of square <span class="class"><s
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -1024,7 +980,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

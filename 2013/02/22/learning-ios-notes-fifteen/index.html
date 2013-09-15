@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,15 +76,15 @@
         <h1>Mogenerator的初级使用</h1>
 <h2>什么是Mogenerator</h2>
 <p>最近在用Core Data来进行开发。Core Data其实封装的很好了。把存储底层都屏蔽了（sqlite，xml，内存）。不管是用那种方式存储下来。用Core Data都是在操作对象了。但是Core Data一套东西下来，单是学习就学习的泪流满面。天资有限，只能找一些看上去更简单的第三方类库来使用。</p>
-<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
-<p>而<a href="http://rentzsch.github.com/mogenerator/">Mogenerator</a>是什么东西呢。</p>
+<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord" target="_blank">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
+<p>而<a href="http://rentzsch.github.com/mogenerator/" target="_blank">Mogenerator</a>是什么东西呢。</p>
 <p>它漂亮的主页上是这样写的：</p>
 <p>mogenerator为你定义了的Core Data生成默认的数据类。与xCode不一样的是(xCode一个Entity只生成一个NSManagedObject的子类)，mogenerator会为每一个Entity生成两个类。一个为机器准备，一个为人类准备。为机器准备的类一直去匹配data model。为人类准备的类就给你轻松愉快的去修改和保存。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>为什么需要Mogenerator</h2>
 <h2>安装Mogenerator</h2>
-<p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew">homebrew</a>去安装。</p>
+<p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew" target="_blank">homebrew</a>去安装。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>brew install mogenerator
 </pre></td></tr></table></figure>
@@ -96,7 +95,7 @@
 </pre></td></tr></table></figure>
 
 <h2>在项目里面添加Mogenerator</h2>
-<p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/">这篇</a>的教程我添加了脚本以后运行不成功</p>
+<p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/" target="_blank">这篇</a>的教程我添加了脚本以后运行不成功</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
@@ -104,8 +103,7 @@
 </pre></td></tr></table></figure>
 
 <p>提示:</p>
-<pre><code><figure class="highlight"><pre>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span>
-</pre></figure></code></pre>
+<pre><code>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span></code></pre>
 <p>自己打命令测试Mogenerator是成功的</p>
 <p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator"></p>
 <p>xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的</p>
@@ -119,8 +117,7 @@
 </pre></td></tr></table></figure>
 
 <p>这次mogenerator是找到了，但是xcadatamodeld又没有找到。看到</p>
-<pre><code><figure class="highlight"><pre>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
-</pre></figure></code></pre>
+<pre><code>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span></code></pre>
 <p>pwd出来路径观察以后把cd去掉</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -223,11 +220,11 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -236,20 +233,6 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -259,7 +242,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

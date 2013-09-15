@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -78,11 +77,11 @@
 <h2>NSFetchedResultsController</h2>
 <h3>什么是NSFetchedResultsController</h3>
 <p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
-<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C--NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
+<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
 <p>NSFetchedResultsController是有两个重要的功能。</p>
 <p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
 <p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>实现一个NSFetchedResultsController作为Data source的UITableView</h2>
@@ -93,8 +92,7 @@
 <p>整理一下显示层级和结构使其看起来顺眼一些</p>
 <p><img src="http://ww2.sinaimg.cn/large/a74e55b4jw1e3tlnesq81j20750dut9e.jpg" alt=""></p>
 <h3>确立目标</h3>
-<p>打开看以后 发现建立的工程是已经使用了NSFetchedResultsController
-我们的目标是改写这个项目支持UITableView分组显示</p>
+<p>打开看以后 发现建立的工程是已经使用了NSFetchedResultsController<br>我们的目标是改写这个项目支持UITableView分组显示</p>
 <h4>首先修改Data Model</h4>
 <p>增加一个字段用来分组. 我们增加一个同样的Date用来记录此时的分钟数量.</p>
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e3tn8pouqgj.jpg" alt=""></p>
@@ -183,8 +181,8 @@
 
 <p>第一个参数就是NSFetchRequest.</p>
 <p>第二个参数是要指定在哪个context里面进行查询</p>
-<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值&quot;sectionMinute&quot;.</p>
-<p>第四个参数  <a href="http://developer.apple.com/library/ios/#documentation/CoreData/Reference/NSFetchedResultsController_Class/Reference/Reference.html">官方解释是这里</a>点到The Cache的地方. 我的理解是cache只保留很少的一部分数据在磁盘上面,如果使用了Cache,在重建UITableView的时候, 就优先查询cache里面的数据.然后要在-performFetch:执行的时候才会去刷新新的数据.这样有助于UITableView的流畅性.</p>
+<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值“sectionMinute”.</p>
+<p>第四个参数  <a href="http://developer.apple.com/library/ios/#documentation/CoreData/Reference/NSFetchedResultsController_Class/Reference/Reference.html" target="_blank">官方解释是这里</a>点到The Cache的地方. 我的理解是cache只保留很少的一部分数据在磁盘上面,如果使用了Cache,在重建UITableView的时候, 就优先查询cache里面的数据.然后要在-performFetch:执行的时候才会去刷新新的数据.这样有助于UITableView的流畅性.</p>
 <p>然后我加入Sections的方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -269,8 +267,7 @@
 </pre></td></tr></table></figure>
 
 <p>这句.</p>
-<p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.
-当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
+<p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.<br>当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
 <h3>被遗忘的地方</h3>
 <p>Sections数量,决定了有多少组</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -391,11 +388,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -404,20 +401,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -427,7 +410,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

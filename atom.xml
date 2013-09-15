@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2013-09-02T15:37:29.608Z</updated>
+  <updated>2013-09-15T16:03:12.762Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -12,14 +12,173 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
+    <title type="html"><![CDATA[iOS学习笔记(28) ReactiveCocoa 迎接下一个更加美好的世界]]></title>
+    <link href="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/"/>
+    <id>http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/</id>
+    <published>2013-09-11T12:45:13.000Z</published>
+    <updated>2013-09-15T15:53:14.000Z</updated>
+    <content type="html"><![CDATA[<h2>扯淡</h2>
+<p>习惯了，每次再写技术的东西的时候总要唠叨几句。本来唠叨的东西我应该会写成另外的blog。不过每次给自己下了一个底线要少少的写这些唠叨的话语。原因一是觉得我爱唠叨的话语可能会导致blog被墙。原因之二我不希望我变成一个IT评论家。</p>
+<p>对了,我发现我还是挺爱挖坑的。目前有两坑没有填完。一个是Core Data系列。一个是iCloud系列。两个系列我都只写了一个Hello World级别并没有再深入的继续写。恩，要抓紧了。其实ReactiveCocoa这个我觉得也可以作为一个系列来写。不过想了想我这种Hello World的水平。也写不出这么多来。就暂时写一篇好了。</p>
+<a id="more"></a>
+
+<h2>什么是ReactiveCocoa</h2>
+<p>如果你有看Github的Trending Objective-C榜单，那你肯定是见过ReactiveCocoa了。如果你在weibo上关注唐巧、onevcat等国内一线知名开发者。那也应该听说过ReactiveCocoa了。</p>
+<p>ReactiveCocoa更加被Mattt Thompson大神称为开启一个新Objective-C纪元。</p>
+<p>当然也有人声称ReactiveCocoa是Cocoa的未来。<a href="http://spin.atomicobject.com/2013/04/28/reactivecocoa/" target="_blank">ReactiveCocoa: The Future of Cocoa Programming</a></p>
+<p>我自己粗犷把现在的Objective-C分为两个阶段。</p>
+<p>第一个阶段就是我学Cocoa开发之前的阶段：就是把Objective-C做出来的那群NeXT的大神，确定面向对象思想，确定消息机制，确定各种模式最后变成了Apple的主力开发语言。到后面OS X的各种库。iOS的各种库。</p>
+<p>第二个阶段就是我学Cocoa开发之后的阶段：开始clang发力，配合Objective-C的快速进化：ARC，block，现代Objective-C语法。使其Objective-C不断获得现代语言类如Ruby, Python的优秀特性。</p>
+<p>现在，说的最多的就是ReactiveCocoa将会把Objective-C带到下一个里程碑中。</p>
+<p>ReactiveCocoa是一个基于Functional Reactive Programming编程思想的Objective-C实现开源的第三方库。最初的作者是Github的大神（Josh Abernathy &amp; Justin Spahr-Summers）。应该是再开发Github For Mac时候的附属产物。当然，我们必需得明白有时候附属产物要比真主牛逼的多了去了。比如万艾可，再比如青霉素，再再比如老干妈。</p>
+<p>等等 什么是Functional Reactive Programming</p>
+<h3>Functional Reactive Programming</h3>
+<p><a href="http://en.wikipedia.org/wiki/Functional_reactive_programming" target="_blank">wiki解释</a></p>
+<h4>Reactive Programming</h4>
+<p><a href="http://zh.wikipedia.org/wiki/响应式编程" target="_blank">wiki 响应式编程</a></p>
+<h4>Functional programming</h4>
+<p><a href="http://en.wikipedia.org/wiki/Functional_programming" target="_blank">wiki Functional programming</a></p>
+<p>恩 简单来说 </p>
+<pre><code><span class="title">Functional</span> Reactive Programming = Functional programming + Reactive Programming</code></pre>
+<p>(PS:特么太偷懒了还是解释一下)</p>
+<p>简单以</p>
+<p>a = b + c</p>
+<p>为例</p>
+<p>通常情况下在执行a = b + c的值的时候b和c当时是什么值。a就是当时的b+c。然后后来不管b和c怎么变化，a都不会改变。</p>
+<p>但是在Execl中设置a格子=b格子+c格子的值。a的值就会随着b和c值的改变而改变。然后我还可以搞的高级一点f = a + d。 f格子的值也会随着b、c、d的值而改变。这就是使用Functional Reactive Programming以后会发生的情况。</p>
+<p>Reactive的特性使得可以随时响应变化。Functional的特性使得他们可以串起来。</p>
+<h3>来自微软实验室的编程思想</h3>
+<p>在<a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/README.md#more-info" target="_blank">ReactiveCocoa的readme</a>我们看到ReactiveCocoa是基于.NET的Reactive Extensions(Rx)来的。啧啧身为一个脑残果粉不解释的我。也必须承认微软其实曾经一度集聚这世界上一大批大牛。这批大牛在闲着玩的时候做出来的玩具也指不定哪天就拯救世界了。</p>
+<h4>Rx</h4>
+<p>所以我也找了点Rx的资料来看看</p>
+<p>中文里面比较全面的是这个<br><a href="http://www.cnblogs.com/yangecnu/archive/2012/11/03/Introducting_ReactiveExtensions.html" target="_blank">Reactive Extensions入门</a></p>
+<p>里面有一堆链接和一个视频。c#实在看不懂，就只看了15分钟左右。不过那看上去蛮帅的哥们一开始说他在编程中遇到的问题。恰巧是我最近遇到的问题：就是我有两个在非主线程的异步操作。而我有可能需要等两个异步操作都完成的时候进行下一步操作。这种情况我一直没有找到比较优美的解决方法。直到遇见ReactiveCocoa，仿佛看见了希望。</p>
+<h4>Model-View-ViewModel</h4>
+<p><a href="http://en.wikipedia.org/wiki/Model_View_ViewModel" target="_blank">洋文wiki</a></p>
+<p><a href="http://baike.baidu.com/view/3507915.htm" target="_blank">中文wiki</a></p>
+<p>FRP倾向于技术理论上的方法论。MVVM则是程序模式的方法论。就好比FRP给了一把解牛的刀。MVVM就是如何解牛的方法论。</p>
+<p>相对来说MVVM通常跟MVC拿来比较。在我看来，没有绝对的好和坏。找个适合的就好了。再说我对两个东西的了解不够深入。</p>
+<p><a href="http://cocoasamurai.blogspot.com/2013/03/basic-mvvm-with-reactivecocoa.html" target="_blank">Basic MVVM with ReactiveCocoa</a></p>
+<p>这篇blog应该就写的蛮清楚了。</p>
+<p>这是github上iOS的 MVVM例子<a href="https://github.com/Machx/MVVM-IOS-Example" target="_blank">MVVM-IOS-Example</a></p>
+<p>大家可以感受一下。</p>
+<h2>ReactiveCocoa的基本使用方法</h2>
+<p>(终于写到正主了,泪流满面)</p>
+<p>这里借用Limboy的<a href="http://blog.leezhong.com/ios/2013/06/19/frp-reactivecocoa.html" target="_blank">blog</a>中的一段话作为开场解释。(因为我想了好久都没有想出超过他的比喻方法)</p>
+<pre><code><span class="tag">ReactiveCocoa</span>是<span class="tag">github</span>去年开源的一个项目，是在<span class="tag">iOS</span>平台上对<span class="tag">FRP</span>的实现。<span class="tag">FRP</span>的核心是信号，信号在<span class="tag">ReactiveCocoa</span>(以下简称<span class="tag">RAC</span>)中是通过<span class="tag">RACSignal</span>来表示的，信号是数据流，可以被绑定和传递。
+可以把信号想象成水龙头，只不过里面不是水，而是玻璃球(<span class="tag">value</span>)，直径跟水管的内径一样，这样就能保证玻璃球是依次排列，不会出现并排的情况(数据都是线性处理的，不会出现并发情况)。水龙头的开关默认是关的，除非有了接收方(<span class="tag">subscriber</span>)，才会打开。这样只要有新的玻璃球进来，就会自动传送给接收方。可以在水龙头上加一个过滤嘴(<span class="tag">filter</span>)，不符合的不让通过，也可以加一个改动装置，把球改变成符合自己的需求(<span class="tag">map</span>)。也可以把多个水龙头合并成一个新的水龙头(<span class="tag">combineLatest</span><span class="pseudo">:reduce</span><span class="pseudo">:)</span>，这样只要其中的一个水龙头有玻璃球出来，这个新合并的水龙头就会得到这个球。</code></pre>
+<h3>替代KVO</h3>
+<p>官方例子：官方的例子貌似用了比较老的函数。 我改完以后看见<a href="http://www.jdon.com/45581" target="_blank">什么是函数响应式编程(Functional Reactive Programming:FRP)</a>他也是这么改的。说明一下。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">strong</span>) <span class="built_in">NSString</span> *username;
+
+
+[RACAble(<span class="keyword">self</span>, username) subscribeNext:^(<span class="built_in">NSString</span> *newName) {
+    <span class="built_in">NSLog</span>(@<span class="string">"%@"</span>, newName);
+}];
+</pre></td></tr></table></figure>
+
+<p>在这句代码以后，只要你的username有变化。都可以打印出来。实现了KVO的功能却减少了无数的代码。体现了绑定和响应。</p>
+<p>高级一个点的官方例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="string">[[RACAble(self, username)
+  filter:^(NSString *newName) {
+      return [newName hasPrefix:@"j"];
+  }]
+ subscribeNext:^(NSString *newName) {
+     NSLog(@"%@", newName);
+ }];
+</pre></td></tr></table></figure>
+
+<p>第一个例子是简单的所有变化都会响应到。但是可能我只想响应部分情况。这时候就用filter来过滤。filter的block返回YES的情况就是需要触发的情况。其他就补返回。所以这代码以后。 username以j开头的才能打印出来。</p>
+<h3>流的实现</h3>
+<p>以下是<a href="http://www.teehanlax.com/blog/getting-started-with-reactivecocoa/" target="_blank">Getting Started with ReactiveCocoa</a>的例子和图片</p>
+<p>如何以最少的代码实现一个时钟应用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>RAC(self.textField.text) = <span class="string">[[[RACSignal interval:1] startWith:[NSDate date]]</span> map:^id(NSDate *value) {
+    NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:value];
+    
+    return [NSString stringWithFormat:@"02%ld:%02ld:%02ld",(long)dateComponents.hour, dateComponents.minute, (long)dateComponents.second];
+}];
+</pre></td></tr></table></figure>
+
+<p>实现的逻辑顺序是这样的。设置一个间隔为一秒。从现在开始调用的函数。并把当前实际传入。 这个函数返回一个NSString。 然后把这个NSString和界面上的textField绑定在了一起。从而实现了我认为我见过最简单时钟程序。表现了流和绑定响应。</p>
+<p><img src="http://teehanlax.com.s3.amazonaws.com/wordpress/wp-content/uploads/chaining.png" alt="原blog中对上述代码的流的形容图"></p>
+<h3>组合</h3>
+<p>几乎每个ReactiveCocoa的Demo里面都会出现的例子。</p>
+<p>(继续盗图图)</p>
+<p><img src="http://blog.leezhong.com/image/FRP_register_demo.png" alt=""></p>
+<p>这个是用的leezhong的图。 应该是从<a href="https://speakerdeck.com/andrewsardone/reactivecocoa-at-mobidevday-2013" target="_blank">这个演讲PPT里面来的，点过去还有视频哦</a></p>
+<p>就是说在必需验证每个所填写的数值符合标准。Button才能点击。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span><span class="variable">.submitButton</span><span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>, <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>] reduce:^<span class="keyword">id</span>(<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
+    <span class="keyword">return</span> @(userName<span class="variable">.length</span> &gt;= <span class="number">6</span> && password<span class="variable">.length</span> &gt;= <span class="number">6</span>);
+}];
+</pre></td></tr></table></figure>
+
+<p>简单的解释就是把usernameField和passwordField的信号绑定在了一起做reduce处理以后。返回一个BOOL值去跟self.submitButton.enabled进行绑定。</p>
+<p><img src="http://teehanlax.com.s3.amazonaws.com/wordpress/wp-content/uploads/combining.png" alt=""></p>
+<p>囧。再次发现和leezhong借用的代码和图都是一样的。</p>
+<h3>异步和网络</h3>
+<p>(丢个链接 等心情好了 在补。。。)</p>
+<p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa#when-to-use-reactivecocoa" target="_blank">when-to-use-reactivecocoa</a></p>
+<h2>总结</h2>
+<p>其实我对ReactiveCocoa了解还是在hello world阶段。 很多东西都理解的很粗糙。上面这一大陀blog。很多地方写的肯定不好。欢迎指出。其实很多时候觉得确实中文原创的技术文章十分少。很大一部分都是翻译的。国外的技术文章也确实写的牛写的好。但是总觉得自己应该写点自己思考的东西。</p>
+<p>对于ReactiveCocoa来说，我认为它确实是一个好东西。正如leezhong所说<br>    RAC统一了对KVO、UI Event、Network request、Async work的处理，因为它们本质上都是值的变化(Values over time)。</p>
+<p>其实App上90%的操作不就只有这些么。所以我会一直对ReactiveCocoa投入时间去学习和使用。顺便说一句。阿里Mac Lab出品的Xiami for Mac。是我见过国内最好的Mac App之一。他们也用了ReactiveCocoa。然后你可以想象对他们做出那些响应交互ReactiveCocoa为他们提供了强有力的输出。</p>
+<h2>参考资料</h2>
+<h3>FRP</h3>
+<p><a href="http://en.wikipedia.org/wiki/Functional_reactive_programming" target="_blank">wiki Functional reactive programming</a></p>
+<p><a href="http://blog.zhaojie.me/2009/09/functional-reactive-programming-for-csharp.html" target="_blank">趣味编程：Functional Reactive Programming</a></p>
+<p><a href="http://www.haskell.org/haskellwiki/Functional_Reactive_Programming" target="_blank">haskell Functional Reactive Programming</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/响应式编程" target="_blank">wiki 响应式编程</a></p>
+<p><a href="http://en.wikipedia.org/wiki/Functional_programming" target="_blank">wiki Functional programming</a></p>
+<p><a href="http://www.infoq.com/cn/articles/functional-reactive-programming" target="_blank">函数式反应型编程(FRP) —— 实时互动应用开发的新思路</a></p>
+<p><a href="http://www.jdon.com/45581" target="_blank">什么是函数响应式编程(Functional Reactive Programming:FRP)</a></p>
+<p><a href="http://www.cnblogs.com/yangecnu/archive/2012/11/03/Introducting_ReactiveExtensions.html" target="_blank">Reactive Extensions入门</a></p>
+<h3>ReactiveCocoa</h3>
+<p><a href="http://blog.leezhong.com/ios/2013/06/19/frp-reactivecocoa.html" target="_blank">ReactiveCocoa与Functional Reactive Programming</a></p>
+<p><a href="https://speakerdeck.com/joshaber/better-code-for-a-better-world" target="_blank">Better Code for a Better World by Josh Abernathy</a></p>
+<p><a href="http://nshipster.com/reactivecocoa/" target="_blank">nshipster Reactive​Cocoa</a></p>
+<p><a href="http://spin.atomicobject.com/2013/04/28/reactivecocoa/" target="_blank">ReactiveCocoa: The Future of Cocoa Programming</a></p>
+<p><a href="http://www.teehanlax.com/blog/getting-started-with-reactivecocoa/" target="_blank">Getting Started with ReactiveCocoa</a></p>
+<p><a href="http://www.teehanlax.com/blog/reactivecocoa/" target="_blank">Functional Reactive Programming on iOS with ReactiveCocoa</a></p>
+<p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa/blob/master/Documentation/BasicOperators.md" target="_blank">Basic Operators</a></p>
+<p><a href="http://cocoasamurai.blogspot.com/2013/03/basic-mvvm-with-reactivecocoa.html" target="_blank">Basic MVVM with ReactiveCocoa<br>MVC - One Pattern to Rule them all</a></p>
+<p><a href="http://twocentstudios.com/blog/2013/04/03/the-making-of-vinylogue/#design" target="_blank">How I Wrote Vinylogue for iOS With ReactiveCocoa</a></p>
+<p><a href="https://github.com/RoCry/rocry.github.com/wiki/Project_ReactiveCocoa" target="_blank">来自好友RoCry的推荐</a></p>
+<p><a href="https://speakerdeck.com/andrewsardone/reactivecocoa-at-mobidevday-2013" target="_blank">ReactiveCocoa at MobiDevDay 2013</a></p>
+<p><a href="https://vimeo.com/65637501" target="_blank">ReactiveCocoa at MobiDevDay 2013视频</a></p>
+<p><a href="http://blog.maybeapps.com/#fn:p42894317939-5" target="_blank">Input and Output</a></p>
+]]></content>
+    <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
+  </entry>
+  <entry>
     <title type="html"><![CDATA[iOS学习笔记(27) iCloud(三) key-Value Stroe]]></title>
     <link href="http://iiiyu.com/2013/09/02/learning-ios-notes-twenty-seven/"/>
     <id>http://iiiyu.com/2013/09/02/learning-ios-notes-twenty-seven/</id>
     <published>2013-09-02T14:21:13.000Z</published>
     <updated>2013-09-02T15:37:22.000Z</updated>
     <content type="html"><![CDATA[<h2>什么是NSUserDefaults</h2>
-<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
-<a name="more"></a>
+<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist" target="_blank">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
+<a id="more"></a>
 
 <h3>NSUserDefaults简单代码讲解</h3>
 <p>使用NSUserDefaults其实巨简单。 </p>
@@ -103,8 +262,7 @@ NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
 </pre></td></tr></table></figure>
 
 <p>其他操作跟NSUserDefaults一样一样的。</p>
-<p>只有一个值得注意的是NSUbiquitousKeyValueStore需要去监听
-NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道NSUbiquitousKeyValueStore是否已经同步更新完成。</p>
+<p>只有一个值得注意的是NSUbiquitousKeyValueStore需要去监听<br>NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道NSUbiquitousKeyValueStore是否已经同步更新完成。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -182,19 +340,18 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <h2>第三方库推荐</h2>
 <p>当然有大神写的第三方库。并且实现了NSUserDefaults白名单功能。因为可能你存在NSUserDefaults里面的东西不想要也不需要全部同步到NSUbiquitousKeyValueStore上去把。</p>
 <p>对了忘记说一点NSUbiquitousKeyValueStore可是有大小和条目限制的。你不要把他当作无穷无尽的东西来用。具体限制是最大空间1 MB。 最多1024个key。记住不要拿来当作主要数据存储哦。</p>
-<p>MK大神应该还是如雷贯耳的把。 不知道么。 MKNetworkKit是他写的。还不知道么。
-<a href="http://www.amazon.com/gp/product/1118449959/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118449959&amp;linkCode=as2&amp;tag=blogmugunthku-20">iOS 6 Programming Pushing the Limits: Advanced Application Development for Apple iPhone, iPad and iPod Touch</a> 可是他写的哦。我和我的小伙伴都从MK大神的书里面学到很多不错的东西</p>
-<p><a href="https://github.com/MugunthKumar/MKiCloudSync">MKiCloudSync</a></p>
-<p><a href="https://github.com/Daij-Djan/DDiCloudSync">DDiCloudSync</a></p>
-<p><a href="https://github.com/futuretap/FTiCloudSync">FTiCloudSync</a></p>
+<p>MK大神应该还是如雷贯耳的把。 不知道么。 MKNetworkKit是他写的。还不知道么。<br><a href="http://www.amazon.com/gp/product/1118449959/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118449959&amp;linkCode=as2&amp;tag=blogmugunthku-20" target="_blank">iOS 6 Programming Pushing the Limits: Advanced Application Development for Apple iPhone, iPad and iPod Touch</a> 可是他写的哦。我和我的小伙伴都从MK大神的书里面学到很多不错的东西</p>
+<p><a href="https://github.com/MugunthKumar/MKiCloudSync" target="_blank">MKiCloudSync</a></p>
+<p><a href="https://github.com/Daij-Djan/DDiCloudSync" target="_blank">DDiCloudSync</a></p>
+<p><a href="https://github.com/futuretap/FTiCloudSync" target="_blank">FTiCloudSync</a></p>
 <h2>总结</h2>
 <p>参考资料：</p>
-<p><a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/UserDefaults/Introduction/Introduction.html">Preferences and Settings Programming Guide</a></p>
-<p><a href="http://gibuloto.com/blog/nsuserdefaults/">NSUserDefaults (plist) 筆記</a></p>
-<p><a href="http://www.doubleencore.com/2013/03/back-to-basics-forgotten-nsuserdefaults/">Back to Basics: Forgotten NSUserDefaults</a></p>
-<p><a href="http://www.techotopia.com/index.php/Synchronizing_iPhone_iOS_5_Key-Value_Data_using_iCloud">Synchronizing iPhone iOS 5 Key-Value Data using iCloud</a></p>
-<p><a href="http://useyourloaf.com/blog/2011/10/24/sync-preference-data-with-icloud.html">Sync Preference Data With iCloud</a></p>
-<p><a href="http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1">Beginning iCloud in iOS 5 Tutorial Part 1</a></p>
+<p><a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/UserDefaults/Introduction/Introduction.html" target="_blank">Preferences and Settings Programming Guide</a></p>
+<p><a href="http://gibuloto.com/blog/nsuserdefaults/" target="_blank">NSUserDefaults (plist) 筆記</a></p>
+<p><a href="http://www.doubleencore.com/2013/03/back-to-basics-forgotten-nsuserdefaults/" target="_blank">Back to Basics: Forgotten NSUserDefaults</a></p>
+<p><a href="http://www.techotopia.com/index.php/Synchronizing_iPhone_iOS_5_Key-Value_Data_using_iCloud" target="_blank">Synchronizing iPhone iOS 5 Key-Value Data using iCloud</a></p>
+<p><a href="http://useyourloaf.com/blog/2011/10/24/sync-preference-data-with-icloud.html" target="_blank">Sync Preference Data With iCloud</a></p>
+<p><a href="http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1" target="_blank">Beginning iCloud in iOS 5 Tutorial Part 1</a></p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
@@ -203,7 +360,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
     <link href="http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/"/>
     <id>http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/</id>
     <published>2013-08-26T14:43:11.000Z</published>
-    <updated>2013-09-02T15:37:23.000Z</updated>
+    <updated>2013-09-03T02:42:45.000Z</updated>
     <content type="html"><![CDATA[<h2>开发支持iCloud的上半部分前期准备</h2>
 <ul>
 <li><p>需要申请一个开发者的帐号。理论上iOS和Mac OSX的都OK。考虑到我只有iOS的情况下，我的文章里面的例子默认只是iOS的。</p>
@@ -225,8 +382,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e88htyxylrj20rw0egmzm.jpg" alt="5"></p>
 <p>(PS:截图太累了 换成文章描述)</p>
 <p>这样才能算iCloud的前期工作做完了一半。</p>
-<p><strong>以下涉及到NDA内容请自行屏蔽</strong>
-<a name="more"></a></p>
+<p><strong>以下涉及到NDA内容请自行屏蔽</strong><br><a id="more"></a></p>
 <ul>
 <li>据说Xcode5里面支持直接开启iCloud支持，推送服务支持等。不用去登录网页了。</li>
 </ul>
@@ -277,7 +433,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
     <updated>2013-08-21T18:01:54.000Z</updated>
     <content type="html"><![CDATA[<h2>深夜吐槽多看</h2>
 <p>好吧，作为一个喜欢看书的人和觉得多看做的确实好的普通用户。我把我个人的想法完整的表达一下。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>前提</h2>
 <p>首先，在国内阅读App上对我来说。多看目前已经遥遥领先。其实记得当初在iOS上引爆中文阅读的是唐茶从&lt;失控&gt;到&lt;史蒂夫·乔布斯传&gt;。让人觉得电子中文阅读还可以这么美。而多看是从Kindle起来，所以说做阅读的时间不比唐茶短。真正的混战是在字节社、多看(更新了一个版本)、豆瓣阅读上。三个App我都在对比，都在用。KK的全部书籍我都是在字节社买的。当时字节社的书更新较快。多看出于一个跟随者的角色当中。一般是字节社上了多看才上。两个都想做成中文电子书的最大平台，那时候机会看起来势均力敌甚至字节社还要有一些优势。其实那时候我喜欢的豆瓣阅读的风格。豆瓣阅读的设计平淡如茶。不像字节社的大红和多看的大黄。可惜豆瓣貌似没有想往阅读方向上大力发展。至于现在，半年都不更新一次的豆瓣阅读已经很少打开了。简单点说后来是字节社被下架很长时间。书目的种类和网上书店被多看给超越。多看也在一直努力。App做的越来越好,UI交互的重新设计，PDF的重排达到逆天的级别(我想这跟Kindle的技术积累密不可分)。至于我现在想买书的首选是多看。这段主要是表达我确实是喜欢多看阅读的。</p>
@@ -320,13 +476,13 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>上一段说了iCloud的优点，其实是接近意淫中的理想状态。我以近一年的血泪史告诫，初级开发者，应该避免使用iCloud。中高级开发者视项目规划内容酌情使用。如果能有其他方案替代iCloud，建议优先使用其他方案。</p>
 <p>初级开发者: iCloud的三种存储方式 Key-Value， Documents， Core Data都是在之前已有的框架上进行扩展的高级接口。换言之，你应该先具备了这三种技术的基本知识再开始考虑学习iCloud。 iCloud + Key-Value对应的基础是NSUserDefaults。 iCloud + Documents对应的基础是使用文档进行数据存储(NSFileManager,NSFileCoordinator,NSFileWrapper,NSCoding等一系列持久化数据存储到文件的问题). iCloud + Core Data的对应基础就是Core Data。本来是强烈建议如果没有这些基础的人不要直接来学习iCloud的。但是谁都是一步一步走过来的，如果要用到iCloud的某一种方式。建议先把基础的持久化方式原理弄懂了，在看iCloud的部分。不然学习门槛的过高，会使得进度无法按时推进。</p>
 <p>中高级开发者：如果是已经用过Key-Value，Documents，Core Data的。应该会很快能明白iCloud的原理。 而进行开发。但是值得注意的是，iCloud的使用和调试会非常的消耗时间和精力。并且和你的当前网络状态息息相关。然后会出现各种诡异的情况。这个时候你都需要淡定很超级的耐心。去找到这些坑，然后慢慢的积累经验去绕过这些坑。（在这里先挖坑，后面在慢慢写我的一些使用经验）</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h1>为什么要用iCloud</h1>
 <p>既然iCloud这么多坑。为什么还要使用iCloud进行开发呢？这个问题最近半年的每周的某些时候我都会这样的问自己。 </p>
 <p>个人觉得最重要的是:</p>
 <p><strong>在需要数据统一的服务里面，几乎所有的第三方服务和自己搭建服务器为了识别唯一的用户。都需要进行一次注册流程。这是不可避免的。但是把注册用户的流程接入App里面。对我来说不能第一次打开就畅快的使用App是难以忍受的。iCloud由于是基于Apple ID的，相当于一个正常的用户来说是必备的。所以，使用iCloud技术可以避免注册用户流程。和App登入功能。即开即用的体验会大大提高。</strong></p>
-<p>(注意，在这里我说的是几乎所有的第三方服务不包括Dropbox。Dropbox<a href="https://www.dropbox.com/developers/datastore">新的Datastore API</a>和本身Dropbox的普及率感觉会比注册要好一些。继续挖坑以后填)</p>
+<p>(注意，在这里我说的是几乎所有的第三方服务不包括Dropbox。Dropbox<a href="https://www.dropbox.com/developers/datastore" target="_blank">新的Datastore API</a>和本身Dropbox的普及率感觉会比注册要好一些。继续挖坑以后填)</p>
 <p>其他的原因我觉得不是很重要但是还是列出来：</p>
 <ol>
 <li>iCloud是Apple的服务。好歹是市值4000亿刀的公司。理论上来说比小公司靠谱一些把。</li>
@@ -335,17 +491,17 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 </ol>
 <h2>除了iCloud还能用啥</h2>
 <h3>Dropbox</h3>
-<p>第一个顺位的自然是<a href="https://www.dropbox.com/developers">Dropbox</a>.</p>
+<p>第一个顺位的自然是<a href="https://www.dropbox.com/developers" target="_blank">Dropbox</a>.</p>
 <p>Dropbox不仅仅是一个无处不在的U盘。它还可以变成你App的数据存储端。而且新的Datastore API也显示着Dropbox会大力的发展成为App的数据端的决心。</p>
 <h3>Parse</h3>
-<p><a href="https://www.parse.com">Parse</a>的顺位也相当高。 原因在于，Parse的服务不仅仅有Data。还具备推送、社交分享等一系列高端大气上档次的功能。而且它的SDK覆盖了所有主流平台(iOS OSX Android JS WP8 W8 .NET)。更加重要的是，它在一定数据和请求量上是免费的。如果你的用户做到超过它的免费额度。我觉得这个时候你也就能轻松负担起它的付费版了。顺便说一句Parse应该是被Facebook收了。所以，应该对他们充满信心。</p>
+<p><a href="https://www.parse.com" target="_blank">Parse</a>的顺位也相当高。 原因在于，Parse的服务不仅仅有Data。还具备推送、社交分享等一系列高端大气上档次的功能。而且它的SDK覆盖了所有主流平台(iOS OSX Android JS WP8 W8 .NET)。更加重要的是，它在一定数据和请求量上是免费的。如果你的用户做到超过它的免费额度。我觉得这个时候你也就能轻松负担起它的付费版了。顺便说一句Parse应该是被Facebook收了。所以，应该对他们充满信心。</p>
 <h3>avoscloud</h3>
-<p>推荐<a href="https://cn.avoscloud.com">avoscloud</a>的理由很简单。这是好基友Summer参与开发的。 作为好基友肯定要鼎力推荐一下。 AVOS看起来是国际高端大气上档次的大厂。但是这个cloud，应该是完全由在天朝的团队开发的(个人猜想). 为什么要推荐？起码人家的文档是中文的，阅读起来没障碍。 有问题了，还可以直接去weibo吐槽也不当心人家看不懂好吧。</p>
+<p>推荐<a href="https://cn.avoscloud.com" target="_blank">avoscloud</a>的理由很简单。这是好基友Summer参与开发的。 作为好基友肯定要鼎力推荐一下。 AVOS看起来是国际高端大气上档次的大厂。但是这个cloud，应该是完全由在天朝的团队开发的(个人猜想). 为什么要推荐？起码人家的文档是中文的，阅读起来没障碍。 有问题了，还可以直接去weibo吐槽也不当心人家看不懂好吧。</p>
 <h3>helios</h3>
-<p>当然如果你喜欢自己搞定一切。那你还是可以自己搭建自己的服务器的。如果你需要一个类似的参考<a href="http://helios.io">Mattt大神的helios</a>你不应该错过。如果你写iOS or Mac OS X开发超过三月，还不知道Mattt大神。那你应该恶补一下圈子里面的知识了。Mattt大神就是主导AFNetworking的那个啊。 不说围绕着AFNetworking衍生出来的庞大类库。 当一个<a href="http://nshipster.com">NSHipster</a>就造福一方啊。</p>
+<p>当然如果你喜欢自己搞定一切。那你还是可以自己搭建自己的服务器的。如果你需要一个类似的参考<a href="http://helios.io" target="_blank">Mattt大神的helios</a>你不应该错过。如果你写iOS or Mac OS X开发超过三月，还不知道Mattt大神。那你应该恶补一下圈子里面的知识了。Mattt大神就是主导AFNetworking的那个啊。 不说围绕着AFNetworking衍生出来的庞大类库。 当一个<a href="http://nshipster.com" target="_blank">NSHipster</a>就造福一方啊。</p>
 <h2>总结 &amp;&amp; 瞎扯蛋</h2>
 <p>好久好久没有更新Blog。鄙视一下自己懒的不成样子了。其实好几次想写点扯淡的东西。但是总觉得技术Blog就应该有个技术Blog的样子。不要总是在扯淡。扯着扯着就变成IT评论家的感觉。今天黑这个，明天黑那个的。不好，应该自己踏踏实实的静心学习。最近就是因为心太乱了，导致各种问题。不过期待能把这个iCloud的系列坑给填好。也能算给自己学习了一年iCloud的使用做出一个总结不至于白弄了一年。</p>
-<p>最后嫌弃我写的太慢的同学。那就给一个入口地址：从<a href="http://developer.apple.com/library/Mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094-CH1-SW1">这里</a>加油把</p>
+<p>最后嫌弃我写的太慢的同学。那就给一个入口地址：从<a href="http://developer.apple.com/library/Mac/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094-CH1-SW1" target="_blank">这里</a>加油把</p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
@@ -363,15 +519,14 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>诺，就是这一个东西。 </p>
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e5b26nmyqij20oq00v0sp.jpg" alt=""></p>
 <p>使用过各种浏览器的你一定不会陌生。对在xCode里面我们也可以开出多个页面。而且每一个页面的状态是单独保存的。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>如何提高效率</h2>
 <p>因为在实际的代码编写过程中，我们可能需要来回的查找和阅读代码。会很自然的在多个文件中跳转编辑。这时候单个编辑页面明显拖累了速度。所以我们需要多个页面来回切换就会很爽。</p>
 <p>如上图所示。我习惯性长开着这几个Tab。</p>
 <h2>UI</h2>
 <p><img src="http://ww3.sinaimg.cn/large/686e6613jw1e5b1quy5pij207409wt99.jpg" alt=""></p>
-<p>如图所示，我们可以在圈起来的地方设置关键词过滤显示的文件
-这样我的名为UI的Tab就只会显示storyboard。这样改UI点击起来会很方便</p>
+<p>如图所示，我们可以在圈起来的地方设置关键词过滤显示的文件<br>这样我的名为UI的Tab就只会显示storyboard。这样改UI点击起来会很方便</p>
 <h2>Data</h2>
 <p>同理可得这个表情用来显示data model的。</p>
 <p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e5b1uqa7yhj207w094mxd.jpg" alt=""></p>
@@ -379,8 +534,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>显示ViewController的</p>
 <p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e5b1v4lkuyj207x0933z6.jpg" alt=""></p>
 <h2>Debug</h2>
-<p>Debug这个Tab有些特殊。并不是我手动创建的。而且我配置了编译行为出来的。
-这样每次Run的时候都会跳到这个名为Debug的Tab里面。这样做的原因是，我改了一个地方的代码。运行以后可能在其他地方挂掉了（或者在其他地方打了断点）。然后跟着进去看了看。然后想回到之前改代码的地方就会很麻烦。</p>
+<p>Debug这个Tab有些特殊。并不是我手动创建的。而且我配置了编译行为出来的。<br>这样每次Run的时候都会跳到这个名为Debug的Tab里面。这样做的原因是，我改了一个地方的代码。运行以后可能在其他地方挂掉了（或者在其他地方打了断点）。然后跟着进去看了看。然后想回到之前改代码的地方就会很麻烦。</p>
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e5b1ws3qu9j20ku0f8mzu.jpg" alt=""></p>
 <p>这样设置了以后，就没有上述烦恼了。</p>
 <h1>顺便说一句</h1>
@@ -399,7 +553,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
     <content type="html"><![CDATA[<h1>iOS进行单元测试OCUnit+xctool</h1>
 <h2>单元测试</h2>
 <h3>什么是单元测试</h3>
-<p><a href="http://zh.wikipedia.org/wiki/单元测试">wiki解释</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/单元测试" target="_blank">wiki解释</a></p>
 <p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
 <h3>我为什么要单元测试</h3>
 <p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
@@ -418,7 +572,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58jl2toiej20fh0a1aam.jpg" alt=""></p>
 <p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
 <p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>OCUnit</h2>
@@ -457,31 +611,31 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58thyodnkj20b40cswet.jpg" alt=""></p>
 <p>然后选择你建立的Unit Test bundle。 打完收工。</p>
 <h3>OCUnit使用的宏</h3>
-<p>STAssertEqualObjects(a1, a2, description, ...)</p>
-<p>STAssertEquals(a1, a2, description, ...)</p>
-<p>STAssertEqualsWithAccuracy(a1, a2, accuracy,description, ...)</p>
-<p>STFail(description, ...)</p>
-<p>STAssertNil(a1, description, ...)</p>
-<p>STAssertNotNil(a1, description, ...)</p>
-<p>STAssertTrue(expr, description, ...)</p>
-<p>STAssertTrueNoThrow(expr, description, ...)</p>
-<p>STAssertFalse(expr, description, ...)</p>
-<p>STAssertFalseNoThrow(expr, description, ...)</p>
-<p>STAssertThrows(expr, description, ...)</p>
-<p>STAssertThrowsSpecific(expr, specificException, description, ...)</p>
-<p>STAssertThrowsSpecificNamed(expr, specificException, aName, description, ...)</p>
-<p>STAssertNoThrow(expr, description, ...)</p>
-<p>STAssertNoThrowSpecific(expr, specificException, description, ...)</p>
-<p>STAssertNoThrowSpecificNamed(expr, specificException, aName, description, ...)</p>
+<p>STAssertEqualObjects(a1, a2, description, …)</p>
+<p>STAssertEquals(a1, a2, description, …)</p>
+<p>STAssertEqualsWithAccuracy(a1, a2, accuracy,description, …)</p>
+<p>STFail(description, …)</p>
+<p>STAssertNil(a1, description, …)</p>
+<p>STAssertNotNil(a1, description, …)</p>
+<p>STAssertTrue(expr, description, …)</p>
+<p>STAssertTrueNoThrow(expr, description, …)</p>
+<p>STAssertFalse(expr, description, …)</p>
+<p>STAssertFalseNoThrow(expr, description, …)</p>
+<p>STAssertThrows(expr, description, …)</p>
+<p>STAssertThrowsSpecific(expr, specificException, description, …)</p>
+<p>STAssertThrowsSpecificNamed(expr, specificException, aName, description, …)</p>
+<p>STAssertNoThrow(expr, description, …)</p>
+<p>STAssertNoThrowSpecific(expr, specificException, description, …)</p>
+<p>STAssertNoThrowSpecificNamed(expr, specificException, aName, description, …)</p>
 <h3>比较经常使用的宏</h3>
-<p>STAssertTrue(expr, description, ...)</p>
-<p>STAssertFalse(expr, description, ...)</p>
-<p>STAssertNil(a1, description, ...)</p>
-<p>STAssertNotNil(a1, description, ...)</p>
-<p>STAssertEqualObjects(a1, a2, description, ...)</p>
-<p>STAssertEquals(a1, a2, description, ...)</p>
-<p>STFail(description, ...)</p>
-<p>STAssertThrows(expr, description, ...)</p>
+<p>STAssertTrue(expr, description, …)</p>
+<p>STAssertFalse(expr, description, …)</p>
+<p>STAssertNil(a1, description, …)</p>
+<p>STAssertNotNil(a1, description, …)</p>
+<p>STAssertEqualObjects(a1, a2, description, …)</p>
+<p>STAssertEquals(a1, a2, description, …)</p>
+<p>STFail(description, …)</p>
+<p>STAssertThrows(expr, description, …)</p>
 <h3>写了几个测试方法的例子</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -605,7 +759,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <h2>xctool</h2>
 <h3>xctool是什么</h3>
 <p>xctool是Facebook开源的一个命令行工具，用来替代苹果的xcodebuild工具。</p>
-<p><a href="https://github.com/facebook/xctool">github</a></p>
+<p><a href="https://github.com/facebook/xctool" target="_blank">github</a></p>
 <p>官方演示</p>
 <p><img src="https://fpotter_public.s3.amazonaws.com/xctool-uicatalog.gif" alt=""></p>
 <p>你可以用它来Build你的App。跑Tests。而且它跑Test输出是华丽丽的彩色。比xCode自带的不知好看多少倍。OCUnit本来被吐槽无数，遇上了xctool以后就逆袭了啊。</p>
@@ -636,8 +790,8 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 </pre></td></tr></table></figure>
 
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58zk5dk34j20h70li43i.jpg" alt=""></p>
-<p><a href="http://d.pr/f/EUCR">项目一下载</a></p>
-<p><a href="http://d.pr/f/LPaY">项目二下载</a></p>
+<p><a href="http://d.pr/f/EUCR" target="_blank">项目一下载</a></p>
+<p><a href="http://d.pr/f/LPaY" target="_blank">项目二下载</a></p>
 <h2>总结</h2>
 <p>以上就是OCUnit的使用建议。建议OCunit+xctool。来进行你的单元测试构建。更多信息请阅读相关资料。我这里只是写了入门而已。接下来的测试之路就靠你了。</p>
 ]]></content>
@@ -655,7 +809,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
 <p>第二:但Model改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
 <p>上一篇写了第一点. 现在写第二点.</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>背景</h2>
 <p>如果在数据改变了的时候,我们用UITableView reload. 整个UITableView的数据确实能保持最新的情况. 但是问题是这样做的效率很低. 更希望的情况是,我哪一条数据增加,修改,删除. 就对应着UITableView里面的那一条数据在UI上增加,修改,删除.这样效率会有很大的提升. </p>
@@ -757,11 +911,11 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <h2>NSFetchedResultsController</h2>
 <h3>什么是NSFetchedResultsController</h3>
 <p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
-<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C--NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
+<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
 <p>NSFetchedResultsController是有两个重要的功能。</p>
 <p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
 <p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>实现一个NSFetchedResultsController作为Data source的UITableView</h2>
@@ -772,8 +926,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>整理一下显示层级和结构使其看起来顺眼一些</p>
 <p><img src="http://ww2.sinaimg.cn/large/a74e55b4jw1e3tlnesq81j20750dut9e.jpg" alt=""></p>
 <h3>确立目标</h3>
-<p>打开看以后 发现建立的工程是已经使用了NSFetchedResultsController
-我们的目标是改写这个项目支持UITableView分组显示</p>
+<p>打开看以后 发现建立的工程是已经使用了NSFetchedResultsController<br>我们的目标是改写这个项目支持UITableView分组显示</p>
 <h4>首先修改Data Model</h4>
 <p>增加一个字段用来分组. 我们增加一个同样的Date用来记录此时的分钟数量.</p>
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e3tn8pouqgj.jpg" alt=""></p>
@@ -862,8 +1015,8 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 
 <p>第一个参数就是NSFetchRequest.</p>
 <p>第二个参数是要指定在哪个context里面进行查询</p>
-<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值&quot;sectionMinute&quot;.</p>
-<p>第四个参数  <a href="http://developer.apple.com/library/ios/#documentation/CoreData/Reference/NSFetchedResultsController_Class/Reference/Reference.html">官方解释是这里</a>点到The Cache的地方. 我的理解是cache只保留很少的一部分数据在磁盘上面,如果使用了Cache,在重建UITableView的时候, 就优先查询cache里面的数据.然后要在-performFetch:执行的时候才会去刷新新的数据.这样有助于UITableView的流畅性.</p>
+<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值“sectionMinute”.</p>
+<p>第四个参数  <a href="http://developer.apple.com/library/ios/#documentation/CoreData/Reference/NSFetchedResultsController_Class/Reference/Reference.html" target="_blank">官方解释是这里</a>点到The Cache的地方. 我的理解是cache只保留很少的一部分数据在磁盘上面,如果使用了Cache,在重建UITableView的时候, 就优先查询cache里面的数据.然后要在-performFetch:执行的时候才会去刷新新的数据.这样有助于UITableView的流畅性.</p>
 <p>然后我加入Sections的方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -948,8 +1101,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 </pre></td></tr></table></figure>
 
 <p>这句.</p>
-<p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.
-当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
+<p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.<br>当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
 <h3>被遗忘的地方</h3>
 <p>Sections数量,决定了有多少组</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1031,7 +1183,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>包括游戏</p>
 <p><img src="http://ww1.sinaimg.cn/large/a74e55b4jw1e3q5lb59vwj.jpg" alt=""></p>
 <p>这些都说明UITableView在一个App中其实是一个很常用的控件。我应该好好的学习它。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>关于数据的思考</h2>
@@ -1130,7 +1282,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 </pre></td></tr></table></figure>
 
 <p>这个是选中Cell时候会的出发点。如果要点击以后做什么事情 就在这里做了。 </p>
-<p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573">找了篇目测还ok的中文blog可以先看看了解</a></p>
+<p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573" target="_blank">找了篇目测还ok的中文blog可以先看看了解</a></p>
 <h2>数据刷新</h2>
 <p>如果我们的modle更新了。相应的要体现到UITableView上面。简单的我们可以reload整个TableView。这样做很方便，而且数据上没有问题。唯一的问题就是，reload整个TableView的效率太低了。而且，往往我们只是少数的Cell内容变化。所以没有必要去reload整个TableView。而是那条数据变化去刷新对应的Cell就好了。这样做效率提高很多。</p>
 <p>具体涉及到的几个函数</p>
@@ -1156,10 +1308,10 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 - <span class="params">(void)</span>reloadRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
 </pre></td></tr></table></figure>
 
-<p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html">这里有实例代码可以参考</a></p>
-<p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1">官方教程</a></p>
+<p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html" target="_blank">这里有实例代码可以参考</a></p>
+<p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1" target="_blank">官方教程</a></p>
 <p>里面写了如何优化UITableView：</p>
-<p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
+<p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能" target="_blank">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
 <h2>后记</h2>
 <p>总结就是UITableView是一个高度设计的控件。它具有重用，分组，异步加载数据等方面需要我们注意。</p>
 <p>其实这里插进来写UITableView是为了写NSFetchedResultsController。因为NSFetchedResultsController就是为UITableview量身打造的Core Data的类。 </p>
@@ -1179,7 +1331,7 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <h2>NSManagedObject</h2>
 <p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg" alt=""></p>
 <p>Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对NSManagedObjectContext里面是唯一的。而真实的应用情况可能是NSManagedObjectContext会有多个。而NSManagedObjectContext线程不是安全的，所以可能有你多个NSManagedObjectContext里面各自有指向同一条数据的不同的NSManagedObject。这个情况需要你的程序设计和逻辑上去解决。暂时不讨论。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h3>使用NSManagedObject所经历的三种方法</h3>
 <p>对于NSManagedObject来说一般有以下几种使用方法：</p>
@@ -1187,10 +1339,8 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <p>第二种是老头视频里面教过的。在点击Data Model选择Entity以后，在xCode的菜单里面有这样一个选项：</p>
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e39z74y7j8j.jpg" alt=""></p>
 <p>next都按完了以后，会生成选择了的Entity对应的一个NSManagedObject子类。这样的话我们就可以用生成的类来进行增删改查。这样的话看起来代码里面也会变得清晰一些。我们也不必去写KVC的方法去访问修改属性。可以直接就访问修改。在我看来还是好处多多的。为了OO的原则，我们可能会对不同的Entity类去写一些只是公开接口的方法。但是这样生成的NSManagedObject子类是不好修改的。因此我们会去建立一个category类。来进行扩写自己的方法。这样项目里面就会出现一票category感觉不是很好的样子。</p>
-<p>第三种方法是我现在在使用的方法。
-就是使用Mogenerator.</p>
-<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a>
-好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
+<p>第三种方法是我现在在使用的方法。<br>就是使用Mogenerator.</p>
+<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a><br>好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
 <h3>NSManagedObject其他注意事项</h3>
 <p>NSManagedObject就是我们拿来操作数据的基本单位。因此对应，增加一条数据是在NSManagedObjectContext新建一个NSManagedObject。查找数据是查找NSManagedObject。修改是修改NSManagedObject类的属性。删除是从NSManagedObjectContext里面删除NSManagedObject类。最后我们保存NSManagedObjectContext，然后一直向上传递到磁盘上面去。才是持久化的修改。</p>
 <h2>NSFetchRequest</h2>
@@ -1270,7 +1420,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 <li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
 </ol>
 <p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>存储原理</h2>
@@ -1278,8 +1428,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 <h4>认识</h4>
 <p>我个人是把NSManagedObjectModel看做为一个core data的schema。生成这个类的来源是xCode中的Data Model</p>
 <p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36lv4nn89j.jpg" alt=""></p>
-<p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。
-但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
+<p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。<br>但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
 <p>如这样</p>
 <p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e36m76n6k3j.jpg" alt=""></p>
 <p>当然还有另外一种表格的方式来编辑Data Model</p>
@@ -1337,8 +1486,8 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 <p>还有一点需要注意的是NSManagedObjectContext并不是线程安全的。</p>
 <p>关于NSManagedObjectContext的线程安全和高级解释，这里有两篇blog写的超好。</p>
 <p>可以一看</p>
-<p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/">Multi-Context CoreData</a></p>
-<p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/">Zarra on Locking</a></p>
+<p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/" target="_blank">Multi-Context CoreData</a></p>
+<p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/" target="_blank">Zarra on Locking</a></p>
 <p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
 <h4>代码加载NSManagedObjectContext</h4>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1364,10 +1513,10 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
     <content type="html"><![CDATA[<h1>ssh远程登录Mac OS X</h1>
 <h2>序</h2>
 <p>近一年抱了Apple大腿之后，各种表弟、师兄、朋友陆续也开始抱Apple大腿。难免遇到各种问题，这个时候在QQ交流效率低下，简直不可忍受。也不知大腾讯啥时候支持一下QQ for Mac的远程协助。这样有时候也可以帮助一下在家的老爸老妈解决一些PC上的问题。大神们绕道无鄙视。OS X乃纯Unix血统。教科书上都写了*nix系统可以ssh登录过去搞定一切。就想着可以用ssh来解决问题。无奈网络基础确实是挂课的水平曾经尝试过一次没有成功。这次又再次遇到远程协助的问题就好好Google了一次。研究了好一会儿终于搞定，在此记录。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>参考资料</h2>
-<p><a href="http://www.maclife.com/article/howtos/how_enable_ssh_your_mac">How To Enable SSH on Your Mac</a></p>
+<p><a href="http://www.maclife.com/article/howtos/how_enable_ssh_your_mac" target="_blank">How To Enable SSH on Your Mac</a></p>
 <h2>开始打怪</h2>
 <h3>环境</h3>
 <ol>
@@ -1424,7 +1573,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 
 <p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
 <p>这样我们就获得一个文件路径了。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>第二步 检查文件是否存在</h2>
 <p>我们有了文件的路径以后，想读取。是可以。但是要是文件不存在，我们硬来就读取不到任何东西。所以，一般的做法是在读取之前去检查一下这个路径的文件是否存在。如果不存在我们就可以作出相应的处理动作。</p>
@@ -1497,8 +1646,7 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
 <p>值得注意的是参数中YES的意思为如果为YES则保证文件的写入原子性,就是说会先创建一个临时文件,成功了就改名为正式的文件。如果为NO,直接写入目标文件目录里.writeToFile:atomically:的这个方法都为覆盖。如果想要是追加的效果。建议先读出原文件内容然后在后面加入新内容。最后一起写入。这样就覆盖了老的文件。</p>
 <h2>总结</h2>
 <p>之前一直想写的blog想深入一些。以至于不敢动手开始写。总觉得还没有准备好。自己也懂的不够透彻。这样不知不觉欠了几十篇blog了。在todo list里面都要变成谍中谍了。最近关注了几个微信公众帐号。见到人家天天画时间去更新。比我优秀的人比我更加努力。惭愧的很。所以现在就拿着简单的内容写起来。</p>
-<pre><code><figure class="highlight"><pre>故不积 跬步，无以至千里；不积小流，无以成江海。
-</pre></figure></code></pre>
+<pre><code>故不积 跬步，无以至千里；不积小流，无以成江海。</code></pre>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
@@ -1510,15 +1658,14 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
     <updated>2013-04-22T09:35:13.000Z</updated>
     <content type="html"><![CDATA[<h1>配置自己的CocoaPods库</h1>
 <h2>序</h2>
-<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。
-如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
-<a name="more"></a>
+<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。<br>如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
+<a id="more"></a>
 
 <h2>从头来设置</h2>
 <h3>应用场景</h3>
 <p>我的boss写了一个基于MagicalRecord的CoreData的iCloud设置的类。也许我们以后要用到的机会毕竟多。单独拿出来成为一个库。现在用cocoapods来做成一个静态库。 我们这个库基于外部的MagicalRecord和SVProgressHUD.这两个库是用git submodule的方法来管理的</p>
 <h4>第一步把代码托管到一个支持git的服务器</h4>
-<p>我选择了<a href="https://bitbucket.org">bitbucket</a>.因为没钱买github。</p>
+<p>我选择了<a href="https://bitbucket.org" target="_blank">bitbucket</a>.因为没钱买github。</p>
 <h4>第二步删除git submodule</h4>
 <p>git submodule虽然也可以实现第三方库的管理，但是相对于cocoapods来说太麻烦了。删除就不是想cocoapods这样在Podfile里面删除配置就好的。</p>
 <p><strong>先删掉目录</strong></p>
@@ -1556,10 +1703,7 @@ pod <span class="attribute">'MagicalRecord</span>', :git =&gt; <span class="attr
 pod <span class="attribute">'SVProgressHUD</span>'
 </pre></td></tr></table></figure>
 
-<p>解释一下：
-第一行后面是限制模拟器版本为6.0以上。
-第二行因为MagicalRecord我们改了几行代码，因此用我们自己的版本。指定git地址。和tag标签。除了tag还可以指定branch和commit。格式一样
-第三行用官方的最新版本</p>
+<p>解释一下：<br>第一行后面是限制模拟器版本为6.0以上。<br>第二行因为MagicalRecord我们改了几行代码，因此用我们自己的版本。指定git地址。和tag标签。除了tag还可以指定branch和commit。格式一样<br>第三行用官方的最新版本</p>
 <p><strong>安装Pod</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$pod</span> install
@@ -1945,8 +2089,8 @@ end
 <h2>坑</h2>
 <p>cocoapods有缓存。 我一直测试刚刚搞好的自己的库一直不对。 改了2小时。 才反应过来我一直打的标签是同一个，然后cocoapods在本地缓存了一个。只对比了标签以至于我改的东西都没有用。哭。。。。</p>
 <h2>参考文章</h2>
-<p><a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/">如何编写一个CocoaPods的spec文件</a></p>
-<p><a href="http://m.blog.csdn.net/blog/totogo2010/8198694">CocoaPods一个Objective-C第三方库的管理利器</a></p>
+<p><a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/" target="_blank">如何编写一个CocoaPods的spec文件</a></p>
+<p><a href="http://m.blog.csdn.net/blog/totogo2010/8198694" target="_blank">CocoaPods一个Objective-C第三方库的管理利器</a></p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
@@ -1959,15 +2103,15 @@ end
     <content type="html"><![CDATA[<h1>Mogenerator的初级使用</h1>
 <h2>什么是Mogenerator</h2>
 <p>最近在用Core Data来进行开发。Core Data其实封装的很好了。把存储底层都屏蔽了（sqlite，xml，内存）。不管是用那种方式存储下来。用Core Data都是在操作对象了。但是Core Data一套东西下来，单是学习就学习的泪流满面。天资有限，只能找一些看上去更简单的第三方类库来使用。</p>
-<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
-<p>而<a href="http://rentzsch.github.com/mogenerator/">Mogenerator</a>是什么东西呢。</p>
+<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord" target="_blank">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
+<p>而<a href="http://rentzsch.github.com/mogenerator/" target="_blank">Mogenerator</a>是什么东西呢。</p>
 <p>它漂亮的主页上是这样写的：</p>
 <p>mogenerator为你定义了的Core Data生成默认的数据类。与xCode不一样的是(xCode一个Entity只生成一个NSManagedObject的子类)，mogenerator会为每一个Entity生成两个类。一个为机器准备，一个为人类准备。为机器准备的类一直去匹配data model。为人类准备的类就给你轻松愉快的去修改和保存。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>为什么需要Mogenerator</h2>
 <h2>安装Mogenerator</h2>
-<p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew">homebrew</a>去安装。</p>
+<p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew" target="_blank">homebrew</a>去安装。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>brew install mogenerator
 </pre></td></tr></table></figure>
@@ -1978,7 +2122,7 @@ end
 </pre></td></tr></table></figure>
 
 <h2>在项目里面添加Mogenerator</h2>
-<p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/">这篇</a>的教程我添加了脚本以后运行不成功</p>
+<p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/" target="_blank">这篇</a>的教程我添加了脚本以后运行不成功</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
@@ -1986,8 +2130,7 @@ end
 </pre></td></tr></table></figure>
 
 <p>提示:</p>
-<pre><code><figure class="highlight"><pre>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span>
-</pre></figure></code></pre>
+<pre><code>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span></code></pre>
 <p>自己打命令测试Mogenerator是成功的</p>
 <p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator"></p>
 <p>xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的</p>
@@ -2001,8 +2144,7 @@ end
 </pre></td></tr></table></figure>
 
 <p>这次mogenerator是找到了，但是xcadatamodeld又没有找到。看到</p>
-<pre><code><figure class="highlight"><pre>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span>
-</pre></figure></code></pre>
+<pre><code>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span></code></pre>
 <p>pwd出来路径观察以后把cd去掉</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -2054,10 +2196,10 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
     <content type="html"><![CDATA[<h1>2013 一月读书笔记</h1>
 <p>2013的一月嗖一下就过去了，都还没有反应过来，在过几天就回家过年了果然时间入流水阿。</p>
 <p>看看之前的blog，上一篇也是唯一的一篇读书笔记刚刚好是2012的。随带检讨一下自己的懒惰。</p>
-<p>之前用的Octopress，不知为什么我手贱update了一下就各种错误。搞了两天也不明白问题在哪里。 那会还有写点东西的冲动。给我急的阿。后来想起在<a href="http://lucifr.com">@Lucifr</a>blog里面见过一个类似的框架，跟过去看了看。原来是之前见过的台湾小朋友写的Octopress主题Slash的作者<a href="http://zespia.tw">@tommy351</a>新项目<a href="http://zespia.tw/hexo/">Hexo</a>。果然自古英雄出少年阿。感谢<a href="http://zespia.tw">@tommy351</a>的<a href="http://zespia.tw/hexo/">Hexo</a>。</p>
-<p>现在我的blog生产静态html的框架用的是<a href="http://zespia.tw/hexo/">Hexo</a> 强烈推荐。</p>
+<p>之前用的Octopress，不知为什么我手贱update了一下就各种错误。搞了两天也不明白问题在哪里。 那会还有写点东西的冲动。给我急的阿。后来想起在<a href="http://lucifr.com" target="_blank">@Lucifr</a>blog里面见过一个类似的框架，跟过去看了看。原来是之前见过的台湾小朋友写的Octopress主题Slash的作者<a href="http://zespia.tw" target="_blank">@tommy351</a>新项目<a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>。果然自古英雄出少年阿。感谢<a href="http://zespia.tw" target="_blank">@tommy351</a>的<a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>。</p>
+<p>现在我的blog生产静态html的框架用的是<a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> 强烈推荐。</p>
 <p>一月我以极快的速度翻完了三本书。 「打造Facebook」 「看见」 「全世界人民都知道」</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>打造Facebook</h2>
 <p>这本书我购入多看电子版。起初我看这本书很多人在推荐。就想入了一本。点到书的内容介绍里面一看。各种李开复、薛蛮子联袂推荐。顿时拉入黑名单中。结果微博上几个靠谱的人还在推荐。曹哥也说已经看了一半感觉还好的情况下。就入了电子版。(PS:貌似那会儿在特价)</p>
@@ -2065,7 +2207,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>推荐指数 3星</p>
 <h2>看见</h2>
 <p>CCTV里面我待见的主持人不多(ps:已经多少年没有看过CCTV的人了，浑氮。你能待见谁)。女主持更不多了。 印象中就两一个是柴静，另外一个连名字都不知道就记得带一个眼睛播报过天气预报笑容甜美的妹子。看过柴静节目里面的内容都忘记差不多了，记忆里面就知道她坐着一个问题一个问题问对面的人。虽然感觉上咄咄逼人的样子，可是反而感觉是一个有自己独立思考和智慧的人。这样的人我看着顺眼。本来预售的时候就想买了，但是我想买电子版。还在微博上问了多看官方帐号。然后他们的副总说这本书有难度，才去亚马逊上下单。（PS：昨天躺在床上翻多看发现有「看见」的试读版本了。这是什么情况）</p>
-<p>「看见」的封面我觉得很好，柴静微笑的坐在一群朴实的天朝公民中，笑容清澈见底，旁边有老人和孩子。这书名根据内容看下来也感觉很好。因为都是柴静的亲眼所见。从这本书里面，我隐约看见某腐朽的帝国主义的某电视剧<a href="http://movie.douban.com/subject/6142597/">「The Newsroom」</a>的样子。让我感慨出来CCTV也是有一群有良知的人儿阿。这本书其实算柴静的一个小自传 or 十年的工作史。如果我给起名字的话——「给黑心矿老板CCTV打工的血泪史」。希望寄托一个开心的名字能冲淡一些书中的悲伤。</p>
+<p>「看见」的封面我觉得很好，柴静微笑的坐在一群朴实的天朝公民中，笑容清澈见底，旁边有老人和孩子。这书名根据内容看下来也感觉很好。因为都是柴静的亲眼所见。从这本书里面，我隐约看见某腐朽的帝国主义的某电视剧<a href="http://movie.douban.com/subject/6142597/" target="_blank">「The Newsroom」</a>的样子。让我感慨出来CCTV也是有一群有良知的人儿阿。这本书其实算柴静的一个小自传 or 十年的工作史。如果我给起名字的话——「给黑心矿老板CCTV打工的血泪史」。希望寄托一个开心的名字能冲淡一些书中的悲伤。</p>
 <p>看见是一本好书因为里面写了人性和理性。 </p>
 <p>推荐指数 5星</p>
 <h2>全世界人民都知道</h2>
@@ -2076,10 +2218,9 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>我看来 三本书都是写人。</p>
 <p>「打造Facebook」说做互联网，最重要的是人。只有一流的人才能做出一流的产品出来。所以Facebook只找最好的人。</p>
 <p>「看见」说的是个人。以柴静的眼，人性的眼去看待这个世界。</p>
-<p>「全世界人民都知道」还是说的是人。人构成了这个世界，而这个世界有问题了。最后反射到具体的每一个人身上。
-«</p>
+<p>「全世界人民都知道」还是说的是人。人构成了这个世界，而这个世界有问题了。最后反射到具体的每一个人身上。<br>«</p>
 ]]></content>
-    <category scheme="http://iiiyu.com/categories/read-book-notes/" term="read-book-notes"/>
+    <category scheme="http://iiiyu.com/categories/read book notes/" term="read book notes"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[简单配置PonyDebugger]]></title>
@@ -2098,7 +2239,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>view的层级查看</p>
 <p><img src="https://github.com/Flipboard/PonyDebugger/raw/master/Documentation/Images/ViewHierarchyDebugging.png" alt="ViewHierarchyDebugging"></p>
 <p>这种好东西。 让我们快速开始吧。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 
@@ -2123,12 +2264,10 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 
 <ul>
 <li><p><strong>4.</strong> 打开你的浏览器 输入地址</p>
-<p>  <a href="http://localhost:9000">http://localhost:9000</a></p>
+<p>  <a href="http://localhost:9000" target="_blank">http://localhost:9000</a></p>
 </li>
 </ul>
-<p>如果看见的是这样
-<img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e0sfa4zcdkj.jpg" alt="test1">
-说明服务器端已经安装好了。</p>
+<p>如果看见的是这样<br><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e0sfa4zcdkj.jpg" alt="test1"><br>说明服务器端已经安装好了。</p>
 <h3>iOS端</h3>
 <ul>
 <li><strong>1.</strong> 把PonyDebugger作为你自己的项目的一个git submodule添加到你自己的项目里面</li>
@@ -2143,7 +2282,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <span class="title">git</span> submodule update <span class="comment">--init --recursive</span>
 </pre></td></tr></table></figure>
 
-<p>PonyDebugger依赖于<a href="https://github.com/square/SocketRocket">SocketRocket</a>所以当你update的时候也会把SocketRocket一起clone下来。</p>
+<p>PonyDebugger依赖于<a href="https://github.com/square/SocketRocket" target="_blank">SocketRocket</a>所以当你update的时候也会把SocketRocket一起clone下来。</p>
 <ul>
 <li><strong>2.</strong> 然后把PonyDebugger/PonyDebugger.xcodeproj 增加到你的项目里面去。</li>
 </ul>
@@ -2192,10 +2331,10 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 </pre></td><td class="code"><pre><span class="title">[debugger disconnect]</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-<p>更多用法 参考
-<a href="https://github.com/square/PonyDebugger">主页</a></p>
+<p>更多用法 参考<br><a href="https://github.com/square/PonyDebugger" target="_blank">主页</a></p>
 <p>这篇blog相当于简化翻译 囧。</p>
 ]]></content>
+    <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>
   <entry>
     <title type="html"><![CDATA[2012年度总结]]></title>
@@ -2204,8 +2343,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
     <published>2013-01-01T11:39:00.000Z</published>
     <updated>2013-02-01T18:37:18.000Z</updated>
     <content type="html"><![CDATA[<h2>扯扯其他</h2>
-<p>  又到了一年一度的年度总结了，以前怕写，觉得人生如同复印一般没啥好写的。今年今日却是想好好写一点总结。2012还是自己本命年，12年恰好是一个轮回。12岁那年升入初中，这样使我有机会认识了5个现在值得交心交肺一生的兄弟。虽然现在天各一方，也可能许久没有联系。但是我相信兄弟之间是不必多说什么的。如果没有认识你们，我可能没有这么豁达，开朗。在风华正茂的年纪，我认识你们，你们认识我，是我们的幸运。  2012世界末日年，年初的时候我很彷徨和焦躁。因为我不知道我要做什么，我想做什么。当初觉得自己就是想去做操作系统，什么都不管不顾的去了东莞。其实是毕业那会儿见识的东西不够多，看的书不够多，看问题并不够客观理智。我并看不出来我应该做什么，只觉得做操作系统说出来应该很cool的样子。然而自己其实对这个行业根本不懂。在昆明了四年，虽然互联网触及到了世界。但是在边疆却是跟一线IT距离太过于遥远。
-  <a name="more"></a></p>
+<p>  又到了一年一度的年度总结了，以前怕写，觉得人生如同复印一般没啥好写的。今年今日却是想好好写一点总结。2012还是自己本命年，12年恰好是一个轮回。12岁那年升入初中，这样使我有机会认识了5个现在值得交心交肺一生的兄弟。虽然现在天各一方，也可能许久没有联系。但是我相信兄弟之间是不必多说什么的。如果没有认识你们，我可能没有这么豁达，开朗。在风华正茂的年纪，我认识你们，你们认识我，是我们的幸运。  2012世界末日年，年初的时候我很彷徨和焦躁。因为我不知道我要做什么，我想做什么。当初觉得自己就是想去做操作系统，什么都不管不顾的去了东莞。其实是毕业那会儿见识的东西不够多，看的书不够多，看问题并不够客观理智。我并看不出来我应该做什么，只觉得做操作系统说出来应该很cool的样子。然而自己其实对这个行业根本不懂。在昆明了四年，虽然互联网触及到了世界。但是在边疆却是跟一线IT距离太过于遥远。<br>  <a id="more"></a></p>
 <p>  去东莞是抱着一腔热血去的，觉得能改变点什么。去了6个月以后才发现，其实我什么都改变不了。现实照进梦想，然后把梦想砸了个稀烂。有时候去了公司坐着，就想早点下班去踢球。颇有生活就像是一场强奸，既然你不能躲避，那就好好享受吧的意思。有两本书改变了我当时的心境——「浪潮之巅」「黑客与画家」。「浪潮之巅」告诉我不管IT或者是整个世界，都是一波一波的浪潮。如果在一个浪潮还没影子的时候入水，死。如果浪已经开始能看到形成的的时候入水，可以喝点剩汤吃点剩菜。如果浪已经达到顶峰的时候入水，死。如果是能在浪将起，但是还没有人能看出来的时候入水，就有机会站到浪潮的最高处。Apple是最屌的，硬深深的造出了一个移动互联网的大浪。我看到了浪起来了，所以那时候想趁还没有到最高点感觉去抢点剩菜吃吃。「黑客与画家」告诉我，能力够的话创业比打工好。年初的时候就想着辞职了，投入移动互联网的浪潮中。纠结的只是两个事情，一个是我其实并不会移动互联网的开发，甚至连互联网的开发技术都并不具备。二是并没有做满一年，跳槽是大忌。连一年都没有做满更是不是很好，会给人很浮躁的感觉。直接导致了年初的几个月白天在写linux c。晚上回来ruby iOS的乱弄。貌似精神分裂一般。也天天在想这个事情怎么弄。最后，我还是决定跟着感觉走吧。就辞职了。</p>
 <p>  辞职的事情，一直觉得有些窘迫。因为那会儿项目比较紧需要人手的时候，我提出辞职，感觉就像逃兵一样。然后理由就扯了一个其他的，虽然是事实但是也并不是真正的原因。辞职是裸辞，决定破釜沉舟的去帝都找一个房子住下来，然后慢慢学iOS开发。然后一个月后在去找工作。</p>
 <p>  直到我遇见了曹哥。在今天回头去看，只能说我的运气确实好了点。本来已经定了去帝都的机票了，结果我收到了一封Email然后加了曹哥的QQ我们聊了聊。曹哥就说要不来厦门当面谈谈把，我那是很是犹豫。虽然在V2EX上就看见招聘，第一是我认为那会儿其实我什么都不会。第二是萌小萌在帝都。这个距离也比较遥远。见我犹豫的时候，曹哥说没关系啊，就当来厦门旅游了。路费住宿报销就好了。士为知己者死，女为悦己者容。在江湖混讲究的就是义气二字。娱乐一下。 我推掉了去帝都的票，赶了火车来到厦门。</p>
@@ -2234,7 +2372,7 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <h2>正面</h2>
 <h3>赶上了移动互联网这一波浪潮</h3>
 <p>这是「浪潮之巅」里面的说法。很显然，互联网那一波浪潮已经不可能再变得更高了。而下一波的移动互联网大浪现在来看，已经是在像最高潮发展了。而小米进入这个市场的时间要比现在早那么2年多。那时候，移动互联网这个浪头已经被Apple带起来了,天朝的移动互联网远远没有现在这么竞争激烈。小米就进入了这个大潮流中。所以，小米能取得多大的成功，依赖着这波移动互联网的浪能打多高。我觉得这波移动互联网的浪头会很高，至少要超越互联网这波浪潮两倍的高度。小米肯定不可能是浪头的最高点，不过由于进入的时间比较早，只是追随着浪头，也能达到一个很成功的高度。对于这样一个企业来说。确实就是成功了。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h3>进行了C2C</h3>
 <p>但凡在天朝成功的互联网企业很多带有C2C(Copy to China)的基因。究其缘由，第一、KK在「科技元素」里面说过。科技的发展在一段时期内是趋同发展的。何况在现在网络已经无处不在的时代。早上在硅谷出现的新鲜创意，晚上天朝可能就有人开始甩开膀子开干。第二、这里是天朝。</p>
@@ -2258,53 +2396,6 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <p>就举一个例子把。360这个老流氓那次打击的不是天朝内行业的最赚钱的公司。这次打小米，很显然是360嗅到了金钱的味道。就是从侧面说明小米在搞的事情很赚钱。成不成是另外一个事情。</p>
 <h2>总结</h2>
 <p>思绪很多，而且还间隔了这么久的时间。我想接下来的时间里面就不写这种类似的文章了。第一是觉得自己的眼光和阅历并不在一个很高标准的角度上看问题，这样必然有一定的局限性。做不到一个很客观的角度。第二是自己的文字功底确实没有我想象的那么好。第三如果天天写这些快变成光说不练的假把式了，说是天下无敌，打是无能为力。</p>
-]]></content>
-    <category scheme="http://iiiyu.com/categories/just-talk/" term="just-talk"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[优秀的设计 vs 糟糕的设计]]></title>
-    <link href="http://iiiyu.com/2012/11/18/excellent-design-vs-baddesign/"/>
-    <id>http://iiiyu.com/2012/11/18/excellent-design-vs-baddesign/</id>
-    <published>2012-11-18T13:32:00.000Z</published>
-    <updated>2013-03-19T10:10:47.000Z</updated>
-    <content type="html"><![CDATA[<p>这篇blog缘由
-这张图片</p>
-<p><img src="http://ww2.sinaimg.cn/bmiddle/5e0bba51gw1dyxy98zixmj.jpg" alt=""></p>
-<p>然后我转发了一下<a href="http://weibo.com/1752065555/z5FcrjB0s">这里</a>可以围观。</p>
-<p>然后 有几个人评论了一下。觉得我像一2b青年一样乱说。现在却找不到那几个评论了。不过后来我看了看，我写的这条微薄确实就是2b青年的评论的范。为表示深深的歉意,我决定写这篇blog来阐述一下我的观点。</p>
-<a name="more"></a>
-
-<h2>关于坚果云</h2>
-<p>在天朝这样的环境里面,做云存储的。我试用了各家国产货以后就觉得就坚果云靠谱。so可能觉得靠谱公司就应该有更理智的判断更有梦想的想法。所以如果那个微博是以个人名义发的，ok。可能我也不会去说什么。但是一个公众的号说这样的想法出来的时候。我第一个感觉是哎。我心目中国的Dropbox也就这样了。有点失望的意味在里面。然后有感而发的发了这个微博。</p>
-<h2>声明</h2>
-<p>以下观点仅仅代表个人想法，完全没有任何恶意。如果表达出了感觉不适的内容，你可以联系告诉我。我来修改。我并不想伤害任何人。(接着写的时候，我突然觉得可能会写偏离。先声明一下)</p>
-<h2>第一个失望点</h2>
-<p>&quot;标准答案都来自外国人。真的什么事情都要迷信极简设计吗？&quot;。</p>
-<p>首先关于外国，我觉得我很肯定的是,我在天朝这24年来所能学到的现代科学、思考方式。几乎都是来自国外的。套用蒋教授的一句话&quot;一切来自西方&quot;。除了那依稀记得的那几句诗词。我觉得我拥有知识的大部分都来自国外。长大以后，我已经很少去YY什么上下五千年了。我们活着的是当下，而不是YY。</p>
-<p>然后关于标准答案。我觉得任何地方都没有什么标准答案。只是在说一个优秀的设计和糟糕的设计。</p>
-<p>然后关于迷信极简设计。同上。依然我觉得只是一个优秀的设计和糟糕的设计。</p>
-<p>这句话还会让我想到，&quot;不顶就不是天朝人类似的口号之类。&quot; 很能戳中某些人的G点。</p>
-<p>现在的世界上一流的生产力第一次诞生大部分来自国外,这是事实。所以,有优秀的设计来自于国外,这也是事实。而且很正常。当然都来自国外不是绝对的事情，前两天某宝抗下了我觉得可能是世上最nb的24小时各种数据。就是证明。可是这样的例子能在天朝举出来的次数少的一只手就能数得清。所以，一个好的行业标准。一个优秀的东西。首先出现在国外是一个很正常的事情。退回来说这图上的两个遥控器的设计。怎么才是好的设计。跟来自国外无关，跟极简设计无关</p>
-<h2>第二个失望点</h2>
-<p>&quot;咱们中国老百姓用了十几年的电视遥控器都长右边的样子。看看楼下的回复，让你更了解中国的用户，而不是老外~&quot;</p>
-<p>勤劳善良的天朝人民因为习惯就不能用更好更方便的设计了么。</p>
-<p>再说，你口中的老外也用过十几年右边这样的吧。为啥人家有能用上左边的遥控了。老外十几年的习惯怎么就可以一下改变了呢？顺着这个说一句盗版，天朝内很多人觉得用盗版是理所应当因为在天朝。天朝国情就这样。国情呵呵。人家是人，你就不是人了么。什么都找个借口,还冠冕堂皇的样子。自己把自己当人看,才是应该做的事情。</p>
-<h2>再来说说我认为的优秀的设计</h2>
-<p>在我的理念里面作为一个用户，第一条也是最后一条。优秀的设计就是用起来爽的设计。跟其他什么设计分类，设计风格，设计派别半分关系都没有。只要它用起来爽。怎么让这个物件用起来爽。不是我考虑的事情。这是设计师要考虑的问题。</p>
-<p><a href="http://v.youku.com/v_show/id_XNDI5Nzc5ODg0.html">参考视频</a></p>
-<p>优秀的设计都在努力提供用的更爽的感觉。就拿iPhone来说。因为简单明了。</p>
-<p>回到iPhone。iPhone出来之前。所谓的标准答案是不是诺基亚那种设计，上面屏幕下面按键的样子。这个标准答案也用了好久了吧。替换成跟开篇类似的图就像这个样子</p>
-<p><img src="http://blog.manu-j.com/uploads/2008/12/ipe71.jpg" alt=""></p>
-<p>额，偷懒。<a href="http://www.geekpark.net/cast/view/160763">用tinyfool的观点来说为啥iPhone的设计是好的</a>,因为iPhone它用着很爽。所以才是一个优秀的设计。而不是去附和狗屁达达的诺基亚很久的用户习惯。而天朝总有人认为用iPhone是装。我觉得这种肯定是存在的,我不否认。但是我听过很多很多说用过iPhone就回不去的例子。可能第一部iPhone有装的原因，可是之后他捡到了一个大便宜。因为他肯定会用的很爽。而天朝的iOS根据上次我看友盟的数据是有6000w个设备的。(如果觉得我记错了，可以翻翻友盟的官方微薄) 6000w个设备。是因为它真的很好用。</p>
-<h2>遥控器</h2>
-<p>回到遥控器来。其实我觉得两个东西放到一起对比是不公平的。因为明显apple tv的遥控器是已经超越了右边遥控器一个时代的东西。而在这种情况下,还跳出来说右边设计的更好。额，真心有点不知从何说起的感觉。</p>
-<p>而且, apple tv的遥控器还有一个相对应的经过精心打造的系统来配合使用。右边的遥控器能配合的有什么咯。自己点开机顶盒自带的那个menu来看看。而且,我保证那个全部是按钮的遥控器。有一半以上的按键你按到它是因为你按错了。而且你也不知道一个莫名其妙的图标到底代表的是什么意思。(好，写完这段以后我特意回到最上面看了看图。右边那个有中文标识。但是思考了一下，我决定保留这段。)</p>
-<p>而且这两个真心不是一个时代的东西了。他们的应用场景也是完全不同的。apple tv的内容是精确定位的。意味着你找到的内容你停留的时间会比较长。而传统电视内容是模糊的，我们会在不同的电视台之间快速的切换。我们不知道下一个是什么。我们会看什么。看到这里会不会又有人出来说，“你看你自己都说右边的符合它的应用场景那它也是一个好的设计。”错！</p>
-<p>好的设计是用的更爽的，apple tv能让我们选择自己感兴趣的内容观看。而传统的电视只能逆来顺受的看。能遇到想看的固然好。可是你能每次都遇到么。我们有没有过从第一个台换到最后。又回到第一个台还是没有找到想看的东西的情况呢。显然，在这里。apple tv的设计已经超越了传统的电视。让用户可以用的更爽。</p>
-<p>写到这里，我的讨论已经超越了单单的一个遥控器。可是确实要把遥控器和他们所依赖的系统精密的联合在了一起。如果单独的去看他们其实是盲人摸象。所以，我想我能尽量的看的全面一些。</p>
-<h2>总结</h2>
-<p>写了这么多。无非我就是想证明一点。我的观点没有错而已。其实我更想证明的是开头第一张图左边的系统比右边的系统不仅仅是设计优秀的问题。而是已经领先了一个时代的问题。其实很多时候，我是不太想争论的。因为我本身也没有做成什么好的东西来。怕有一天也变成&quot;xx评论家&quot;--说是天下无敌，打是无能为力。</p>
-<p>至此，谢谢观看。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/just-talk/" term="just-talk"/>
   </entry>

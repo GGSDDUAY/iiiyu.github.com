@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -86,17 +85,16 @@
 </ul>
 <p>个人以Google出来的信息得出的对比：</p>
 <p>| 网络库 | 优点 | 缺点 |</p>
-<p>| ------------ | ------------- | ------------ |</p>
+<p>| —————— | ——————- | —————— |</p>
 <p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
 <p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
 <p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
-<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。
-候选AFNetWorking。</p>
-<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
-<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">原理在这里</a></p>
-<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html">实现的例子</a></p>
+<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。<br>候选AFNetWorking。</p>
+<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270" target="_blank">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
+<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">原理在这里</a></p>
+<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">实现的例子</a></p>
 <p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 
@@ -112,13 +110,12 @@
 <li>CoreGraphics.framework</li>
 <li>libz.dylib</li>
 </ul>
-<p>这些framework。
-至此，我们已经可以很高兴快乐的使用ASIHTTPRequest了。</p>
+<p>这些framework。<br>至此，我们已经可以很高兴快乐的使用ASIHTTPRequest了。</p>
 <h2>断点续传</h2>
 <h3>官方实现</h3>
-<p><a href="http://allseeing-i.com/ASIHTTPRequest/How-to-use#resuming_interrupted_downloads">官方实例</a></p>
+<p><a href="http://allseeing-i.com/ASIHTTPRequest/How-to-use#resuming_interrupted_downloads" target="_blank">官方实例</a></p>
 <h3>民间实现</h3>
-<p>曹哥找了一个<a href="http://ryan.easymorse.com/?p=12">demo</a></p>
+<p>曹哥找了一个<a href="http://ryan.easymorse.com/?p=12" target="_blank">demo</a></p>
 <p>ryan的这个demo对于我来说存在几个问题：</p>
 <ul>
 <li>关闭View controller以后无法保持下载(无法保持下载的状态)</li>
@@ -130,8 +127,7 @@
 <h4>下载持久化</h4>
 <p>解决关闭View controller以后无法保持下载(无法保持下载的状态)这个问题。</p>
 <p>我新定义了一个类。并且把这个类定义成单例，ASINetworkQueue作为这个单例的一个property。这样一来，就不怕view controller被pop掉，被关闭的时候，ASINetworkQueue被释放掉。</p>
-<p>定义单例的技巧，可以说是一个模板。新建一个继承NSObject的类。
-主要实现一个名叫shareXXXX的类方法。XXXX就是你类的名字。比如我的这个类叫TDNetworkQueue。就要实现一个</p>
+<p>定义单例的技巧，可以说是一个模板。新建一个继承NSObject的类。<br>主要实现一个名叫shareXXXX的类方法。XXXX就是你类的名字。比如我的这个类叫TDNetworkQueue。就要实现一个</p>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="literal">+</span> <span class="comment">(id)sharedTDNetworkQueue;
 </pre></td></tr></table></figure>
@@ -177,8 +173,7 @@
 
 <p>如果有属性初始化的话都放到init方法里面。share方法用到了一些GCD和block的东西。照搬就好。</p>
 <h4>保持进度条</h4>
-<p>解决无法跟踪多个UIProgressView的问题。
-为了跟踪到UIProgressView，我在单例的类里面实现了</p>
+<p>解决无法跟踪多个UIProgressView的问题。<br>为了跟踪到UIProgressView，我在单例的类里面实现了</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -209,8 +204,7 @@
 - (<span class="keyword">void</span>)requestsDelegateSettingWithDictonary:(<span class="built_in">NSDictionary</span> *) paramDictonary;
 </pre></td></tr></table></figure>
 
-<p>这些方法。
-值得注意的是</p>
+<p>这些方法。<br>值得注意的是</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -232,13 +226,10 @@
 <h2>总结</h2>
 <p>我改写的很简单，特别的地方都在上面注明了。如果不明白就留言吧。大神们也请轻拍，我在慢慢努力中。</p>
 <p>改写的github地址：</p>
-<pre><code><figure class="highlight"><pre><span class="title">git</span> clone <span class="url">git://github.com/iiiyu/TestDownload.git
-</pre></figure></code></pre>
+<pre><code><span class="title">git</span> clone <span class="url">git://github.com/iiiyu/TestDownload.git</code></pre>
 <p>最后附送两篇队列优先级的文章</p>
-<p>[使用NSOperationQueue简化多线程开发]
-<a href="http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/">http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/</a></p>
-<p>[队列的优先级]
-<a href="http://blog.colcy.com/archives/2011/222/11/25/队列的优先级/">http://blog.colcy.com/archives/2011/222/11/25/队列的优先级/</a></p>
+<p>[使用NSOperationQueue简化多线程开发]<br><a href="http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/" target="_blank">http://blog.colcy.com/archives/2011/217/11/25/使用nsoperationqueue简化多线程开发/</a></p>
+<p>[队列的优先级]<br><a href="http://blog.colcy.com/archives/2011/222/11/25/队列的优先级/" target="_blank">http://blog.colcy.com/archives/2011/222/11/25/队列的优先级/</a></p>
 
       
     </div>
@@ -302,11 +293,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -315,20 +306,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -338,7 +315,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -75,14 +74,12 @@
     <div class="entry">
       
         <h1>sizeof 深入理解</h1>
-<p>sizeof你们觉得是什么呢。函数？其实是操作符。
-wiki解释</p>
+<p>sizeof你们觉得是什么呢。函数？其实是操作符。<br>wiki解释</p>
 <blockquote>
-<p>In the programming languages C and C++, the unary operator &#39;sizeof&#39; is used to calculate the sizes of datatypes, in number of bytes. sizeof can be applied to all datatypes, be they primitive types such as the integer and floating-point types defined in the language, pointers to memory addresses, or the compound datatypes (unions, structs, or C++ classes) defined by the programmer. sizeof is an operator that returns the size in bytes of the type of the variable or parenthesized type-specifier that it precedes as a size_t type value.</p>
+<p>In the programming languages C and C++, the unary operator ‘sizeof’ is used to calculate the sizes of datatypes, in number of bytes. sizeof can be applied to all datatypes, be they primitive types such as the integer and floating-point types defined in the language, pointers to memory addresses, or the compound datatypes (unions, structs, or C++ classes) defined by the programmer. sizeof is an operator that returns the size in bytes of the type of the variable or parenthesized type-specifier that it precedes as a size_t type value.</p>
 </blockquote>
-<p>sizeof is an operator：sizeof是一个操作符。擦 这货居然是操作符。
-最后一句我们可以得到的信息还有sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned　int类型。该类型保证能容纳实现所建立的最大对象的字节大小。</p>
-<a name="more"></a>
+<p>sizeof is an operator：sizeof是一个操作符。擦 这货居然是操作符。<br>最后一句我们可以得到的信息还有sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned　int类型。该类型保证能容纳实现所建立的最大对象的字节大小。</p>
+<a id="more"></a>
 
 <p>我们先记住什么时候可能用到sizeof,因为我们毕竟是学了用的.sizeof的应用场景一般是神马呢：</p>
 <ul>
@@ -116,10 +113,8 @@ size_t　<span class="keyword">fread</span>(void　*　ptr,size_t　<span class=
 <li><p>如果操作数是函数中的数组形参或函数类型的形参，sizeof给出其指针的大小。</p>
 </li>
 </ul>
-<p>知道怎么用以后我们来深入的蛋疼的讨论一下吧：
-那我们考虑一下它既然是操作符那是一元的呢还是一元的呢还是一元的呢。。。。。。。。。。。。。</p>
-<p>网上有人说sizeof是一元操作符，网上还有人说sizeof更像一个特殊的宏，它是在编译阶段求值的。
-举个例子：</p>
+<p>知道怎么用以后我们来深入的蛋疼的讨论一下吧：<br>那我们考虑一下它既然是操作符那是一元的呢还是一元的呢还是一元的呢。。。。。。。。。。。。。</p>
+<p>网上有人说sizeof是一元操作符，网上还有人说sizeof更像一个特殊的宏，它是在编译阶段求值的。<br>举个例子：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -148,8 +143,7 @@ size_t　<span class="keyword">fread</span>(void　*　ptr,size_t　<span class=
 </pre></td></tr></table></figure>
 
 
-<p>所以，sizeof是不可能支持链式表达式的，这也是和一元操作符不一样的地方。
-结论：好，记住：sizeof 在 计算变量所占空间大小时， 括号可以省略， 而计算类型(模子)大小时不能省略。 一般情况下， 咱也别偷这个懒， 乖乖的写上括号， 继续装作一个 “函数” 做一个 ， “披着函数皮的操作符” 。 做我的操作符，让人家认为是函数去吧。 不要把sizeof当成函数，也不要看作一元操作符，把他当成一个特殊的编译预处理。</p>
+<p>所以，sizeof是不可能支持链式表达式的，这也是和一元操作符不一样的地方。<br>结论：好，记住：sizeof 在 计算变量所占空间大小时， 括号可以省略， 而计算类型(模子)大小时不能省略。 一般情况下， 咱也别偷这个懒， 乖乖的写上括号， 继续装作一个 “函数” 做一个 ， “披着函数皮的操作符” 。 做我的操作符，让人家认为是函数去吧。 不要把sizeof当成函数，也不要看作一元操作符，把他当成一个特殊的编译预处理。</p>
 <p>其实说到这里也差不多了，最后看一下几个比较飘逸的例子：</p>
 <figure class="highlight lang-c"><table><tr><td class="gutter"><pre>1
 2
@@ -285,11 +279,11 @@ void fun(<span class="keyword">int</span> b[<span class="number">100</span>])
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -298,20 +292,6 @@ void fun(<span class="keyword">int</span> b[<span class="number">100</span>])
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -321,7 +301,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

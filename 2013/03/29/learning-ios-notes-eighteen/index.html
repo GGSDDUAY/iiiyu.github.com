@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -89,7 +88,7 @@
 <li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
 </ol>
 <p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>存储原理</h2>
@@ -97,8 +96,7 @@
 <h4>认识</h4>
 <p>我个人是把NSManagedObjectModel看做为一个core data的schema。生成这个类的来源是xCode中的Data Model</p>
 <p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36lv4nn89j.jpg" alt=""></p>
-<p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。
-但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
+<p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。<br>但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
 <p>如这样</p>
 <p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e36m76n6k3j.jpg" alt=""></p>
 <p>当然还有另外一种表格的方式来编辑Data Model</p>
@@ -156,8 +154,8 @@
 <p>还有一点需要注意的是NSManagedObjectContext并不是线程安全的。</p>
 <p>关于NSManagedObjectContext的线程安全和高级解释，这里有两篇blog写的超好。</p>
 <p>可以一看</p>
-<p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/">Multi-Context CoreData</a></p>
-<p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/">Zarra on Locking</a></p>
+<p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/" target="_blank">Multi-Context CoreData</a></p>
+<p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/" target="_blank">Zarra on Locking</a></p>
 <p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
 <h4>代码加载NSManagedObjectContext</h4>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -234,11 +232,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -247,20 +245,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -270,7 +254,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

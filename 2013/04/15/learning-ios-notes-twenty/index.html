@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -89,7 +88,7 @@
 <p>包括游戏</p>
 <p><img src="http://ww1.sinaimg.cn/large/a74e55b4jw1e3q5lb59vwj.jpg" alt=""></p>
 <p>这些都说明UITableView在一个App中其实是一个很常用的控件。我应该好好的学习它。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>关于数据的思考</h2>
@@ -188,7 +187,7 @@
 </pre></td></tr></table></figure>
 
 <p>这个是选中Cell时候会的出发点。如果要点击以后做什么事情 就在这里做了。 </p>
-<p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573">找了篇目测还ok的中文blog可以先看看了解</a></p>
+<p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573" target="_blank">找了篇目测还ok的中文blog可以先看看了解</a></p>
 <h2>数据刷新</h2>
 <p>如果我们的modle更新了。相应的要体现到UITableView上面。简单的我们可以reload整个TableView。这样做很方便，而且数据上没有问题。唯一的问题就是，reload整个TableView的效率太低了。而且，往往我们只是少数的Cell内容变化。所以没有必要去reload整个TableView。而是那条数据变化去刷新对应的Cell就好了。这样做效率提高很多。</p>
 <p>具体涉及到的几个函数</p>
@@ -214,10 +213,10 @@
 - <span class="params">(void)</span>reloadRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
 </pre></td></tr></table></figure>
 
-<p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html">这里有实例代码可以参考</a></p>
-<p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1">官方教程</a></p>
+<p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html" target="_blank">这里有实例代码可以参考</a></p>
+<p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1" target="_blank">官方教程</a></p>
 <p>里面写了如何优化UITableView：</p>
-<p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
+<p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能" target="_blank">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
 <h2>后记</h2>
 <p>总结就是UITableView是一个高度设计的控件。它具有重用，分组，异步加载数据等方面需要我们注意。</p>
 <p>其实这里插进来写UITableView是为了写NSFetchedResultsController。因为NSFetchedResultsController就是为UITableview量身打造的Core Data的类。 </p>
@@ -285,11 +284,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -298,20 +297,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -321,7 +306,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

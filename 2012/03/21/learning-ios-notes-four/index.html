@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,12 +76,11 @@
         <h1>iOS笔记——九宫解锁基础部分</h1>
 <h2>目的</h2>
 <p>为了第一个App，一步一步的做出来。所以先弄最基本的想做一个类似Android九宫解锁的View。一开始完全没有思路啊。后来看了好几遍老头的画笑脸以后才有点思路。所以来一步一步做吧。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>继续扯淡MVC</h2>
 <p>作为一个从iOS5开始学起开发的娃来说，什么nib xib文件都是浮云。哥只懂在Xcode里面的storyboard里面拖拖拽拽。奈何没几个代码实例是Storyboard写的。让想重用代码的我，无法直接⌘-c ⌘-v。很是郁闷哈。不过经过慢慢理解，对于Xcode4里面用stroyboard有了一些小小的心得。分享一下。</p>
-<p>一个VC是怎么构成的。在新建工程storyboard里面，我新拖入一个view
-如图</p>
+<p>一个VC是怎么构成的。在新建工程storyboard里面，我新拖入一个view<br>如图</p>
 <p><img src="http://farm8.staticflickr.com/7252/6856181868_05dbe1fd8f.jpg" alt="storyboard1"></p>
 <p>这是此时，这个仅仅是一个无人管的一段xml而已。因为你的程序里面没有相应的类去接管这个view。就像一个没人要的狗腿子。好可怜的。你需要把他找一个C的主子管着他，让view知道他应该怎么显示什么东西，对发生的事情做出什么样的反应。</p>
 <ul>
@@ -126,8 +124,7 @@
 <p>项目结构</p>
 <p><img src="http://farm7.staticflickr.com/6037/7002295643_06f72a4961.jpg" alt="ios4-1"></p>
 <h3>Draw_Lock类分析(UIView)</h3>
-<p>点开Draw_Lock.m可以看到
-两个方法,其中一个还是注释掉的。</p>
+<p>点开Draw_Lock.m可以看到<br>两个方法,其中一个还是注释掉的。</p>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -293,11 +290,11 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -306,20 +303,6 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -329,7 +312,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

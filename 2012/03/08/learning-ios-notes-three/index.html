@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -79,22 +78,19 @@
 <p>反正在等IPad3的发布，就顺手写篇blog。本来觉得这个时候写IOS笔记3还有点过早。因为好像没有太多的干货能拿出来。可是在看了老头用xcode、git来教怎么管理代码的时候，我彻底崩溃了。VS新版没见过，目前Xcode是体验最好的IDE，没有之一。Emacs系列突然觉得没有必要更新的冲动。</p>
 <p>虽然我们居住在神奇的天朝，但是我们还是要感谢这个时代。因为科技和人类文明的进步，使得我们可以看到一流名校的课程。就算那个号称天朝最公平的考试失败以后，只要你想学，还是可以学到这个世界上一流的课程。</p>
 <p>多媒体的表现力要远远丰富于文字。清楚直观的5分钟视频，可能换成文字描述写一个小时都写不好。所以如果这篇看不懂的话直接看视频吧。（没找到链接）</p>
-<pre><code><figure class="highlight"><pre><span class="title">Xcode</span> and Source Code Management (October <span class="number">7</span>, <span class="number">2011</span>) - HD
-</pre></figure></code></pre>
+<pre><code><span class="title">Xcode</span> and Source Code Management (October <span class="number">7</span>, <span class="number">2011</span>) - HD</code></pre>
 <blockquote>
 <p>人生是一场冒险。对我来说：活下去，然后活的爽一些。就够了。</p>
 </blockquote>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>补遗笔记二</h2>
 <p>上次忘记写一个很有特色的东西。方法之前的+、-符号。这个其实很简单。在笔记一里面就有：</p>
-<pre><code><figure class="highlight"><pre>在ObjC中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)
-</pre></figure></code></pre>
+<pre><code>在ObjC中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)</code></pre>
 <p>可是我这个人对专有名词都他喵的没感觉。比较喜欢通俗易懂的解释。</p>
-<pre><code><figure class="highlight"><pre><span class="literal">+</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类名字</span> <span class="comment">方法</span>]
-<span class="literal">-</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类实例</span> <span class="comment">方法</span>]
-</pre></figure></code></pre>
+<pre><code><span class="literal">+</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类名字</span> <span class="comment">方法</span>]
+<span class="literal">-</span><span class="comment">的方法，调用的时候，是</span>[<span class="comment">类实例</span> <span class="comment">方法</span>]</code></pre>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre>NSString *str = <span class="string">[[NSString alloc] init];//这个 alloc就是+号定义的
@@ -104,22 +100,21 @@
 <h2>Git</h2>
 <p>其实，我觉得Git完全有必要单独出来写一篇。因为它太重要太强大了。用了Git以后再也没有想过用其他的版本管理。原因是用的太爽，如果有一天出现了比Git用起来还爽的。我也肯定会用。可是现在only git。</p>
 <p>对于Git的中文心得，教程等等。我都自认怎么写都写的不可能有阳志平大哥写的好。所以这里只是告诉你Git是IOS开发必须的技能。你可以通过下面链接来学习</p>
-<p><a href="http://rogerdudler.github.com/git-guide/index.zh.html">git - 简易指南</a></p>
-<p><a href="http://progit.org/book/zh/">Pro Git</a></p>
-<p><a href="http://www.yangzhiping.com/tech/git.html">Git与Github入门资料</a></p>
-<p><a href="http://www.yangzhiping.com/tech/github.html">如何高效利用GitHub</a></p>
-<p><a href="http://www.worldhello.net/gotgithub/">GotGitHub</a></p>
+<p><a href="http://rogerdudler.github.com/git-guide/index.zh.html" target="_blank">git - 简易指南</a></p>
+<p><a href="http://progit.org/book/zh/" target="_blank">Pro Git</a></p>
+<p><a href="http://www.yangzhiping.com/tech/git.html" target="_blank">Git与Github入门资料</a></p>
+<p><a href="http://www.yangzhiping.com/tech/github.html" target="_blank">如何高效利用GitHub</a></p>
+<p><a href="http://www.worldhello.net/gotgithub/" target="_blank">GotGitHub</a></p>
 <p>资料很多，但是如果你不使用的话。看再多的游泳的书，你也学不会游泳。</p>
 <h2>Xcode</h2>
 <h4>编辑魔法</h4>
 <p>首先说一个编辑的小魔法，当你想修改源码中相同一个地方，而不想点xcode的Refactor的话。你可以完全通过键盘来实现</p>
-<pre><code><figure class="highlight"><pre><span class="title">Command</span> + c <span class="comment">#copy你想替换成的文本</span>
+<pre><code><span class="title">Command</span> + c <span class="comment">#copy你想替换成的文本</span>
 <span class="comment">#选择你要替换的文本 Command + e</span>
 Command + v <span class="comment">#替换了第一个地方</span>
 Command + g <span class="comment">#到了下一个替换的地方</span>
 <span class="comment">#重复 Command + v和 Command + g</span>
-<span class="comment">#完成替换</span>
-</pre></figure></code></pre>
+<span class="comment">#完成替换</span></code></pre>
 <p>其实这个小技巧你可以再Mac的任意编辑文本处使用。</p>
 <h4>一些界面说明</h4>
 <p><img src="http://farm8.staticflickr.com/7040/6816041908_bc88f08c2b.jpg" alt="xcode1"></p>
@@ -194,11 +189,11 @@ Command + g <span class="comment">#到了下一个替换的地方</span>
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -207,20 +202,6 @@ Command + g <span class="comment">#到了下一个替换的地方</span>
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -230,7 +211,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

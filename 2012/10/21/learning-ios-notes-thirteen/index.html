@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,20 +76,19 @@
         <h1>UIViewController的一些事儿</h1>
 <h2>序</h2>
 <p>这篇主要是想写 Contaner View Controller。然后才好写我计划里面的下一篇讲UIStoryboardSegue的blog。</p>
-<p>先贴一个链接 <a href="http://geeklu.com/2012/05/custom-container-view-controller/">Container View Controller</a>.他写的很好，算是中文blog里面我见过写 Container View Controller最好的一篇blog。</p>
-<p>另外一篇中文blog<a href="http://www.onevcat.com/2012/02/uiviewcontroller/">UIViewController的误用</a></p>
+<p>先贴一个链接 <a href="http://geeklu.com/2012/05/custom-container-view-controller/" target="_blank">Container View Controller</a>.他写的很好，算是中文blog里面我见过写 Container View Controller最好的一篇blog。</p>
+<p>另外一篇中文blog<a href="http://www.onevcat.com/2012/02/uiviewcontroller/" target="_blank">UIViewController的误用</a></p>
 <p>然后是apple的官方文档</p>
-<p><a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIViewController_Class/Reference/Reference.html">UIViewController Class Reference</a></p>
-<p><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html">View Controller Programming Guide for iOS</a></p>
-<a name="more"></a>
+<p><a href="http://developer.apple.com/library/ios/#DOCUMENTATION/UIKit/Reference/UIViewController_Class/Reference/Reference.html" target="_blank">UIViewController Class Reference</a></p>
+<p><a href="http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html" target="_blank">View Controller Programming Guide for iOS</a></p>
+<a id="more"></a>
 
 
 <h2>什么是UIViewController</h2>
 <p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
 <p>UIViewController就是MVC模型在iOS当中对应Controller的具体类型。最基础普通的情况下，每一个屏就要对应一个UIViewController的子类。也就是说你向storyboard拖入一个view controller的时候。你还必须新建一个接管你这个storyboard的UIViewController子类。然后把他们两个连接起来。这样就可以获得了一个MVC里面的VC了。然后这个UIViewController其实是管理着一组View Hierarchy。因为你的屏幕上可能有各种控件。每一个控件都是一个View。他们构成了一组View Hierarchy。</p>
-<p>so这个UIViewController的子类控制着这组View的行为。包括View的显示，消失，改变，动画等等。
-这种说明有点抽象了，来点简单的。UIViewController就是View的主子。一个ViewController应该且只应该管理一个view hierarchy，而通常来说一个完整的view hierarchy指的是整整占满的一个屏幕。</p>
-<p>之前有一篇讲过了一点View Controller生命周期的blog<a href="http://www.iiiyu.com/blog/2012/04/03/learning-ios-notes-five/">iOS笔记(5)</a>。可以看看。</p>
+<p>so这个UIViewController的子类控制着这组View的行为。包括View的显示，消失，改变，动画等等。<br>这种说明有点抽象了，来点简单的。UIViewController就是View的主子。一个ViewController应该且只应该管理一个view hierarchy，而通常来说一个完整的view hierarchy指的是整整占满的一个屏幕。</p>
+<p>之前有一篇讲过了一点View Controller生命周期的blog<a href="http://www.iiiyu.com/blog/2012/04/03/learning-ios-notes-five/" target="_blank">iOS笔记(5)</a>。可以看看。</p>
 <h2>什么是Contaner View Controller</h2>
 <p><img src="http://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Art/navigation_interface_2x.png" alt="Contaner View Controller"></p>
 <p>通常情况下，我们的App不会只有一个View Controller这么简单。会有很多个View conroller。我们不能让我们的App里面的View Controller杂乱无章。我们需要一个东西来能够管理这些View Controller。这个东西就叫Contaner View Controller。Contaner View Controller也是继承于UIViewController。这里我们可以得到两个信息: </p>
@@ -115,11 +113,9 @@
 <p><img src="http://developer.apple.com/library/ios/documentation/uikit/reference/UINavigationController_Class/Art/NavigationViews.jpg" alt="The views of a navigation controller"></p>
 <p>肯定的，我们在相应的场景里面可以选择把Navigation bar或者 Naviagtion toolbar设置为显示或者不显示。这完全取决于你的设计。</p>
 <h2>UITabbarController</h2>
-<p>和UINavigationController不同，UITabbarController使用的场景更可能是不太相关连的View Controller组合到一起。而UINaviagtionController强调的是层层递进的关系。
-<img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_compare.jpg" alt="The tab bar interface in the Clock application"></p>
+<p>和UINavigationController不同，UITabbarController使用的场景更可能是不太相关连的View Controller组合到一起。而UINaviagtionController强调的是层层递进的关系。<br><img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_compare.jpg" alt="The tab bar interface in the Clock application"></p>
 <p>所以，UITabbarController管理下的View Controller所做的操作是切换，而不是Push。</p>
-<p>UITabbarController的层次结构
-<img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_controllerviews.jpg" alt="The primary views of a tab bar controller"></p>
+<p>UITabbarController的层次结构<br><img src="http://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UITabBarController_Class/Art/tabbar_controllerviews.jpg" alt="The primary views of a tab bar controller"></p>
 <h2>后记</h2>
 <p>当然UINavigationController和UITabbarController是可以放到一起使用的。UINavigationController代表的纵向的View Controller推进方向。UITabbarController代表着横向的View Controller切换方向。 </p>
 <p>喜欢这些碎碎叨对你有用。欢迎批评指正错误。thx。</p>
@@ -186,11 +182,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -199,20 +195,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -222,7 +204,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -79,7 +78,7 @@
 <p>上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。</p>
 <p>斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到12课而已。所以现在只讨论IOS5开发中的view和controller。</p>
 <p>IOS5中，我们可以看到一个叫storyboard的文件。这个文件就是view。或者说是view的载体。UIKit上所有的控件都可以往上面拖。这里我简单的把storyboard以及带UI前缀的类都统一看成view。view就是再ios设备上你能看见的整个屏幕。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <p>在最简单的例子里面，我们可以看到一对叫XXXViewController.h XXXViewController.m的文件。他们就是一个Controller类。</p>
 <p>现在回忆一下view和controller的关系</p>
@@ -92,8 +91,7 @@
 </pre></td></tr></table></figure>
 
 <p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
-<p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向
-XXXViewController.m文件里面拖，就会形成一个Action。</p>
+<p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向<br>XXXViewController.m文件里面拖，就会形成一个Action。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -110,19 +108,15 @@ XXXViewController.m文件里面拖，就会形成一个Action。</p>
 <p>新的IOS5引入了ARC（Automatic Referencing Counting）机制。当然，你可以在创建项目的时候不选择，或者再项目创建以后关闭它来手动释放内存。</p>
 <p>可惜我直接是从IOS5开始学习，而且不喜欢旧的东西。所以坚决使用ARC和storyboard。而且再内存管理上，我觉得编译器比人靠谱多了。当然我也是初学IOS。理解上可能有错误，欢迎指导。</p>
 <p>窃以为使用ARC，一开始接触到的是：</p>
-<pre><code><figure class="highlight"><pre><span class="title">strong</span>
-<span class="title">weak</span>
-</pre></figure></code></pre>
+<pre><code><span class="title">strong</span>
+<span class="title">weak</span></code></pre>
 <p>在我的记录中老头是这样定义的：</p>
 <blockquote>
-<p>Strong and weak are descriptions or attributes parentheses.
-Strong keep it in the heap. Keep it in heap until i stop pointing to it.
-Weak keep this as long as someone else point to it strongly.</p>
+<p>Strong and weak are descriptions or attributes parentheses.<br>Strong keep it in the heap. Keep it in heap until i stop pointing to it.<br>Weak keep this as long as someone else point to it strongly.</p>
 </blockquote>
 <p>值得注意的是</p>
 <blockquote>
-<p>Strong and weak. This is not garbage collection.
-This is refernce counting done automatically for you.</p>
+<p>Strong and weak. This is not garbage collection.<br>This is refernce counting done automatically for you.</p>
 </blockquote>
 <p>大概就是strong声明的东西是放到内存堆里面,它在我停止指向它之前都一直会在内存堆里面，引用记数也不会为0（猜测）。weak呢，则是只要没有指向它的东西时候，引用记数就为0了。然后呢，他们都只管理引用记数这个一亩三分田。至于垃圾回收这种工作，是不该他们管理的。</p>
 <h4>声明初始化类</h4>
@@ -214,11 +208,11 @@ This is refernce counting done automatically for you.</p>
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -227,20 +221,6 @@ This is refernce counting done automatically for you.</p>
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -250,7 +230,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

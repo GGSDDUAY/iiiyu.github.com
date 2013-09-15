@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -79,10 +78,10 @@
 <p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
 <p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
 <p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>什么是selector</h2>
-<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html">这里</a></p>
+<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html" target="_blank">这里</a></p>
 <p>在Objective-C里面, selector有两种意思:</p>
 <ol>
 <li>当用源码向一个对象发送消息的时候,表示简单的方法名字。</li>
@@ -125,8 +124,7 @@ SEL  request = getTheSelector()<span class="comment">;</span>
 </pre></td></tr></table></figure>
 
 <h2>什么是Target-Action设计模式</h2>
-<p>官方解释在<a href="Target-Action设计模式">这里</a>
-target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
+<p>官方解释在<a href="Target-Action设计模式">这里</a><br>target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
 <ul>
 <li>action selector，定义要调用的方法名称标识；</li>
 <li>target，接收消息的对象。</li>
@@ -225,11 +223,11 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -238,20 +236,6 @@ target-action是个设计模式。对象保持必要的信息，当事件发生�
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -261,7 +245,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

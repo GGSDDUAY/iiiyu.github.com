@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -75,8 +74,8 @@
     <div class="entry">
       
         <h2>什么是NSUserDefaults</h2>
-<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
-<a name="more"></a>
+<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist" target="_blank">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
+<a id="more"></a>
 
 <h3>NSUserDefaults简单代码讲解</h3>
 <p>使用NSUserDefaults其实巨简单。 </p>
@@ -160,8 +159,7 @@ NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
 </pre></td></tr></table></figure>
 
 <p>其他操作跟NSUserDefaults一样一样的。</p>
-<p>只有一个值得注意的是NSUbiquitousKeyValueStore需要去监听
-NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道NSUbiquitousKeyValueStore是否已经同步更新完成。</p>
+<p>只有一个值得注意的是NSUbiquitousKeyValueStore需要去监听<br>NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道NSUbiquitousKeyValueStore是否已经同步更新完成。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -239,19 +237,18 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
 <h2>第三方库推荐</h2>
 <p>当然有大神写的第三方库。并且实现了NSUserDefaults白名单功能。因为可能你存在NSUserDefaults里面的东西不想要也不需要全部同步到NSUbiquitousKeyValueStore上去把。</p>
 <p>对了忘记说一点NSUbiquitousKeyValueStore可是有大小和条目限制的。你不要把他当作无穷无尽的东西来用。具体限制是最大空间1 MB。 最多1024个key。记住不要拿来当作主要数据存储哦。</p>
-<p>MK大神应该还是如雷贯耳的把。 不知道么。 MKNetworkKit是他写的。还不知道么。
-<a href="http://www.amazon.com/gp/product/1118449959/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118449959&amp;linkCode=as2&amp;tag=blogmugunthku-20">iOS 6 Programming Pushing the Limits: Advanced Application Development for Apple iPhone, iPad and iPod Touch</a> 可是他写的哦。我和我的小伙伴都从MK大神的书里面学到很多不错的东西</p>
-<p><a href="https://github.com/MugunthKumar/MKiCloudSync">MKiCloudSync</a></p>
-<p><a href="https://github.com/Daij-Djan/DDiCloudSync">DDiCloudSync</a></p>
-<p><a href="https://github.com/futuretap/FTiCloudSync">FTiCloudSync</a></p>
+<p>MK大神应该还是如雷贯耳的把。 不知道么。 MKNetworkKit是他写的。还不知道么。<br><a href="http://www.amazon.com/gp/product/1118449959/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1118449959&amp;linkCode=as2&amp;tag=blogmugunthku-20" target="_blank">iOS 6 Programming Pushing the Limits: Advanced Application Development for Apple iPhone, iPad and iPod Touch</a> 可是他写的哦。我和我的小伙伴都从MK大神的书里面学到很多不错的东西</p>
+<p><a href="https://github.com/MugunthKumar/MKiCloudSync" target="_blank">MKiCloudSync</a></p>
+<p><a href="https://github.com/Daij-Djan/DDiCloudSync" target="_blank">DDiCloudSync</a></p>
+<p><a href="https://github.com/futuretap/FTiCloudSync" target="_blank">FTiCloudSync</a></p>
 <h2>总结</h2>
 <p>参考资料：</p>
-<p><a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/UserDefaults/Introduction/Introduction.html">Preferences and Settings Programming Guide</a></p>
-<p><a href="http://gibuloto.com/blog/nsuserdefaults/">NSUserDefaults (plist) 筆記</a></p>
-<p><a href="http://www.doubleencore.com/2013/03/back-to-basics-forgotten-nsuserdefaults/">Back to Basics: Forgotten NSUserDefaults</a></p>
-<p><a href="http://www.techotopia.com/index.php/Synchronizing_iPhone_iOS_5_Key-Value_Data_using_iCloud">Synchronizing iPhone iOS 5 Key-Value Data using iCloud</a></p>
-<p><a href="http://useyourloaf.com/blog/2011/10/24/sync-preference-data-with-icloud.html">Sync Preference Data With iCloud</a></p>
-<p><a href="http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1">Beginning iCloud in iOS 5 Tutorial Part 1</a></p>
+<p><a href="https://developer.apple.com/library/ios/documentation/cocoa/Conceptual/UserDefaults/Introduction/Introduction.html" target="_blank">Preferences and Settings Programming Guide</a></p>
+<p><a href="http://gibuloto.com/blog/nsuserdefaults/" target="_blank">NSUserDefaults (plist) 筆記</a></p>
+<p><a href="http://www.doubleencore.com/2013/03/back-to-basics-forgotten-nsuserdefaults/" target="_blank">Back to Basics: Forgotten NSUserDefaults</a></p>
+<p><a href="http://www.techotopia.com/index.php/Synchronizing_iPhone_iOS_5_Key-Value_Data_using_iCloud" target="_blank">Synchronizing iPhone iOS 5 Key-Value Data using iCloud</a></p>
+<p><a href="http://useyourloaf.com/blog/2011/10/24/sync-preference-data-with-icloud.html" target="_blank">Sync Preference Data With iCloud</a></p>
+<p><a href="http://www.raywenderlich.com/6015/beginning-icloud-in-ios-5-tutorial-part-1" target="_blank">Beginning iCloud in iOS 5 Tutorial Part 1</a></p>
 
       
     </div>
@@ -315,11 +312,11 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -328,20 +325,6 @@ NSUbiquitousKeyValueStoreDidChangeExternallyNotification事件。就可以知道
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -351,7 +334,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

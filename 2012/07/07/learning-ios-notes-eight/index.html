@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,14 +76,13 @@
         <h1>iOS笔记 基于MKNetworkKit的断点续传</h1>
 <h2>背景</h2>
 <p>上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。</p>
-<p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/">这里</a></p>
-<a name="more"></a>
+<p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/" target="_blank">这里</a></p>
+<a id="more"></a>
 
 <h2>MKNetworkKit</h2>
 <p>下载地址是</p>
-<pre><code><figure class="highlight"><pre><span class="label">https:</span>//github<span class="preprocessor">.com</span>/MugunthKumar/MKNetworkKit
-</pre></figure></code></pre>
-<p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/">这里</a></p>
+<pre><code><span class="label">https:</span>//github<span class="preprocessor">.com</span>/MugunthKumar/MKNetworkKit</code></pre>
+<p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">这里</a></p>
 <h3>使用MKNetworkKit</h3>
 <ol>
 <li>首先把clone下来的MKNetworkKit文件夹拖进你的项目里面</li>
@@ -93,15 +91,14 @@
 <li>如果是iOS，删除NSAlert+MKNetworkKitAdditions.h这个文件</li>
 <li>如果是Mac，删除UIAlertView+MKNetworkKitAdditions.h这个文件</li>
 </ol>
-<p>这样，再看看<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/">介绍</a>里面的例子。应该就能看懂普通用法了。然后畅快的使用MKNetworkKit库了。</p>
+<p>这样，再看看<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">介绍</a>里面的例子。应该就能看懂普通用法了。然后畅快的使用MKNetworkKit库了。</p>
 <h2>改写目标</h2>
 <p>上次写的ASIHTTPRequest续传其实已经可以用了。但是为什么需要重新写呢。就是重用！！！</p>
 <p>一直都很少自己设计接口什么的。其实只是做了写体力的劳动，把一堆逻辑换成代码给堆了起来。觉得没有人会去重用自己的代码。很少去花心思想怎么样才能写好。</p>
 <p>这次改写就只有一个目标，为了更好更多人能使用断点续传来下载。</p>
 <h2>功能</h2>
 <h3>下载持久化</h3>
-<p>下载的持久化的微观含义是在push到新的view或者pop出当前view。下载应该在后台继续进行。
-宏观含义是按home把程序放入后台以后，下载继续进行。</p>
+<p>下载的持久化的微观含义是在push到新的view或者pop出当前view。下载应该在后台继续进行。<br>宏观含义是按home把程序放入后台以后，下载继续进行。</p>
 <h3>保持进度条</h3>
 <p>每次进入下载的view的时候progressview都应该保持一致</p>
 <h3>暂停恢复下载</h3>
@@ -109,8 +106,7 @@
 <p>这次改写，这些功能都实现了，啊哈哈哈。</p>
 <h2>实现</h2>
 <h3>MKNetworkKit库修改</h3>
-<p>最开始使用MKNetworkKit库做下载的时候，progressview的数值一直不对。经过boss的观察，应该是某个东西写错地方了。然后 修改了某两个函数才可以的。详细如下：
-找到MKNetworkOperation.m文件</p>
+<p>最开始使用MKNetworkKit库做下载的时候，progressview的数值一直不对。经过boss的观察，应该是某个东西写错地方了。然后 修改了某两个函数才可以的。详细如下：<br>找到MKNetworkOperation.m文件</p>
 <figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -352,8 +348,7 @@
 <p>一个SIDownloadManager写成单例，继承于MKNetworkEngine。用来管理多任务下载。</p>
 <p>使用的时候就只用SIDownloadManager这个类来添加下载，暂停下载。然后想在下载的前后、出错时候、progressview改变时候对view作出改变。就实现它的delegate就好了。</p>
 <p>demo地址</p>
-<pre><code><figure class="highlight"><pre>git@<span class="filename">github.com</span>:iiiyu/<span class="filename">SIDownloader.git
-</pre></figure></code></pre>
+<pre><code>git@<span class="filename">github.com</span>:iiiyu/<span class="filename">SIDownloader.git</code></pre>
 <p>其实已经很简单了，照着demo改改就能自己用了。</p>
 <h2>总结</h2>
 <p>这次改写以后，代码结构变的很清晰。复杂性和耦合性都有所降低。可用性提高。而且，反正我是没有google到可以直接拿来用的断点下载库。这次娃哈哈就有了。然后blog也2月没有更新，鄙视自己。以后应该会慢慢更新恢复正常。最后，希望对大家有所帮助。</p>
@@ -420,11 +415,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -433,20 +428,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -456,7 +437,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

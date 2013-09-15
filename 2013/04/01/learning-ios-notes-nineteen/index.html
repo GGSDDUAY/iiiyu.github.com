@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -80,7 +79,7 @@
 <h2>NSManagedObject</h2>
 <p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg" alt=""></p>
 <p>Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对NSManagedObjectContext里面是唯一的。而真实的应用情况可能是NSManagedObjectContext会有多个。而NSManagedObjectContext线程不是安全的，所以可能有你多个NSManagedObjectContext里面各自有指向同一条数据的不同的NSManagedObject。这个情况需要你的程序设计和逻辑上去解决。暂时不讨论。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h3>使用NSManagedObject所经历的三种方法</h3>
 <p>对于NSManagedObject来说一般有以下几种使用方法：</p>
@@ -88,10 +87,8 @@
 <p>第二种是老头视频里面教过的。在点击Data Model选择Entity以后，在xCode的菜单里面有这样一个选项：</p>
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e39z74y7j8j.jpg" alt=""></p>
 <p>next都按完了以后，会生成选择了的Entity对应的一个NSManagedObject子类。这样的话我们就可以用生成的类来进行增删改查。这样的话看起来代码里面也会变得清晰一些。我们也不必去写KVC的方法去访问修改属性。可以直接就访问修改。在我看来还是好处多多的。为了OO的原则，我们可能会对不同的Entity类去写一些只是公开接口的方法。但是这样生成的NSManagedObject子类是不好修改的。因此我们会去建立一个category类。来进行扩写自己的方法。这样项目里面就会出现一票category感觉不是很好的样子。</p>
-<p>第三种方法是我现在在使用的方法。
-就是使用Mogenerator.</p>
-<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a>
-好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
+<p>第三种方法是我现在在使用的方法。<br>就是使用Mogenerator.</p>
+<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a><br>好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
 <h3>NSManagedObject其他注意事项</h3>
 <p>NSManagedObject就是我们拿来操作数据的基本单位。因此对应，增加一条数据是在NSManagedObjectContext新建一个NSManagedObject。查找数据是查找NSManagedObject。修改是修改NSManagedObject类的属性。删除是从NSManagedObjectContext里面删除NSManagedObject类。最后我们保存NSManagedObjectContext，然后一直向上传递到磁盘上面去。才是持久化的修改。</p>
 <h2>NSFetchRequest</h2>
@@ -210,11 +207,11 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -223,20 +220,6 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -246,7 +229,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

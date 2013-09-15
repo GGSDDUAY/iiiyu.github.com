@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,18 +76,18 @@
         <h1>使用CocoaPods</h1>
 <h2>序</h2>
 <p>在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>之前的方式</h2>
 <p>在使用CocoaPods一般情况下是这样应用第三方库的。</p>
 <ol>
 <li>人工copy —— 为了使用，首先用git clone到某个目录。然后自己手动copy到自己的项目里面。(之前的大部分时间里面我都是这么干的)缺点: 跟原来的版本控制失去联系，如果库有升级，你需要从头来一次才能进行升级。然后自己的项目也会顺带管理这些代码，显得臃肿。</li>
-<li>在尝试很多次人工copy以后，发现一些github上的第三方库使用git submodule来进行第三方库的版本管理。具体使用方法参考<a href="http://josephjiang.com/entry.php?id=342">这里</a>.这样我的第三方库也能保持更新而不用重新进行人工copy。缺点是，每次使用的时候我都需要打一堆我记不住的命令和打开浏览器查找第三方库的git地址。</li>
+<li>在尝试很多次人工copy以后，发现一些github上的第三方库使用git submodule来进行第三方库的版本管理。具体使用方法参考<a href="http://josephjiang.com/entry.php?id=342" target="_blank">这里</a>.这样我的第三方库也能保持更新而不用重新进行人工copy。缺点是，每次使用的时候我都需要打一堆我记不住的命令和打开浏览器查找第三方库的git地址。</li>
 </ol>
 <h2>什么是CocoaPods</h2>
-<p><a href="http://cocoapods.org">CocoaPods</a>是Objective-C项目中最好用的第三方依赖包管理工具。只要安装好CocoaPods，在自己的iOS项目路径下建立一份Podfile配置文件，在里面说明要使用哪些第三方库，CocoaPods就会帮忙你搞定所有第三方库的相依性，从clone第三方库甚至到设定好Xcode的项目设置，一切都相当的轻松愉快。你能想像这些工作都是CocoaPods帮我们做好了。</p>
-<p><a href="http://www.cocoapods.org/">官网</a></p>
-<p><a href="https://github.com/CocoaPods/CocoaPods">项目地址</a></p>
+<p><a href="http://cocoapods.org" target="_blank">CocoaPods</a>是Objective-C项目中最好用的第三方依赖包管理工具。只要安装好CocoaPods，在自己的iOS项目路径下建立一份Podfile配置文件，在里面说明要使用哪些第三方库，CocoaPods就会帮忙你搞定所有第三方库的相依性，从clone第三方库甚至到设定好Xcode的项目设置，一切都相当的轻松愉快。你能想像这些工作都是CocoaPods帮我们做好了。</p>
+<p><a href="http://www.cocoapods.org/" target="_blank">官网</a></p>
+<p><a href="https://github.com/CocoaPods/CocoaPods" target="_blank">项目地址</a></p>
 <h2>Get Started</h2>
 <p>CocoaPods 是一个 Ruby 的 Gem，所以只要在 Terminal 下输入一下就ok了。(因为os x自带了ruby，但是如果你要升级ruby这是另外一个事情了)</p>
 <h3>安装</h3>
@@ -209,10 +208,7 @@
 </pre></td><td class="code"><pre><span class="title">pod</span> install
 </pre></td></tr></table></figure>
 
-<p>完成以后
-你在目录下可以看见一个后缀为.xcworkspace的文件(其实是一个目录，代表着xCode的workspace) 然后。以后你写项目都打开这个就好了。
-<img src="http://farm9.staticflickr.com/8185/8126953991_7164f1e696_b.jpg" alt="xcworkspace">
-打开看以后会发现其实cocoapods做了一个事情就是他把第三方库都编译成了一个库文件。然后你的项目中去包含头文件，libPods.a被作为framework集成到目标项目。Pods.xcconfig 中配置了XCode编译的查找路径，通过这种方式将所有的第三方包来引入到项目中。</p>
+<p>完成以后<br>你在目录下可以看见一个后缀为.xcworkspace的文件(其实是一个目录，代表着xCode的workspace) 然后。以后你写项目都打开这个就好了。<br><img src="http://farm9.staticflickr.com/8185/8126953991_7164f1e696_b.jpg" alt="xcworkspace"><br>打开看以后会发现其实cocoapods做了一个事情就是他把第三方库都编译成了一个库文件。然后你的项目中去包含头文件，libPods.a被作为framework集成到目标项目。Pods.xcconfig 中配置了XCode编译的查找路径，通过这种方式将所有的第三方包来引入到项目中。</p>
 <p>啊哈哈，立马感觉引入一个第三方包都变得很现代有木有。</p>
 <p>如果需要加入新的库编写Podfile里面 再次执行</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -223,13 +219,13 @@
 <h3>向cocoapods提交新的第三方库</h3>
 <p>如果你在pod search里面没有找到你想要的库怎么弄。cocoapods允许你自己提交，然后他们审核发布。(太人性化了，感动的想哭啊)</p>
 <p>简单的说，Spec就是每个包在CocoaPods中的配置文件，其中包括Package的名字，版本号，每个版本对应的下载地址，编译时的参数。等等。</p>
-<p>这是该项目的地址，<a href="https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull">https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull</a> request提交所建的新包。</p>
-<p><a href="http://nsscreencast.com/episodes/28-creating-a-cocoapod">官方有视频教程</a></p>
-<p><a href="https://github.com/CocoaPods/CocoaPods/wiki">wiki</a></p>
+<p>这是该项目的地址，<a href="https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull" target="_blank">https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull</a> request提交所建的新包。</p>
+<p><a href="http://nsscreencast.com/episodes/28-creating-a-cocoapod" target="_blank">官方有视频教程</a></p>
+<p><a href="https://github.com/CocoaPods/CocoaPods/wiki" target="_blank">wiki</a></p>
 <h2>参考</h2>
-<p><a href="http://josephjiang.com/entry.php?id=342">Git Submodule 的認識與正確使用！</a></p>
-<p><a href="http://tw.polydice.com/2012/07/04/cocoapods/">CocoaPods：管理 Objective-C 專案裡頭各種 Library 關聯性最棒的方式</a></p>
-<p><a href="http://www.cnblogs.com/dragonstreak_1/archive/2012/10/19/2730979.html">Use CocoaPods for Packages Management in Xcode</a></p>
+<p><a href="http://josephjiang.com/entry.php?id=342" target="_blank">Git Submodule 的認識與正確使用！</a></p>
+<p><a href="http://tw.polydice.com/2012/07/04/cocoapods/" target="_blank">CocoaPods：管理 Objective-C 專案裡頭各種 Library 關聯性最棒的方式</a></p>
+<p><a href="http://www.cnblogs.com/dragonstreak_1/archive/2012/10/19/2730979.html" target="_blank">Use CocoaPods for Packages Management in Xcode</a></p>
 
       
     </div>
@@ -293,11 +289,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -306,20 +302,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -329,7 +311,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

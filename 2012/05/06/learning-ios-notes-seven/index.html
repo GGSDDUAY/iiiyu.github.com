@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,7 +76,7 @@
         <h1>iOS笔记 Core Location定位</h1>
 <h2>主要问题</h2>
 <p>很多应用上需要获得当前用户所在的位置，有或者需要在地图上根据座标显示一些点一些信息。这次主要分享Core Location定位当前位置我遇到的问题。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>第一个方案</h2>
 <p>根据我看的文档所示定位分为一下几个步骤：</p>
@@ -90,13 +89,12 @@
 <p>其中原理就不细说了。只说实现问题。在完成了- (void)locationManager:(CLLocationManager <em>)manager didUpdateToLocation:(CLLocation </em>)newLocation fromLocation:(CLLocation *)oldLocation以后。当我们想要定位的时候。需要启动startUpdatingLocation。因为启用定位是一个耗电的工程。如果时刻定位的话，程序会变成电池杀手。所以，各种大牛建议，定位只在需要的时候定位。完成以后我们应该用停止它stopUpdatingLocation。</p>
 <p>调用你实例的CLLocationManager startUpdatingLocation以后，会轮询- (void)locationManager:(CLLocationManager <em>)manager didUpdateToLocation:(CLLocation </em>)newLocation fromLocation:(CLLocation *)oldLocation方法。直到stopUpdatingLocation为止。因此可以用一个数组存储一定的newLocation。然后取平均值。本来我以为这样可能会取值准确一些。但是我实际定位估计有2-3km的距离。起初我以为是用ip来定位可能误差较大没有在意(用的iPad wifi测试).后来用其他App看到定位很准确，没有这么大的误差,就觉得做错了。然后尝试第二种方案。</p>
 <h2>第二个方案</h2>
-<p>隐约记得有种叫火星座标的东西。在<a href="http://www.v2ex.com/t/11666">这里V2EX</a>普及了一下知识以后，觉得难道是火星人搞鬼了。然后纠结于解决方法。最后忘记在哪里看到MKMapView里面有一个userLocation的属性。就应该是当前位置座标。干净尝试一下:</p>
+<p>隐约记得有种叫火星座标的东西。在<a href="http://www.v2ex.com/t/11666" target="_blank">这里V2EX</a>普及了一下知识以后，觉得难道是火星人搞鬼了。然后纠结于解决方法。最后忘记在哪里看到MKMapView里面有一个userLocation的属性。就应该是当前位置座标。干净尝试一下:</p>
 <ul>
 <li>包含MapKit framework</li>
 <li>创建MKMapView一个实例类</li>
 <li>设置MKMapViewDelegate委托</li>
-<li>实现MKMapViewDelegate委托中的- (void)mapView:(MKMapView <em>)mapView didUpdateUserLocation:(MKUserLocation </em>)userLocation
-方法</li>
+<li>实现MKMapViewDelegate委托中的- (void)mapView:(MKMapView <em>)mapView didUpdateUserLocation:(MKUserLocation </em>)userLocation<br>方法</li>
 <li>MKMapView实例调用setShowsUserLocation</li>
 </ul>
 <p>这样在- (void)mapView:(MKMapView <em>)mapView didUpdateUserLocation:(MKUserLocation </em>)userLocation方法里面userLocation就可以取得当前用户的位置。而且很准确。</p>
@@ -165,11 +163,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -178,20 +176,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -201,7 +185,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

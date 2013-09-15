@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -77,7 +76,7 @@
         <h1>iOS进行单元测试OCUnit+xctool</h1>
 <h2>单元测试</h2>
 <h3>什么是单元测试</h3>
-<p><a href="http://zh.wikipedia.org/wiki/单元测试">wiki解释</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/单元测试" target="_blank">wiki解释</a></p>
 <p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
 <h3>我为什么要单元测试</h3>
 <p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
@@ -96,7 +95,7 @@
 <p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58jl2toiej20fh0a1aam.jpg" alt=""></p>
 <p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
 <p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 
 <h2>OCUnit</h2>
@@ -135,31 +134,31 @@
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58thyodnkj20b40cswet.jpg" alt=""></p>
 <p>然后选择你建立的Unit Test bundle。 打完收工。</p>
 <h3>OCUnit使用的宏</h3>
-<p>STAssertEqualObjects(a1, a2, description, ...)</p>
-<p>STAssertEquals(a1, a2, description, ...)</p>
-<p>STAssertEqualsWithAccuracy(a1, a2, accuracy,description, ...)</p>
-<p>STFail(description, ...)</p>
-<p>STAssertNil(a1, description, ...)</p>
-<p>STAssertNotNil(a1, description, ...)</p>
-<p>STAssertTrue(expr, description, ...)</p>
-<p>STAssertTrueNoThrow(expr, description, ...)</p>
-<p>STAssertFalse(expr, description, ...)</p>
-<p>STAssertFalseNoThrow(expr, description, ...)</p>
-<p>STAssertThrows(expr, description, ...)</p>
-<p>STAssertThrowsSpecific(expr, specificException, description, ...)</p>
-<p>STAssertThrowsSpecificNamed(expr, specificException, aName, description, ...)</p>
-<p>STAssertNoThrow(expr, description, ...)</p>
-<p>STAssertNoThrowSpecific(expr, specificException, description, ...)</p>
-<p>STAssertNoThrowSpecificNamed(expr, specificException, aName, description, ...)</p>
+<p>STAssertEqualObjects(a1, a2, description, …)</p>
+<p>STAssertEquals(a1, a2, description, …)</p>
+<p>STAssertEqualsWithAccuracy(a1, a2, accuracy,description, …)</p>
+<p>STFail(description, …)</p>
+<p>STAssertNil(a1, description, …)</p>
+<p>STAssertNotNil(a1, description, …)</p>
+<p>STAssertTrue(expr, description, …)</p>
+<p>STAssertTrueNoThrow(expr, description, …)</p>
+<p>STAssertFalse(expr, description, …)</p>
+<p>STAssertFalseNoThrow(expr, description, …)</p>
+<p>STAssertThrows(expr, description, …)</p>
+<p>STAssertThrowsSpecific(expr, specificException, description, …)</p>
+<p>STAssertThrowsSpecificNamed(expr, specificException, aName, description, …)</p>
+<p>STAssertNoThrow(expr, description, …)</p>
+<p>STAssertNoThrowSpecific(expr, specificException, description, …)</p>
+<p>STAssertNoThrowSpecificNamed(expr, specificException, aName, description, …)</p>
 <h3>比较经常使用的宏</h3>
-<p>STAssertTrue(expr, description, ...)</p>
-<p>STAssertFalse(expr, description, ...)</p>
-<p>STAssertNil(a1, description, ...)</p>
-<p>STAssertNotNil(a1, description, ...)</p>
-<p>STAssertEqualObjects(a1, a2, description, ...)</p>
-<p>STAssertEquals(a1, a2, description, ...)</p>
-<p>STFail(description, ...)</p>
-<p>STAssertThrows(expr, description, ...)</p>
+<p>STAssertTrue(expr, description, …)</p>
+<p>STAssertFalse(expr, description, …)</p>
+<p>STAssertNil(a1, description, …)</p>
+<p>STAssertNotNil(a1, description, …)</p>
+<p>STAssertEqualObjects(a1, a2, description, …)</p>
+<p>STAssertEquals(a1, a2, description, …)</p>
+<p>STFail(description, …)</p>
+<p>STAssertThrows(expr, description, …)</p>
 <h3>写了几个测试方法的例子</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -283,7 +282,7 @@
 <h2>xctool</h2>
 <h3>xctool是什么</h3>
 <p>xctool是Facebook开源的一个命令行工具，用来替代苹果的xcodebuild工具。</p>
-<p><a href="https://github.com/facebook/xctool">github</a></p>
+<p><a href="https://github.com/facebook/xctool" target="_blank">github</a></p>
 <p>官方演示</p>
 <p><img src="https://fpotter_public.s3.amazonaws.com/xctool-uicatalog.gif" alt=""></p>
 <p>你可以用它来Build你的App。跑Tests。而且它跑Test输出是华丽丽的彩色。比xCode自带的不知好看多少倍。OCUnit本来被吐槽无数，遇上了xctool以后就逆袭了啊。</p>
@@ -314,8 +313,8 @@
 </pre></td></tr></table></figure>
 
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58zk5dk34j20h70li43i.jpg" alt=""></p>
-<p><a href="http://d.pr/f/EUCR">项目一下载</a></p>
-<p><a href="http://d.pr/f/LPaY">项目二下载</a></p>
+<p><a href="http://d.pr/f/EUCR" target="_blank">项目一下载</a></p>
+<p><a href="http://d.pr/f/LPaY" target="_blank">项目二下载</a></p>
 <h2>总结</h2>
 <p>以上就是OCUnit的使用建议。建议OCunit+xctool。来进行你的单元测试构建。更多信息请阅读相关资料。我这里只是写了入门而已。接下来的测试之路就靠你了。</p>
 
@@ -381,11 +380,11 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -394,20 +393,6 @@
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -417,7 +402,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

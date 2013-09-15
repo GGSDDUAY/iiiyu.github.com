@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -92,7 +91,7 @@
 
 <p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
 <p>这样我们就获得一个文件路径了。</p>
-<a name="more"></a>
+<a id="more"></a>
 
 <h2>第二步 检查文件是否存在</h2>
 <p>我们有了文件的路径以后，想读取。是可以。但是要是文件不存在，我们硬来就读取不到任何东西。所以，一般的做法是在读取之前去检查一下这个路径的文件是否存在。如果不存在我们就可以作出相应的处理动作。</p>
@@ -165,8 +164,7 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
 <p>值得注意的是参数中YES的意思为如果为YES则保证文件的写入原子性,就是说会先创建一个临时文件,成功了就改名为正式的文件。如果为NO,直接写入目标文件目录里.writeToFile:atomically:的这个方法都为覆盖。如果想要是追加的效果。建议先读出原文件内容然后在后面加入新内容。最后一起写入。这样就覆盖了老的文件。</p>
 <h2>总结</h2>
 <p>之前一直想写的blog想深入一些。以至于不敢动手开始写。总觉得还没有准备好。自己也懂的不够透彻。这样不知不觉欠了几十篇blog了。在todo list里面都要变成谍中谍了。最近关注了几个微信公众帐号。见到人家天天画时间去更新。比我优秀的人比我更加努力。惭愧的很。所以现在就拿着简单的内容写起来。</p>
-<pre><code><figure class="highlight"><pre>故不积 跬步，无以至千里；不积小流，无以成江海。
-</pre></figure></code></pre>
+<pre><code>故不积 跬步，无以至千里；不积小流，无以成江海。</code></pre>
 
       
     </div>
@@ -230,11 +228,11 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -243,20 +241,6 @@ NSData *myData = [NSData dataWithContentsOfFile:filePath];
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -266,7 +250,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

@@ -22,7 +22,6 @@
   <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -76,15 +75,14 @@
       
         <h1>配置自己的CocoaPods库</h1>
 <h2>序</h2>
-<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。
-如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
-<a name="more"></a>
+<p>默认安装的cocoapods确实很好用，可是毕竟自己会写一些库和修改一些第三方库来用。所幸cocoapods确实是一个神器。他可以定义自己的库来用。<br>如何安装Cocoapods，<a href="http://iiiyu.com/2013/03/01/learning-ios-notes-sixteen/">请参考这篇</a></p>
+<a id="more"></a>
 
 <h2>从头来设置</h2>
 <h3>应用场景</h3>
 <p>我的boss写了一个基于MagicalRecord的CoreData的iCloud设置的类。也许我们以后要用到的机会毕竟多。单独拿出来成为一个库。现在用cocoapods来做成一个静态库。 我们这个库基于外部的MagicalRecord和SVProgressHUD.这两个库是用git submodule的方法来管理的</p>
 <h4>第一步把代码托管到一个支持git的服务器</h4>
-<p>我选择了<a href="https://bitbucket.org">bitbucket</a>.因为没钱买github。</p>
+<p>我选择了<a href="https://bitbucket.org" target="_blank">bitbucket</a>.因为没钱买github。</p>
 <h4>第二步删除git submodule</h4>
 <p>git submodule虽然也可以实现第三方库的管理，但是相对于cocoapods来说太麻烦了。删除就不是想cocoapods这样在Podfile里面删除配置就好的。</p>
 <p><strong>先删掉目录</strong></p>
@@ -122,10 +120,7 @@ pod <span class="attribute">'MagicalRecord</span>', :git =&gt; <span class="attr
 pod <span class="attribute">'SVProgressHUD</span>'
 </pre></td></tr></table></figure>
 
-<p>解释一下：
-第一行后面是限制模拟器版本为6.0以上。
-第二行因为MagicalRecord我们改了几行代码，因此用我们自己的版本。指定git地址。和tag标签。除了tag还可以指定branch和commit。格式一样
-第三行用官方的最新版本</p>
+<p>解释一下：<br>第一行后面是限制模拟器版本为6.0以上。<br>第二行因为MagicalRecord我们改了几行代码，因此用我们自己的版本。指定git地址。和tag标签。除了tag还可以指定branch和commit。格式一样<br>第三行用官方的最新版本</p>
 <p><strong>安装Pod</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$pod</span> install
@@ -511,8 +506,8 @@ end
 <h2>坑</h2>
 <p>cocoapods有缓存。 我一直测试刚刚搞好的自己的库一直不对。 改了2小时。 才反应过来我一直打的标签是同一个，然后cocoapods在本地缓存了一个。只对比了标签以至于我改的东西都没有用。哭。。。。</p>
 <h2>参考文章</h2>
-<p><a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/">如何编写一个CocoaPods的spec文件</a></p>
-<p><a href="http://m.blog.csdn.net/blog/totogo2010/8198694">CocoaPods一个Objective-C第三方库的管理利器</a></p>
+<p><a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/" target="_blank">如何编写一个CocoaPods的spec文件</a></p>
+<p><a href="http://m.blog.csdn.net/blog/totogo2010/8198694" target="_blank">CocoaPods一个Objective-C第三方库的管理利器</a></p>
 
       
     </div>
@@ -576,11 +571,11 @@ end
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>28</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
-    <li><a href="/categories/read-book-notes/">read-book-notes</a><small>2</small></li>
+    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
   
   </ul>
 </div>
@@ -589,20 +584,6 @@ end
   
 
   
-<div class="widget twitter">
-  <h3 class="title">
-		<a href="http://twitter.com/iyunsn">@iyunsn</a>'s 推文
-	</h3>
-  <ul id="tweets"></ul>
-</div>
-
-<script type="text/javascript">
-var twitter_stream = ['iyunsn', 5, true];
-var moment_js_path = '/js/moment.min.js';
-</script>
-<script src="/js/twitter.js"></script>
-
-
 </aside>
     <div class="clearfix"></div>
   </div>
@@ -612,7 +593,8 @@ var moment_js_path = '/js/moment.min.js';
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 
