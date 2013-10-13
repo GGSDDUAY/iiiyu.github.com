@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2013-09-15T16:03:12.762Z</updated>
+  <updated>2013-10-13T16:10:07.551Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -12,11 +12,11 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
-    <title type="html"><![CDATA[iOS学习笔记(28) ReactiveCocoa 迎接下一个更加美好的世界]]></title>
+    <title type="html"><![CDATA[iOS学习笔记(28) ReactiveCocoa 迎接下一个更加美好的世界（2013-10-13 update 2.0）]]></title>
     <link href="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/"/>
     <id>http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/</id>
     <published>2013-09-11T12:45:13.000Z</published>
-    <updated>2013-09-15T15:53:14.000Z</updated>
+    <updated>2013-10-13T16:08:35.000Z</updated>
     <content type="html"><![CDATA[<h2>扯淡</h2>
 <p>习惯了，每次再写技术的东西的时候总要唠叨几句。本来唠叨的东西我应该会写成另外的blog。不过每次给自己下了一个底线要少少的写这些唠叨的话语。原因一是觉得我爱唠叨的话语可能会导致blog被墙。原因之二我不希望我变成一个IT评论家。</p>
 <p>对了,我发现我还是挺爱挖坑的。目前有两坑没有填完。一个是Core Data系列。一个是iCloud系列。两个系列我都只写了一个Hello World级别并没有再深入的继续写。恩，要抓紧了。其实ReactiveCocoa这个我觉得也可以作为一个系列来写。不过想了想我这种Hello World的水平。也写不出这么多来。就暂时写一篇好了。</p>
@@ -68,7 +68,8 @@
 <pre><code><span class="tag">ReactiveCocoa</span>是<span class="tag">github</span>去年开源的一个项目，是在<span class="tag">iOS</span>平台上对<span class="tag">FRP</span>的实现。<span class="tag">FRP</span>的核心是信号，信号在<span class="tag">ReactiveCocoa</span>(以下简称<span class="tag">RAC</span>)中是通过<span class="tag">RACSignal</span>来表示的，信号是数据流，可以被绑定和传递。
 可以把信号想象成水龙头，只不过里面不是水，而是玻璃球(<span class="tag">value</span>)，直径跟水管的内径一样，这样就能保证玻璃球是依次排列，不会出现并排的情况(数据都是线性处理的，不会出现并发情况)。水龙头的开关默认是关的，除非有了接收方(<span class="tag">subscriber</span>)，才会打开。这样只要有新的玻璃球进来，就会自动传送给接收方。可以在水龙头上加一个过滤嘴(<span class="tag">filter</span>)，不符合的不让通过，也可以加一个改动装置，把球改变成符合自己的需求(<span class="tag">map</span>)。也可以把多个水龙头合并成一个新的水龙头(<span class="tag">combineLatest</span><span class="pseudo">:reduce</span><span class="pseudo">:)</span>，这样只要其中的一个水龙头有玻璃球出来，这个新合并的水龙头就会得到这个球。</code></pre>
 <h3>替代KVO</h3>
-<p>官方例子：官方的例子貌似用了比较老的函数。 我改完以后看见<a href="http://www.jdon.com/45581" target="_blank">什么是函数响应式编程(Functional Reactive Programming:FRP)</a>他也是这么改的。说明一下。</p>
+<p><del>官方例子：官方的例子貌似用了比较老的函数。我改完以后看见<a href="http://www.jdon.com/45581" target="_blank">什么是函数响应式编程(Functional Reactive Programming:FRP)</a>他也是这么改的。说明一下。</del></p>
+<p>经过后来的使用才发现特么官方例子是2.0的。 现在重新改一下。随便说一句，用cocoapods安装的2.1.编译不过。具体原因还没有看。建议使用2.0</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -78,9 +79,9 @@
 </pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">strong</span>) <span class="built_in">NSString</span> *username;
 
 
-[RACAble(<span class="keyword">self</span>, username) subscribeNext:^(<span class="built_in">NSString</span> *newName) {
-    <span class="built_in">NSLog</span>(@<span class="string">"%@"</span>, newName);
-}];
+[RACObserve(<span class="keyword">self</span>, username) subscribeNext:^(<span class="built_in">NSString</span> *newName) {
+								<span class="built_in">NSLog</span>(@<span class="string">"%@"</span>, newName);
+							}];
 </pre></td></tr></table></figure>
 
 <p>在这句代码以后，只要你的username有变化。都可以打印出来。实现了KVO的功能却减少了无数的代码。体现了绑定和响应。</p>
@@ -92,12 +93,12 @@
 5
 6
 7
-</pre></td><td class="code"><pre><span class="string">[[RACAble(self, username)
+</pre></td><td class="code"><pre><span class="string">[[RACObserve(self, username)
   filter:^(NSString *newName) {
-      return [newName hasPrefix:@"j"];
-  }]
+		return [newName hasPrefix:@"j"];
+	}]
  subscribeNext:^(NSString *newName) {
-     NSLog(@"%@", newName);
+	 NSLog(@"%@", newName);
  }];
 </pre></td></tr></table></figure>
 
@@ -110,10 +111,12 @@
 3
 4
 5
-</pre></td><td class="code"><pre>RAC(self.textField.text) = <span class="string">[[[RACSignal interval:1] startWith:[NSDate date]]</span> map:^id(NSDate *value) {
-    NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:value];
-    
-    return [NSString stringWithFormat:@"02%ld:%02ld:%02ld",(long)dateComponents.hour, dateComponents.minute, (long)dateComponents.second];
+6
+</pre></td><td class="code"><pre>RAC(self, timeLabel.text) =     <span class="string">[[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]</span> startWith:[NSDate date]] map:^id (NSDate *value) {
+	NSLog(@<span class="string">"value:%@"</span>, value);
+	NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:value];
+
+	return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)dateComponents.hour, (long)dateComponents.minute, (long)dateComponents.second];
 }];
 </pre></td></tr></table></figure>
 
@@ -128,8 +131,8 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span><span class="variable">.submitButton</span><span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>, <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>] reduce:^<span class="keyword">id</span>(<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
-    <span class="keyword">return</span> @(userName<span class="variable">.length</span> &gt;= <span class="number">6</span> && password<span class="variable">.length</span> &gt;= <span class="number">6</span>);
+</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span>, submitButton<span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>, <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>] reduce:^<span class="keyword">id</span> (<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
+	<span class="keyword">return</span> @(userName<span class="variable">.length</span> &gt;= <span class="number">6</span> && password<span class="variable">.length</span> &gt;= <span class="number">6</span>);
 }];
 </pre></td></tr></table></figure>
 
