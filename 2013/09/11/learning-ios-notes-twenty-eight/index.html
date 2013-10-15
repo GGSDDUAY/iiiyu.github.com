@@ -131,9 +131,7 @@
 3
 4
 5
-6
 </pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">strong</span>) <span class="built_in">NSString</span> *username;
-
 
 [RACObserve(<span class="keyword">self</span>, username) subscribeNext:^(<span class="built_in">NSString</span> *newName) {
 								<span class="built_in">NSLog</span>(@<span class="string">"%@"</span>, newName);
@@ -168,10 +166,12 @@
 4
 5
 6
-</pre></td><td class="code"><pre>RAC(self, timeLabel.text) =     <span class="string">[[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]</span> startWith:[NSDate date]] map:^id (NSDate *value) {
+7
+</pre></td><td class="code"><pre>RAC(self, timeLabel.text) = <span class="string">[[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]</span> startWith:[NSDate date]] map:^id (NSDate *value) {
 	NSLog(@<span class="string">"value:%@"</span>, value);
-	NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:value];
-
+	NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSHourCalendarUnit |
+	 NSMinuteCalendarUnit | 
+	 NSSecondCalendarUnit fromDate:value];
 	return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)dateComponents.hour, (long)dateComponents.minute, (long)dateComponents.second];
 }];
 </pre></td></tr></table></figure>
@@ -187,7 +187,11 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span>, submitButton<span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>, <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>] reduce:^<span class="keyword">id</span> (<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
+4
+5
+</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span>, submitButton<span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>,
+				 <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>]
+	reduce:^<span class="keyword">id</span> (<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
 	<span class="keyword">return</span> @(userName<span class="variable">.length</span> &gt;= <span class="number">6</span> && password<span class="variable">.length</span> &gt;= <span class="number">6</span>);
 }];
 </pre></td></tr></table></figure>
@@ -289,7 +293,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>30</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>31</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   

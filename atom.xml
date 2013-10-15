@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2013-10-13T16:10:07.551Z</updated>
+  <updated>2013-10-15T14:25:44.059Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -12,11 +12,85 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
+    <title type="html"><![CDATA[iOS学习笔记(29) 爱不释手的ReactiveCocoa之UIButton]]></title>
+    <link href="http://iiiyu.com/2013/10/15/learning-ios-notes-twenty-nine/"/>
+    <id>http://iiiyu.com/2013/10/15/learning-ios-notes-twenty-nine/</id>
+    <published>2013-10-15T13:53:11.000Z</published>
+    <updated>2013-10-15T14:25:39.000Z</updated>
+    <content type="html"><![CDATA[<h2>开场扯淡</h2>
+<p>ReactiveCocoa的迭代速度相当快，一群富有才华和激情的人们在不断的进化ReactiveCocoa。欣欣向荣的景象啊。我这种hello world级别的也就只能使用他们的劳动成果了。上篇blog的时候我还在用1.9.x的版本 现在我已经全面转向2.x了。值得注意的是霓虹友人提交的cocoapods上ReactiveCocoa 2.1 版本我无法编译通过。目前我使用的还是2.0的版本。</p>
+<p>介于一个月没有更新blog的速度，这次来写少一点的内容。</p>
+<a id="more"></a>
+
+
+<h2>传统的UIButton Target Action 方式</h2>
+<p>之前我们使用UIButton的点击方法一般有两种。一种是直接从xib里面拖一个IBAction出来在里面写代码。</p>
+<p>另外一种是代码创建的 比如这样 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>UIButton *myButton = <span class="string">[[UIButton alloc] init...];
+[myButton addTarget:something action:@selector(myAction) forControlEvents:UIControlEventTouchUpInside];
+</pre></td></tr></table></figure>
+
+<p>然后在下面写一个myAction的方法来进行操作。</p>
+<p>这样对我来说存在两个问题：</p>
+<ol>
+<li>button对应的方法分开了。在阅读代码的时候，当我想知道这个button对应的方法或者反过来action方法对应的button。通常需要跳转一次以上才能知道。(也许是我的阅读代码习惯比较原始)</li>
+<li>我在action方法里面如果需要引用一个变量的时候，无法使用局部变量。通常就需要把这个资源设计为一个property。尽管这个资源或者变量只是在action里面调用一次。(这个也许是我写代码的问题)</li>
+</ol>
+<p>这两个可能在我遇见ReactiveCocoa都不能叫问题。但是在ReactiveCocoa里面我发现了更加优美的解决方法。好开心。</p>
+<h2>ReactiveCocoa方式的UIButton</h2>
+<p>由于ReactiveCocoa高深的知识点，我也弄不太清楚。下面我只是说明怎么用的hello world级别。更多内容请阅读github上的项目主页。</p>
+<p>如果使用xib。只需拖一个IBOutlet的property出来。比如这样</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIButton</span> *xibButton;
+</pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>NSString *helloWorld = @<span class="string">"hello world!!!"</span>;
+self.xibButton.rac_command = <span class="string">[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	NSLog(@"%@", helloWorld);
+	return [RACSignal empty];
+}];
+</pre></td></tr></table></figure>
+
+<p>如果是代码创建一切照旧</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>NSString *helloWorld = @<span class="string">"hello world!!!"</span><span class="comment">;</span>
+UIButton *myButton = [UIButton buttonWithType:UIButtonTypeSystem]<span class="comment">;</span>
+myButton<span class="preprocessor">.frame</span> = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">50</span>)<span class="comment">;</span>
+[myButton setTitle:@<span class="string">"Say"</span> forState:UIControlStateNormal]<span class="comment">;</span>
+[self<span class="preprocessor">.view</span> addSubview:myButton]<span class="comment">;</span>
+myButton<span class="preprocessor">.rac</span>_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	NSLog(@<span class="string">"%@"</span>, helloWorld)<span class="comment">;</span>
+	return [RACSignal empty]<span class="comment">;</span>
+}]<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<p>这些代码我一般写在viewDidLoad方法里面。当然你可以在正确的地方使用他们。<br>运行试试。哇。魔法一般。完全解决我在传统的UIButton遇到的两个问题。</p>
+<h2>总结</h2>
+<p>嗯嗯，这种小主题的blog写起来轻松愉快。大概40分钟就可以完成。以后要多多写小主题。这样跟写程序一样，化繁为简。这次就少扯淡了。期待我的下篇blog。啊哈哈</p>
+]]></content>
+    <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
+  </entry>
+  <entry>
     <title type="html"><![CDATA[iOS学习笔记(28) ReactiveCocoa 迎接下一个更加美好的世界（2013-10-13 update 2.0）]]></title>
     <link href="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/"/>
     <id>http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/</id>
     <published>2013-09-11T12:45:13.000Z</published>
-    <updated>2013-10-13T16:08:35.000Z</updated>
+    <updated>2013-10-13T16:14:08.000Z</updated>
     <content type="html"><![CDATA[<h2>扯淡</h2>
 <p>习惯了，每次再写技术的东西的时候总要唠叨几句。本来唠叨的东西我应该会写成另外的blog。不过每次给自己下了一个底线要少少的写这些唠叨的话语。原因一是觉得我爱唠叨的话语可能会导致blog被墙。原因之二我不希望我变成一个IT评论家。</p>
 <p>对了,我发现我还是挺爱挖坑的。目前有两坑没有填完。一个是Core Data系列。一个是iCloud系列。两个系列我都只写了一个Hello World级别并没有再深入的继续写。恩，要抓紧了。其实ReactiveCocoa这个我觉得也可以作为一个系列来写。不过想了想我这种Hello World的水平。也写不出这么多来。就暂时写一篇好了。</p>
@@ -75,9 +149,7 @@
 3
 4
 5
-6
 </pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">strong</span>) <span class="built_in">NSString</span> *username;
-
 
 [RACObserve(<span class="keyword">self</span>, username) subscribeNext:^(<span class="built_in">NSString</span> *newName) {
 								<span class="built_in">NSLog</span>(@<span class="string">"%@"</span>, newName);
@@ -112,10 +184,12 @@
 4
 5
 6
-</pre></td><td class="code"><pre>RAC(self, timeLabel.text) =     <span class="string">[[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]</span> startWith:[NSDate date]] map:^id (NSDate *value) {
+7
+</pre></td><td class="code"><pre>RAC(self, timeLabel.text) = <span class="string">[[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]]</span> startWith:[NSDate date]] map:^id (NSDate *value) {
 	NSLog(@<span class="string">"value:%@"</span>, value);
-	NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:value];
-
+	NSDateComponents *dateComponents = <span class="string">[[NSCalendar currentCalendar] components:NSHourCalendarUnit |
+	 NSMinuteCalendarUnit | 
+	 NSSecondCalendarUnit fromDate:value];
 	return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)dateComponents.hour, (long)dateComponents.minute, (long)dateComponents.second];
 }];
 </pre></td></tr></table></figure>
@@ -131,7 +205,11 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span>, submitButton<span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>, <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>] reduce:^<span class="keyword">id</span> (<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
+4
+5
+</pre></td><td class="code"><pre>RAC(<span class="keyword">self</span>, submitButton<span class="variable">.enabled</span>) = [RACSignal combineLatest:@[<span class="keyword">self</span><span class="variable">.usernameField</span><span class="variable">.rac_textSignal</span>,
+				 <span class="keyword">self</span><span class="variable">.passwordField</span><span class="variable">.rac_textSignal</span>]
+	reduce:^<span class="keyword">id</span> (<span class="built_in">NSString</span> *userName, <span class="built_in">NSString</span> *password) {
 	<span class="keyword">return</span> @(userName<span class="variable">.length</span> &gt;= <span class="number">6</span> && password<span class="variable">.length</span> &gt;= <span class="number">6</span>);
 }];
 </pre></td></tr></table></figure>
@@ -2362,43 +2440,6 @@ mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<
 <h2>感谢</h2>
 <p>2012要感谢一直让我为所欲为的父母。不管是去东莞去帝都去厦门。他们都一直支持我。尽管他们很想让我留在身边。可是我还是跟着我的心一直走并没理会他们的期望。感谢萌小萌，在她最好的年华里面陪在最一穷二白的我身边，支持我。感谢曹哥在我什么都不会的时候手把手一点一点教我。感谢巧玲姐陪我一起去看租房。感谢sumi的90后们。你们让我知道我之前的见识是有多土鳖。感谢海军教我做菜，一起喝酒。感谢对我好或对我坏的人们这样才能使得人生丰富多彩。感谢肠粉在平日里面带给我们的欢乐，虽然他现在去征服世界了。</p>
 <p><strong>我，萧宸宇24岁时2013年1月1日这天，在厦门斗西路58号2楼。希望2013年大家都安好。Sumi必胜 Oh Yeah！</strong></p>
-]]></content>
-    <category scheme="http://iiiyu.com/categories/just-talk/" term="just-talk"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[为什么小米会成功]]></title>
-    <link href="http://iiiyu.com/2012/12/16/why-the-xiaomi-will-be-successful/"/>
-    <id>http://iiiyu.com/2012/12/16/why-the-xiaomi-will-be-successful/</id>
-    <published>2012-12-16T07:40:00.000Z</published>
-    <updated>2013-02-01T18:37:18.000Z</updated>
-    <content type="html"><![CDATA[<h1>为什么小米会成功</h1>
-<h2>正面</h2>
-<h3>赶上了移动互联网这一波浪潮</h3>
-<p>这是「浪潮之巅」里面的说法。很显然，互联网那一波浪潮已经不可能再变得更高了。而下一波的移动互联网大浪现在来看，已经是在像最高潮发展了。而小米进入这个市场的时间要比现在早那么2年多。那时候，移动互联网这个浪头已经被Apple带起来了,天朝的移动互联网远远没有现在这么竞争激烈。小米就进入了这个大潮流中。所以，小米能取得多大的成功，依赖着这波移动互联网的浪能打多高。我觉得这波移动互联网的浪头会很高，至少要超越互联网这波浪潮两倍的高度。小米肯定不可能是浪头的最高点，不过由于进入的时间比较早，只是追随着浪头，也能达到一个很成功的高度。对于这样一个企业来说。确实就是成功了。</p>
-<a id="more"></a>
-
-<h3>进行了C2C</h3>
-<p>但凡在天朝成功的互联网企业很多带有C2C(Copy to China)的基因。究其缘由，第一、KK在「科技元素」里面说过。科技的发展在一段时期内是趋同发展的。何况在现在网络已经无处不在的时代。早上在硅谷出现的新鲜创意，晚上天朝可能就有人开始甩开膀子开干。第二、这里是天朝。</p>
-<p>小米在模仿苹果。或许初期的小米并没有想要模仿，又或许小米的决策者们思考做的这些决策只是巧合的跟苹果的发神似。从强调小米是一个移动互联网公司开始，培养出一批big fans。到小米要自己做自己品牌的手机把软硬都控制到自己手里，到小米的发布会，到小米盒子，到小米商店（就是可以充值买主题那个我不太清楚是什么，只是记得看新闻看过）。每一步，其实都已经被Apple证明过实践过。我已经过了会相信巧合的年纪。我只能会说，这一切都是有人在刻意的去把小米运营成中国的苹果。大方向只要对，努力去做，去适应天朝的市场需求。小米会取得巨大的成功。会变成一个在中国最像Apple的公司。</p>
-<h3>用心的做了产品</h3>
-<p>小米是一个很年轻的公司。而且MIUI能保持长时间的每周一更新这真的很难得。老罗说过他自己为什么要做手机的历程，他去小米谈过一次，虽然雷军不是很感兴趣。但是另外一个高层对老罗的想法很感兴趣。所幸，多多少少反应出来，在小米有一帮人在踏踏实实做事情。在琢磨，在研究。所以，小米一直在进步不是么。MIUI真的算我在天朝能看见定制Android目前最好的。</p>
-<h4>锤子科技</h4>
-<p>这里还是忍不住插上一段讲老罗的。老罗的音频我在大概06 07年的时候就听过了。那时候高中无聊的慌，听他使劲的扯淡，很是留下了很多欢乐。然后牛博、然后老罗英语、然后西门子、然后演讲、然后手机、然后国航……。经过6-7年的种种事情，其实老罗还是那个我听音频的老罗。他看各种书，扯各种蛋。思考人生。维护自己的权利。跟随着自己的心去做事情。其实只要过了18岁，然后看过几本靠谱的书。能自己思考一下的人都知道目前天朝的所有问题的所在。可是我没有见过能改变这个问题的人或者事出现。所以我觉得老罗折中了一下。他用自己来教我们怎样做一个公民。老罗做ROM，我认为做出一个好ROM没啥大问题。可是现在的问题是ROM跳票了。我能理解要做到完美的产品才拿出来的心情。但是我不认为一个从来没有发布的产品能一出来就做的很好。我认同一句话，就是上线的第一天才是真正开始开发的第一天。只有被用户所使用，才会知道真正的需求。从浩瀚的需求中提取抽象根本问题，然后漂亮的解决这个问题。周而复始，才能渐渐迭代出一个好的产品。而一推在推的发ROM和Android被Google自己版本快速的迭代。会变成一个无期限的事情。我觉得是应该先推出ROM然后在迭代开发会更靠谱一些。</p>
-<h3>迎合了市场需求</h3>
-<ol>
-<li>小米的硬件卖点</li>
-<li>小米的营销手段</li>
-<li>小米的品牌塑造</li>
-</ol>
-<p>历史总是相似的。30年前开始的的一场个人电脑战争爆发与微软+英特尔和Apple之间。由于种种因素的影响。我们现在知道那场战争的胜利者是微软+英特尔。虽然是Apple引爆了这个市场，结果还是被后来者统治了整个个人电脑时代。现在的移动互联网仿佛就是历史的重演，开拓市场的领先者依然是Apple，不过对手换成了Google Android阵营。Apple依然是那个对抗整个世界的Apple。而在Android阵营里面的小米，就是深得个人PC中微软+英特尔大败Apple的招数——性价比。小米主要买的是天朝，天朝还处于社会主义beta阶段。所以性价比在天朝乃至世界范围内都是一个很好的招数。小米做到了。</p>
-<p>我记得我第一次知道MIUI的时候，那会只有一个论坛，很简陋的样子。虽然说是CM的改版，但是开始了本地化的改造。而且那时候已经是进入市场的小米，国内做ROM的还很少。硬件厂商又在自己开发着各自不咋样的Android版本。导致国内一批整体素质比较好的用户，都在使用。也就是后来小米喊出的口号，为发烧而生。确实，小米的初始用户户就是这些人。记得老罗第一场演讲的时候说过一个新技术产品的周期，具体数值记不得了。大概就是说。有一大部分用户的购买习惯是跟随着他们周围略懂而且愿意追随新技术的用户。他们会咨询和遵循这些略懂的人意见。小米不知是刻意还是无意。恰好赶上了这个点。最骨灰的用户在追寻最新的Android版本，CM的改版，对小米肯定嗤之以鼻。而略懂的用户，真心的觉得小米不错。这就够成了小米后来广告营销的基本条件和品牌的塑造。</p>
-<p>小米手机，屌丝专用机。真心没有错。我不希望谁以屌丝自称。事实如此，虽然天朝大部分年轻人没有屌丝的心态，但是却是经济在屌丝状态下生活。高性价比本身就具有广阔的市场。再加上小米多多少少真的用心做了产品。小米会成功。</p>
-<h3>小米盒子</h3>
-<p>其实我想写这个blog的原因是小米盒子的出现。我觉得小米公司确实就是在C2C Apple。结果文章没有写完。小米盒子就被相关部门干掉了。讽刺啊讽刺。来看看小米盒子就是一个Apple TV的翻版。然后高性价比，根据天朝国情的本地化功能。连我都觉得过年回家给家里带一个，爹妈可能会更开心的看电视剧。</p>
-<h2>侧面</h2>
-<p>就举一个例子把。360这个老流氓那次打击的不是天朝内行业的最赚钱的公司。这次打小米，很显然是360嗅到了金钱的味道。就是从侧面说明小米在搞的事情很赚钱。成不成是另外一个事情。</p>
-<h2>总结</h2>
-<p>思绪很多，而且还间隔了这么久的时间。我想接下来的时间里面就不写这种类似的文章了。第一是觉得自己的眼光和阅历并不在一个很高标准的角度上看问题，这样必然有一定的局限性。做不到一个很客观的角度。第二是自己的文字功底确实没有我想象的那么好。第三如果天天写这些快变成光说不练的假把式了，说是天下无敌，打是无能为力。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/just-talk/" term="just-talk"/>
   </entry>
