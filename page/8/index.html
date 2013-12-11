@@ -6,7 +6,7 @@
   <title>第 8 页 | 萧宸宇</title>
   <meta name="author" content="萧宸宇">
   
-  <meta name="description" content="fuck">
+  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -58,6 +58,62 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-04-24T17:40:00.000Z"><a href="/2012/04/25/learning-ios-notes-six/">4月 25 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/04/25/learning-ios-notes-six/">iOS笔记 (6)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>iOS笔记 利用ASIHTTPRequest做断点续传</h1>
+<h2>主要问题</h2>
+<p>需要请求Http协议，下载一个zip包。包比较大，希望能后台下载。退出应用再次打开的时候能接着上一次的下载。专业名称：断点续传。</p>
+<h2>寻找方案</h2>
+<p>iOS目前三大开源网络库</p>
+<ul>
+<li>ASIHTTPRequest</li>
+<li>AFNetWorking</li>
+<li>MKNetworkKit</li>
+</ul>
+<p>个人以Google出来的信息得出的对比：</p>
+<p>| 网络库 | 优点 | 缺点 |</p>
+<p>| —————— | ——————- | —————— |</p>
+<p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
+<p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
+<p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
+<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。<br>候选AFNetWorking。</p>
+<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270" target="_blank">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
+<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">原理在这里</a></p>
+<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">实现的例子</a></p>
+<p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/04/25/learning-ios-notes-six/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -212,48 +268,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-14T11:12:00.000Z"><a href="/2012/03/14/talk-about-the-software/">3月 14 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/14/talk-about-the-software/">谈谈软件的一些事</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近，思想里面很是混乱。估计就是心事重重一类型的吧。脑子里面不断闪现一些零碎的东西。所以我还是把一些认为比较有价值的记录一下，以免丢失。</p>
-<p>科技的进步使得我们的世界变得美好了那么一点。电脑软件的不断丰富也使得我们的生活变的美好了一些。做为一个365天几乎360天+都要在电脑上度过的苦逼码畜来说，一个软件深度的长时间的去用，不仅仅是它能解决一些问题，而且还关系到解决问题的效果，效率。以及看起来装不装13,用起来爽不爽。</p>
-<p>除去一些毫无创意，没有价值，千篇一律的软件以外，接下来讨论的前提是一些值得尝试的软件。</p>
-<p>根据我最近的经验来看一个软件有以下三个因素或成正比，或成反比：</p>
-<pre><code>易用性
-学习时间
-工作效率</code></pre>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/14/talk-about-the-software/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -283,7 +297,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>31</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>32</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   

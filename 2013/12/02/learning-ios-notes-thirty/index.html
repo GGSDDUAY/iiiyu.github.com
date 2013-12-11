@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS学习笔记(29) 爱不释手的ReactiveCocoa之UIButton | 萧宸宇</title>
+  <title>iOS学习笔记(30) Core Data是如何保存的？ | 萧宸宇</title>
   <meta name="author" content="萧宸宇">
   
   <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="iOS学习笔记(29) 爱不释手的ReactiveCocoa之UIButton"/>
+  <meta property="og:title" content="iOS学习笔记(30) Core Data是如何保存的？"/>
   <meta property="og:site_name" content="萧宸宇"/>
 
   
@@ -63,81 +63,40 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-10-15T13:53:11.000Z"><a href="/2013/10/15/learning-ios-notes-twenty-nine/">10月 15 2013</a></time>
+        <time datetime="2013-12-02T10:33:18.000Z"><a href="/2013/12/02/learning-ios-notes-thirty/">12月 2 2013</a></time>
       
       
   
-    <h1 class="title">iOS学习笔记(29) 爱不释手的ReactiveCocoa之UIButton</h1>
+    <h1 class="title">iOS学习笔记(30) Core Data是如何保存的？</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2>开场扯淡</h2>
-<p>ReactiveCocoa的迭代速度相当快，一群富有才华和激情的人们在不断的进化ReactiveCocoa。欣欣向荣的景象啊。我这种hello world级别的也就只能使用他们的劳动成果了。上篇blog的时候我还在用1.9.x的版本 现在我已经全面转向2.x了。值得注意的是霓虹友人提交的cocoapods上ReactiveCocoa 2.1 版本我无法编译通过。目前我使用的还是2.0的版本。</p>
-<p>介于一个月没有更新blog的速度，这次来写少一点的内容。</p>
+        <p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2>开场扯淡</h2>
+<p>恩 一个月没有写一篇blog了。恩。就这样把。</p>
 <a id="more"></a>
 
-
-<h2>传统的UIButton Target Action 方式</h2>
-<p>之前我们使用UIButton的点击方法一般有两种。一种是直接从xib里面拖一个IBAction出来在里面写代码。</p>
-<p>另外一种是代码创建的 比如这样 </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>UIButton *myButton = <span class="string">[[UIButton alloc] init...];
-[myButton addTarget:something action:@selector(myAction) forControlEvents:UIControlEventTouchUpInside];
-</pre></td></tr></table></figure>
-
-<p>然后在下面写一个myAction的方法来进行操作。</p>
-<p>这样对我来说存在两个问题：</p>
+<p>学习使用Core Data也一年多了。之前以为3个月就可以登堂入室。事实是我图样图森破。到现在我也才勉强hello world而已。</p>
+<p>比如这个问题 <strong>Core Data是如何保存的</strong>。</p>
+<p>一直使用<a href="http://github.com/magicalpanda/MagicalRecord" target="_blank">MagicalRecord</a> 都被宠习惯了。 直接就调用MR_saveToPersistentStoreAndWait。反正能存进去，也没有太仔细的思考。</p>
+<p>恩 最近对Core Data的技能点在进行增加中。所以还是多记录一些。</p>
+<p>恰好看见了 DM大神的 blog <a href="http://mentalfaculty.tumblr.com/post/65682908577/how-does-core-data-save" target="_blank">How Does Core Data Save?</a></p>
+<p>也不算翻译，就是自己写个自己的精简版本看看。</p>
+<h2>Core Data是如何保存的</h2>
 <ol>
-<li>button对应的方法分开了。在阅读代码的时候，当我想知道这个button对应的方法或者反过来action方法对应的button。通常需要跳转一次以上才能知道。(也许是我的阅读代码习惯比较原始)</li>
-<li>我在action方法里面如果需要引用一个变量的时候，无法使用局部变量。通常就需要把这个资源设计为一个property。尽管这个资源或者变量只是在action里面调用一次。(这个也许是我写代码的问题)</li>
+<li>当然是NSManagedObjectContext调用save方法的时候。</li>
+<li>这时候context里面持有的那些NSManagedObject将会自己调用自己的willSave方法。</li>
+<li>NSManagedObjectContextWillSaveNotification发出。</li>
+<li>开始验证。这个验证可能是你在data model里面写的。也可以是在NSManagedObject里面代码写的。</li>
+<li>验证结束以后数据就合并到NSPersistentStoreCoordinator和NSPersistentStore里面。</li>
+<li>如果你在合并的时候更改了数据。这时候会重新验证数据。</li>
+<li>这个时候已经把需要验证过的合并数据存到持久化介质当中。</li>
+<li>最后NSManagedObjectContextDidSaveNotification这个通知发出。</li>
 </ol>
-<p>这两个可能在我遇见ReactiveCocoa都不能叫问题。但是在ReactiveCocoa里面我发现了更加优美的解决方法。好开心。</p>
-<h2>ReactiveCocoa方式的UIButton</h2>
-<p>由于ReactiveCocoa高深的知识点，我也弄不太清楚。下面我只是说明怎么用的hello world级别。更多内容请阅读github上的项目主页。</p>
-<p>如果使用xib。只需拖一个IBOutlet的property出来。比如这样</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIButton</span> *xibButton;
-</pre></td></tr></table></figure>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>NSString *helloWorld = @<span class="string">"hello world!!!"</span>;
-self.xibButton.rac_command = <span class="string">[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-	NSLog(@"%@", helloWorld);
-	return [RACSignal empty];
-}];
-</pre></td></tr></table></figure>
-
-<p>如果是代码创建一切照旧</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="code"><pre>NSString *helloWorld = @<span class="string">"hello world!!!"</span><span class="comment">;</span>
-UIButton *myButton = [UIButton buttonWithType:UIButtonTypeSystem]<span class="comment">;</span>
-myButton<span class="preprocessor">.frame</span> = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">50</span>)<span class="comment">;</span>
-[myButton setTitle:@<span class="string">"Say"</span> forState:UIControlStateNormal]<span class="comment">;</span>
-[self<span class="preprocessor">.view</span> addSubview:myButton]<span class="comment">;</span>
-myButton<span class="preprocessor">.rac</span>_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-	NSLog(@<span class="string">"%@"</span>, helloWorld)<span class="comment">;</span>
-	return [RACSignal empty]<span class="comment">;</span>
-}]<span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>这些代码我一般写在viewDidLoad方法里面。当然你可以在正确的地方使用他们。<br>运行试试。哇。魔法一般。完全解决我在传统的UIButton遇到的两个问题。</p>
-<h2>总结</h2>
-<p>嗯嗯，这种小主题的blog写起来轻松愉快。大概40分钟就可以完成。以后要多多写小主题。这样跟写程序一样，化繁为简。这次就少扯淡了。期待我的下篇blog。啊哈哈</p>
+<h2>参考资料</h2>
+<p><a href="http://mentalfaculty.tumblr.com/post/65682908577/how-does-core-data-save" target="_blank">How Does Core Data Save?</a></p>
 
       
     </div>

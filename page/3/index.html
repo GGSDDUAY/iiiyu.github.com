@@ -6,7 +6,7 @@
   <title>第 3 页 | 萧宸宇</title>
   <meta name="author" content="萧宸宇">
   
-  <meta name="description" content="fuck">
+  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -58,6 +58,49 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">4月 17 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/17/learning-ios-notes-twenty-one/">iOS笔记(21) CoreData (三) NSFetchedResultsController</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1>CoreData (三)</h1>
+<h2>NSFetchedResultsController</h2>
+<h3>什么是NSFetchedResultsController</h3>
+<p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
+<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
+<p>NSFetchedResultsController是有两个重要的功能。</p>
+<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
+<p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/04/17/learning-ios-notes-twenty-one/#more" class="more-link">阅读更多</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -237,59 +280,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-11T15:18:49.000Z"><a href="/2013/03/11/learning-ios-notes-seventeen/">3月 11 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/03/11/learning-ios-notes-seventeen/">iOS笔记(17)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS读写文件</h1>
-<h2>序</h2>
-<p>由于iOS App的机制和限定，我们在App里面的权限就仅限于App内部。这个打包好的内部称为沙箱。沙箱有利有弊。我觉得这个世界上没有绝对的好坏。虽然沙箱的作用限制了一些功能的实现。但是也确保了iPhone的安全机制。对于普通用户来说我觉得的利大于弊的。(MAS上架的软件也接受这一约束)</p>
-<h2>第一步 路径</h2>
-<p>不管是读文件还是写文件我们都要需要知道文件的位置。这个位置在iOS里面就是沙箱的Document文件夹的位置。关于沙箱里面各个文件夹的功能和作用。Apple的某文档里面写的很清楚建议Google以后详细查看（懒得去找来贴了）。获取代码如下：</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="title">NSArray</span>  *paths              = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-<span class="title">NSString</span> *documentsDirectory = [paths objectAtIndex:<span class="number">0</span>];
-</pre></td></tr></table></figure>
-
-<p>NSDocumentDirectoryz这个参数你点过去可以找到一堆类似的定义比如常用的NSLibraryDirectory，NSApplicationDirectory。这样就可以直接获取到对应的文件夹路径。其他的你照抄就好。想知道意思就点过去看呗。其实看变量名也可以猜测一二。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>NSString <span class="variable">*filePath</span> = [documentsDirectory stringByAppendingString:<span class="variable">@"</span>/hello.txt<span class="string">"];
-</pre></td></tr></table></figure>
-
-<p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
-<p>这样我们就获得一个文件路径了。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/03/11/learning-ios-notes-seventeen/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -319,7 +309,7 @@
   
     <li><a href="/categories/Software/">Software</a><small>2</small></li>
   
-    <li><a href="/categories/iOS/">iOS</a><small>31</small></li>
+    <li><a href="/categories/iOS/">iOS</a><small>32</small></li>
   
     <li><a href="/categories/just-talk/">just-talk</a><small>13</small></li>
   
