@@ -4,13 +4,43 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2013-12-21T15:00:35.861Z</updated>
+  <updated>2013-12-25T15:45:59.835Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
     <email><![CDATA[chenyuxiao@sumi-sumi.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[iOS笔记(32) UbiquityStoreManager 学习笔记1]]></title>
+    <link href="http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/"/>
+    <id>http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/</id>
+    <published>2013-12-25T15:22:33.000Z</published>
+    <updated>2013-12-25T15:45:52.000Z</updated>
+    <content type="html"><![CDATA[<p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2>开篇扯淡</h2>
+<p>现在都是进入互联网时代，一个互联网的App数据肯定是存在互联网上的。到处都是云，到处都是服务器。如果数据是存储在云端or服务器端。每次数据的读取和修改直接作用于服务器。这样不管你用多少设备，多少平台。数据都能保证是唯一的。但是还有些App需要一些更好的性能和效果的时候往往等不起网络的数据传来传去。这时候需要一些折中的办法来解决这些问题。iCloud就是Apple给出的解决方案。就普通用户来看，iCloud应该是在Apple系中的最优选择。但是从开发者的角度来看iCloud就是个无穷无尽的深渊。</p>
+<p>全球有很多开发者致力开发第三方库以便让iCloud能被使用。 </p>
+<p>UbiquityStoreManager就是其中之一。</p>
+<a id="more"></a>
+
+<h2>UbiquityStoreManager</h2>
+<p><img src="https://github.com/lhunath/UbiquityStoreManager" alt="UbiquityStoreManager">是一个core data持久化层的控制器。</p>
+<p>UbiquityStoreManager在iOS 6时代是使用GPLv3协议。所以好像使用者不是很多。iOS 7 Core Data 关于iCloud引入了新的机制和新API以后UbiquityStoreManager迅速跟进。并且更换了协议使用了Apache v2。所以如果你有iOS 7的App想使用iCloud + Core Data这种hard模式。UbiquityStoreManager是第一个应该推荐的库。</p>
+<p>UbiquityStoreManager不同于其他解决方案。大部分都是在iCloud上面继续构建一层来保证数据同步的完整一致性。UbiquityStoreManager仅仅是解决了就只单纯使用iCloud就会遇到的问题。比如数据出错了怎么办。从本地数据迁移到iCloud数据。从修改日记来重建数据库等。</p>
+<h2>UbiquityStoreManager解决的问题</h2>
+<ol>
+<li>提供在iCloud和本地Store直接切换</li>
+<li>在用户没有iCloud store 的时候自动的把local data 合并到iCloud（使用本地数据重建iCloud）</li>
+<li>所有与iCloud有联系事件处理：1. 切换iCloud帐号 2. 删除iCloud数据 3. 删除本地数据 4. 导入其他设备变换的ubiquitous 5. 恢复有错误的transaction logs。</li>
+<li>其他的一些实用功能：1.从transaction logs重建cloud store 2. 从cloud store 重建transatction logs 3. 删除cloud store 4. Ability to nuke the entire cloud container 5. 把一个store里面全部的entities合并到另外一个store</li>
+</ol>
+<p>在iCloud+CoreData的官方解决方案中，对于开发者来说完全的黑箱子操作。难于开发和调试bug。而且经验不足完全会被很多坑拉进泥潭里面。使得开发更本无法进行下去。所以仔细研究UbiquityStoreManager。是我建议踏入iCloud + Core Data开发的必修课。</p>
+<h2>总结</h2>
+<p>只是我学习中的一点笔记和注释翻译而已。留给自己看看。如果有不对的地方，欢迎指出。</p>
+]]></content>
+    <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)]]></title>
     <link href="http://iiiyu.com/2013/12/21/evaluation-bong/"/>
@@ -2419,99 +2449,6 @@ end
 <h2>参考文章</h2>
 <p><a href="http://ishalou.com/blog/2012/10/16/how-to-create-a-cocoapods-spec-file/" target="_blank">如何编写一个CocoaPods的spec文件</a></p>
 <p><a href="http://m.blog.csdn.net/blog/totogo2010/8198694" target="_blank">CocoaPods一个Objective-C第三方库的管理利器</a></p>
-]]></content>
-    <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[iOS笔记 (15)]]></title>
-    <link href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/"/>
-    <id>http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/</id>
-    <published>2013-02-22T10:31:10.000Z</published>
-    <updated>2013-02-25T09:46:00.000Z</updated>
-    <content type="html"><![CDATA[<h1>Mogenerator的初级使用</h1>
-<h2>什么是Mogenerator</h2>
-<p>最近在用Core Data来进行开发。Core Data其实封装的很好了。把存储底层都屏蔽了（sqlite，xml，内存）。不管是用那种方式存储下来。用Core Data都是在操作对象了。但是Core Data一套东西下来，单是学习就学习的泪流满面。天资有限，只能找一些看上去更简单的第三方类库来使用。</p>
-<p>github上找了很久，最后在使用的是<a href="https://github.com/magicalpanda/MagicalRecord" target="_blank">MagicalRecord</a>。不为其他，只是用起来很爽。特别是目前升级到了2.1版本以后，保存的方法名字不那么逆天了。更是好用多了。</p>
-<p>而<a href="http://rentzsch.github.com/mogenerator/" target="_blank">Mogenerator</a>是什么东西呢。</p>
-<p>它漂亮的主页上是这样写的：</p>
-<p>mogenerator为你定义了的Core Data生成默认的数据类。与xCode不一样的是(xCode一个Entity只生成一个NSManagedObject的子类)，mogenerator会为每一个Entity生成两个类。一个为机器准备，一个为人类准备。为机器准备的类一直去匹配data model。为人类准备的类就给你轻松愉快的去修改和保存。</p>
-<a id="more"></a>
-
-<h2>为什么需要Mogenerator</h2>
-<h2>安装Mogenerator</h2>
-<p>Mogenerator其实是一个命令行的工具，因此也就可以轻松愉快的用<a href="http://mxcl.github.com/homebrew" target="_blank">homebrew</a>去安装。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">$ </span>brew install mogenerator
-</pre></td></tr></table></figure>
-
-<p>升级</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ brew <span class="operator"><span class="keyword">update</span> && brew upgrade mogenerator
-</pre></td></tr></table></figure>
-
-<h2>在项目里面添加Mogenerator</h2>
-<p>按照<a href="http://raptureinvenice.com/getting-started-with-mogenerator/" target="_blank">这篇</a>的教程我添加了脚本以后运行不成功</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
-<span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
-</pre></td></tr></table></figure>
-
-<p>提示:</p>
-<pre><code>/Volumes/Data/iYu/<span class="keyword">Library</span>/Developer/Xcode/DerivedData/testMogenerator-adwdmrbsvjjxqtawmqvnhfdhubts/Build/Intermediates/testMogenerator.build/Debug-iphonesimulator/Mogenerator.build/Script-<span class="number">5</span>B80B84A16D9EC8F00E8E3A3.sh: line <span class="number">3</span>: mogenerator: command <span class="keyword">not</span> found Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">127</span></code></pre>
-<p>自己打命令测试Mogenerator是成功的</p>
-<p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e24hzzauvbj.jpg" alt="测试Mogenerator"></p>
-<p>xCode使用的是/bin/sh,我怀疑是用homebrew安装的以后的Path跟xCode的/bin/sh/执行的</p>
-<p>思考以后在命令之前之前导入mogenerator的路径。 由于我是用homebrew按照的自然在homebrew的路径下面</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="title">cd</span> testMogenerator
-<span class="title">export</span> <span class="type">PATH</span>=<span class="string">"/usr/local/Cellar/mogenerator/1.27/bin:$PATH"</span>
-<span class="title">mogenerator</span> -m myDataBase.xcdatamodeld/myDataBase.xcdatamodel/
-</pre></td></tr></table></figure>
-
-<p>这次mogenerator是找到了，但是xcadatamodeld又没有找到。看到</p>
-<pre><code>mogenerator: <span class="keyword">error</span> loading <span class="type">file</span> <span class="keyword">at</span> myDataBase.xcdatamodeld/myDataBase.xcdatamodel/: no such <span class="type">file</span> exists Command /bin/sh failed <span class="keyword">with</span> <span class="keyword">exit</span> code <span class="number">66</span></code></pre>
-<p>pwd出来路径观察以后把cd去掉</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">export</span> PATH=<span class="string">"/usr/local/Cellar/mogenerator/1.27/bin:$PATH"</span>
-mogenerator -m myDataBase<span class="variable">.xcdatamodeld</span>/myDataBase<span class="variable">.xcdatamodel</span>/
-</pre></td></tr></table></figure>
-
-<p>这次就对了</p>
-<h2>使用Mogenerator</h2>
-<p>我创建了一个叫testMogenerator的工程并且在工程的data model名字叫myDataBase 如图：</p>
-<p><img src="http://ww2.sinaimg.cn/large/a74ecc4cjw1e25ps57szwj.jpg" alt=""></p>
-<p>mogenerator安装以后是这样的</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74e55b4jw1e25pnfghgpj.jpg" alt=""></p>
-<p>然后安command+B 运行一下这个target。</p>
-<p>运行以后生成的文件在这里</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e25pk5ribkj.jpg" alt=""></p>
-<p>PS: 第一次生成的文件位置不对。所以脚本又改了一下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
-<span class="comment">export</span> <span class="comment">PATH="/usr/local/Cellar/mogenerator/1</span>.<span class="comment">27/bin:$PATH"</span>
-<span class="comment">mogenerator</span> <span class="literal">-</span><span class="comment">m</span> <span class="string">.</span><span class="string">.</span><span class="comment">/myDataBase</span>.<span class="comment">xcdatamodeld/myDataBase</span>.<span class="comment">xcdatamodel/
-</pre></td></tr></table></figure>
-
-<p>每一个Entity生成了两个类 一个Entity的名字的类， 一个下划线Entity的名字的类。_XXXX.*这个类不要去修改，修改XXXX这个类就好了。</p>
-<p>如果是一个新的entity，需要你自己加入自己的工程里面工程，如果Entity已经加入现在只是更新了Entity的话。就不用加入工程了。</p>
-<p><img src="http://ww3.sinaimg.cn/large/a74eed94jw1e25q0ub23qj.jpg" alt=""></p>
-<p>最后编译的时候还是不对 脚本继续改 囧</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">cd</span> <span class="comment">testMogenerator</span>
-<span class="comment">export</span> <span class="comment">PATH="/usr/local/Cellar/mogenerator/1</span>.<span class="comment">27/bin:$PATH"</span>
-<span class="comment">mogenerator</span> <span class="literal">-</span><span class="comment">m</span> <span class="string">.</span><span class="string">.</span><span class="comment">/myDataBase</span>.<span class="comment">xcdatamodeld/myDataBase</span>.<span class="comment">xcdatamodel/</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">template</span>-<span class="comment">var</span> <span class="comment">arc=YES
-</pre></td></tr></table></figure>
-
-<h2>总结</h2>
-<p>断断续续折腾了两天。大概明白了mogenerator怎么一个事情。但是好用好还有带研究。这篇blog先发吧。不然又难产了。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/categories/iOS/" term="iOS"/>
   </entry>

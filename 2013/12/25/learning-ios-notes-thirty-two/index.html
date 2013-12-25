@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (9) | 萧宸宇</title>
+  <title>iOS笔记(32) UbiquityStoreManager 学习笔记1 | 萧宸宇</title>
   <meta name="author" content="萧宸宇">
   
   <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="iOS笔记 (9)"/>
+  <meta property="og:title" content="iOS笔记(32) UbiquityStoreManager 学习笔记1"/>
   <meta property="og:site_name" content="萧宸宇"/>
 
   
@@ -63,66 +63,37 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-08-12T06:56:00.000Z"><a href="/2012/08/12/learning-ios-notes-nine/">8月 12 2012</a></time>
+        <time datetime="2013-12-25T15:22:33.000Z"><a href="/2013/12/25/learning-ios-notes-thirty-two/">12月 25 2013</a></time>
       
       
   
-    <h1 class="title">iOS笔记 (9)</h1>
+    <h1 class="title">iOS笔记(32) UbiquityStoreManager 学习笔记1</h1>
   
 
     </header>
     <div class="entry">
       
-        <h1>xCode4 配色主题</h1>
-<p>一直以来，我对写代码的各种颜色就乱折腾不不管是Vim还是Emacs花在上面的时间都蛮多的。也不知道是哪里来的精神。<br>这次换xCode了。也折腾过很多。今天小文问了一下。恩，觉得这个东西可以拿出来写一篇blog，来填补我还差3篇的坑。</p>
+        <p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2>开篇扯淡</h2>
+<p>现在都是进入互联网时代，一个互联网的App数据肯定是存在互联网上的。到处都是云，到处都是服务器。如果数据是存储在云端or服务器端。每次数据的读取和修改直接作用于服务器。这样不管你用多少设备，多少平台。数据都能保证是唯一的。但是还有些App需要一些更好的性能和效果的时候往往等不起网络的数据传来传去。这时候需要一些折中的办法来解决这些问题。iCloud就是Apple给出的解决方案。就普通用户来看，iCloud应该是在Apple系中的最优选择。但是从开发者的角度来看iCloud就是个无穷无尽的深渊。</p>
+<p>全球有很多开发者致力开发第三方库以便让iCloud能被使用。 </p>
+<p>UbiquityStoreManager就是其中之一。</p>
 <a id="more"></a>
 
-<h2>Path</h2>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>cd ~/Library/Developer/Xcode/UserData/
-</pre></td></tr></table></figure>
-
-<p>看看里面有没有一个叫FontAndColorThemes的文件夹，没有就新建立一个</p>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>mkdir ~/Library/Developer/Xcode/UserData/FontAndColorThemes
-</pre></td></tr></table></figure>
-
-<p>然后你下载的那些Themes就可以丢里面。重启xCode就能看见了。</p>
-<h2>Themes</h2>
-<h3>solarized</h3>
-<p>我见过史上最全最多的配色方案<a href="http://ethanschoonover.com/solarized" target="_blank">solarized</a></p>
-<p>它居然支持我用过的所用编辑器和IDE:Vim,Emacs, IntelliJ IDEA, NetBeans, SeeStyle theme for Coda &amp; SubEthaEdit, TextMate, TextWrangler &amp; BBEdit ,Visual Studio, Xcode</p>
-<p>而且不仅仅是编辑器，连总端配色都用。一条龙服务啊 Xresources, iTerm2, OS X Terminal.app, Putty.</p>
-<p>完整版的地址在这里</p>
-<pre><code> <span class="symbol">https:</span>/<span class="regexp">/github.com/altercation</span><span class="regexp">/solarized</code></pre>
-<p>xCode4</p>
-<pre><code><span class="symbol">https:</span>/<span class="regexp">/github.com/brianmichel</span><span class="regexp">/solarized/tree</span><span class="regexp">/master/apple</span>-xcode4-solarized</code></pre>
-<p>把Solarized - Dark.dvtcolortheme和Solarized - Light.dvtcolortheme这两个文件丢到刚刚新建的~/Library/Developer/Xcode/UserData/FontAndColorThemes目录下重启xCode就可以用了。<br>效果如下:</p>
-<p>Solarized - Dark<br><img src="http://farm8.staticflickr.com/7249/7764088206_fa5ee8d24c.jpg" alt="Solarized - Dark"></p>
-<p>Solarized - Light<br><img src="http://farm9.staticflickr.com/8296/7764088580_7f10c462e4.jpg" alt="Solarized - Light"></p>
-<h3>zenburn</h3>
-<p>zenburn的评价也很高，可是我不喜欢那灰蒙蒙的感觉<br>我是在<a href="http://allara.blogspot.com/2011/02/zenburn-theme-for-xcode-4.html" target="_blank">这里</a>下载的</p>
-<p>zenburn<br><img src="http://farm9.staticflickr.com/8436/7764088966_2ac50f6e34.jpg" alt="zenburn"></p>
-<h3>ObjectiveSheep</h3>
-<p>看上去也还可以 但是缺少色彩变化<br>我是在<a href="http://objectivesheep.com/blog/xcode4_color_theme" target="_blank">这里</a>找到</p>
-<p>ObjectiveSheep<br><img src="http://farm9.staticflickr.com/8424/7764089338_776811c569.jpg" alt="ObjectiveSheep"></p>
-<h3>DarkCity</h3>
-<p>这个本来是boss在用，今天小文也用这个。看着确实色彩丰富了一些。试试看。<br>找到的还是<a href="http://www.robinlu.com/hacking" target="_blank">Robin Lu</a>制作的。他的blog很不错，顺带推荐一下。</p>
-<p>我是在<a href="http://www.robinlu.com/blog/archives/320" target="_blank">这里</a>下载到的</p>
-<p>DarkCity<br><img src="http://farm9.staticflickr.com/8431/7764089724_93d11895c2.jpg" alt="DarkCity"></p>
-<h3>tomorrow-theme</h3>
-<p>summer推荐，也是各种编辑器方案都有</p>
-<pre><code><span class="symbol">https:</span>/<span class="regexp">/github.com/chriskempson</span><span class="regexp">/tomorrow-theme</code></pre>
-<p>找到xCode4的两个文件 就ok了</p>
-<h3>小结</h3>
-<p>选个喜欢的进去根据自己的需求改吧。等等。怎么就完了。为什么在xCode里面不可以改变刚刚拷贝上去的主题</p>
-<h2>修改主题</h2>
-<p>因为刚刚考进去的文件权限的问题，并不能修改主题怎么办</p>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>chmod 666 ~/Library/Developer/Xcode/UserData/FontAndColorThemes/*
-</pre></td></tr></table></figure>
-
-<p>这下，你可以爽快的修改各种主题了。</p>
+<h2>UbiquityStoreManager</h2>
+<p><img src="https://github.com/lhunath/UbiquityStoreManager" alt="UbiquityStoreManager">是一个core data持久化层的控制器。</p>
+<p>UbiquityStoreManager在iOS 6时代是使用GPLv3协议。所以好像使用者不是很多。iOS 7 Core Data 关于iCloud引入了新的机制和新API以后UbiquityStoreManager迅速跟进。并且更换了协议使用了Apache v2。所以如果你有iOS 7的App想使用iCloud + Core Data这种hard模式。UbiquityStoreManager是第一个应该推荐的库。</p>
+<p>UbiquityStoreManager不同于其他解决方案。大部分都是在iCloud上面继续构建一层来保证数据同步的完整一致性。UbiquityStoreManager仅仅是解决了就只单纯使用iCloud就会遇到的问题。比如数据出错了怎么办。从本地数据迁移到iCloud数据。从修改日记来重建数据库等。</p>
+<h2>UbiquityStoreManager解决的问题</h2>
+<ol>
+<li>提供在iCloud和本地Store直接切换</li>
+<li>在用户没有iCloud store 的时候自动的把local data 合并到iCloud（使用本地数据重建iCloud）</li>
+<li>所有与iCloud有联系事件处理：1. 切换iCloud帐号 2. 删除iCloud数据 3. 删除本地数据 4. 导入其他设备变换的ubiquitous 5. 恢复有错误的transaction logs。</li>
+<li>其他的一些实用功能：1.从transaction logs重建cloud store 2. 从cloud store 重建transatction logs 3. 删除cloud store 4. Ability to nuke the entire cloud container 5. 把一个store里面全部的entities合并到另外一个store</li>
+</ol>
+<p>在iCloud+CoreData的官方解决方案中，对于开发者来说完全的黑箱子操作。难于开发和调试bug。而且经验不足完全会被很多坑拉进泥潭里面。使得开发更本无法进行下去。所以仔细研究UbiquityStoreManager。是我建议踏入iCloud + Core Data开发的必修课。</p>
+<h2>总结</h2>
+<p>只是我学习中的一点笔记和注释翻译而已。留给自己看看。如果有不对的地方，欢迎指出。</p>
 
       
     </div>
