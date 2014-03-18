@@ -1,26 +1,36 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记 (11) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记 (11)">
+<meta name="og:url" content="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/">
+<meta name="og:image" content="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="关于Target-Action设计模式
+序
+上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。
 
-  <meta property="og:title" content="iOS笔记 (11)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
+这次我们来说Target Action这种View跟Controller的交流方法。
 
+
+什么是selector
+官方解释请看这里
+在Objective-C里面, selector有两种意思:
+
+当用源码向一个对象发送消息的时候,表示简单的方法名字。">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,51 +46,76 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-eleven" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/09/02/learning-ios-notes-eleven/" class="article-date">
+  <time datetime="2012-09-02T03:29:00.000Z" itemprop="datePublished">9月 2 2012</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-09-02T03:29:00.000Z"><a href="/2012/09/02/learning-ios-notes-eleven/">9月 2 2012</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记 (11)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记 (11)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>关于Target-Action设计模式</h1>
-<h2>序</h2>
+        <h1 id="关于Target-Action设计模式">关于Target-Action设计模式</h1>
+<h2 id="序">序</h2>
 <p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
 <p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
 <p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
 <a id="more"></a>
 
-<h2>什么是selector</h2>
+<h2 id="什么是selector">什么是selector</h2>
 <p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html" target="_blank">这里</a></p>
 <p>在Objective-C里面, selector有两种意思:</p>
 <ol>
@@ -93,7 +128,7 @@
 <li>SEL是一种类型，跟int float一样。</li>
 <li>@selector 其实就是取得一个SEL。</li>
 </ol>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -101,29 +136,29 @@
 6
 7
 8
-</pre></td><td class="code"><pre><span class="comment">SEL</span>   <span class="comment">press;</span>
-<span class="comment">press</span> <span class="comment">=</span> <span class="comment">@selector(pressed:);</span>
-<span class="comment">UIButton*</span>  <span class="comment">btn</span> <span class="comment">=</span> <span class="title">[</span><span class="comment">UIButton</span> <span class="comment">alloc</span>]<span class="comment">init</span>]<span class="comment">;</span>
-<span class="title">[</span><span class="comment">btn</span> <span class="comment">addTarget:self</span> <span class="comment">action:press</span> <span class="comment">forControlEvents:UIControlEventTouchUpInside</span>]<span class="comment">;</span>
-<span class="literal">-</span><span class="comment">(void)pressed:(id)sender</span>
-<span class="comment">{</span>
-    <span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
-<span class="comment">}
+</pre></td><td class="code"><pre>SEL   press;
+press = <span class="keyword">@selector</span>(pressed:);
+<span class="built_in">UIButton</span>*  btn = [<span class="built_in">UIButton</span> alloc]init];
+[btn addTarget:<span class="keyword">self</span> action:press forControlEvents:UIControlEventTouchUpInside];
+-(<span class="keyword">void</span>)pressed:(<span class="keyword">id</span>)sender
+{
+    .....
+}
 </pre></td></tr></table></figure>
 
 <ol>
 <li>@selector()取得的其实一个ASCII的方法名字符串</li>
 <li>我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector</li>
 </ol>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>id   helper = getTheReceiver()<span class="comment">;</span>
-SEL  request = getTheSelector()<span class="comment">;</span>
-[helper performSelector:request]<span class="comment">;</span>
+</pre></td><td class="code"><pre>id   helper = getTheReceiver();
+SEL  <span class="built_in">request</span> = getTheSelector();
+[helper performSelector:<span class="built_in">request</span>];
 </pre></td></tr></table></figure>
 
-<h2>什么是Target-Action设计模式</h2>
+<h2 id="什么是Target-Action设计模式">什么是Target-Action设计模式</h2>
 <p>官方解释在<a href="Target-Action设计模式">这里</a><br>target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
 <ul>
 <li>action selector，定义要调用的方法名称标识；</li>
@@ -132,15 +167,15 @@ SEL  request = getTheSelector()<span class="comment">;</span>
 <p>当被称作action message的事件发生，将向target发送action selector定义的方法消息。</p>
 <p>target-action模式一般用于自定义的controller按照应用规范定义的方式处理action message。</p>
 <p><img src="http://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Art/target_action.jpg" alt="ta"></p>
-<h2>怎么用Target-Action</h2>
-<h3>UIButton用法</h3>
+<h2 id="怎么用Target-Action">怎么用Target-Action</h2>
+<h3 id="UIButton用法">UIButton用法</h3>
 <p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents
+</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents</span>
 </pre></td></tr></table></figure>
 
 <p>UIControl的子类都可以覆盖这个方法，来调用自己的事件对应的函数。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -148,14 +183,14 @@ SEL  request = getTheSelector()<span class="comment">;</span>
 6
 7
 8
-</pre></td><td class="code"><pre><span class="class">UIButton</span> *btn = [<span class="class">UIButton</span> <span class="method">buttonWithType:</span><span class="class">UIButtonTypeInfoLight</span>];
-[btn <span class="method">addTarget:</span><span class="keyword">self</span> <span class="method">action:</span>@selector(<span class="method">method:</span>) <span class="method">forControlEvents:</span><span class="class">UIControlEventTouchUpInside</span>];
-[view <span class="method">addSubview:</span>btn];
+</pre></td><td class="code"><pre>UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+[btn addTarget:<span class="keyword">self</span> action:@<span class="keyword">selector</span>(<span class="function"><span class="keyword">method</span>:</span>) forControlEvents:UIControlEventTouchUpInside];
+[view addSubview:btn];
 
-- (void)<span class="method">method:</span>(id)sender
-{
+- (void)<span class="function"><span class="keyword">method</span>:</span>(id)sender
+<span class="comment">{
 // do something
-}
+}</span>
 </pre></td></tr></table></figure>
 
 <p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。</p>
@@ -163,114 +198,154 @@ SEL  request = getTheSelector()<span class="comment">;</span>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/" data-id="i1t5h9hh8502lci9" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/09/29/learning-ios-notes-twelve/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记 (12)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/08/13/learning-ios-notes-ten/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS笔记 (10)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

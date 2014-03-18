@@ -1,26 +1,33 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记 (8) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记 (8)">
+<meta name="og:url" content="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/">
+<meta name="og:image">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="iOS笔记 基于MKNetworkKit的断点续传
+背景
+上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。
+如果需要回顾一下ASIHTTPRequest的断点续传的在这里
 
-  <meta property="og:title" content="iOS笔记 (8)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
 
+MKNetworkKit
+下载地址是
+https://github.c">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,54 +43,79 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-eight" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/07/07/learning-ios-notes-eight/" class="article-date">
+  <time datetime="2012-07-07T13:15:00.000Z" itemprop="datePublished">7月 7 2012</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-07-07T13:15:00.000Z"><a href="/2012/07/07/learning-ios-notes-eight/">7月 7 2012</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记 (8)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记 (8)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>iOS笔记 基于MKNetworkKit的断点续传</h1>
-<h2>背景</h2>
+        <h1 id="iOS笔记_基于MKNetworkKit的断点续传">iOS笔记 基于MKNetworkKit的断点续传</h1>
+<h2 id="背景">背景</h2>
 <p>上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。</p>
 <p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/" target="_blank">这里</a></p>
 <a id="more"></a>
 
-<h2>MKNetworkKit</h2>
+<h2 id="MKNetworkKit">MKNetworkKit</h2>
 <p>下载地址是</p>
-<pre><code><span class="label">https:</span>//github<span class="preprocessor">.com</span>/MugunthKumar/MKNetworkKit</code></pre>
-<p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">这里</a></p>
-<h3>使用MKNetworkKit</h3>
+<pre><code><span class="label">https:</span>//github<span class="preprocessor">.com</span>/MugunthKumar/MKNetworkKit
+</code></pre><p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">这里</a></p>
+<h3 id="使用MKNetworkKit">使用MKNetworkKit</h3>
 <ol>
 <li>首先把clone下来的MKNetworkKit文件夹拖进你的项目里面</li>
 <li>到项目里面增加CFNetwork.Framework SystemConfiguration.framework 和 Security.framework.</li>
@@ -92,22 +124,22 @@
 <li>如果是Mac，删除UIAlertView+MKNetworkKitAdditions.h这个文件</li>
 </ol>
 <p>这样，再看看<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">介绍</a>里面的例子。应该就能看懂普通用法了。然后畅快的使用MKNetworkKit库了。</p>
-<h2>改写目标</h2>
+<h2 id="改写目标">改写目标</h2>
 <p>上次写的ASIHTTPRequest续传其实已经可以用了。但是为什么需要重新写呢。就是重用！！！</p>
 <p>一直都很少自己设计接口什么的。其实只是做了写体力的劳动，把一堆逻辑换成代码给堆了起来。觉得没有人会去重用自己的代码。很少去花心思想怎么样才能写好。</p>
 <p>这次改写就只有一个目标，为了更好更多人能使用断点续传来下载。</p>
-<h2>功能</h2>
-<h3>下载持久化</h3>
+<h2 id="功能">功能</h2>
+<h3 id="下载持久化">下载持久化</h3>
 <p>下载的持久化的微观含义是在push到新的view或者pop出当前view。下载应该在后台继续进行。<br>宏观含义是按home把程序放入后台以后，下载继续进行。</p>
-<h3>保持进度条</h3>
+<h3 id="保持进度条">保持进度条</h3>
 <p>每次进入下载的view的时候progressview都应该保持一致</p>
-<h3>暂停恢复下载</h3>
+<h3 id="暂停恢复下载">暂停恢复下载</h3>
 <p>可以随时暂停下载和恢复下载</p>
 <p>这次改写，这些功能都实现了，啊哈哈哈。</p>
-<h2>实现</h2>
-<h3>MKNetworkKit库修改</h3>
+<h2 id="实现">实现</h2>
+<h3 id="MKNetworkKit库修改">MKNetworkKit库修改</h3>
 <p>最开始使用MKNetworkKit库做下载的时候，progressview的数值一直不对。经过boss的观察，应该是某个东西写错地方了。然后 修改了某两个函数才可以的。详细如下：<br>找到MKNetworkOperation.m文件</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -342,127 +374,167 @@
 </pre></td></tr></table></figure>
 
 <p>具体改了哪，忘记了。有心思对照源码看看。应该是属于MKNetworkKit的bug。也不知道新版改过来没有。但是你clone我的demo，这个版本是可以的。</p>
-<h2>断点下载库</h2>
+<h2 id="断点下载库">断点下载库</h2>
 <p>其实我一共就写了两个简单的类而已。</p>
 <p>基础的是SIBreakpointsDownload。继承于MKNetworkOperation。判断了续传的位置。</p>
 <p>一个SIDownloadManager写成单例，继承于MKNetworkEngine。用来管理多任务下载。</p>
 <p>使用的时候就只用SIDownloadManager这个类来添加下载，暂停下载。然后想在下载的前后、出错时候、progressview改变时候对view作出改变。就实现它的delegate就好了。</p>
 <p>demo地址</p>
-<pre><code>git@<span class="filename">github.com</span>:iiiyu/<span class="filename">SIDownloader.git</code></pre>
-<p>其实已经很简单了，照着demo改改就能自己用了。</p>
-<h2>总结</h2>
+<pre><code>git@github<span class="preprocessor">.com</span>:iiiyu/SIDownloader<span class="preprocessor">.git</span>
+</code></pre><p>其实已经很简单了，照着demo改改就能自己用了。</p>
+<h2 id="总结">总结</h2>
 <p>这次改写以后，代码结构变的很清晰。复杂性和耦合性都有所降低。可用性提高。而且，反正我是没有google到可以直接拿来用的断点下载库。这次娃哈哈就有了。然后blog也2月没有更新，鄙视自己。以后应该会慢慢更新恢复正常。最后，希望对大家有所帮助。</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/" data-id="k0pgwyevffoizo0i" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/07/30/thinking/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          思考
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/05/06/learning-ios-notes-seven/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS笔记 (7)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2012/07/07/learning-ios-notes-eight/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

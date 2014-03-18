@@ -1,26 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记(18) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="iOS笔记(18)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记(18)">
+<meta name="og:url" content="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/">
+<meta name="og:image" content="http://ww3.sinaimg.cn/large/bfadf3bejw1e36lv4nn89j.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="Core Data (一)
+序
+恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。
+为什么要用Core Data
+CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,47 +39,72 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-eighteen" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/29/learning-ios-notes-eighteen/" class="article-date">
+  <time datetime="2013-03-28T16:04:37.000Z" itemprop="datePublished">3月 29 2013</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-28T16:04:37.000Z"><a href="/2013/03/29/learning-ios-notes-eighteen/">3月 29 2013</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记(18)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记(18)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>Core Data (一)</h1>
-<h2>序</h2>
+        <h1 id="Core_Data_(一)">Core Data (一)</h1>
+<h2 id="序">序</h2>
 <p>恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。</p>
-<h2>为什么要用Core Data</h2>
+<h2 id="为什么要用Core_Data">为什么要用Core Data</h2>
 <p>CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api取回来就好了。</p>
 <p>我们要用Core Data的理由有以下几点：</p>
 <ol>
@@ -91,9 +119,9 @@
 <a id="more"></a>
 
 
-<h2>存储原理</h2>
-<h3>NSManagedObjectModel</h3>
-<h4>认识</h4>
+<h2 id="存储原理">存储原理</h2>
+<h3 id="NSManagedObjectModel">NSManagedObjectModel</h3>
+<h4 id="认识">认识</h4>
 <p>我个人是把NSManagedObjectModel看做为一个core data的schema。生成这个类的来源是xCode中的Data Model</p>
 <p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36lv4nn89j.jpg" alt=""></p>
 <p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。<br>但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
@@ -102,23 +130,35 @@
 <p>当然还有另外一种表格的方式来编辑Data Model</p>
 <p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36mhk7obgj.jpg" alt=""></p>
 <p>我们编辑这个的这个文件，理论上来说只是一个资源文件。相当于数据库的schema。我们的数据库长什么样子，就是你来设计的。然后在程序中通过NSURL找到这个资源文件的位置。就可以初始化成为NSManagedObjectModel。</p>
-<h4>代码加载Data Model</h4>
+<h4 id="代码加载Data_Model">代码加载Data Model</h4>
 <p>当我们设计好我们的Data Model以后。可以用以下代码，把Data Model加载到NSManagedObjectModel里面去。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>- (void)initializeCoreDataStack{    NSURL *modelURL = <span class="string">[[NSBundle mainBundle] URLForResource:@"PPRecipes" withExtension:@"momd"];    ZAssert(modelURL, @"Failed to find model URL");    NSManagedObjectModel *mom = nil;    mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL]; ZAssert(mom, @"Failed to initialize model");}
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>- (<span class="keyword">void</span>)initializeCoreDataStack
+{
+    <span class="built_in">NSURL</span> *modelURL = [[<span class="built_in">NSBundle</span> mainBundle] URLForResource:@<span class="string">"PPRecipes"</span> withExtension:@<span class="string">"momd"</span>];
+    ZAssert(modelURL, @<span class="string">"Failed to find model URL"</span>);
+    NSManagedObjectModel *mom = <span class="literal">nil</span>;
+    mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL]; ZAssert(mom, @<span class="string">"Failed to initialize model"</span>);
+}
 </pre></td></tr></table></figure>
 
 <p>这样我们就从main bundle里面把data model加载到NSManagedObjectModel这个类里面去了。</p>
-<h3>NSPersistentStoreCoordinator</h3>
+<h3 id="NSPersistentStoreCoordinator">NSPersistentStoreCoordinator</h3>
 <p>NSPersistentStoreCoordinator是整个Core Data的核心。因为承担着全部数据的持久化，加载数据，缓存数据的工作。可以看做Core Data的心脏。</p>
 <p>值得我们开心的事情是，虽然NSPersistentStoreCoordinator很重要，但是我们在写程序的时候其实只用初始化和设置一些很简单的参数就可以使用了。在我们App的整个生命周期里面其实并不会很频繁的使用到它。</p>
-<h4>初始化NSPersistentStoreCoordinator</h4>
+<h4 id="初始化NSPersistentStoreCoordinator">初始化NSPersistentStoreCoordinator</h4>
 <p>初始化NSPersistentStoreCoordinator分为两个步骤</p>
 <ol>
 <li>用已经初始化好的NSManagedObjectModel去初始化它</li>
 <li>选择NSPersistentStore为存储的方式</li>
 </ol>
-<h5>NSPersistentStore</h5>
+<h5 id="NSPersistentStore">NSPersistentStore</h5>
 <p>理论上来说NSPersistentStoreCoordinator的数据不一定要存到硬盘上，它可以存到内存里，可以存到网络上。不过都肯定是对应着不同的应用场景。所以我们一般情况还是把它存储到磁盘上。 NSPersistentStore就是用来描述我们要把数据存到哪里的类。NSPersistentStore还可以指定存储数据的文件的文件类型。</p>
 <p>目前知道的NSPersistentStore支持三种类型：</p>
 <ol>
@@ -128,20 +168,72 @@
 </ol>
 <p>我就只使用SQLite。理论上来说，NSPersistentStore不管选择什么样的存储文件。你后面进行Core Data的操作都是一样的。并不需要修改你的逻辑代码。这就是Core Data把底层封装了一次的好处。(书上说iOS上不建议使用XML)</p>
 <p>有一点需要注意的是NSPersistentStoreCoordinator可以加入不止一个的NSPersistentStore。这个在某些特定场景还是很有用的，以后如果能写到在写把。</p>
-<h5>代码加载NSPersistentStoreCoordinator</h5>
+<h5 id="代码加载NSPersistentStoreCoordinator">代码加载NSPersistentStoreCoordinator</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>    <span class="built_in">dispatch_queue_t</span> queue = <span class="literal">NULL</span>;    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);    <span class="built_in">dispatch_async</span>(queue, ^{        <span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];        <span class="built_in">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory                                                      inDomains:NSUserDomainMask];        <span class="built_in">NSURL</span> *storeURL = <span class="literal">nil</span>;        storeURL = [directoryArray lastObject];        storeURL = [storeURL URLByAppendingPathComponent:@<span class="string">"PPRecipes.sqlite"</span>];        <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;        NSPersistentStore *store = <span class="literal">nil</span>;        store = [psc addPersistentStoreWithType:NSSQLiteStoreType                               configuration   :<span class="literal">nil</span>                               URL             :storeURL                               options         :<span class="literal">nil</span>                               error           :&error];        <span class="keyword">if</span> (!store) {            ALog(@<span class="string">"Error adding persistent store to coordinator %@\n%@"</span>,                 [error localizedDescription], [error userInfo]);        }    });
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre>    <span class="built_in">dispatch_queue_t</span> queue = <span class="literal">NULL</span>;
+    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
+    <span class="built_in">dispatch_async</span>(queue, ^{
+        <span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];
+        <span class="built_in">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory
+                                                      inDomains:NSUserDomainMask];
+        <span class="built_in">NSURL</span> *storeURL = <span class="literal">nil</span>;
+        storeURL = [directoryArray lastObject];
+        storeURL = [storeURL URLByAppendingPathComponent:@<span class="string">"PPRecipes.sqlite"</span>];
+        <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;
+        NSPersistentStore *store = <span class="literal">nil</span>;
+        store = [psc addPersistentStoreWithType:NSSQLiteStoreType
+                               configuration   :<span class="literal">nil</span>
+                               URL             :storeURL
+                               options         :<span class="literal">nil</span>
+                               error           :&error];
+        <span class="keyword">if</span> (!store) {
+            ALog(@<span class="string">"Error adding persistent store to coordinator %@\n%@"</span>,
+                 [error localizedDescription], [error userInfo]);
+        }
+    });
 </pre></td></tr></table></figure>
 
 <p>由于这个过程是一个比较耗费资源的过程。所以我们应该把它放到后台线程里面去做。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">NSFileManager</span> *fileManager = [NSFileManager defaultManager];        <span class="title">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory                                                      inDomains:NSUserDomainMask];
+2
+3
+</pre></td><td class="code"><pre><span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];
+        <span class="built_in">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory
+                                                      inDomains:NSUserDomainMask];
 </pre></td></tr></table></figure>
 
 <p>Apple中不管是OS X还是iOS能上架的App，都是沙箱机制。这个可以自己Goolge看相关的资料。这样的话每一个App都有自己的文件系统。这两句也比较常使用。就是可以获得自己沙箱中的Document文件夹路经。参数的信息直接查文档把。</p>
 <p>接下来很重要的一句是</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>store = [psc <span class="symbol">addPersistentStoreWithType:</span><span class="constant">NSSQLiteStoreType</span>    					configuration   <span class="symbol">:nil</span>    					<span class="constant">URL</span>             <span class="symbol">:storeURL</span>    					options         <span class="symbol">:nil</span>   						error           <span class="symbol">:&error</span>];
+2
+3
+4
+5
+</pre></td><td class="code"><pre>store = [psc <span class="symbol">addPersistentStoreWithType:</span><span class="constant">NSSQLiteStoreType</span>
+    					configuration   <span class="symbol">:nil</span>
+    					<span class="constant">URL</span>             <span class="symbol">:storeURL</span>
+    					options         <span class="symbol">:nil</span>
+   						error           <span class="symbol">:&error</span>];
 </pre></td></tr></table></figure>
 
 <p>此函数的第一个参数是指定NSPersistentStore的存储类型，我们之前说过的三种类型之一。NSSQLiteStoreType就代表这SQLite文件类型。</p>
@@ -149,7 +241,7 @@
 <p>第三个参数就是我们要存储文件的位置。刚刚我们不是获得的沙箱里面的Document文件夹路经了么。然后我们把文件名加入拼为了一个文件的完整路经传入。</p>
 <p>第四个参数类型是一个字典，我们可以传入不同的参数来指定这个NSPersistentStore的类型。比如在本地比如在iCloud。比较高级先为nil。</p>
 <p>最后一个参数，为error，传入一个error指针。如果NSPersistentStore初始化失败我们可以获得相应信息。</p>
-<h3>NSManagedObjectContext</h3>
+<h3 id="NSManagedObjectContext">NSManagedObjectContext</h3>
 <p>NSManagedObjectContext是我们很经常使用到的一个类。对于为什么要有这个类我个人理解是这样的，在我有限的数据库知识中记得，IO操作是很费时的，因此数据库一般情况是把一系列的操作缓存到了一个内存区域，等待合适的实际在去写入真实的磁盘中。这样大大的提高效率。如果你插入一条数据，然后修改数据，最后删除掉这条数据。如果是每次都执行Commit的话是操作三次IO，如果我们把这三条合并在一起commit的话。是任何事情都不必做。这样能有效的提高整个系统的效率。我认为NSManagedObjectContext的作用在于跟持久化直接做了这层缓存。我们使用Core Data。</p>
 <p>还有一点需要注意的是NSManagedObjectContext并不是线程安全的。</p>
 <p>关于NSManagedObjectContext的线程安全和高级解释，这里有两篇blog写的超好。</p>
@@ -157,14 +249,20 @@
 <p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/" target="_blank">Multi-Context CoreData</a></p>
 <p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/" target="_blank">Zarra on Locking</a></p>
 <p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
-<h4>代码加载NSManagedObjectContext</h4>
+<h4 id="代码加载NSManagedObjectContext">代码加载NSManagedObjectContext</h4>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>NSManagedObjectContext                  *moc = <span class="keyword">nil</span>;NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;moc = <span class="string">[[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];[moc setPersistentStoreCoordinator:psc];[self setManagedObjectContext:moc];
+2
+3
+4
+5
+</pre></td><td class="code"><pre>NSManagedObjectContext                  *moc = nil;
+NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;
+moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];
+[moc <span class="keyword">set</span>PersistentStoreCoordinator:psc];
+[self <span class="keyword">set</span>ManagedObjectContext:moc];
 </pre></td></tr></table></figure>
 
-
-
-<h3>总结</h3>
+<h3 id="总结">总结</h3>
 <p><img src="http://ww2.sinaimg.cn/large/a7480316jw1e39dc0y8o2j.jpg" alt=""></p>
 <p>至此，三个Core Data的核心类就已经简单说完了一次。他们的关系在上面的图片中表示的很清楚的样子。</p>
 <p>NSPersistentStoreCoordinator从NSManagedObjectModel得到模型然后选择NSPersistentStore作为持久化目的地。然后NSManagedObjectContext在作为NSPersistentStoreCoordinator的一个缓存区给我们操作。</p>
@@ -172,114 +270,154 @@
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/" data-id="5od9ujq4bamwbgm0" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/04/01/learning-ios-notes-nineteen/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记(19)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/03/19/learning-mac-notes-one/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mac笔记 (1)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

@@ -1,26 +1,25 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>第 9 页 | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
+  <title>萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+  <meta name="og:type" content="blog">
+<meta name="og:title">
+<meta name="og:url" content="http://iiiyu.com/page/9/">
+<meta name="og:image">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description">
+<meta name="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="萧宸宇"/>
-
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-    <meta property="og:image" content="undefined"/>
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,301 +35,419 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/about-me">关于我</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
       
-        <div class="icon"></div>
-        <time datetime="2012-04-20T15:13:00.000Z"><a href="/2012/04/20/new-beginning/">4月 20 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/04/20/new-beginning/">新的开始</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>序</h1>
-<p>离上一次更新Blog已经过去了17天。这17天里面发生了很多事情。简单说来就是我离开了东莞来到了厦门。然后自己对自己偷懒，没有写blog。</p>
-
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
       
     </div>
-    <footer>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-learning-ios-notes-seven" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/05/06/learning-ios-notes-seven/" class="article-date">
+  <time datetime="2012-05-06T02:28:00.000Z" itemprop="datePublished">5月 6 2012</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/05/06/learning-ios-notes-seven/">iOS笔记 (7)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="iOS笔记_Core_Location定位">iOS笔记 Core Location定位</h1>
+<h2 id="主要问题">主要问题</h2>
+<p>很多应用上需要获得当前用户所在的位置，有或者需要在地图上根据座标显示一些点一些信息。这次主要分享Core Location定位当前位置我遇到的问题。</p>
+
         
-          <div class="alignleft">
-            <a href="/2012/04/20/new-beginning/#more" class="more-link">阅读更多</a>
-          </div>
-        
+          <p class="article-more-link">
+            <a href="/2012/05/06/learning-ios-notes-seven/#more">阅读更多</a>
+          </p>
         
       
-      <div class="clearfix"></div>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/05/06/learning-ios-notes-seven/" data-id="l9mqoy316nwaiklu" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2012/05/06/learning-ios-notes-seven/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
+  
+    <article id="post-learning-ios-notes-six" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/04/25/learning-ios-notes-six/" class="article-date">
+  <time datetime="2012-04-24T17:40:00.000Z" itemprop="datePublished">4月 25 2012</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/04/25/learning-ios-notes-six/">iOS笔记 (6)</a>
+    </h1>
+  
 
-  <article class="post">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iOS笔记_利用ASIHTTPRequest做断点续传">iOS笔记 利用ASIHTTPRequest做断点续传</h1>
+<h2 id="主要问题">主要问题</h2>
+<p>需要请求Http协议，下载一个zip包。包比较大，希望能后台下载。退出应用再次打开的时候能接着上一次的下载。专业名称：断点续传。</p>
+<h2 id="寻找方案">寻找方案</h2>
+<p>iOS目前三大开源网络库</p>
+<ul>
+<li>ASIHTTPRequest</li>
+<li>AFNetWorking</li>
+<li>MKNetworkKit</li>
+</ul>
+<p>个人以Google出来的信息得出的对比：</p>
+<p>| 网络库 | 优点 | 缺点 |</p>
+<p>| —————— | ——————- | —————— |</p>
+<p>| ASIHTTPRequest | 老牌、功能强大、文档丰富  | 停止更新、新特性少、厚重 |</p>
+<p>| AFNetWorking | github上比较火的项目、有稳定的两个主要负责人、能支持比较新的特性、一直有更新  | 文档数目一般、有些功能貌似要自己写 |</p>
+<p>| MKNetworkKit | 支持ARC、号称要有 ASIHTTPRequest的功能，AFNetWorking的轻便 | 文档数目最少、只有作者一个主要负责人 |</p>
+<p>在结合我是一个新新手的缘由。如果用库的话，首选ASIHTTPRequest。<br>候选AFNetWorking。</p>
+<p>AFNetWorking 被Google到<a href="https://github.com/AFNetworking/AFNetworking/pull/270" target="_blank">这样的解决方法</a>.本来准备fork了。然后仔细看了看下面的讨论。</p>
+<p>觉得自己实现一个？ <a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">原理在这里</a></p>
+<p>sunmmer大神给了一个不用库<a href="https://developer.apple.com/library/ios/#qa/qa1761/_index.html" target="_blank">实现的例子</a></p>
+<p>后面想了想，对于网络其实我也是新手来的。自己写，未必有成熟的库写的好。所以决定使用ASIHTTPRequest。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2012/04/25/learning-ios-notes-six/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/04/25/learning-ios-notes-six/" data-id="uknkmfoymbqdrmiy" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2012/04/25/learning-ios-notes-six/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-04-03T15:31:00.000Z"><a href="/2012/04/03/learning-ios-notes-five/">4月 3 2012</a></time>
-      
-      
+</article>
+
+
   
-    <h1 class="title"><a href="/2012/04/03/learning-ios-notes-five/">iOS笔记 (5)</a></h1>
+    <article id="post-new-beginning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/04/20/new-beginning/" class="article-date">
+  <time datetime="2012-04-20T15:13:00.000Z" itemprop="datePublished">4月 20 2012</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/04/20/new-beginning/">新的开始</a>
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>iOS笔记——ViewController的生命周期</h1>
-<h2>生命周期</h2>
+        <h1 id="序">序</h1>
+<p>离上一次更新Blog已经过去了17天。这17天里面发生了很多事情。简单说来就是我离开了东莞来到了厦门。然后自己对自己偷懒，没有写blog。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2012/04/20/new-beginning/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/04/20/new-beginning/" data-id="dika8gu6nopycjui" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2012/04/20/new-beginning/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/just-talk/">just-talk</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-learning-ios-notes-five" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/04/03/learning-ios-notes-five/" class="article-date">
+  <time datetime="2012-04-03T15:31:00.000Z" itemprop="datePublished">4月 3 2012</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/04/03/learning-ios-notes-five/">iOS笔记 (5)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iOS笔记——ViewController的生命周期">iOS笔记——ViewController的生命周期</h1>
+<h2 id="生命周期">生命周期</h2>
 <p>这个宇宙中，我们认知当中所有事物都是有一个起点然后到达一个终点。在四维的世界里面，衡量的介质就是时间。所以我们写的程序也是一样的，不管是C还是iOS程序里面，每一个东西在时间流逝中它都有自己的一个起点，终点。</p>
 <p>了解程序里面大部分东西的起点和终点的意义是，我们想在这个东西诞生时候和结束的时候做一些事情，一些是我们自愿加入的(比如初始化一个美女的图片)，有些是不得不做的(比如指向这个图片已经销毁，但是这个指针你没有赋值nil，其他的地方还在调用它，就会出错)。</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2012/04/03/learning-ios-notes-five/#more">阅读更多</a>
+          </p>
+        
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/04/03/learning-ios-notes-five/" data-id="cxvb5m8cvudljdh9" class="article-share-link">Share</a>
       
-        
-          <div class="alignleft">
-            <a href="/2012/04/03/learning-ios-notes-five/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
+        <a href="http://iiiyu.com/2012/04/03/learning-ios-notes-five/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
+  
+    <article id="post-ioscon-guangzhou" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/03/25/ioscon-guangzhou/" class="article-date">
+  <time datetime="2012-03-25T14:39:00.000Z" itemprop="datePublished">3月 25 2012</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/03/25/ioscon-guangzhou/">iOScon 广州之行</a>
+    </h1>
+  
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <div class="icon"></div>
-        <time datetime="2012-03-25T14:39:00.000Z"><a href="/2012/03/25/ioscon-guangzhou/">3月 25 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/25/ioscon-guangzhou/">iOScon 广州之行</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>序</h1>
+        <h1 id="序">序</h1>
 <p>广州之行，是大概月初的时候偶然看到iOScon的中国年会。然后发现广州有分会场。就过来看了。这是我第三次为了技术大会跑广州。</p>
 <p>第一次是Fedora16的发布。然后在广州大学城里面。大学名字居然我给忘记了。可是我还记得过去看那一张张洋溢着青春的脸，一想起这些脸庞，我就唏嘘不已。感觉到自己不年轻了。那次还有主席的一同前往。</p>
-<p>第二次是36kr的创业日。那次叫上了刚读大学的表妹。去了看了传说已久的网易大厦。那次叫人山人海啊。还忒喵的热。全部看下来，就觉得只有一个公司比较nice。其他的昏昏欲睡。不过那次也看见了“姐夫”。</p>
+<p>第二次是36kr的创业日。那次叫上了刚读大学的表妹。去了看了传说已久的网易大厦。那次叫人山人海啊。还忒喵的热。全部看下来，就觉得只有一个公司比较nice。其他的昏昏欲睡。不过那次也看见了”姐夫”。</p>
 <p>第三次，也就是这次了。也是一大早起来赶汽车，然后过去了找了一个类似KFC的中式快餐解决的午餐。就直接过去了。</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2012/03/25/ioscon-guangzhou/#more">阅读更多</a>
+          </p>
+        
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/03/25/ioscon-guangzhou/" data-id="2lg570q2lve2yl27" class="article-share-link">Share</a>
       
-        
-          <div class="alignleft">
-            <a href="/2012/03/25/ioscon-guangzhou/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
+        <a href="http://iiiyu.com/2012/03/25/ioscon-guangzhou/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/just-talk/">just-talk</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-21T05:38:00.000Z"><a href="/2012/03/21/learning-ios-notes-four/">3月 21 2012</a></time>
-      
-      
   
-    <h1 class="title"><a href="/2012/03/21/learning-ios-notes-four/">iOS笔记 (4)</a></h1>
+    <nav id="page-nav">
+      <a class="extend prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" href="/page/10/">Next &raquo;</a>
+    </nav>
   
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS笔记——九宫解锁基础部分</h1>
-<h2>目的</h2>
-<p>为了第一个App，一步一步的做出来。所以先弄最基本的想做一个类似Android九宫解锁的View。一开始完全没有思路啊。后来看了好几遍老头的画笑脸以后才有点思路。所以来一步一步做吧。</p>
-
-      
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
     </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/21/learning-ios-notes-four/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
-</article>
 
-
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-14T11:12:00.000Z"><a href="/2012/03/14/talk-about-the-software/">3月 14 2012</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/03/14/talk-about-the-software/">谈谈软件的一些事</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近，思想里面很是混乱。估计就是心事重重一类型的吧。脑子里面不断闪现一些零碎的东西。所以我还是把一些认为比较有价值的记录一下，以免丢失。</p>
-<p>科技的进步使得我们的世界变得美好了那么一点。电脑软件的不断丰富也使得我们的生活变的美好了一些。做为一个365天几乎360天+都要在电脑上度过的苦逼码畜来说，一个软件深度的长时间的去用，不仅仅是它能解决一些问题，而且还关系到解决问题的效果，效率。以及看起来装不装13,用起来爽不爽。</p>
-<p>除去一些毫无创意，没有价值，千篇一律的软件以外，接下来讨论的前提是一些值得尝试的软件。</p>
-<p>根据我最近的经验来看一个软件有以下三个因素或成正比，或成反比：</p>
-<pre><code>易用性
-学习时间
-工作效率</code></pre>
-
-      
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2012/03/14/talk-about-the-software/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
-</article>
-
-
-
-
-<nav id="pagination">
-  
-    <a href="/page/8/" class="alignleft prev">上一页</a>
-  
-  
-    <a href="/page/10/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

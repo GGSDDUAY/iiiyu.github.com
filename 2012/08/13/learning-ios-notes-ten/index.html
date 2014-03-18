@@ -1,26 +1,33 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记 (10) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记 (10)">
+<meta name="og:url" content="http://iiiyu.com/2012/08/13/learning-ios-notes-ten/">
+<meta name="og:image" content="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="关于回调函数——Delegate的那些事
+序
+iOS笔记也终于迈入两位数之列。在此里程碑下。明显要拿出点诚意来好好写一写。所以，我决定写一下早已改写的delegate。
+什么是回调函数
+我们先不管delegate，我们先来说说回调函数(callback).wiki的解释在这里。
+回调函数，或简称回调，是指通过函数参数传递到其它代码的，某一块可执行代码的引用。
+好我来说所自己理解过后的解释:
 
-  <meta property="og:title" content="iOS笔记 (10)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
+如果">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,50 +43,75 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-ten" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/08/13/learning-ios-notes-ten/" class="article-date">
+  <time datetime="2012-08-13T06:17:00.000Z" itemprop="datePublished">8月 13 2012</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-08-13T06:17:00.000Z"><a href="/2012/08/13/learning-ios-notes-ten/">8月 13 2012</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记 (10)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记 (10)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>关于回调函数——Delegate的那些事</h1>
-<h2>序</h2>
+        <h1 id="关于回调函数——Delegate的那些事">关于回调函数——Delegate的那些事</h1>
+<h2 id="序">序</h2>
 <p>iOS笔记也终于迈入两位数之列。在此里程碑下。明显要拿出点诚意来好好写一写。所以，我决定写一下早已改写的delegate。</p>
-<h2>什么是回调函数</h2>
+<h2 id="什么是回调函数">什么是回调函数</h2>
 <p>我们先不管delegate，我们先来说说回调函数(callback).<a href="http://zh.wikipedia.org/wiki/回调函数" target="_blank">wiki</a>的解释在这里。</p>
-<pre><code>回调函数，或简称回调，是指通过函数参数传递到其它代码的，某一块可执行代码的引用。</code></pre>
-<p>好我来说所自己理解过后的解释:</p>
+<pre><code>回调函数，或简称回调，是指通过函数参数传递到其它代码的，某一块可执行代码的引用。
+</code></pre><p>好我来说所自己理解过后的解释:</p>
 <ol>
 <li>如果不用回调函数可不可以写程序。(明显可以)</li>
 <li>那为什么要用回调函数这种东西。(现代开发软件过程中其实一直在强调一些相同的东西:抽象、复用)</li>
@@ -92,7 +124,7 @@
 <p>扯了这么多。其实就是wiki上解释的哪些而已。如果还不明白，再看一次wiki。再多写写代码吧。</p>
 <a id="more"></a>
 
-<h2>那什么是delegate</h2>
+<h2 id="那什么是delegate">那什么是delegate</h2>
 <p>找了一个比较专业的解释<a href="http://www.uml.org.cn/j2ee/200411036.htm" target="_blank">这里</a></p>
 <p>对于delegate不是一个具体的技术，它是一个设计模式。他是面向对象编程思想里面的一种基础方法。好如果你看了我的第一个笔记的话，还记得我描述MVC的比喻么<a href="http://www.iiiyu.com/blog/2012/02/28/learning-ios-notes-one/" target="_blank">这里</a>为了描述方便我还是搬运一次来这里把。<br>    controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想<br>    在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置<br>    一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有<br>    时候view狗腿子要和主子controller步调保持一致（synchronize 同步）这个时候要怎么做呢。在<br>    controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置<br>    （协议。哈哈 objective-c的语法出现了。）</p>
 <pre><code><span class="title">view</span>狗腿是不会拥有显示的数据，如果狗腿需要数据的时候数据会通过协议来取得。controllers几
@@ -101,8 +133,8 @@
 斗米折腰）。 那model有一些忠义之言（信息更新）要进谏给controller怎么办。 model就自己想
 办法弄了一个广播电台（类似broadcast mechanism广播机制。<span class="type">PS</span>：学过设计模式的童鞋还hold住
 么）controllers 或者其他model就可以“收听”到感兴趣的内容。view可能也有“收听”这个功能，
-但是很可能收到的不是model这个台。</code></pre>
-<p>其实这个故事是根据老头第一课的视频加keynote自己联想出来的。来回顾一下这张经典的keynote<br><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
+但是很可能收到的不是model这个台。
+</code></pre><p>其实这个故事是根据老头第一课的视频加keynote自己联想出来的。来回顾一下这张经典的keynote<br><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
 <ol>
 <li>这个是iOS中MVC的最好诠释</li>
 <li>上面把iOS里面的回调方式常用的都画出来了。只差一个block样式的现代接口。(理论上来说，我应该会把每一个回调都写一篇blog，尽请期待)</li>
@@ -114,8 +146,8 @@
 <li>Notification &amp; KVO</li>
 </ol>
 <p>根据我这几个月以来的编写感悟而言，这张keynote真的太经典了。delegate从view回来一般是三个函数(will should did)都是在view的不同阶段进行回调都是很有用的时候。比如view将要显示的时候(带有will的delegate函数)。已经完成了的显示的(带有did的函数)。所以delegate是什么时候用。</p>
-<p>就是view狗腿在可能主子Controller需要知道的时候设置了一种通知方式。可以想象成，从大殿之外飞奔进来一个狗腿说：&quot;报<del>~我准备去抢花姑娘了。圣上有何吩咐“。controller说:”带点长腿 A罩杯的回来“ 。然后狗腿飞奔出去办事。过了一会狗腿又飞奔进来:”报</del>~~抢花姑娘回来了，圣上有何吩咐“。controller说:”带到xx宫，洗干净等我&quot;。狗腿的报告主子是可以不理会的。(这句主要是为了解释protocol里面的optional关键字)这个例子可能比较恶趣味+不怎么清楚。但是技术的东西我们还是弄娱乐点吧。</p>
-<h2>实现delegate</h2>
+<p>就是view狗腿在可能主子Controller需要知道的时候设置了一种通知方式。可以想象成，从大殿之外飞奔进来一个狗腿说：”报<del>~我准备去抢花姑娘了。圣上有何吩咐”。controller说:”带点长腿 A罩杯的回来” 。然后狗腿飞奔出去办事。过了一会狗腿又飞奔进来:”报</del>~~抢花姑娘回来了，圣上有何吩咐”。controller说:”带到xx宫，洗干净等我”。狗腿的报告主子是可以不理会的。(这句主要是为了解释protocol里面的optional关键字)这个例子可能比较恶趣味+不怎么清楚。但是技术的东西我们还是弄娱乐点吧。</p>
+<h2 id="实现delegate">实现delegate</h2>
 <p>ok，说了这么多的东西。我主要想解释为什么会有delegate这种东西。它的应用场景。接下来，我会借助这些文章:</p>
 <p><a href="http://marshal.easymorse.com/tech/objc-委托模式" target="_blank">文章1</a></p>
 <p><a href="http://haoxiang.org/2011/08/ios-delegate-and-protocol/" target="_blank">文章2</a> </p>
@@ -138,20 +170,20 @@
 12
 13
 14
-</pre></td><td class="code"><pre>@<span class="class"><span class="keyword">protocol</span> <span class="id">MyClassDelegate</span> &lt;<span class="id">NSObject</span>&gt;</span>
-@<span class="keyword">optional</span>
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">@protocol</span> <span class="title">MyClassDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span>
+<span class="keyword">@optional</span>
 - (<span class="keyword">void</span>) will抢花姑娘:(MyClass*)myClass;
 - (<span class="keyword">void</span>) did抢花姑娘:(MyClass *)myClass;
-@<span class="keyword">end</span>
+<span class="keyword">@end</span>
 
-@<span class="class"><span class="keyword">interface</span> <span class="id">MyClass</span></span>
+<span class="class"><span class="keyword">@interface</span> <span class="title">MyClass</span></span>
 {
     <span class="keyword">id</span>&lt;MyClassDelegate&gt; delegate;
     FlowerGirl *flowerGirl;
 }
-@<span class="keyword">property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) delegate;
-@<span class="keyword">property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) flowerGirl;
-@<span class="keyword">end</span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) delegate;
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) flowerGirl;
+<span class="keyword">@end</span>
 </pre></td></tr></table></figure>
 
 <p>这里为什么要用weak。<a href="http://popcornylu.blogspot.com/2011/07/delegate.html" target="_blank">这里</a>有详细的分析。自备云梯</p>
@@ -178,24 +210,24 @@
 18
 19
 </pre></td><td class="code"><pre>
-@implementation MyClass
+<span class="class"><span class="keyword">@implementation</span> <span class="title">MyClass</span></span>
 
 -(<span class="keyword">void</span>) 抢花姑娘
 {
-	    if ([self.<span class="class"><span class="keyword">delegate</span> <span class="title">respondsToSelector</span>:@<span class="title">selector</span>(<span class="title">will</span>抢花姑娘:)]) {</span>
-        [self.<span class="class"><span class="keyword">delegate</span> <span class="title">will</span>抢花姑娘:<span class="title">self</span>];
+	    <span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.delegate</span> respondsToSelector:<span class="keyword">@selector</span>(will抢花姑娘:)]) {
+        [<span class="keyword">self</span><span class="variable">.delegate</span> will抢花姑娘:<span class="keyword">self</span>];
     }
-    // <span class="title">do</span> <span class="title">something</span> 出去抢花姑娘
-    // 并且抢到了
+    <span class="comment">// do something 出去抢花姑娘</span>
+    <span class="comment">// 并且抢到了</span>
     
-    	<span class="title">if</span> ([<span class="title">self</span>.<span class="title">delegate</span> <span class="title">respondsToSelector</span>:@<span class="title">selector</span>(<span class="title">did</span>抢花姑娘:)]) {</span>
-        [self.<span class="class"><span class="keyword">delegate</span> <span class="title">did</span>抢花姑娘:<span class="title">self</span>];
+    	<span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.delegate</span> respondsToSelector:<span class="keyword">@selector</span>(did抢花姑娘:)]) {
+        [<span class="keyword">self</span><span class="variable">.delegate</span> did抢花姑娘:<span class="keyword">self</span>];
     }
     
     
 }
 
-@<span class="title">end</span>
+<span class="keyword">@end</span>
 </pre></td></tr></table></figure>
 
 <p>这里要注意的是[self.delegate respondsToSelector:xxx]方法。这个方法用于检验主子有没有实现xxx方法，如果实现了，在做xxx。没有没有实现的话就不做xxx了。如代码所示.</p>
@@ -255,119 +287,159 @@
 </pre></td></tr></table></figure>
 
 <p>具体就是这样。代码是伪码一般，只是写着写着就想着对应我的恶趣味例子。鄙视一下自己。</p>
-<h2>总结</h2>
+<h2 id="总结">总结</h2>
 <p>我觉得我扯了这么多，包括贴出来的文章地址看完以后，你应该对delegate有一个感性的认识了把。如果你对blog内容有满意or不满意和错误的地方。欢迎指出。我一定改进。谢谢。</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/08/13/learning-ios-notes-ten/" data-id="1t0gv41lwh78bxzh" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2012/08/13/learning-ios-notes-ten/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/09/02/learning-ios-notes-eleven/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记 (11)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/08/12/learning-ios-notes-nine/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS笔记 (9)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2012/08/13/learning-ios-notes-ten/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

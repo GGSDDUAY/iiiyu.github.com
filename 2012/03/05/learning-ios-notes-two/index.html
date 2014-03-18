@@ -1,26 +1,28 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记 (2) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="iOS笔记 (2)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记 (2)">
+<meta name="og:url" content="http://iiiyu.com/2012/03/05/learning-ios-notes-two/">
+<meta name="og:image">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
+iOS的MVC初级代码说明
+上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
+斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,45 +38,70 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-two" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/03/05/learning-ios-notes-two/" class="article-date">
+  <time datetime="2012-03-04T16:25:00.000Z" itemprop="datePublished">3月 5 2012</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-04T16:25:00.000Z"><a href="/2012/03/05/learning-ios-notes-two/">3月 5 2012</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记 (2)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记 (2)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <p>此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。</p>
-<h2>iOS的MVC初级代码说明</h2>
+<h2 id="iOS的MVC初级代码说明">iOS的MVC初级代码说明</h2>
 <p>上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。</p>
 <p>斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到12课而已。所以现在只讨论IOS5开发中的view和controller。</p>
 <p>IOS5中，我们可以看到一个叫storyboard的文件。这个文件就是view。或者说是view的载体。UIKit上所有的控件都可以往上面拖。这里我简单的把storyboard以及带UI前缀的类都统一看成view。view就是再ios设备上你能看见的整个屏幕。</p>
@@ -86,8 +113,8 @@
 <p>controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致。这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置 </p>
 </blockquote>
 <p>在老头的视频教学里面我们可以看到。比如一个UILabel拖到storyboard上面的时候，这个UILabel仅仅是一个view，它和controller还没有产生任何关系。此时我们的主子controller要知道他有了一个狗腿UILabel这个view要怎么办呢。我们就按着Ctrl点击UILabel拖入XXXViewController.h文件里面，形成一个outlet。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;
 </pre></td></tr></table></figure>
 
 <p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
@@ -103,14 +130,14 @@
 </pre></td></tr></table></figure>
 
 <p>这就是狗腿出什么样的事情通知主子的地方。</p>
-<h2>一些小细节上的感悟</h2>
-<h4>ARC和strong、weak</h4>
+<h2 id="一些小细节上的感悟">一些小细节上的感悟</h2>
+<h4 id="ARC和strong、weak">ARC和strong、weak</h4>
 <p>新的IOS5引入了ARC（Automatic Referencing Counting）机制。当然，你可以在创建项目的时候不选择，或者再项目创建以后关闭它来手动释放内存。</p>
 <p>可惜我直接是从IOS5开始学习，而且不喜欢旧的东西。所以坚决使用ARC和storyboard。而且再内存管理上，我觉得编译器比人靠谱多了。当然我也是初学IOS。理解上可能有错误，欢迎指导。</p>
 <p>窃以为使用ARC，一开始接触到的是：</p>
-<pre><code><span class="title">strong</span>
-<span class="title">weak</span></code></pre>
-<p>在我的记录中老头是这样定义的：</p>
+<pre><code><span class="keyword">strong</span>
+<span class="keyword">weak</span>
+</code></pre><p>在我的记录中老头是这样定义的：</p>
 <blockquote>
 <p>Strong and weak are descriptions or attributes parentheses.<br>Strong keep it in the heap. Keep it in heap until i stop pointing to it.<br>Weak keep this as long as someone else point to it strongly.</p>
 </blockquote>
@@ -119,143 +146,183 @@
 <p>Strong and weak. This is not garbage collection.<br>This is refernce counting done automatically for you.</p>
 </blockquote>
 <p>大概就是strong声明的东西是放到内存堆里面,它在我停止指向它之前都一直会在内存堆里面，引用记数也不会为0（猜测）。weak呢，则是只要没有指向它的东西时候，引用记数就为0了。然后呢，他们都只管理引用记数这个一亩三分田。至于垃圾回收这种工作，是不该他们管理的。</p>
-<h4>声明初始化类</h4>
+<h4 id="声明初始化类">声明初始化类</h4>
 <p>一句话:</p>
 <p>alloc后面永远跟着init</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="string">[[CalculatorBrain alloc] init];
+</pre></td><td class="code"><pre>[[CalculatorBrain alloc] init];
 [[NSMutableArray alloc] init]
-...
+<span class="keyword">...</span>
 </pre></td></tr></table></figure>
 
-<h4>面向对象的封装</h4>
+<h4 id="面向对象的封装">面向对象的封装</h4>
 <p>小时候还在用过几天java写web的时候，很纳闷为什么每一个属性都要写get、set方法。直到现在才慢慢明白这是封装。封装的好处。</p>
 <p>在IOS5编程里面。通常是用@property来声明属性，然后使用@synthesize来默认使用get、set方法。当然，再objective-c里面可以重写get、set方法。而且我觉得@property和@synthesize应该像alloc和init一样配套使用。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-</pre></td><td class="code"><pre>@<span class="keyword">property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
+</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
 
 
-@<span class="keyword">synthesize</span> operandStack = _operandStack;
+<span class="keyword">@synthesize</span> operandStack = _operandStack;
 </pre></td></tr></table></figure>
 
-<h4>编译器的强大</h4>
+<h4 id="编译器的强大">编译器的强大</h4>
 <p>不管是ARC还是后面的get、set方法。都是再编译的时候编辑器加上去的。（猜测）然后各种听说Apple为了让App再IOS跑的更好更流畅。一直再不停的优化llvm。这也是搭载Android的设备硬件远超过IOS设备的情况下还是没有IOS用着爽的底层原因之一吧。 所以，我觉得应该百分百相信编译器。如果出错了。肯定是程序写的有问题。</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/03/05/learning-ios-notes-two/" data-id="a0dpbbuh2jmfe6jv" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2012/03/05/learning-ios-notes-two/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/03/08/learning-ios-notes-three/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记 (3)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/02/29/emacs-set-up-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">调教Emacs(二)——更好 更强 更快</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2012/03/05/learning-ios-notes-two/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

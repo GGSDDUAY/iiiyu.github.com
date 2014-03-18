@@ -1,26 +1,35 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记(20) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记(20)">
+<meta name="og:url" content="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/">
+<meta name="og:image" content="http://ww4.sinaimg.cn/large/a74ecc4cjw1e3q5jk1wrtj.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="UITableView简单解析
+序
+UITableView是在iOS开发中，展示大量内容的首选。我个人认为的原有有一下几点：
 
-  <meta property="og:title" content="iOS笔记(20)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
+UITableView的展现形式是为移动设备专门设计过的。有较好的人机交互体验。
+从技术角度来说UITableView具有重用和延迟加载等特性。如果使用恰当。可以获得一个App流畅的用户体验。
 
+这样，使得UITableView在iOS App中随处可见。
+原生应用
+
+一">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,45 +45,70 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-twenty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/15/learning-ios-notes-twenty/" class="article-date">
+  <time datetime="2013-04-15T06:02:11.000Z" itemprop="datePublished">4月 15 2013</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-15T06:02:11.000Z"><a href="/2013/04/15/learning-ios-notes-twenty/">4月 15 2013</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记(20)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记(20)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>UITableView简单解析</h1>
-<h2>序</h2>
+        <h1 id="UITableView简单解析">UITableView简单解析</h1>
+<h2 id="序">序</h2>
 <p>UITableView是在iOS开发中，展示大量内容的首选。我个人认为的原有有一下几点：</p>
 <ol>
 <li>UITableView的展现形式是为移动设备专门设计过的。有较好的人机交互体验。</li>
@@ -91,8 +125,8 @@
 <a id="more"></a>
 
 
-<h2>关于数据的思考</h2>
-<h3>没有UITableView的时候我是这样想的</h3>
+<h2 id="关于数据的思考">关于数据的思考</h2>
+<h3 id="没有UITableView的时候我是这样想的">没有UITableView的时候我是这样想的</h3>
 <p>首先思考为什么会有UITableView这样的控件。我们做一个App的时候，就会有大量的数据需要显示。比如weibo的每一个状态。比如一个新闻App的很多条新闻。这些数据都会有一个特点就是他们的组织形式一样，只是内容变化。有时候我们可能会根据一些条件进行分组。使得看来了是分组的。例如 联系人里面会按照首字母来进行分组一样。我们还可能会点击数据以便查看更详细的内容。</p>
 <p>通过上面的简单描述，如果来自己实现一个类似UITableView的结构。需要得到最核心的：</p>
 <ol>
@@ -105,14 +139,14 @@
 <li>每一组有多少个数据</li>
 <li>每一条数据的具体内容是什么</li>
 </ol>
-<h3>UITableView是怎么做的</h3>
+<h3 id="UITableView是怎么做的">UITableView是怎么做的</h3>
 <p>在UITableView中。最重要的就是data source中的两个方法。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(<span class="variable">NSInteger</span>)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView numberOfRowsInSection:<span class="params">(<span class="variable">NSInteger</span>)</span>section;
 
-- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;
+- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;</span>
 </pre></td></tr></table></figure>
 
 <p>什么是data source。字面意思就是很明白，数据的来源。一般情况下我们会设置拥有UITableView的这个UIViewController为他的data source。因为根据MVC来说。UITableView是View，UIViewController是Controller。View需要的数据，应该是Controller去跟Model协调然后获得，以后由Controller去给View来进行显示。View永远的不去直接跟Model联系。这样当UITableView初始化的时候。他就会去问他的data source。我需要显示多少行数据啊。每一行的数据都是什么内容啊。这时候UIViewController应该已经从Model拿到了数据。然后通过- (NSInteger)tableView:(UITableView <em>)tableView numberOfRowsInSection:(NSInteger)section;告诉UITableview，恩你的这一组要显示n条数据。又用- (UITableViewCell </em>)tableView:(UITableView <em>)tableView cellForRowAtIndexPath:(NSIndexPath </em>)indexPath函数告诉UITableView说，第几组第几条数据的具体内容是什么。</p>
@@ -128,12 +162,12 @@
 3
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(<span class="variable">NSInteger</span>)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView numberOfRowsInSection:<span class="params">(<span class="variable">NSInteger</span>)</span>section;
 
-- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;
+- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;</span>
 </pre></td></tr></table></figure>
 
 <p>这两个函数。我们就可以得到一个能显示的UITableView了。</p>
 <p>现在是是仅仅解释了UITableView的数据是怎么来的，然后怎么对应到UITableView上面。</p>
-<h2>UITableViewCell</h2>
+<h2 id="UITableViewCell">UITableViewCell</h2>
 <p>UITableViewCell具体的每一条数据展示的具体View。首先在UITableView里面有这样一个特点，每一个Cell的大概样子都长的差不多，只是里面具体的内容稍有变化。这样在UI里面我们应该是重用相同的部分，改变不同的部分。这样才能提高效率。因为在UiTableView这个视图里面，用户习惯性快速的滚动，视图和数据内容都会快速的变化，如果效率问题处理不好，很容易有卡顿的现象。造成用户体验的降低。</p>
 <p>如果使用默认的UITableViewCell风格，有以下四种</p>
 <p>UITableViewCellStyleDefault</p>
@@ -156,20 +190,20 @@
 7
 8
 9
-</pre></td><td class="code"><pre>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+</pre></td><td class="code"><pre>- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath
 {
-    static NSString *Cell = @<span class="string">"MyCell"</span>;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Cell];
+    <span class="keyword">static</span> <span class="built_in">NSString</span> *Cell = @<span class="string">"MyCell"</span>;
+    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:Cell];
     <span class="keyword">if</span> (!cell) {
-        cell = <span class="string">[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Cell];
+        cell = [[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Cell];
     }
-    return cell;
+    <span class="keyword">return</span> cell;
 }
 </pre></td></tr></table></figure>
 
 <p>重要的是UITableView的dequeueReusableCellWithIdentifier方法。</p>
 <p>dequeueReusableCellWithIdentifier去一个队列里面需找有没有相同ID的的Cell。如果有就提出来重用。可以重用的部分。如果没有就跳进if里面去创建。所以我们在if里面创建的时候，不会改变的内容都可以在里面创建，这样就只用创建一次。需要改变的内容我们就放到if后面去写。 这样我们就能完成高效的UITableView。当然，理论上来说，你可以不用这样的机制，而去直接每次创建一个Cell。不过这是非常浪费资源的一个做法，直接不提倡。</p>
-<h2>UITableView Delegate</h2>
+<h2 id="UITableView_Delegate">UITableView Delegate</h2>
 <p>当然，在写UITableView肯定想控制的更多。才能完成设计师们辛辛苦苦画出来的稿。这样我们可以去看看Data source里面剩下的函数和Delegate。</p>
 <p>当然就说一点</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -188,7 +222,7 @@
 
 <p>这个是选中Cell时候会的出发点。如果要点击以后做什么事情 就在这里做了。 </p>
 <p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573" target="_blank">找了篇目测还ok的中文blog可以先看看了解</a></p>
-<h2>数据刷新</h2>
+<h2 id="数据刷新">数据刷新</h2>
 <p>如果我们的modle更新了。相应的要体现到UITableView上面。简单的我们可以reload整个TableView。这样做很方便，而且数据上没有问题。唯一的问题就是，reload整个TableView的效率太低了。而且，往往我们只是少数的Cell内容变化。所以没有必要去reload整个TableView。而是那条数据变化去刷新对应的Cell就好了。这样做效率提高很多。</p>
 <p>具体涉及到的几个函数</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -210,128 +244,168 @@
  
 - <span class="params">(void)</span>insertRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation: <span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
 - <span class="params">(void)</span>deleteRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation: <span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
-- <span class="params">(void)</span>reloadRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
+- <span class="params">(void)</span>reloadRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;</span>
 </pre></td></tr></table></figure>
 
 <p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html" target="_blank">这里有实例代码可以参考</a></p>
 <p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1" target="_blank">官方教程</a></p>
 <p>里面写了如何优化UITableView：</p>
 <p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能" target="_blank">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
-<h2>后记</h2>
+<h2 id="后记">后记</h2>
 <p>总结就是UITableView是一个高度设计的控件。它具有重用，分组，异步加载数据等方面需要我们注意。</p>
 <p>其实这里插进来写UITableView是为了写NSFetchedResultsController。因为NSFetchedResultsController就是为UITableview量身打造的Core Data的类。 </p>
 <p>所以，先说明以下UITableView，然后再写NSFetchedResultsController。</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/" data-id="ynas476atf3cqoys" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/04/17/learning-ios-notes-twenty-one/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记(21) CoreData (三) NSFetchedResultsController
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/04/01/learning-ios-notes-nineteen/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS笔记(19)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

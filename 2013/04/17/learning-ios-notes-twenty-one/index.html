@@ -1,26 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记(21) CoreData (三) NSFetchedResultsController | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="iOS笔记(21) CoreData (三) NSFetchedResultsController"/>
-  <meta property="og:site_name" content="萧宸宇"/>
-
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记(21) CoreData (三) NSFetchedResultsController">
+<meta name="og:url" content="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/">
+<meta name="og:image" content="http://ww3.sinaimg.cn/large/a74ecc4cjw1e3tlc32lbhj20k80dndhr.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="CoreData (三)
+NSFetchedResultsController
+什么是NSFetchedResultsController
+NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。
+NSFetchedResultsController我觉">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,46 +39,71 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-twenty-one" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/17/learning-ios-notes-twenty-one/" class="article-date">
+  <time datetime="2013-04-17T07:06:24.000Z" itemprop="datePublished">4月 17 2013</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">4月 17 2013</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记(21) CoreData (三) NSFetchedResultsController</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记(21) CoreData (三) NSFetchedResultsController
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>CoreData (三)</h1>
-<h2>NSFetchedResultsController</h2>
-<h3>什么是NSFetchedResultsController</h3>
+        <h1 id="CoreData_(三)">CoreData (三)</h1>
+<h2 id="NSFetchedResultsController">NSFetchedResultsController</h2>
+<h3 id="什么是NSFetchedResultsController">什么是NSFetchedResultsController</h3>
 <p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
 <p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
 <p>NSFetchedResultsController是有两个重要的功能。</p>
@@ -84,19 +112,19 @@
 <a id="more"></a>
 
 
-<h2>实现一个NSFetchedResultsController作为Data source的UITableView</h2>
-<h3>创建一个最小带Core Data的工程</h3>
+<h2 id="实现一个NSFetchedResultsController作为Data_source的UITableView">实现一个NSFetchedResultsController作为Data source的UITableView</h2>
+<h3 id="创建一个最小带Core_Data的工程">创建一个最小带Core Data的工程</h3>
 <p><img src="http://ww3.sinaimg.cn/large/a74ecc4cjw1e3tlc32lbhj20k80dndhr.jpg" alt=""></p>
 <p>选择Master-Detail Application</p>
 <p><img src="http://ww4.sinaimg.cn/large/a74eed94jw1e3tle5fxqnj20k80dn0uf.jpg" alt=""></p>
 <p>整理一下显示层级和结构使其看起来顺眼一些</p>
 <p><img src="http://ww2.sinaimg.cn/large/a74e55b4jw1e3tlnesq81j20750dut9e.jpg" alt=""></p>
-<h3>确立目标</h3>
+<h3 id="确立目标">确立目标</h3>
 <p>打开看以后 发现建立的工程是已经使用了NSFetchedResultsController<br>我们的目标是改写这个项目支持UITableView分组显示</p>
-<h4>首先修改Data Model</h4>
+<h4 id="首先修改Data_Model">首先修改Data Model</h4>
 <p>增加一个字段用来分组. 我们增加一个同样的Date用来记录此时的分钟数量.</p>
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e3tn8pouqgj.jpg" alt=""></p>
-<h3>初始化一个NSFetchedResultsController</h3>
+<h3 id="初始化一个NSFetchedResultsController">初始化一个NSFetchedResultsController</h3>
 <p>这里假设你看过我的Core Data笔记1,2.默认你已经做好了Core Data stack的全部工作.然后再开始NSFetchedResultsController的初始化.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -135,53 +163,53 @@
 35
 36
 37
-</pre></td><td class="code"><pre>- (NSFetchedResultsController *)fetchedResultsController
+</pre></td><td class="code"><pre>- (<span class="built_in">NSFetchedResultsController</span> *)fetchedResultsController
 {
-    <span class="keyword">if</span> (_fetchedResultsController != nil) {
-<span class="command">        return</span> _fetchedResultsController;
+    <span class="keyword">if</span> (_fetchedResultsController != <span class="literal">nil</span>) {
+        <span class="keyword">return</span> _fetchedResultsController;
     }
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit <span class="keyword">the</span> entity <span class="property">name</span> <span class="keyword">as</span> appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@<span class="string">"Event"</span> inManagedObjectContext:self.managedObjectContext];
+    <span class="comment">// Edit the entity name as appropriate.</span>
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@<span class="string">"Event"</span> inManagedObjectContext:<span class="keyword">self</span><span class="variable">.managedObjectContext</span>];
     [fetchRequest setEntity:entity];
 
-    // Set <span class="keyword">the</span> batch size <span class="keyword">to</span> a suitable <span class="type">number</span>.
+    <span class="comment">// Set the batch size to a suitable number.</span>
     [fetchRequest setFetchBatchSize:<span class="number">20</span>];
 
-    // Edit <span class="keyword">the</span> sort key <span class="keyword">as</span> appropriate.
-    NSSortDescriptor    *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@<span class="string">"timeStamp"</span> ascending:NO];
-    NSArray             *sortDescriptors = @[sortDescriptor];
+    <span class="comment">// Edit the sort key as appropriate.</span>
+    NSSortDescriptor    *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@<span class="string">"timeStamp"</span> ascending:<span class="literal">NO</span>];
+    <span class="built_in">NSArray</span>             *sortDescriptors = @[sortDescriptor];
 
     [fetchRequest setSortDescriptors:sortDescriptors];
 
-    // Edit <span class="keyword">the</span> section <span class="property">name</span> key path <span class="keyword">and</span> cache <span class="property">name</span> <span class="keyword">if</span> appropriate.
-    // nil <span class="keyword">for</span> section <span class="property">name</span> key path means <span class="string">"no sections"</span>.
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@<span class="string">"sectionMinute"</span> cacheName:@<span class="string">"Master"</span>];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
+    <span class="comment">// Edit the section name key path and cache name if appropriate.</span>
+    <span class="comment">// nil for section name key path means "no sections".</span>
+    <span class="built_in">NSFetchedResultsController</span> *aFetchedResultsController = [[<span class="built_in">NSFetchedResultsController</span> alloc] initWithFetchRequest:fetchRequest managedObjectContext:<span class="keyword">self</span><span class="variable">.managedObjectContext</span> sectionNameKeyPath:@<span class="string">"sectionMinute"</span> cacheName:@<span class="string">"Master"</span>];
+    aFetchedResultsController<span class="variable">.delegate</span> = <span class="keyword">self</span>;
+    <span class="keyword">self</span><span class="variable">.fetchedResultsController</span> = aFetchedResultsController;
 
-    NSError *<span class="keyword">error</span> = nil;
+    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;
 
-    <span class="keyword">if</span> (![self.fetchedResultsController performFetch:&<span class="keyword">error</span>]) {
-        // Replace this implementation <span class="keyword">with</span> code <span class="keyword">to</span> handle <span class="keyword">the</span> <span class="keyword">error</span> appropriately.
-        // abort() causes <span class="keyword">the</span> <span class="type">application</span> <span class="keyword">to</span> generate a crash <span class="command">log</span> <span class="keyword">and</span> terminate. You should <span class="keyword">not</span> use this function <span class="keyword">in</span> a shipping <span class="type">application</span>, although <span class="keyword">it</span> may be useful during development.
-        NSLog(@<span class="string">"Unresolved error %@, %@"</span>, <span class="keyword">error</span>, [<span class="keyword">error</span> userInfo]);
+    <span class="keyword">if</span> (![<span class="keyword">self</span><span class="variable">.fetchedResultsController</span> performFetch:&error]) {
+        <span class="comment">// Replace this implementation with code to handle the error appropriately.</span>
+        <span class="comment">// abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.</span>
+        <span class="built_in">NSLog</span>(@<span class="string">"Unresolved error %@, %@"</span>, error, [error userInfo]);
         abort();
     }
-<span class="command">
-    return</span> _fetchedResultsController;
+
+    <span class="keyword">return</span> _fetchedResultsController;
 }
 </pre></td></tr></table></figure>
 
 <p>这里是工程里面的NSFetchedResultsController的set方法.可以看出,第一我们创建一个NSFetchRequest查询.然后在用这个NSFetchRequest去创建一个NSFetchedResultsController.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>NSFetchedResultsController *aFetchedResultsController = <span class="string">[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"sectionMinute" cacheName:@"Master"];
+</pre></td><td class="code"><pre><span class="built_in">NSFetchedResultsController</span> *aFetchedResultsController = [[<span class="built_in">NSFetchedResultsController</span> alloc] initWithFetchRequest:fetchRequest managedObjectContext:<span class="keyword">self</span><span class="variable">.managedObjectContext</span> sectionNameKeyPath:@<span class="string">"sectionMinute"</span> cacheName:@<span class="string">"Master"</span>];
 </pre></td></tr></table></figure>
 
 <p>第一个参数就是NSFetchRequest.</p>
 <p>第二个参数是要指定在哪个context里面进行查询</p>
-<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值“sectionMinute”.</p>
+<p>第三个参数是根据什么key来分组.sectionNameKeyPath本来是nil是不分组,我改为我们需要分组的key值”sectionMinute”.</p>
 <p>第四个参数  <a href="http://developer.apple.com/library/ios/#documentation/CoreData/Reference/NSFetchedResultsController_Class/Reference/Reference.html" target="_blank">官方解释是这里</a>点到The Cache的地方. 我的理解是cache只保留很少的一部分数据在磁盘上面,如果使用了Cache,在重建UITableView的时候, 就优先查询cache里面的数据.然后要在-performFetch:执行的时候才会去刷新新的数据.这样有助于UITableView的流畅性.</p>
 <p>然后我加入Sections的方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -190,11 +218,13 @@
 4
 5
 6
-</pre></td><td class="code"><pre>- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+7
+</pre></td><td class="code"><pre>- (<span class="built_in">NSString</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView titleForHeaderInSection:(<span class="built_in">NSInteger</span>)section
 {
-    NSArray *sections = <span class="string">[[self fetchedResultsController] sections]; id &lt;NSFetchedResultsSectionInfo&gt; sectionInfo = nil;    sectionInfo = [sections objectAtIndex:section];
+    <span class="built_in">NSArray</span> *sections = [[<span class="keyword">self</span> fetchedResultsController] sections]; <span class="keyword">id</span> &lt;NSFetchedResultsSectionInfo&gt; sectionInfo = <span class="literal">nil</span>;
+    sectionInfo = [sections objectAtIndex:section];
     
-    return [sectionInfo name];
+    <span class="keyword">return</span> [sectionInfo name];
 }
 </pre></td></tr></table></figure>
 
@@ -210,11 +240,11 @@
 4
 5
 6
-</pre></td><td class="code"><pre>- (<span class="class">NSDate</span> *) dateAtStartOfMinutes
+</pre></td><td class="code"><pre>- (<span class="built_in">NSDate</span> *) dateAtStartOfMinutes
 {
-    <span class="class">NSDateComponents</span> *components = [<span class="class">CURRENT_CALENDAR</span> <span class="method">components:</span><span class="class">DATE_COMPONENTS</span> <span class="method">fromDate:</span><span class="keyword">self</span>];
-	[components <span class="method">setSecond:</span><span class="number">0</span>];
-	return [<span class="class">CURRENT_CALENDAR</span> <span class="method">dateFromComponents:</span>components];
+    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:<span class="keyword">self</span>];
+	[components setSecond:<span class="number">0</span>];
+	<span class="keyword">return</span> [CURRENT_CALENDAR dateFromComponents:components];
 }
 </pre></td></tr></table></figure>
 
@@ -239,23 +269,23 @@
 18
 19
 20
-</pre></td><td class="code"><pre>- (void)insertNewObject:(<span class="property">id</span>)sender
+</pre></td><td class="code"><pre>- (<span class="keyword">void</span>)insertNewObject:(<span class="keyword">id</span>)sender
 {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity <span class="property">name</span>] inManagedObjectContext:context];
+    NSManagedObjectContext *context = [<span class="keyword">self</span><span class="variable">.fetchedResultsController</span> managedObjectContext];
+    NSEntityDescription *entity = [[<span class="keyword">self</span><span class="variable">.fetchedResultsController</span> fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
-    // If appropriate, configure <span class="keyword">the</span> new managed object.
-    // Normally you should use accessor methods, <span class="keyword">but</span> using KVC here avoids <span class="keyword">the</span> need <span class="keyword">to</span> add a custom <span class="type">class</span> <span class="keyword">to</span> <span class="keyword">the</span> template.
-    [newManagedObject setValue:[NSDate <span class="type">date</span>] forKey:@<span class="string">"timeStamp"</span>];
-    [newManagedObject setValue:[[NSDate <span class="type">date</span>] dateAtStartOfMinutes]  forKey:@<span class="string">"sectionMinute"</span>];
+    <span class="comment">// If appropriate, configure the new managed object.</span>
+    <span class="comment">// Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.</span>
+    [newManagedObject setValue:[<span class="built_in">NSDate</span> date] forKey:@<span class="string">"timeStamp"</span>];
+    [newManagedObject setValue:[[<span class="built_in">NSDate</span> date] dateAtStartOfMinutes]  forKey:@<span class="string">"sectionMinute"</span>];
     
-    // Save <span class="keyword">the</span> context.
-    NSError *<span class="keyword">error</span> = nil;
-    <span class="keyword">if</span> (![context save:&<span class="keyword">error</span>]) {
-         // Replace this implementation <span class="keyword">with</span> code <span class="keyword">to</span> handle <span class="keyword">the</span> <span class="keyword">error</span> appropriately.
-         // abort() causes <span class="keyword">the</span> <span class="type">application</span> <span class="keyword">to</span> generate a crash <span class="command">log</span> <span class="keyword">and</span> terminate. You should <span class="keyword">not</span> use this function <span class="keyword">in</span> a shipping <span class="type">application</span>, although <span class="keyword">it</span> may be useful during development. 
-        NSLog(@<span class="string">"Unresolved error %@, %@"</span>, <span class="keyword">error</span>, [<span class="keyword">error</span> userInfo]);
+    <span class="comment">// Save the context.</span>
+    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;
+    <span class="keyword">if</span> (![context save:&error]) {
+         <span class="comment">// Replace this implementation with code to handle the error appropriately.</span>
+         <span class="comment">// abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. </span>
+        <span class="built_in">NSLog</span>(@<span class="string">"Unresolved error %@, %@"</span>, error, [error userInfo]);
         abort();
     }
 }
@@ -263,20 +293,20 @@
 
 <p>其实就是加入了</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>[newManagedObject setValue:<span class="string">[[NSDate date] dateAtStartOfMinutes]  forKey:@"sectionMinute"];
+</pre></td><td class="code"><pre>[newManagedObject <span class="keyword">set</span>Value:[[NSDate date] dateAtStartOfMinutes]  <span class="keyword">for</span>Key:@<span class="string">"sectionMinute"</span>];
 </pre></td></tr></table></figure>
 
 <p>这句.</p>
 <p>这样,简单的使用NSFetchedResultsController来显示分组的UITableView就搞定了.<br>当然因为建立的工程模板原因.很大一部分都是xCode搞定的.</p>
-<h3>被遗忘的地方</h3>
+<h3 id="被遗忘的地方">被遗忘的地方</h3>
 <p>Sections数量,决定了有多少组</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-</pre></td><td class="code"><pre>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+</pre></td><td class="code"><pre>- (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView
 {
-    <span class="keyword">return</span> <span class="string">[[self.fetchedResultsController sections] count];
+    <span class="keyword">return</span> [[<span class="keyword">self</span><span class="variable">.fetchedResultsController</span> sections] count];
 }
 </pre></td></tr></table></figure>
 
@@ -321,121 +351,161 @@
 }
 </pre></td></tr></table></figure>
 
-<h3>show</h3>
+<h3 id="show">show</h3>
 <p><img src="http://ww3.sinaimg.cn/large/a74ecc4cjw1e3tydp5hsqj208w0geabq.jpg" alt=""></p>
-<h2>总结</h2>
+<h2 id="总结">总结</h2>
 <p>写Blog实在是太累了. NSFetchedResultsController努力一天也才一点点.回去继续写. 下次要写NSFetchedResultsController通知方法.</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/" data-id="u8d206rvimrgvovq" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/04/29/learning-ios-notes-twenty-two/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS笔记(22) CoreData (四) 监听NSFetchedResultsController
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/04/15/learning-ios-notes-twenty/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS笔记(20)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

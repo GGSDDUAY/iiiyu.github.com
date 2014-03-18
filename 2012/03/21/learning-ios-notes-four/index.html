@@ -1,26 +1,31 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>iOS笔记 (4) | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="og:type" content="blog">
+<meta name="og:title" content="iOS笔记 (4)">
+<meta name="og:url" content="http://iiiyu.com/2012/03/21/learning-ios-notes-four/">
+<meta name="og:image" content="http://farm8.staticflickr.com/7252/6856181868_05dbe1fd8f.jpg">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description" content="iOS笔记——九宫解锁基础部分
+目的
+为了第一个App，一步一步的做出来。所以先弄最基本的想做一个类似Android九宫解锁的View。一开始完全没有思路啊。后来看了好几遍老头的画笑脸以后才有点思路。所以来一步一步做吧。
 
-  <meta property="og:title" content="iOS笔记 (4)"/>
-  <meta property="og:site_name" content="萧宸宇"/>
 
+继续扯淡MVC
+作为一个从iOS5开始学起开发的娃来说，什么nib xib文件都是浮云。哥只懂在Xcode里面的storyboard里面拖拖拽拽。奈何没几个代码实例是Stor">
+<meta name="twitter:card" content="summary">
   
-    <meta property="og:image" content="undefined"/>
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,49 +41,74 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-four" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/03/21/learning-ios-notes-four/" class="article-date">
+  <time datetime="2012-03-21T05:38:00.000Z" itemprop="datePublished">3月 21 2012</time>
+</a>
     
-      <li><a href="/">首页</a></li>
+  </div>
+  <div class="article-inner">
     
-      <li><a href="/about-me">关于我</a></li>
     
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-03-21T05:38:00.000Z"><a href="/2012/03/21/learning-ios-notes-four/">3月 21 2012</a></time>
-      
-      
-  
-    <h1 class="title">iOS笔记 (4)</h1>
+    <h1 class="article-title" itemprop="name">
+      iOS笔记 (4)
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1>iOS笔记——九宫解锁基础部分</h1>
-<h2>目的</h2>
+        <h1 id="iOS笔记——九宫解锁基础部分">iOS笔记——九宫解锁基础部分</h1>
+<h2 id="目的">目的</h2>
 <p>为了第一个App，一步一步的做出来。所以先弄最基本的想做一个类似Android九宫解锁的View。一开始完全没有思路啊。后来看了好几遍老头的画笑脸以后才有点思路。所以来一步一步做吧。</p>
 <a id="more"></a>
 
-<h2>继续扯淡MVC</h2>
+<h2 id="继续扯淡MVC">继续扯淡MVC</h2>
 <p>作为一个从iOS5开始学起开发的娃来说，什么nib xib文件都是浮云。哥只懂在Xcode里面的storyboard里面拖拖拽拽。奈何没几个代码实例是Storyboard写的。让想重用代码的我，无法直接⌘-c ⌘-v。很是郁闷哈。不过经过慢慢理解，对于Xcode4里面用stroyboard有了一些小小的心得。分享一下。</p>
 <p>一个VC是怎么构成的。在新建工程storyboard里面，我新拖入一个view<br>如图</p>
 <p><img src="http://farm8.staticflickr.com/7252/6856181868_05dbe1fd8f.jpg" alt="storyboard1"></p>
@@ -108,24 +138,24 @@
 </ul>
 <p><img src="http://farm8.staticflickr.com/7075/7002295599_3c2b3a65ea.jpg" alt="storyboard5"></p>
 <p>这样你就完成了一对VC的创建了。</p>
-<h2>程序基本要做的事情</h2>
+<h2 id="程序基本要做的事情">程序基本要做的事情</h2>
 <ul>
 <li>有一个view，view上有背景色</li>
 <li>view上画9个按钮</li>
 <li>view上能画线</li>
 <li>controller能控制手指开始的地方，移动的地方，结束的地方。</li>
 </ul>
-<h2>一步一步</h2>
-<h3>clone工程</h3>
+<h2 id="一步一步">一步一步</h2>
+<h3 id="clone工程">clone工程</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">git</span> clone <span class="url">git://github.com/iiiyu/Draw-Lock-Login.git
+</pre></td><td class="code"><pre>git <span class="keyword">clone</span> git:<span class="comment">//github.com/iiiyu/Draw-Lock-Login.git</span>
 </pre></td></tr></table></figure>
 
 <p>项目结构</p>
 <p><img src="http://farm7.staticflickr.com/6037/7002295643_06f72a4961.jpg" alt="ios4-1"></p>
-<h3>Draw_Lock类分析(UIView)</h3>
+<h3 id="Draw_Lock类分析(UIView)">Draw_Lock类分析(UIView)</h3>
 <p>点开Draw_Lock.m可以看到<br>两个方法,其中一个还是注释掉的。</p>
-<figure class="highlight lang-objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -191,7 +221,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 <p>把要加入的9个宫。看做一个个的view。我们先创建这些view。然后用addSubview加入Draw_Lock这个view当中，最后调整这些宫的位置就完成了图像的绘制。</p>
 <p>每一个宫由两张图片构成。一张为默认，一张为highlighted属性的。当我们碰到宫时候，设置他的highlighted为YES。</p>
 <p>然后是线的绘制。当手指触碰到宫的时候，才吧宫的中心作为起点开始绘制线。绘制的线在没有遇到第二个宫的时候跟随手指，如果遇到宫。就绘制完成一条直线。然后把终点的坐标为下一条线的起点。直到手指离开屏幕。</p>
-<h3>ViewController类分析（UIViewController）</h3>
+<h3 id="ViewController类分析（UIViewController）">ViewController类分析（UIViewController）</h3>
 <p>手指触摸开始</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -200,7 +230,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>touchesBegan:<span class="params">(<span class="variable">NSSet</span> *)</span>touches withEvent:<span class="params">(<span class="variable">UIEvent</span> *)</span>event
 {
 
-}
+}</span>
 </pre></td></tr></table></figure>
 
 <p>手指移动</p>
@@ -211,7 +241,7 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>touchesMoved:<span class="params">(<span class="variable">NSSet</span> *)</span>touches withEvent:<span class="params">(<span class="variable">UIEvent</span> *)</span>event
 {
     
-}
+}</span>
 </pre></td></tr></table></figure>
 
 <p>触摸结束</p>
@@ -222,122 +252,162 @@ CGContextRef <span class="keyword">context</span> = UIGraphicsGetCurrentContext(
 </pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>touchesEnded:<span class="params">(<span class="variable">NSSet</span> *)</span>touches withEvent:<span class="params">(<span class="variable">UIEvent</span> *)</span>event
 {
     
-}
+}</span>
 </pre></td></tr></table></figure>
 
-<h3>最后</h3>
+<h3 id="最后">最后</h3>
 <p>大概在山寨这个九宫的时候就遇到很多问题。隔了一天，能想到一一记录。当然，还有更多的问题。所以最好就直接看github项目里面有更详细的注释和完整的代码。很多时候，觉得写代码比写blog轻松多了。</p>
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2012/03/21/learning-ios-notes-four/" data-id="cclk944lzzbtq4ov" class="article-share-link">Share</a>
       
-        
-  
-  <div class="categories">
-    <a href="/categories/iOS/">iOS</a>
-  </div>
-
-        
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
+        <a href="http://iiiyu.com/2012/03/21/learning-ios-notes-four/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/03/25/ioscon-guangzhou/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOScon 广州之行
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/03/14/talk-about-the-software/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">谈谈软件的一些事</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-<section id="comment">
-  <h1 class="title">留言</h1>
+<section id="comments">
   <div id="disqus_thread">
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
 </section>
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2012/03/21/learning-ios-notes-four/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>

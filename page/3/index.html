@@ -1,26 +1,25 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>第 3 页 | 萧宸宇</title>
-  <meta name="author" content="萧宸宇">
-  
-  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
-  
-  
+  <title>萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+  <meta name="og:type" content="blog">
+<meta name="og:title">
+<meta name="og:url" content="http://iiiyu.com/page/3/">
+<meta name="og:image">
+<meta name="og:site_name" content="萧宸宇">
+<meta name="og:description">
+<meta name="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="萧宸宇"/>
-
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
-    <meta property="og:image" content="undefined"/>
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -36,137 +35,296 @@
 </script>
 
 </head>
-
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">萧宸宇</a></h1>
-  <h2><a href="/">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/about-me">关于我</a></li>
-    
-      <li><a href="/atom.xml">RSS</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-08-19T14:29:37.000Z"><a href="/2013/08/19/learning-ios-notes-twenty-five/">8月 19 2013</a></time>
-      
-      
+    <article id="post-learning-ios-notes-twenty-six" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/08/26/learning-ios-notes-twenty-six/" class="article-date">
+  <time datetime="2013-08-26T14:43:11.000Z" itemprop="datePublished">8月 26 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="title"><a href="/2013/08/19/learning-ios-notes-twenty-five/">iOS学习笔记(25) iCloud(一) 概览</a></h1>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/26/learning-ios-notes-twenty-six/">iOS学习笔记(26) iCloud(二) 准备工作</a>
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h2>什么是iCloud</h2>
+        <h2 id="开发支持iCloud的上半部分前期准备">开发支持iCloud的上半部分前期准备</h2>
+<ul>
+<li><p>需要申请一个开发者的帐号。理论上iOS和Mac OSX的都OK。考虑到我只有iOS的情况下，我的文章里面的例子默认只是iOS的。</p>
+</li>
+<li><p>你需要一台iOS设备，并且iOS版本必须大于等于5.最好大于等于6. 最最好大于等于7。</p>
+</li>
+<li><p>Xcode不用说至少是MAS里面最新的</p>
+</li>
+<li><p>然后去建立App Bundle ID的页面去把iCloud支持打开。</p>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hq7q78aj20sa0g2tav.jpg" alt="1"></p>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="2"></p>
+<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="3"></p>
+<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e88hts5dkpj20k70en75m.jpg" alt="4"></p>
+<ul>
+<li>bundle id需要生成带你测试设备的证书</li>
+</ul>
+<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e88htyxylrj20rw0egmzm.jpg" alt="5"></p>
+<p>(PS:截图太累了 换成文章描述)</p>
+<p>这样才能算iCloud的前期工作做完了一半。</p>
+<p><strong>以下涉及到NDA内容请自行屏蔽</strong><br>
+        
+          <p class="article-more-link">
+            <a href="/2013/08/26/learning-ios-notes-twenty-six/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/" data-id="udhgqk3lwbuk7ozs" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tu-cao-duo-kan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/08/22/tu-cao-duo-kan/" class="article-date">
+  <time datetime="2013-08-21T17:48:34.000Z" itemprop="datePublished">8月 22 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/22/tu-cao-duo-kan/">深夜吐槽多看</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="深夜吐槽多看">深夜吐槽多看</h2>
+<p>好吧，作为一个喜欢看书的人和觉得多看做的确实好的普通用户。我把我个人的想法完整的表达一下。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2013/08/22/tu-cao-duo-kan/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/08/22/tu-cao-duo-kan/" data-id="2sbuyguduxyuxldu" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/08/22/tu-cao-duo-kan/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/just-talk/">just-talk</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-learning-ios-notes-twenty-five" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/08/19/learning-ios-notes-twenty-five/" class="article-date">
+  <time datetime="2013-08-19T14:29:37.000Z" itemprop="datePublished">8月 19 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/19/learning-ios-notes-twenty-five/">iOS学习笔记(25) iCloud(一) 概览</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是iCloud">什么是iCloud</h2>
 <p>iCloud是苹果公司提供的云服务的总称。每一个拥有Apple ID的用户都拥有5G大小的空间使用权。用户可以使用iCloud的空间来进行数据的备份，联系人备份，照片备份，应用备份等。好处就是当你有多台设备或者是换新的设备的时候。可以有无差别的体验。</p>
 <p>对于开发者来说，iCloud相当于提供了一种官方形式的云端存储形式。帮助你的App实现所谓理想的状态。不论用户在什么设备打开App。 里面的数据，设置，形状，大小。都跟他上次打开的一模一样。这样你的App会给你的用户非一般的体验。</p>
-<h2>开发慎用iCloud</h2>
+<h2 id="开发慎用iCloud">开发慎用iCloud</h2>
 <p>上一段说了iCloud的优点，其实是接近意淫中的理想状态。我以近一年的血泪史告诫，初级开发者，应该避免使用iCloud。中高级开发者视项目规划内容酌情使用。如果能有其他方案替代iCloud，建议优先使用其他方案。</p>
 <p>初级开发者: iCloud的三种存储方式 Key-Value， Documents， Core Data都是在之前已有的框架上进行扩展的高级接口。换言之，你应该先具备了这三种技术的基本知识再开始考虑学习iCloud。 iCloud + Key-Value对应的基础是NSUserDefaults。 iCloud + Documents对应的基础是使用文档进行数据存储(NSFileManager,NSFileCoordinator,NSFileWrapper,NSCoding等一系列持久化数据存储到文件的问题). iCloud + Core Data的对应基础就是Core Data。本来是强烈建议如果没有这些基础的人不要直接来学习iCloud的。但是谁都是一步一步走过来的，如果要用到iCloud的某一种方式。建议先把基础的持久化方式原理弄懂了，在看iCloud的部分。不然学习门槛的过高，会使得进度无法按时推进。</p>
 <p>中高级开发者：如果是已经用过Key-Value，Documents，Core Data的。应该会很快能明白iCloud的原理。 而进行开发。但是值得注意的是，iCloud的使用和调试会非常的消耗时间和精力。并且和你的当前网络状态息息相关。然后会出现各种诡异的情况。这个时候你都需要淡定很超级的耐心。去找到这些坑，然后慢慢的积累经验去绕过这些坑。（在这里先挖坑，后面在慢慢写我的一些使用经验）</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2013/08/19/learning-ios-notes-twenty-five/#more">阅读更多</a>
+          </p>
+        
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/08/19/learning-ios-notes-twenty-five/" data-id="oiixb89vjujs6qzm" class="article-share-link">Share</a>
       
-        
-          <div class="alignleft">
-            <a href="/2013/08/19/learning-ios-notes-twenty-five/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
+        <a href="http://iiiyu.com/2013/08/19/learning-ios-notes-twenty-five/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
+  
+    <article id="post-learning-ios-notes-twenty-fort" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/03/learning-ios-notes-twenty-fort/" class="article-date">
+  <time datetime="2013-06-03T08:32:08.000Z" itemprop="datePublished">6月 3 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/03/learning-ios-notes-twenty-fort/">iOS笔记(24) 关于使用xCode的Tab来提高开发效率</a>
+    </h1>
+  
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <div class="icon"></div>
-        <time datetime="2013-06-03T08:32:08.000Z"><a href="/2013/06/03/learning-ios-notes-twenty-fort/">6月 3 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/06/03/learning-ios-notes-twenty-fort/">iOS笔记(24) 关于使用xCode的Tab来提高开发效率</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>前言</h1>
+        <h1 id="前言">前言</h1>
 <p>通过Google分析来看blog的访问统计。发现评价阅读时间也就一分钟不到。但是之前都习惯性写长篇大论。这次换一种方式来写blog。尽量写短一些的小一些的题目。使得更新数量上去。</p>
 <p>这次我来说说怎么设置Tab来提高在xCode的工作效率。</p>
-<h1>我是如何使用Tab来提高效率的</h1>
-<h2>xCode的Tab是什么</h2>
+<h1 id="我是如何使用Tab来提高效率的">我是如何使用Tab来提高效率的</h1>
+<h2 id="xCode的Tab是什么">xCode的Tab是什么</h2>
 <p>诺，就是这一个东西。 </p>
 <p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e5b26nmyqij20oq00v0sp.jpg" alt=""></p>
 <p>使用过各种浏览器的你一定不会陌生。对在xCode里面我们也可以开出多个页面。而且每一个页面的状态是单独保存的。</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2013/06/03/learning-ios-notes-twenty-fort/#more">阅读更多</a>
+          </p>
+        
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/06/03/learning-ios-notes-twenty-fort/" data-id="7gv6nw6f88np3yz3" class="article-share-link">Share</a>
       
-        
-          <div class="alignleft">
-            <a href="/2013/06/03/learning-ios-notes-twenty-fort/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
+        <a href="http://iiiyu.com/2013/06/03/learning-ios-notes-twenty-fort/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
+  
+    <article id="post-learning-ios-notes-twenty-three" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/23/learning-ios-notes-twenty-three/" class="article-date">
+  <time datetime="2013-05-23T06:51:31.000Z" itemprop="datePublished">5月 23 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/23/learning-ios-notes-twenty-three/">iOS笔记(23) iOS进行单元测试OCUnit+xctool</a>
+    </h1>
+  
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <div class="icon"></div>
-        <time datetime="2013-05-23T06:51:31.000Z"><a href="/2013/05/23/learning-ios-notes-twenty-three/">5月 23 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/05/23/learning-ios-notes-twenty-three/">iOS笔记(23) iOS进行单元测试OCUnit+xctool</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>iOS进行单元测试OCUnit+xctool</h1>
-<h2>单元测试</h2>
-<h3>什么是单元测试</h3>
+        <h1 id="iOS进行单元测试OCUnit+xctool">iOS进行单元测试OCUnit+xctool</h1>
+<h2 id="单元测试">单元测试</h2>
+<h3 id="什么是单元测试">什么是单元测试</h3>
 <p><a href="http://zh.wikipedia.org/wiki/单元测试" target="_blank">wiki解释</a></p>
 <p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
-<h3>我为什么要单元测试</h3>
+<h3 id="我为什么要单元测试">我为什么要单元测试</h3>
 <p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
-<h3>单元测试的一般方法</h3>
+<h3 id="单元测试的一般方法">单元测试的一般方法</h3>
 <p>关于测试的书，一搜就一大把。都有高深的理论和方法来指导怎么写单元测试的方法。我觉得嘛不用搞了这么复杂。 无非就3种时候会去想写测试：</p>
 <ol>
 <li>代码完成以后</li>
@@ -182,185 +340,139 @@
 <p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
 <p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2013/05/23/learning-ios-notes-twenty-three/#more">阅读更多</a>
+          </p>
+        
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/" data-id="tsecyf04bl1eefx3" class="article-share-link">Share</a>
       
-        
-          <div class="alignleft">
-            <a href="/2013/05/23/learning-ios-notes-twenty-three/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
+        <a href="http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/#disqus_thread" class="article-comment-link">Comments</a>
       
-      <div class="clearfix"></div>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
     </footer>
   </div>
+  
 </article>
 
 
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-29T04:03:11.000Z"><a href="/2013/04/29/learning-ios-notes-twenty-two/">4月 29 2013</a></time>
-      
-      
   
-    <h1 class="title"><a href="/2013/04/29/learning-ios-notes-twenty-two/">iOS笔记(22) CoreData (四) 监听NSFetchedResultsController</a></h1>
+    <nav id="page-nav">
+      <a class="extend prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" href="/page/4/">Next &raquo;</a>
+    </nav>
   
-
-    </header>
-    <div class="entry">
-      
-        <h1>CoreData (四)</h1>
-<h2>监听NSFetchedResultsController</h2>
-<p>之前说过, NSFetchedResultsController是有两个重要的功能。</p>
-<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
-<p>第二:但Model改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-<p>上一篇写了第一点. 现在写第二点.</p>
-
-      
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/31/2013-annual-summary/">2013年度总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
+          </li>
+        
+          <li>
+            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
+          </li>
+        
+      </ul>
     </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/04/29/learning-ios-notes-twenty-two/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
-</article>
 
-
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-17T07:06:24.000Z"><a href="/2013/04/17/learning-ios-notes-twenty-one/">4月 17 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/04/17/learning-ios-notes-twenty-one/">iOS笔记(21) CoreData (三) NSFetchedResultsController</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1>CoreData (三)</h1>
-<h2>NSFetchedResultsController</h2>
-<h3>什么是NSFetchedResultsController</h3>
-<p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
-<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
-<p>NSFetchedResultsController是有两个重要的功能。</p>
-<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
-<p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
-
-      
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2013/04/17/learning-ios-notes-twenty-one/#more" class="more-link">阅读更多</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
   </div>
-</article>
-
-
-
-
-<nav id="pagination">
-  
-    <a href="/page/2/" class="alignleft prev">上一页</a>
-  
-  
-    <a href="/page/4/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:iiiyu.com">
-  </form>
-</div>
 
   
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Emacs/">Emacs</a><small>3</small></li>
-  
-    <li><a href="/categories/Mac/">Mac</a><small>1</small></li>
-  
-    <li><a href="/categories/Software/">Software</a><small>2</small></li>
-  
-    <li><a href="/categories/iOS/">iOS</a><small>34</small></li>
-  
-    <li><a href="/categories/just-talk/">just-talk</a><small>15</small></li>
-  
-    <li><a href="/categories/read book notes/">read book notes</a><small>2</small></li>
-  
-  </ul>
-</div>
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
 
   
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
 
   
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2014 萧宸宇
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-
-
-<script type="text/javascript">
-var disqus_shortname = 'iiiyu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
 
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
 </body>
 </html>
