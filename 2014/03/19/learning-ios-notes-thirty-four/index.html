@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (3) | 萧宸宇</title>
+  <title>iOS笔记(34) 格志周年系列之夏令时(二) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (3)">
-<meta name="og:url" content="http://iiiyu.com/2012/03/08/learning-ios-notes-three/">
-<meta name="og:image" content="http://farm8.staticflickr.com/7040/6816041908_bc88f08c2b.jpg">
+<meta name="og:title" content="iOS笔记(34) 格志周年系列之夏令时(二)">
+<meta name="og:url" content="http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/">
+<meta name="og:image">
 <meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="iOS笔记番外篇
-开始之前的扯淡
-反正在等IPad3的发布，就顺手写篇blog。本来觉得这个时候写IOS笔记3还有点过早。因为好像没有太多的干货能拿出来。可是在看了老头用xcode、git来教怎么管理代码的时候，我彻底崩溃了。VS新版没见过，目前Xcode是体验最好的IDE，没有之一。Emacs系列突然觉得没有必要更新的冲动。
-虽然我们居住在神奇的天朝，但是我们还是要感谢这个时代。因为科技和人类文">
+<meta name="og:description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+恩，两月没更新blog，hexo都出来新主题来着。其实昨天为了找个背景图找了一小时我会随便乱说。就是为了找一个配合网站标题的背景图。其实hexo默认的就蛮好了，但是为了显示那么一点点与众不">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
@@ -78,10 +77,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-three" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-learning-ios-notes-thirty-four" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/03/08/learning-ios-notes-three/" class="article-date">
-  <time datetime="2012-03-07T16:34:00.000Z" itemprop="datePublished">3月 8 2012</time>
+    <a href="/2014/03/19/learning-ios-notes-thirty-four/" class="article-date">
+  <time datetime="2014-03-19T12:37:48.000Z" itemprop="datePublished">3月 19 2014</time>
 </a>
     
   </div>
@@ -92,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS笔记 (3)
+      iOS笔记(34) 格志周年系列之夏令时(二)
     </h1>
   
 
@@ -100,66 +99,92 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="iOS笔记番外篇">iOS笔记番外篇</h1>
-<h2 id="开始之前的扯淡">开始之前的扯淡</h2>
-<p>反正在等IPad3的发布，就顺手写篇blog。本来觉得这个时候写IOS笔记3还有点过早。因为好像没有太多的干货能拿出来。可是在看了老头用xcode、git来教怎么管理代码的时候，我彻底崩溃了。VS新版没见过，目前Xcode是体验最好的IDE，没有之一。Emacs系列突然觉得没有必要更新的冲动。</p>
-<p>虽然我们居住在神奇的天朝，但是我们还是要感谢这个时代。因为科技和人类文明的进步，使得我们可以看到一流名校的课程。就算那个号称天朝最公平的考试失败以后，只要你想学，还是可以学到这个世界上一流的课程。</p>
-<p>多媒体的表现力要远远丰富于文字。清楚直观的5分钟视频，可能换成文字描述写一个小时都写不好。所以如果这篇看不懂的话直接看视频吧。（没找到链接）</p>
-<pre><code><span class="variable">Xcode</span> <span class="keyword">and</span> <span class="variable">Source</span> <span class="variable">Code</span> <span class="variable">Management</span> (<span class="variable">October</span> <span class="number">7</span>, <span class="number">2011</span>) - <span class="variable">HD</span>
-</code></pre><blockquote>
-<p>人生是一场冒险。对我来说：活下去，然后活的爽一些。就够了。</p>
-</blockquote>
-<a id="more"></a>
-
-
-<h2 id="补遗笔记二">补遗笔记二</h2>
-<p>上次忘记写一个很有特色的东西。方法之前的+、-符号。这个其实很简单。在笔记一里面就有：</p>
-<pre><code>在ObjC中一个类中的方法有两种类型：实例方法，类方法。实例方法前用(-)号表明,类方法用(+)
-</code></pre><p>可是我这个人对专有名词都他喵的没感觉。比较喜欢通俗易懂的解释。</p>
-<pre><code><span class="addition">+的方法，调用的时候，是[类名字 方法]</span>
-<span class="deletion">-的方法，调用的时候，是[类实例 方法]</span>
-</code></pre><figure class="highlight objc"><table><tr><td class="gutter"><pre>1
+        <p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>恩，两月没更新blog，hexo都出来新主题来着。其实昨天为了找个背景图找了一小时我会随便乱说。就是为了找一个配合网站标题的背景图。其实hexo默认的就蛮好了，但是为了显示那么一点点与众不同还是替换了一下。</p>
+<p>扯淡结束，接上一篇<a href="http://iiiyu.com/2014/03/18/learning-ios-notes-thirty-three/">格志周年系列之夏令时(一)</a></p>
+<h2 id="第一阶段Bug">第一阶段Bug</h2>
+<p>上次说过一个中国高富帅用户发Email来说，他去泰国旅游的时候，日记都不见了。</p>
+<p>其实不是日记不见了，日记都好好的躺在sqlite文件里面。而是查询不出来了。日记的保存是用了一个函数去获得了每天的00:00:00. 然后作为唯一标识来区别和查询。  </p>
+<p>那日期出了啥问题？</p>
+<p>我们来快速的分析一下</p>
+<p>调用的是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>NSString *<span class="keyword">str</span> = [[NSString alloc] init];<span class="comment">//这个 alloc就是+号定义的</span>
-[<span class="keyword">str</span> floatValue]; <span class="comment">//这个floatValue就是-号定义的</span>
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>- (NSDate *) dateAtStartOfDay
+{
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+	components.hour = 0;
+	components.minute = 0;
+	components.second = 0;
+	return [CURRENT_CALENDAR dateFromComponents:components];
+}
 </pre></td></tr></table></figure>
 
-<h2 id="Git">Git</h2>
-<p>其实，我觉得Git完全有必要单独出来写一篇。因为它太重要太强大了。用了Git以后再也没有想过用其他的版本管理。原因是用的太爽，如果有一天出现了比Git用起来还爽的。我也肯定会用。可是现在only git。</p>
-<p>对于Git的中文心得，教程等等。我都自认怎么写都写的不可能有阳志平大哥写的好。所以这里只是告诉你Git是IOS开发必须的技能。你可以通过下面链接来学习</p>
-<p><a href="http://rogerdudler.github.com/git-guide/index.zh.html" target="_blank">git - 简易指南</a></p>
-<p><a href="http://progit.org/book/zh/" target="_blank">Pro Git</a></p>
-<p><a href="http://www.yangzhiping.com/tech/git.html" target="_blank">Git与Github入门资料</a></p>
-<p><a href="http://www.yangzhiping.com/tech/github.html" target="_blank">如何高效利用GitHub</a></p>
-<p><a href="http://www.worldhello.net/gotgithub/" target="_blank">GotGitHub</a></p>
-<p>资料很多，但是如果你不使用的话。看再多的游泳的书，你也学不会游泳。</p>
-<h2 id="Xcode">Xcode</h2>
-<h4 id="编辑魔法">编辑魔法</h4>
-<p>首先说一个编辑的小魔法，当你想修改源码中相同一个地方，而不想点xcode的Refactor的话。你可以完全通过键盘来实现</p>
-<pre><code>Command + c <span class="comment">#copy你想替换成的文本</span>
-<span class="comment">#选择你要替换的文本 Command + e</span>
-Command + v <span class="comment">#替换了第一个地方</span>
-Command + g <span class="comment">#到了下一个替换的地方</span>
-<span class="comment">#重复 Command + v和 Command + g</span>
-<span class="comment">#完成替换</span>
-</code></pre><p>其实这个小技巧你可以再Mac的任意编辑文本处使用。</p>
-<h4 id="一些界面说明">一些界面说明</h4>
-<p><img src="http://farm8.staticflickr.com/7040/6816041908_bc88f08c2b.jpg" alt="xcode1"></p>
-<p>看见右边有的文件后面是M有的是A。至今我没有看见哪里说明过这个是什么。其实很简单，通过Git管理你的项目以后，xcode自然能追踪你的文件情况。M是modified的缩写。A自然是add的缩写。（其实在没有用Git的时候xcode也能追逐，估计是跟关闭之前的保存的那一次对比吧）</p>
-<p><img src="http://farm8.staticflickr.com/7192/6816060622_aaf083d9bf.jpg" alt="xcode2"></p>
-<p>这几个按钮很有用，具体看视频里面老头的操作。</p>
-<p>Editor第一个是单独一个文本编辑，第二个是两个文本不同文本编辑，第三个是同一个文本不同时期对比编辑（这个用Git，然后很牛的）</p>
-<p>View第一个显示右边的导航，就是文件结构那个。第二个是调试台。第三个是可以拖控件的</p>
-<p>Organizer这个功能比较多。暂时就说点过去了可以在里面管理Git的分支各种。</p>
-<h4 id="在IOS项目下建立Git管理">在IOS项目下建立Git管理</h4>
-<p> 老头视频里面是自己建立的，刚刚我看我的所有项目都有git了，暂时不知道是我设置了什么还是默认的。直播开始了。先看直播。</p>
+<p>里面有两个宏</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="preprocessor">#<span class="keyword">define</span> DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)</span>
+<span class="preprocessor">#<span class="keyword">define</span> CURRENT_CALENDAR [NSCalendar currentCalendar]</span>
+</pre></td></tr></table></figure>
+
+<p>假设你使用过Cocoa时间这些类的话能很容易的看出。dateAtStartOfDay函数就是把你持有的date以当前日历为基础，其他不改，小时，分钟，秒钟设置都为0。这样就能得到一个基于当前日历下的date这一天的00:00:00。</p>
+<p>简单看上去没有什么问题，回到高富帅的问题。他出国玩一圈咋时间就变了呢？答案是[NSCalendar currentCalendar]改变了。NSCalendar的改变使得dateAtStartOfDay返回的时间也变了。debug到这一步才发觉靠当初为什么没有想到有时区的这个问题。</p>
+<p>自己给自己找一个理由就是到目前为止，我只用过大天朝的+8时间。潜意识里面根本没有说换一个时区这样的概念。(后来某一天我翻了本C语言的书第一章就说了国际化时间的问题，再后来weibo上大家都纷纷表示时间是编程里面一个基础点而且做好不容易，只能说我还是太菜太年轻了。这些是后话了)</p>
+<p>说道这里那就开始科普一下地球上时间的问题</p>
+<a id="more"></a>
+
+<h2 id="世界时间">世界时间</h2>
+<p>由于人类历史的缘由，地球上以大概的地理位置画分时区。<a href="http://en.wikipedia.org/wiki/Time_zone" target="_blank">Time Zone Wiki</a></p>
+<p>我认为时间是大爆炸以后产生的扩张现象，在可预见的人类的历史上肯定是不可逆转的。所以每一个时刻对于人类来说应该是唯一的。但是，在这同一个时刻里面，在地球的不同地方使用着不同的时间格式来表现着。我认为这是相当不科学的一个事情。随着人类文明的进步，我觉得最后应该会全世界时间大统一的。</p>
+<p>回到现实中还是要解决现在因为时区而产生的问题。</p>
+<h2 id="iOS中的时间">iOS中的时间</h2>
+<p>在Cocoa里面，获取一个当前时间是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">NSLog</span>(@<span class="string">"Now:%@"</span>, [<span class="built_in">NSDate</span> date]);
+</pre></td></tr></table></figure>
+
+<p>Log出来应该是一个 xxxx-xx-xx xx:xx:xx +0000。但是聪明的你，人如果处在大天朝内马上发现这个时间比你电脑上的时间少了8小时。</p>
+<p>恩,因为NSDate记录的是一个绝对的值。这个值代表的意思是UTC时区的绝对时间。我们就把它看作为我们写Cocoa程序的一个绝对时间，千万要记住这一点。因为接下来的一堆概念会把人弄晕的。（我就晕了好久#_#）</p>
+<p><a href="http://zh.wikipedia.org/wiki/協調世界時" target="_blank">UTC Wiki</a></p>
+<p>与UTC有点关系的GMT时间，稍作了解避免搞混了。（实在分不清，你就记住UTC是一个更加精准的标准时间）</p>
+<p><a href="http://zh.wikipedia.org/zh-cn/格林尼治平时" target="_blank">GMT Wiki</a></p>
+<p>那NSDate存储了一个什么值来代表时间呢？可以简单的认为他是记录了一个浮点数。这个浮点数代表什么呢？我们注意到头文件里面有个这样的方法timeIntervalSince1970。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">// seconds</span>
+<span class="built_in">NSLog</span>(@<span class="string">"seconds %lf"</span>, [[<span class="built_in">NSDate</span> date] timeIntervalSince1970]);
+</pre></td></tr></table></figure>
+
+<p>在写文章的此时此刻打印出来是“1395324408.535384”。简单运算一下</p>
+<pre><code>1395324408.535384 / 60 / 60 / 24 / 365 ≈ 44.245446745
+2014.x - 44.x ≈ 1970
+</code></pre><p>看到这里，就可以很明确的认为用NSDate来存储的时间是从1970-01-01 00:00:00 到那个时刻所经历的秒数。</p>
+<p>为什么是1970？如果你接触过一些计算机的知识或者其他编程语言或者数据库等。你都可能在时间相关的地方会发现1970很眼熟的样子。<a href="https://duckduckgo.com" target="_blank">放鸭</a>搜索了一下。找到一些比较权威的说法。</p>
+<p>首先能找到权威解释是<a href="http://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>。简单粗暴的来说就是我们现在用的 <em>nix 以及基于 </em>nix的一堆东西（包括了现在使用的绝大部分东西）都是1970年极其以后出现的。那时候大家觉得就从1970-01-01 00:00:00开始算时间是个不错的主意。就这么一直延续下来了。（PS：忽略了一堆32bit or 64bit的点。需要详细解释的看url）</p>
+<p>看NSDate头文件还</p>
+<p>发现一个有意思的宏</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="preprocessor">#<span class="keyword">define</span> NSTimeIntervalSince1970  978307200.0</span>
+</pre></td></tr></table></figure>
+
+<p>稍微做了一下运算。可以知道这是从1970-01-01 00:00:00 到2001-01-01 00:00:00经过的秒数。稍微思考一下应该是用来进行了优化运算的。</p>
+<p>待续。。。</p>
+<h2 id="小结">小结</h2>
+<p>这么一点字又写了两天，还是要每天坚持啊。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/03/08/learning-ios-notes-three/" data-id="d6gy4h7tklmwl1sy" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/" data-id="65mxcwntctis2ri0" class="article-share-link">Share</a>
       
-        <a href="http://iiiyu.com/2012/03/08/learning-ios-notes-three/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -170,19 +195,10 @@ Command + g <span class="comment">#到了下一个替换的地方</span>
     
 <nav id="article-nav">
   
-    <a href="/2012/03/14/emacs-set-up-3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          调教Emacs(三)——完结篇
-        
-      </div>
-    </a>
   
-  
-    <a href="/2012/03/05/learning-ios-notes-two/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/03/18/learning-ios-notes-thirty-three/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">iOS笔记 (2)</div>
+      <div class="article-nav-title">iOS笔记(33) 格志周年系列之夏令时(一)</div>
     </a>
   
 </nav>
@@ -284,7 +300,7 @@ Command + g <span class="comment">#到了下一个替换的地方</span>
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2012/03/08/learning-ios-notes-three/';
+  var disqus_url = 'http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/';
   
   (function(){
     var dsq = document.createElement('script');

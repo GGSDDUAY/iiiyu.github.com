@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2014-03-18T14:35:27.273Z</updated>
+  <updated>2014-03-20T15:29:07.330Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -12,11 +12,99 @@
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
   <entry>
+    <title type="html"><![CDATA[iOS笔记(34) 格志周年系列之夏令时(二)]]></title>
+    <link href="http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/"/>
+    <id>http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/</id>
+    <published>2014-03-19T12:37:48.000Z</published>
+    <updated>2014-03-20T15:28:55.000Z</updated>
+    <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>恩，两月没更新blog，hexo都出来新主题来着。其实昨天为了找个背景图找了一小时我会随便乱说。就是为了找一个配合网站标题的背景图。其实hexo默认的就蛮好了，但是为了显示那么一点点与众不同还是替换了一下。</p>
+<p>扯淡结束，接上一篇<a href="http://iiiyu.com/2014/03/18/learning-ios-notes-thirty-three/">格志周年系列之夏令时(一)</a></p>
+<h2 id="第一阶段Bug">第一阶段Bug</h2>
+<p>上次说过一个中国高富帅用户发Email来说，他去泰国旅游的时候，日记都不见了。</p>
+<p>其实不是日记不见了，日记都好好的躺在sqlite文件里面。而是查询不出来了。日记的保存是用了一个函数去获得了每天的00:00:00. 然后作为唯一标识来区别和查询。  </p>
+<p>那日期出了啥问题？</p>
+<p>我们来快速的分析一下</p>
+<p>调用的是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>- (NSDate *) dateAtStartOfDay
+{
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+	components.hour = 0;
+	components.minute = 0;
+	components.second = 0;
+	return [CURRENT_CALENDAR dateFromComponents:components];
+}
+</pre></td></tr></table></figure>
+
+<p>里面有两个宏</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="preprocessor">#<span class="keyword">define</span> DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)</span>
+<span class="preprocessor">#<span class="keyword">define</span> CURRENT_CALENDAR [NSCalendar currentCalendar]</span>
+</pre></td></tr></table></figure>
+
+<p>假设你使用过Cocoa时间这些类的话能很容易的看出。dateAtStartOfDay函数就是把你持有的date以当前日历为基础，其他不改，小时，分钟，秒钟设置都为0。这样就能得到一个基于当前日历下的date这一天的00:00:00。</p>
+<p>简单看上去没有什么问题，回到高富帅的问题。他出国玩一圈咋时间就变了呢？答案是[NSCalendar currentCalendar]改变了。NSCalendar的改变使得dateAtStartOfDay返回的时间也变了。debug到这一步才发觉靠当初为什么没有想到有时区的这个问题。</p>
+<p>自己给自己找一个理由就是到目前为止，我只用过大天朝的+8时间。潜意识里面根本没有说换一个时区这样的概念。(后来某一天我翻了本C语言的书第一章就说了国际化时间的问题，再后来weibo上大家都纷纷表示时间是编程里面一个基础点而且做好不容易，只能说我还是太菜太年轻了。这些是后话了)</p>
+<p>说道这里那就开始科普一下地球上时间的问题</p>
+<a id="more"></a>
+
+<h2 id="世界时间">世界时间</h2>
+<p>由于人类历史的缘由，地球上以大概的地理位置画分时区。<a href="http://en.wikipedia.org/wiki/Time_zone" target="_blank">Time Zone Wiki</a></p>
+<p>我认为时间是大爆炸以后产生的扩张现象，在可预见的人类的历史上肯定是不可逆转的。所以每一个时刻对于人类来说应该是唯一的。但是，在这同一个时刻里面，在地球的不同地方使用着不同的时间格式来表现着。我认为这是相当不科学的一个事情。随着人类文明的进步，我觉得最后应该会全世界时间大统一的。</p>
+<p>回到现实中还是要解决现在因为时区而产生的问题。</p>
+<h2 id="iOS中的时间">iOS中的时间</h2>
+<p>在Cocoa里面，获取一个当前时间是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">NSLog</span>(@<span class="string">"Now:%@"</span>, [<span class="built_in">NSDate</span> date]);
+</pre></td></tr></table></figure>
+
+<p>Log出来应该是一个 xxxx-xx-xx xx:xx:xx +0000。但是聪明的你，人如果处在大天朝内马上发现这个时间比你电脑上的时间少了8小时。</p>
+<p>恩,因为NSDate记录的是一个绝对的值。这个值代表的意思是UTC时区的绝对时间。我们就把它看作为我们写Cocoa程序的一个绝对时间，千万要记住这一点。因为接下来的一堆概念会把人弄晕的。（我就晕了好久#_#）</p>
+<p><a href="http://zh.wikipedia.org/wiki/協調世界時" target="_blank">UTC Wiki</a></p>
+<p>与UTC有点关系的GMT时间，稍作了解避免搞混了。（实在分不清，你就记住UTC是一个更加精准的标准时间）</p>
+<p><a href="http://zh.wikipedia.org/zh-cn/格林尼治平时" target="_blank">GMT Wiki</a></p>
+<p>那NSDate存储了一个什么值来代表时间呢？可以简单的认为他是记录了一个浮点数。这个浮点数代表什么呢？我们注意到头文件里面有个这样的方法timeIntervalSince1970。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">// seconds</span>
+<span class="built_in">NSLog</span>(@<span class="string">"seconds %lf"</span>, [[<span class="built_in">NSDate</span> date] timeIntervalSince1970]);
+</pre></td></tr></table></figure>
+
+<p>在写文章的此时此刻打印出来是“1395324408.535384”。简单运算一下</p>
+<pre><code>1395324408.535384 / 60 / 60 / 24 / 365 ≈ 44.245446745
+2014.x - 44.x ≈ 1970
+</code></pre><p>看到这里，就可以很明确的认为用NSDate来存储的时间是从1970-01-01 00:00:00 到那个时刻所经历的秒数。</p>
+<p>为什么是1970？如果你接触过一些计算机的知识或者其他编程语言或者数据库等。你都可能在时间相关的地方会发现1970很眼熟的样子。<a href="https://duckduckgo.com" target="_blank">放鸭</a>搜索了一下。找到一些比较权威的说法。</p>
+<p>首先能找到权威解释是<a href="http://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>。简单粗暴的来说就是我们现在用的 <em>nix 以及基于 </em>nix的一堆东西（包括了现在使用的绝大部分东西）都是1970年极其以后出现的。那时候大家觉得就从1970-01-01 00:00:00开始算时间是个不错的主意。就这么一直延续下来了。（PS：忽略了一堆32bit or 64bit的点。需要详细解释的看url）</p>
+<p>看NSDate头文件还</p>
+<p>发现一个有意思的宏</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="preprocessor">#<span class="keyword">define</span> NSTimeIntervalSince1970  978307200.0</span>
+</pre></td></tr></table></figure>
+
+<p>稍微做了一下运算。可以知道这是从1970-01-01 00:00:00 到2001-01-01 00:00:00经过的秒数。稍微思考一下应该是用来进行了优化运算的。</p>
+<p>待续。。。</p>
+<h2 id="小结">小结</h2>
+<p>这么一点字又写了两天，还是要每天坚持啊。</p>
+]]></content>
+    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
+  </entry>
+  <entry>
     <title type="html"><![CDATA[iOS笔记(33) 格志周年系列之夏令时(一)]]></title>
     <link href="http://iiiyu.com/2014/03/18/learning-ios-notes-thirty-three/"/>
     <id>http://iiiyu.com/2014/03/18/learning-ios-notes-thirty-three/</id>
     <published>2014-03-18T13:23:35.000Z</published>
-    <updated>2014-03-18T14:31:06.000Z</updated>
+    <updated>2014-03-19T13:08:28.000Z</updated>
     <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
 <h2 id="开篇扯淡">开篇扯淡</h2>
 <p>两月没写blog，没羞没皮了。以后作息规律一些，blog更新还是频繁一些。格志在2014年2月11日就整整上线一周年了。2013一年做格志，由于自己的技术实在比较菜。导致从上线的第一天起，整个团队跟着一直打补丁。小的坑就不说了，大的坑有两，一个iCloud + Core Data世界性难题。一个是全球时间问题。这篇blog就用来专门记下时间的坑。中间还有个插曲——格志在三月上线了2.0的全新专门为iOS 7设计的版本。时间问题在去年10月份改完以为对了就没有改过。结果3月9号是3月的第二个周日，美国地区进入夏令时。格志中又再次发生了时间问题，导致日记显示不全。之前开会说过放错不可怕，可怕的是放同样的错误。再次放错以后我都呆住了。那可是我写过测试用例的啊。结果当时一run测试就挂掉了。瞬间脑子蒙掉。然后上周通宵了一天，基本每天到3点把世界时间问题给彻底搞定。（希望是彻底）所以趁着我现在还有印象，记录一下。</p>
@@ -44,7 +132,7 @@ pod <span class="string">'NSDate-Extensions'</span>, <span class="string">'~&gt;
 </pre></td></tr></table></figure>
 
 <p>里面的这个方法(先贴出来)</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1977,181 +2065,6 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]]</span>;
 </pre></td></tr></table></figure>
 
-]]></content>
-    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[iOS笔记(18)]]></title>
-    <link href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/"/>
-    <id>http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/</id>
-    <published>2013-03-28T16:04:37.000Z</published>
-    <updated>2014-02-17T04:21:15.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="Core_Data_(一)">Core Data (一)</h1>
-<h2 id="序">序</h2>
-<p>恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。</p>
-<h2 id="为什么要用Core_Data">为什么要用Core Data</h2>
-<p>CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api取回来就好了。</p>
-<p>我们要用Core Data的理由有以下几点：</p>
-<ol>
-<li>Core Data是对底层存储的一次封装。封装了以后就变成ORM的框架。这样就变成操作对象。Core Data自己去进行数据的保存。</li>
-<li>使用Core Data而不是FMDB，让整个程序架构更加的面向对象。</li>
-<li>Core Data仅仅使用了Objective-C和Core Foundation，你不必去加入一些第三方的库。</li>
-<li>Core Data是Apple的原生技术。每年的WWDC都能看到新特性的加入和讲授。</li>
-<li>Core Data支持iCloud。而使用iCloud的App。Apple推荐的可能性增加。</li>
-<li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
-</ol>
-<p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
-<a id="more"></a>
-
-
-<h2 id="存储原理">存储原理</h2>
-<h3 id="NSManagedObjectModel">NSManagedObjectModel</h3>
-<h4 id="认识">认识</h4>
-<p>我个人是把NSManagedObjectModel看做为一个core data的schema。生成这个类的来源是xCode中的Data Model</p>
-<p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36lv4nn89j.jpg" alt=""></p>
-<p>点击之后会生成一个.xcdatamodeld的文件夹里面的数据具体是是用xml来存储的。<br>但是你在xCode里面看这个.xcdatamodeld文件夹是认为一个文件。然后可以用xCode来进行图形化的编辑。</p>
-<p>如这样</p>
-<p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e36m76n6k3j.jpg" alt=""></p>
-<p>当然还有另外一种表格的方式来编辑Data Model</p>
-<p><img src="http://ww3.sinaimg.cn/large/bfadf3bejw1e36mhk7obgj.jpg" alt=""></p>
-<p>我们编辑这个的这个文件，理论上来说只是一个资源文件。相当于数据库的schema。我们的数据库长什么样子，就是你来设计的。然后在程序中通过NSURL找到这个资源文件的位置。就可以初始化成为NSManagedObjectModel。</p>
-<h4 id="代码加载Data_Model">代码加载Data Model</h4>
-<p>当我们设计好我们的Data Model以后。可以用以下代码，把Data Model加载到NSManagedObjectModel里面去。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>- (<span class="keyword">void</span>)initializeCoreDataStack
-{
-    <span class="built_in">NSURL</span> *modelURL = [[<span class="built_in">NSBundle</span> mainBundle] URLForResource:@<span class="string">"PPRecipes"</span> withExtension:@<span class="string">"momd"</span>];
-    ZAssert(modelURL, @<span class="string">"Failed to find model URL"</span>);
-    NSManagedObjectModel *mom = <span class="literal">nil</span>;
-    mom = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL]; ZAssert(mom, @<span class="string">"Failed to initialize model"</span>);
-}
-</pre></td></tr></table></figure>
-
-<p>这样我们就从main bundle里面把data model加载到NSManagedObjectModel这个类里面去了。</p>
-<h3 id="NSPersistentStoreCoordinator">NSPersistentStoreCoordinator</h3>
-<p>NSPersistentStoreCoordinator是整个Core Data的核心。因为承担着全部数据的持久化，加载数据，缓存数据的工作。可以看做Core Data的心脏。</p>
-<p>值得我们开心的事情是，虽然NSPersistentStoreCoordinator很重要，但是我们在写程序的时候其实只用初始化和设置一些很简单的参数就可以使用了。在我们App的整个生命周期里面其实并不会很频繁的使用到它。</p>
-<h4 id="初始化NSPersistentStoreCoordinator">初始化NSPersistentStoreCoordinator</h4>
-<p>初始化NSPersistentStoreCoordinator分为两个步骤</p>
-<ol>
-<li>用已经初始化好的NSManagedObjectModel去初始化它</li>
-<li>选择NSPersistentStore为存储的方式</li>
-</ol>
-<h5 id="NSPersistentStore">NSPersistentStore</h5>
-<p>理论上来说NSPersistentStoreCoordinator的数据不一定要存到硬盘上，它可以存到内存里，可以存到网络上。不过都肯定是对应着不同的应用场景。所以我们一般情况还是把它存储到磁盘上。 NSPersistentStore就是用来描述我们要把数据存到哪里的类。NSPersistentStore还可以指定存储数据的文件的文件类型。</p>
-<p>目前知道的NSPersistentStore支持三种类型：</p>
-<ol>
-<li>SQLite</li>
-<li>二进制</li>
-<li>XML</li>
-</ol>
-<p>我就只使用SQLite。理论上来说，NSPersistentStore不管选择什么样的存储文件。你后面进行Core Data的操作都是一样的。并不需要修改你的逻辑代码。这就是Core Data把底层封装了一次的好处。(书上说iOS上不建议使用XML)</p>
-<p>有一点需要注意的是NSPersistentStoreCoordinator可以加入不止一个的NSPersistentStore。这个在某些特定场景还是很有用的，以后如果能写到在写把。</p>
-<h5 id="代码加载NSPersistentStoreCoordinator">代码加载NSPersistentStoreCoordinator</h5>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre></td><td class="code"><pre>    <span class="built_in">dispatch_queue_t</span> queue = <span class="literal">NULL</span>;
-    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);
-    <span class="built_in">dispatch_async</span>(queue, ^{
-        <span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];
-        <span class="built_in">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory
-                                                      inDomains:NSUserDomainMask];
-        <span class="built_in">NSURL</span> *storeURL = <span class="literal">nil</span>;
-        storeURL = [directoryArray lastObject];
-        storeURL = [storeURL URLByAppendingPathComponent:@<span class="string">"PPRecipes.sqlite"</span>];
-        <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;
-        NSPersistentStore *store = <span class="literal">nil</span>;
-        store = [psc addPersistentStoreWithType:NSSQLiteStoreType
-                               configuration   :<span class="literal">nil</span>
-                               URL             :storeURL
-                               options         :<span class="literal">nil</span>
-                               error           :&error];
-        <span class="keyword">if</span> (!store) {
-            ALog(@<span class="string">"Error adding persistent store to coordinator %@\n%@"</span>,
-                 [error localizedDescription], [error userInfo]);
-        }
-    });
-</pre></td></tr></table></figure>
-
-<p>由于这个过程是一个比较耗费资源的过程。所以我们应该把它放到后台线程里面去做。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];
-        <span class="built_in">NSArray</span> *directoryArray = [fileManager URLsForDirectory:NSDocumentDirectory
-                                                      inDomains:NSUserDomainMask];
-</pre></td></tr></table></figure>
-
-<p>Apple中不管是OS X还是iOS能上架的App，都是沙箱机制。这个可以自己Goolge看相关的资料。这样的话每一个App都有自己的文件系统。这两句也比较常使用。就是可以获得自己沙箱中的Document文件夹路经。参数的信息直接查文档把。</p>
-<p>接下来很重要的一句是</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>store = [psc <span class="symbol">addPersistentStoreWithType:</span><span class="constant">NSSQLiteStoreType</span>
-    					configuration   <span class="symbol">:nil</span>
-    					<span class="constant">URL</span>             <span class="symbol">:storeURL</span>
-    					options         <span class="symbol">:nil</span>
-   						error           <span class="symbol">:&error</span>];
-</pre></td></tr></table></figure>
-
-<p>此函数的第一个参数是指定NSPersistentStore的存储类型，我们之前说过的三种类型之一。NSSQLiteStoreType就代表这SQLite文件类型。</p>
-<p>第二个参数比较高级。我还没有用到过。文档上写的是设置为nil的时候是把NSPersistentStoreCoordinator作为默认的配置，如果是其他参数可能是把NSPersistentStoreCoordinator设置为其他的用途。</p>
-<p>第三个参数就是我们要存储文件的位置。刚刚我们不是获得的沙箱里面的Document文件夹路经了么。然后我们把文件名加入拼为了一个文件的完整路经传入。</p>
-<p>第四个参数类型是一个字典，我们可以传入不同的参数来指定这个NSPersistentStore的类型。比如在本地比如在iCloud。比较高级先为nil。</p>
-<p>最后一个参数，为error，传入一个error指针。如果NSPersistentStore初始化失败我们可以获得相应信息。</p>
-<h3 id="NSManagedObjectContext">NSManagedObjectContext</h3>
-<p>NSManagedObjectContext是我们很经常使用到的一个类。对于为什么要有这个类我个人理解是这样的，在我有限的数据库知识中记得，IO操作是很费时的，因此数据库一般情况是把一系列的操作缓存到了一个内存区域，等待合适的实际在去写入真实的磁盘中。这样大大的提高效率。如果你插入一条数据，然后修改数据，最后删除掉这条数据。如果是每次都执行Commit的话是操作三次IO，如果我们把这三条合并在一起commit的话。是任何事情都不必做。这样能有效的提高整个系统的效率。我认为NSManagedObjectContext的作用在于跟持久化直接做了这层缓存。我们使用Core Data。</p>
-<p>还有一点需要注意的是NSManagedObjectContext并不是线程安全的。</p>
-<p>关于NSManagedObjectContext的线程安全和高级解释，这里有两篇blog写的超好。</p>
-<p>可以一看</p>
-<p><a href="http://www.cocoanetics.com/2012/07/multi-context-coredata/" target="_blank">Multi-Context CoreData</a></p>
-<p><a href="http://www.cocoanetics.com/2013/02/zarra-on-locking/" target="_blank">Zarra on Locking</a></p>
-<p>初级应用的话只用记住一个就ok了NSManagedObjectContext是有一个NSManagedObjectContextConcurrencyType的属性。如果我们是UI操作（主线程操作）我们应该把它设置为NSMainQueueConcurrencyType类型的。</p>
-<h4 id="代码加载NSManagedObjectContext">代码加载NSManagedObjectContext</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>NSManagedObjectContext                  *moc = nil;
-NSManagedObjectContextConcurrencyType   ccType = NSMainQueueConcurrencyType;
-moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:ccType];
-[moc <span class="keyword">set</span>PersistentStoreCoordinator:psc];
-[self <span class="keyword">set</span>ManagedObjectContext:moc];
-</pre></td></tr></table></figure>
-
-<h3 id="总结">总结</h3>
-<p><img src="http://ww2.sinaimg.cn/large/a7480316jw1e39dc0y8o2j.jpg" alt=""></p>
-<p>至此，三个Core Data的核心类就已经简单说完了一次。他们的关系在上面的图片中表示的很清楚的样子。</p>
-<p>NSPersistentStoreCoordinator从NSManagedObjectModel得到模型然后选择NSPersistentStore作为持久化目的地。然后NSManagedObjectContext在作为NSPersistentStoreCoordinator的一个缓存区给我们操作。</p>
-<p>当然我这篇blog和接下来准备写的Core Data的可能不会是有完整代码和具体实例的文章。可能只是我对Core Data使用上的一些感悟和梳理。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
   </entry>

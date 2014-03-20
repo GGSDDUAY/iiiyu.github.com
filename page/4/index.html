@@ -77,6 +77,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-learning-ios-notes-twenty-three" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/23/learning-ios-notes-twenty-three/" class="article-date">
+  <time datetime="2013-05-23T06:51:31.000Z" itemprop="datePublished">5月 23 2013</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/23/learning-ios-notes-twenty-three/">iOS笔记(23) iOS进行单元测试OCUnit+xctool</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iOS进行单元测试OCUnit+xctool">iOS进行单元测试OCUnit+xctool</h1>
+<h2 id="单元测试">单元测试</h2>
+<h3 id="什么是单元测试">什么是单元测试</h3>
+<p><a href="http://zh.wikipedia.org/wiki/单元测试" target="_blank">wiki解释</a></p>
+<p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
+<h3 id="我为什么要单元测试">我为什么要单元测试</h3>
+<p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
+<h3 id="单元测试的一般方法">单元测试的一般方法</h3>
+<p>关于测试的书，一搜就一大把。都有高深的理论和方法来指导怎么写单元测试的方法。我觉得嘛不用搞了这么复杂。 无非就3种时候会去想写测试：</p>
+<ol>
+<li>代码完成以后</li>
+<li>开始写代码之前</li>
+<li>修复了一个bug以后</li>
+</ol>
+<p>第一种是完成了代码，恩我要测试一下我写的这些方法可靠不可靠。那这时候可以写测试。</p>
+<p>第二种一个著名的方法论TDD。主要思想就是在写代码之前，就全部设计好借口。函数名字什么的。然后在写能通过测试的函数。</p>
+<p>第三种就是发现了bug，我修复了这个bug。为了确保修复是成功的。那就写个测试吧。</p>
+<p>我觉得啊，着三种都没有什么好或差。能写测试的少年都是好少年。何必这么在意什么时候去写呢。</p>
+<p>一个完整的测试类组成像下图</p>
+<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58jl2toiej20fh0a1aam.jpg" alt=""></p>
+<p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
+<p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2013/05/23/learning-ios-notes-twenty-three/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/" data-id="6owl87g1q0zwbylu" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-learning-ios-notes-twenty-two" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/04/29/learning-ios-notes-twenty-two/" class="article-date">
@@ -114,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/04/29/learning-ios-notes-twenty-two/" data-id="fcbox8n3nyw10cek" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/04/29/learning-ios-notes-twenty-two/" data-id="u0bryasjbs79cg3q" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/04/29/learning-ios-notes-twenty-two/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -167,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/" data-id="xu3pa8xhy7vxevu6" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/" data-id="lb9sl0p626te1cwj" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -227,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/" data-id="6nwgw6ypds7shme5" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/" data-id="yopo4sqynk4uza9o" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -278,69 +345,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/" data-id="2i9vhtzl8a2p5b1r" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/" data-id="bhx5m6hc397zykjr" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-learning-ios-notes-eighteen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/03/29/learning-ios-notes-eighteen/" class="article-date">
-  <time datetime="2013-03-28T16:04:37.000Z" itemprop="datePublished">3月 29 2013</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/03/29/learning-ios-notes-eighteen/">iOS笔记(18)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Core_Data_(一)">Core Data (一)</h1>
-<h2 id="序">序</h2>
-<p>恩，用Core Data也有一段时间了。大大小小的坑也都坑过了。重来没有认真的记录一次。这次需要好好的理一理Core Data。就当一次绝好的机会记录下来。也为了自己加深认识。</p>
-<h2 id="为什么要用Core_Data">为什么要用Core Data</h2>
-<p>CoreData的学习是需要一定成本的。以至于我认识的人很少在用，大家要不就是用一个FMDB。或者做的App是一个已有的Web的延伸，数据直接用Web端的Api取回来就好了。</p>
-<p>我们要用Core Data的理由有以下几点：</p>
-<ol>
-<li>Core Data是对底层存储的一次封装。封装了以后就变成ORM的框架。这样就变成操作对象。Core Data自己去进行数据的保存。</li>
-<li>使用Core Data而不是FMDB，让整个程序架构更加的面向对象。</li>
-<li>Core Data仅仅使用了Objective-C和Core Foundation，你不必去加入一些第三方的库。</li>
-<li>Core Data是Apple的原生技术。每年的WWDC都能看到新特性的加入和讲授。</li>
-<li>Core Data支持iCloud。而使用iCloud的App。Apple推荐的可能性增加。</li>
-<li>有了iCloud为以后Apple的全平台数据共享打下基础</li>
-</ol>
-<p>所以，没有理由拒绝使用Core Data做为你App的持久化。Core Data应该是一个跟Apple混的第一选择。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2013/03/29/learning-ios-notes-eighteen/#more">阅读更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/" data-id="3ezcws5bfo8rc9zf" class="article-share-link">Share</a>
-      
-        <a href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -368,6 +375,10 @@
       <ul>
         
           <li>
+            <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
+          </li>
+        
+          <li>
             <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
           </li>
         
@@ -383,10 +394,6 @@
             <a href="/2013/12/25/learning-ios-notes-thirty-two/">iOS笔记(32) UbiquityStoreManager 学习笔记1</a>
           </li>
         
-          <li>
-            <a href="/2013/12/21/evaluation-bong/">简单测评Bong(深度吐槽,胆小、承受能力差和心脏病人需要陪同观看。谢谢合作)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -396,7 +403,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -414,7 +421,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
