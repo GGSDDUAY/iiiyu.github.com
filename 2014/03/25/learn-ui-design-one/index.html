@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (2) | 萧宸宇</title>
+  <title>学习UI设计笔记(一) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (2)">
-<meta name="og:url" content="http://iiiyu.com/2012/03/05/learning-ios-notes-two/">
-<meta name="og:image">
+<meta name="og:title" content="学习UI设计笔记(一)">
+<meta name="og:url" content="http://iiiyu.com/2014/03/25/learn-ui-design-one/">
+<meta name="og:image" content="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf0yhz53j20zg0lmaew.jpg">
 <meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
-iOS的MVC初级代码说明
-上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
-斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
+<meta name="og:description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+那啥， 我知道NSDate的坑没有搞定。缓缓，缓缓。我在开个新坑来着。恩恩这个坑就是记录一下怎么学习Sketch 这个软件的。
+首先，我买了本更优秀的APP-31个APP用户界面设计经典案">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
@@ -78,10 +78,10 @@ iOS的MVC初级代码说明
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-two" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-learn-ui-design-one" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/03/05/learning-ios-notes-two/" class="article-date">
-  <time datetime="2012-03-04T16:25:00.000Z" itemprop="datePublished">3月 5 2012</time>
+    <a href="/2014/03/25/learn-ui-design-one/" class="article-date">
+  <time datetime="2014-03-25T15:12:21.000Z" itemprop="datePublished">3月 25 2014</time>
 </a>
     
   </div>
@@ -92,7 +92,7 @@ iOS的MVC初级代码说明
         
   
     <h1 class="article-title" itemprop="name">
-      iOS笔记 (2)
+      学习UI设计笔记(一)
     </h1>
   
 
@@ -100,88 +100,74 @@ iOS的MVC初级代码说明
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。</p>
-<h2 id="iOS的MVC初级代码说明">iOS的MVC初级代码说明</h2>
-<p>上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。</p>
-<p>斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到12课而已。所以现在只讨论IOS5开发中的view和controller。</p>
-<p>IOS5中，我们可以看到一个叫storyboard的文件。这个文件就是view。或者说是view的载体。UIKit上所有的控件都可以往上面拖。这里我简单的把storyboard以及带UI前缀的类都统一看成view。view就是再ios设备上你能看见的整个屏幕。</p>
+        <p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>那啥， 我知道NSDate的坑没有搞定。缓缓，缓缓。我在开个新坑来着。恩恩这个坑就是记录一下怎么学习Sketch 这个软件的。</p>
+<p>首先，我买了本<a href="http://www.amazon.cn/更优秀的APP-31个APP用户界面设计经典案例-白润华/dp/B00ELMXLOK/ref=sr_1_1?ie=UTF8&amp;qid=1395760594&amp;sr=8-1&amp;keywords=31app" target="_blank">更优秀的APP-31个APP用户界面设计经典案例</a>。 高手勿喷，这种图文并茂，手把手的交比较适合我这种菜鸟。</p>
+<p>这本书的唯一好处是他的例子是Ai的。而Sketch也是矢量图。所以我以为会有些类似的操作。（其实根本是两个软件啊！！！！）</p>
+<p>然后我准备把他说的31个例子都用Sketch来模仿一边。恩，先把Sketch的大部分功能运用熟练再说（就是花了小几百不想让他吃灰而已）</p>
 <a id="more"></a>
 
-<p>在最简单的例子里面，我们可以看到一对叫XXXViewController.h XXXViewController.m的文件。他们就是一个Controller类。</p>
-<p>现在回忆一下view和controller的关系</p>
-<blockquote>
-<p>controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致。这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置 </p>
-</blockquote>
-<p>在老头的视频教学里面我们可以看到。比如一个UILabel拖到storyboard上面的时候，这个UILabel仅仅是一个view，它和controller还没有产生任何关系。此时我们的主子controller要知道他有了一个狗腿UILabel这个view要怎么办呢。我们就按着Ctrl点击UILabel拖入XXXViewController.h文件里面，形成一个outlet。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;
-</pre></td></tr></table></figure>
-
-<p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
-<p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向<br>XXXViewController.m文件里面拖，就会形成一个Action。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>- (IBAction)digitPressed:(UIButton *)sender 
-{
-	<span class="keyword">...</span>
-}
-</pre></td></tr></table></figure>
-
-<p>这就是狗腿出什么样的事情通知主子的地方。</p>
-<h2 id="一些小细节上的感悟">一些小细节上的感悟</h2>
-<h4 id="ARC和strong、weak">ARC和strong、weak</h4>
-<p>新的IOS5引入了ARC（Automatic Referencing Counting）机制。当然，你可以在创建项目的时候不选择，或者再项目创建以后关闭它来手动释放内存。</p>
-<p>可惜我直接是从IOS5开始学习，而且不喜欢旧的东西。所以坚决使用ARC和storyboard。而且再内存管理上，我觉得编译器比人靠谱多了。当然我也是初学IOS。理解上可能有错误，欢迎指导。</p>
-<p>窃以为使用ARC，一开始接触到的是：</p>
-<pre><code><span class="keyword">strong</span>
-<span class="keyword">weak</span>
-</code></pre><p>在我的记录中老头是这样定义的：</p>
-<blockquote>
-<p>Strong and weak are descriptions or attributes parentheses.<br>Strong keep it in the heap. Keep it in heap until i stop pointing to it.<br>Weak keep this as long as someone else point to it strongly.</p>
-</blockquote>
-<p>值得注意的是</p>
-<blockquote>
-<p>Strong and weak. This is not garbage collection.<br>This is refernce counting done automatically for you.</p>
-</blockquote>
-<p>大概就是strong声明的东西是放到内存堆里面,它在我停止指向它之前都一直会在内存堆里面，引用记数也不会为0（猜测）。weak呢，则是只要没有指向它的东西时候，引用记数就为0了。然后呢，他们都只管理引用记数这个一亩三分田。至于垃圾回收这种工作，是不该他们管理的。</p>
-<h4 id="声明初始化类">声明初始化类</h4>
-<p>一句话:</p>
-<p>alloc后面永远跟着init</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>[[CalculatorBrain alloc] init];
-[[NSMutableArray alloc] init]
-<span class="keyword">...</span>
-</pre></td></tr></table></figure>
-
-<h4 id="面向对象的封装">面向对象的封装</h4>
-<p>小时候还在用过几天java写web的时候，很纳闷为什么每一个属性都要写get、set方法。直到现在才慢慢明白这是封装。封装的好处。</p>
-<p>在IOS5编程里面。通常是用@property来声明属性，然后使用@synthesize来默认使用get、set方法。当然，再objective-c里面可以重写get、set方法。而且我觉得@property和@synthesize应该像alloc和init一样配套使用。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
-
-
-<span class="keyword">@synthesize</span> operandStack = _operandStack;
-</pre></td></tr></table></figure>
-
-<h4 id="编译器的强大">编译器的强大</h4>
-<p>不管是ARC还是后面的get、set方法。都是再编译的时候编辑器加上去的。（猜测）然后各种听说Apple为了让App再IOS跑的更好更流畅。一直再不停的优化llvm。这也是搭载Android的设备硬件远超过IOS设备的情况下还是没有IOS用着爽的底层原因之一吧。 所以，我觉得应该百分百相信编译器。如果出错了。肯定是程序写的有问题。</p>
+<h2 id="Sketch资料">Sketch资料</h2>
+<p><a href="http://www.bohemiancoding.com/sketch/" target="_blank">官网</a></p>
+<p>Sketch的资料其实并不是很多，原因之一是能熟练使用Adobe一套的大家（除了我）都能很快的入手。所以像我这样完全没有用过Photoshop的人在贵圈是一种奇葩。</p>
+<p>所以中文资料就特别特别不多，不多的意思是图灵社区的某个大神把操作手册翻译了一下</p>
+<p><a href="http://www.ituring.com.cn/book/1305?q=Sketch" target="_blank">Sketch中文手册</a></p>
+<p>在没有发布的时候我就知道了，我满怀憧憬的等待这本书的上线。结果，嗯嗯很不错的一本使用手册。</p>
+<p>洋文资料最多的就是MengTo大神的</p>
+<p><a href="http://blog.mengto.com" target="_blank">大神blog</a></p>
+<p>而且大神最近在预发售一本<a href="http://designcode.io" target="_blank">design+code</a>。现在购买打5折哦。(免费为大神打个广告)</p>
+<p>官方视频都在Vimeo上自带神器</p>
+<p><a href="https://vimeo.com/57072774" target="_blank">iOS Design using Sketch. Part one: iOS Navigation Bar</a></p>
+<p><a href="https://vimeo.com/57590796" target="_blank">iOS Design using Sketch. Part two: iOS Toolbar</a></p>
+<p>对了，据可靠小道消息，这货的3.0要发布了。又是一次交钱的时刻。穷死了。</p>
+<h2 id="Github地址">Github地址</h2>
+<p>咱程序员就要有程序员的范，每次的Sketch我都会丢到这个地址上，如果需要下源文件研究一下的同学知道去哪里找了把。</p>
+<p><a href="https://github.com/iiiyu/learn-ui-design" target="_blank">learn-ui-design</a></p>
+<p>鉴于最近的网络情况，自带神器。</p>
+<h2 id="大幅大幅的贴图">大幅大幅的贴图</h2>
+<h3 id="0">0</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf0yhz53j20zg0lmaew.jpg" alt="0"></p>
+<p>恩，按照教程，我手绘了一张图片，然后用手机拍照了放到Sketch里面。</p>
+<h3 id="1">1</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf3zl60jj20zg0lmn1i.jpg" alt="1"></p>
+<p>拖了一个椭圆，然后选中铅笔工具，描绘了一下那个小尾巴。</p>
+<h3 id="2">2</h3>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1eesf54xa8kj20zg0lmaf1.jpg" alt="2"></p>
+<p>选中他们两个，进行Union操作。</p>
+<h3 id="3">3</h3>
+<p><img src="http://ww3.sinaimg.cn/large/a6d3226bgw1eesf5vjl8kj20zg0lmdkp.jpg" alt="3"></p>
+<p>拖一个正方形出来</p>
+<h3 id="4">4</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf6sqy2sj20zg0lmwjs.jpg" alt="4"></p>
+<p>正方形旋转45度</p>
+<h3 id="5">5</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf7fq37ij20zg0lm0xy.jpg" alt="5"></p>
+<p>在正方形上双击会出现可以编辑的关键点</p>
+<h3 id="6">6</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf7ukiefj20zg0lm0xz.jpg" alt="6"></p>
+<p>删除掉最右边的关键点，变成一个三角形</p>
+<h3 id="7">7</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf979g3dj20zg0lmtd3.jpg" alt="7"></p>
+<p>把气泡弄出来看一下整体效果</p>
+<h3 id="8">8</h3>
+<p><img src="http://ww3.sinaimg.cn/large/a6d3226bgw1eesf9x1vynj20zg0lmdkr.jpg" alt="8"></p>
+<p>随便上个颜色试试</p>
+<h3 id="9">9</h3>
+<p><img src="http://ww1.sinaimg.cn/large/a6d3226bgw1eesfacyshyj20zg0lm0vn.jpg" alt="9"></p>
+<p>最终版本，我尽力了。</p>
+<h2 id="总结">总结</h2>
+<p>恩，2014年的一个要努力的目标就是把自己的品味搞上去。恩呢，加油。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/03/05/learning-ios-notes-two/" data-id="xoxkt5xvn8ryiciq" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2014/03/25/learn-ui-design-one/" data-id="9w9r3xjxcbj4n035" class="article-share-link">Share</a>
       
-        <a href="http://iiiyu.com/2012/03/05/learning-ios-notes-two/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://iiiyu.com/2014/03/25/learn-ui-design-one/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design/">Design</a></li></ul>
 
     </footer>
   </div>
@@ -189,19 +175,10 @@ iOS的MVC初级代码说明
     
 <nav id="article-nav">
   
-    <a href="/2012/03/08/learning-ios-notes-three/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          iOS笔记 (3)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2012/02/29/emacs-set-up-2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/03/19/learning-ios-notes-thirty-four/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">调教Emacs(二)——更好 更强 更快</div>
+      <div class="article-nav-title">iOS笔记(34) 格志周年系列之夏令时(二)</div>
     </a>
   
 </nav>
@@ -303,7 +280,7 @@ iOS的MVC初级代码说明
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2012/03/05/learning-ios-notes-two/';
+  var disqus_url = 'http://iiiyu.com/2014/03/25/learn-ui-design-one/';
   
   (function(){
     var dsq = document.createElement('script');

@@ -3,17 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (2) | 萧宸宇</title>
+  <title>萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (2)">
-<meta name="og:url" content="http://iiiyu.com/2012/03/05/learning-ios-notes-two/">
+<meta name="og:title">
+<meta name="og:url" content="http://iiiyu.com/page/13/">
 <meta name="og:image">
 <meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
-iOS的MVC初级代码说明
-上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
-斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
+<meta name="og:description">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
@@ -78,10 +75,12 @@ iOS的MVC初级代码说明
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-two" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-why-have-a-blog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/03/05/learning-ios-notes-two/" class="article-date">
-  <time datetime="2012-03-04T16:25:00.000Z" itemprop="datePublished">3月 5 2012</time>
+    <a href="/2012/02/05/why-have-a-blog/" class="article-date">
+  <time datetime="2012-02-05T13:42:00.000Z" itemprop="datePublished">2月 5 2012</time>
 </a>
     
   </div>
@@ -91,8 +90,8 @@ iOS的MVC初级代码说明
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      iOS笔记 (2)
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/02/05/why-have-a-blog/">为什么要有自己的一个博客</a>
     </h1>
   
 
@@ -100,121 +99,36 @@ iOS的MVC初级代码说明
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。</p>
-<h2 id="iOS的MVC初级代码说明">iOS的MVC初级代码说明</h2>
-<p>上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。</p>
-<p>斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到12课而已。所以现在只讨论IOS5开发中的view和controller。</p>
-<p>IOS5中，我们可以看到一个叫storyboard的文件。这个文件就是view。或者说是view的载体。UIKit上所有的控件都可以往上面拖。这里我简单的把storyboard以及带UI前缀的类都统一看成view。view就是再ios设备上你能看见的整个屏幕。</p>
-<a id="more"></a>
+        <h2 id="缘起">缘起</h2>
+<p>  想有自己建站的blog是一直没有实现的一件事情。陆陆续续用51cto、is-programmer、renren等写过blog或者类似blog的东西。但是觉得还是缺少一些什么东西。后面慢慢的明白了，我虽然是号称学IT技术的。其实我根本就落后时代了。Web是什么我都不懂。适合学IT的人都有自己搭建的技术blog，技术人有自己的一个站好像是一个很容易的事情。可是我就是弄不起来，觉得写Web是一个洪水猛兽般的事情。一直觉得用现成的就好。可是用着又觉得自己不专业。然后就开始寻觅着是不是自己搭建一个Blog。然后先买了域名。就开始吭哧吭哧的学Web开发。Java是放弃了的，然后看Python、看Ruby。后面发现一个问题，就是我现在太苦逼了——工资刚刚能活，买不起VPS。不管是django还是rails我都搭建不起服务器来。再说我也只是知道他们的名字而已。具体怎么写一个blog居然一点头绪都没有。html，css，javascript这些高端的东西更是不会。自己建blog站，觉得离我越来越遥远了。</p>
 
-<p>在最简单的例子里面，我们可以看到一对叫XXXViewController.h XXXViewController.m的文件。他们就是一个Controller类。</p>
-<p>现在回忆一下view和controller的关系</p>
-<blockquote>
-<p>controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致。这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置 </p>
-</blockquote>
-<p>在老头的视频教学里面我们可以看到。比如一个UILabel拖到storyboard上面的时候，这个UILabel仅仅是一个view，它和controller还没有产生任何关系。此时我们的主子controller要知道他有了一个狗腿UILabel这个view要怎么办呢。我们就按着Ctrl点击UILabel拖入XXXViewController.h文件里面，形成一个outlet。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;
-</pre></td></tr></table></figure>
-
-<p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
-<p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向<br>XXXViewController.m文件里面拖，就会形成一个Action。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>- (IBAction)digitPressed:(UIButton *)sender 
-{
-	<span class="keyword">...</span>
-}
-</pre></td></tr></table></figure>
-
-<p>这就是狗腿出什么样的事情通知主子的地方。</p>
-<h2 id="一些小细节上的感悟">一些小细节上的感悟</h2>
-<h4 id="ARC和strong、weak">ARC和strong、weak</h4>
-<p>新的IOS5引入了ARC（Automatic Referencing Counting）机制。当然，你可以在创建项目的时候不选择，或者再项目创建以后关闭它来手动释放内存。</p>
-<p>可惜我直接是从IOS5开始学习，而且不喜欢旧的东西。所以坚决使用ARC和storyboard。而且再内存管理上，我觉得编译器比人靠谱多了。当然我也是初学IOS。理解上可能有错误，欢迎指导。</p>
-<p>窃以为使用ARC，一开始接触到的是：</p>
-<pre><code><span class="keyword">strong</span>
-<span class="keyword">weak</span>
-</code></pre><p>在我的记录中老头是这样定义的：</p>
-<blockquote>
-<p>Strong and weak are descriptions or attributes parentheses.<br>Strong keep it in the heap. Keep it in heap until i stop pointing to it.<br>Weak keep this as long as someone else point to it strongly.</p>
-</blockquote>
-<p>值得注意的是</p>
-<blockquote>
-<p>Strong and weak. This is not garbage collection.<br>This is refernce counting done automatically for you.</p>
-</blockquote>
-<p>大概就是strong声明的东西是放到内存堆里面,它在我停止指向它之前都一直会在内存堆里面，引用记数也不会为0（猜测）。weak呢，则是只要没有指向它的东西时候，引用记数就为0了。然后呢，他们都只管理引用记数这个一亩三分田。至于垃圾回收这种工作，是不该他们管理的。</p>
-<h4 id="声明初始化类">声明初始化类</h4>
-<p>一句话:</p>
-<p>alloc后面永远跟着init</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>[[CalculatorBrain alloc] init];
-[[NSMutableArray alloc] init]
-<span class="keyword">...</span>
-</pre></td></tr></table></figure>
-
-<h4 id="面向对象的封装">面向对象的封装</h4>
-<p>小时候还在用过几天java写web的时候，很纳闷为什么每一个属性都要写get、set方法。直到现在才慢慢明白这是封装。封装的好处。</p>
-<p>在IOS5编程里面。通常是用@property来声明属性，然后使用@synthesize来默认使用get、set方法。当然，再objective-c里面可以重写get、set方法。而且我觉得@property和@synthesize应该像alloc和init一样配套使用。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
-
-
-<span class="keyword">@synthesize</span> operandStack = _operandStack;
-</pre></td></tr></table></figure>
-
-<h4 id="编译器的强大">编译器的强大</h4>
-<p>不管是ARC还是后面的get、set方法。都是再编译的时候编辑器加上去的。（猜测）然后各种听说Apple为了让App再IOS跑的更好更流畅。一直再不停的优化llvm。这也是搭载Android的设备硬件远超过IOS设备的情况下还是没有IOS用着爽的底层原因之一吧。 所以，我觉得应该百分百相信编译器。如果出错了。肯定是程序写的有问题。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2012/02/05/why-have-a-blog/#more">阅读更多</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/03/05/learning-ios-notes-two/" data-id="xoxkt5xvn8ryiciq" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2012/02/05/why-have-a-blog/" data-id="dn4bx061k95jjdv4" class="article-share-link">Share</a>
       
-        <a href="http://iiiyu.com/2012/03/05/learning-ios-notes-two/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://iiiyu.com/2012/02/05/why-have-a-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/just-talk/">just-talk</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2012/03/08/learning-ios-notes-three/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          iOS笔记 (3)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2012/02/29/emacs-set-up-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">调教Emacs(二)——更好 更强 更快</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
+    </nav>
+  
 </section>
         
           <aside id="sidebar">
@@ -303,13 +217,11 @@ iOS的MVC初级代码说明
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2012/03/05/learning-ios-notes-two/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
+    dsq.src = '//go.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

@@ -4,13 +4,80 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2014-03-20T15:29:07.330Z</updated>
+  <updated>2014-03-25T16:07:29.201Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
     <email><![CDATA[chenyuxiao@sumi-sumi.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[学习UI设计笔记(一)]]></title>
+    <link href="http://iiiyu.com/2014/03/25/learn-ui-design-one/"/>
+    <id>http://iiiyu.com/2014/03/25/learn-ui-design-one/</id>
+    <published>2014-03-25T15:12:21.000Z</published>
+    <updated>2014-03-25T16:07:09.000Z</updated>
+    <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>那啥， 我知道NSDate的坑没有搞定。缓缓，缓缓。我在开个新坑来着。恩恩这个坑就是记录一下怎么学习Sketch 这个软件的。</p>
+<p>首先，我买了本<a href="http://www.amazon.cn/更优秀的APP-31个APP用户界面设计经典案例-白润华/dp/B00ELMXLOK/ref=sr_1_1?ie=UTF8&amp;qid=1395760594&amp;sr=8-1&amp;keywords=31app" target="_blank">更优秀的APP-31个APP用户界面设计经典案例</a>。 高手勿喷，这种图文并茂，手把手的交比较适合我这种菜鸟。</p>
+<p>这本书的唯一好处是他的例子是Ai的。而Sketch也是矢量图。所以我以为会有些类似的操作。（其实根本是两个软件啊！！！！）</p>
+<p>然后我准备把他说的31个例子都用Sketch来模仿一边。恩，先把Sketch的大部分功能运用熟练再说（就是花了小几百不想让他吃灰而已）</p>
+<a id="more"></a>
+
+<h2 id="Sketch资料">Sketch资料</h2>
+<p><a href="http://www.bohemiancoding.com/sketch/" target="_blank">官网</a></p>
+<p>Sketch的资料其实并不是很多，原因之一是能熟练使用Adobe一套的大家（除了我）都能很快的入手。所以像我这样完全没有用过Photoshop的人在贵圈是一种奇葩。</p>
+<p>所以中文资料就特别特别不多，不多的意思是图灵社区的某个大神把操作手册翻译了一下</p>
+<p><a href="http://www.ituring.com.cn/book/1305?q=Sketch" target="_blank">Sketch中文手册</a></p>
+<p>在没有发布的时候我就知道了，我满怀憧憬的等待这本书的上线。结果，嗯嗯很不错的一本使用手册。</p>
+<p>洋文资料最多的就是MengTo大神的</p>
+<p><a href="http://blog.mengto.com" target="_blank">大神blog</a></p>
+<p>而且大神最近在预发售一本<a href="http://designcode.io" target="_blank">design+code</a>。现在购买打5折哦。(免费为大神打个广告)</p>
+<p>官方视频都在Vimeo上自带神器</p>
+<p><a href="https://vimeo.com/57072774" target="_blank">iOS Design using Sketch. Part one: iOS Navigation Bar</a></p>
+<p><a href="https://vimeo.com/57590796" target="_blank">iOS Design using Sketch. Part two: iOS Toolbar</a></p>
+<p>对了，据可靠小道消息，这货的3.0要发布了。又是一次交钱的时刻。穷死了。</p>
+<h2 id="Github地址">Github地址</h2>
+<p>咱程序员就要有程序员的范，每次的Sketch我都会丢到这个地址上，如果需要下源文件研究一下的同学知道去哪里找了把。</p>
+<p><a href="https://github.com/iiiyu/learn-ui-design" target="_blank">learn-ui-design</a></p>
+<p>鉴于最近的网络情况，自带神器。</p>
+<h2 id="大幅大幅的贴图">大幅大幅的贴图</h2>
+<h3 id="0">0</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf0yhz53j20zg0lmaew.jpg" alt="0"></p>
+<p>恩，按照教程，我手绘了一张图片，然后用手机拍照了放到Sketch里面。</p>
+<h3 id="1">1</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf3zl60jj20zg0lmn1i.jpg" alt="1"></p>
+<p>拖了一个椭圆，然后选中铅笔工具，描绘了一下那个小尾巴。</p>
+<h3 id="2">2</h3>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1eesf54xa8kj20zg0lmaf1.jpg" alt="2"></p>
+<p>选中他们两个，进行Union操作。</p>
+<h3 id="3">3</h3>
+<p><img src="http://ww3.sinaimg.cn/large/a6d3226bgw1eesf5vjl8kj20zg0lmdkp.jpg" alt="3"></p>
+<p>拖一个正方形出来</p>
+<h3 id="4">4</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf6sqy2sj20zg0lmwjs.jpg" alt="4"></p>
+<p>正方形旋转45度</p>
+<h3 id="5">5</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf7fq37ij20zg0lm0xy.jpg" alt="5"></p>
+<p>在正方形上双击会出现可以编辑的关键点</p>
+<h3 id="6">6</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf7ukiefj20zg0lm0xz.jpg" alt="6"></p>
+<p>删除掉最右边的关键点，变成一个三角形</p>
+<h3 id="7">7</h3>
+<p><img src="http://ww2.sinaimg.cn/large/a6d3226bgw1eesf979g3dj20zg0lmtd3.jpg" alt="7"></p>
+<p>把气泡弄出来看一下整体效果</p>
+<h3 id="8">8</h3>
+<p><img src="http://ww3.sinaimg.cn/large/a6d3226bgw1eesf9x1vynj20zg0lmdkr.jpg" alt="8"></p>
+<p>随便上个颜色试试</p>
+<h3 id="9">9</h3>
+<p><img src="http://ww1.sinaimg.cn/large/a6d3226bgw1eesfacyshyj20zg0lm0vn.jpg" alt="9"></p>
+<p>最终版本，我尽力了。</p>
+<h2 id="总结">总结</h2>
+<p>恩，2014年的一个要努力的目标就是把自己的品味搞上去。恩呢，加油。</p>
+]]></content>
+    <category scheme="http://iiiyu.com/tags/Design/" term="Design"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[iOS笔记(34) 格志周年系列之夏令时(二)]]></title>
     <link href="http://iiiyu.com/2014/03/19/learning-ios-notes-thirty-four/"/>
@@ -1973,98 +2040,6 @@ xctool <span class="attribute">-project</span> HelloAfterAddOCUnit<span class="b
 <p>总结就是UITableView是一个高度设计的控件。它具有重用，分组，异步加载数据等方面需要我们注意。</p>
 <p>其实这里插进来写UITableView是为了写NSFetchedResultsController。因为NSFetchedResultsController就是为UITableview量身打造的Core Data的类。 </p>
 <p>所以，先说明以下UITableView，然后再写NSFetchedResultsController。</p>
-]]></content>
-    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[iOS笔记(19)]]></title>
-    <link href="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/"/>
-    <id>http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/</id>
-    <published>2013-04-01T03:28:20.000Z</published>
-    <updated>2014-02-17T04:21:01.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="Core_Data_(二)">Core Data (二)</h1>
-<h1 id="序">序</h1>
-<p><a href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/">上次</a>只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。</p>
-<h2 id="NSManagedObject">NSManagedObject</h2>
-<p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg" alt=""></p>
-<p>Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对NSManagedObjectContext里面是唯一的。而真实的应用情况可能是NSManagedObjectContext会有多个。而NSManagedObjectContext线程不是安全的，所以可能有你多个NSManagedObjectContext里面各自有指向同一条数据的不同的NSManagedObject。这个情况需要你的程序设计和逻辑上去解决。暂时不讨论。</p>
-<a id="more"></a>
-
-<h3 id="使用NSManagedObject所经历的三种方法">使用NSManagedObject所经历的三种方法</h3>
-<p>对于NSManagedObject来说一般有以下几种使用方法：</p>
-<p>第一种就是我直接使用NSManagedObject来访问我的数据，因为Cocoa特有的KVC机制，使得NSManagedObject可以用KVC的方法去访问属性内容。这样的好处是你不用在NSManagedObject上去写特别的代码，就可以使用。一般入门例子都是这样写的。</p>
-<p>第二种是老头视频里面教过的。在点击Data Model选择Entity以后，在xCode的菜单里面有这样一个选项：</p>
-<p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e39z74y7j8j.jpg" alt=""></p>
-<p>next都按完了以后，会生成选择了的Entity对应的一个NSManagedObject子类。这样的话我们就可以用生成的类来进行增删改查。这样的话看起来代码里面也会变得清晰一些。我们也不必去写KVC的方法去访问修改属性。可以直接就访问修改。在我看来还是好处多多的。为了OO的原则，我们可能会对不同的Entity类去写一些只是公开接口的方法。但是这样生成的NSManagedObject子类是不好修改的。因此我们会去建立一个category类。来进行扩写自己的方法。这样项目里面就会出现一票category感觉不是很好的样子。</p>
-<p>第三种方法是我现在在使用的方法。<br>就是使用Mogenerator.</p>
-<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a><br>好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
-<h3 id="NSManagedObject其他注意事项">NSManagedObject其他注意事项</h3>
-<p>NSManagedObject就是我们拿来操作数据的基本单位。因此对应，增加一条数据是在NSManagedObjectContext新建一个NSManagedObject。查找数据是查找NSManagedObject。修改是修改NSManagedObject类的属性。删除是从NSManagedObjectContext里面删除NSManagedObject类。最后我们保存NSManagedObjectContext，然后一直向上传递到磁盘上面去。才是持久化的修改。</p>
-<h2 id="NSFetchRequest">NSFetchRequest</h2>
-<p>NSFetchRequest是一个查询的动作类。我们使用它来在NSManagedObjectContext里面查询相应的NSManagedObject。</p>
-<p>一般使用的顺序是先生成NSFetchRequest。指定要查询的NSManagedObjectContext和Entity的名字。然后设置NSPredicate进行过滤。NSSortDescriptor来进行排序。最后用想要查询的NSManagedObjectContext执行NSFetchRequest。就可以得到返回结果了。</p>
-<h2 id="NSPredicate">NSPredicate</h2>
-<p>NSPredicate的作用不仅仅局限于Core Data里面。其他时候也有用到的地方。而在Core Data里面使用简单的说就是作为一个过滤条件。过滤掉我们不想查找的数据。就相当于SQL语句WHERE后面的那些条件。</p>
-<h2 id="NSSortDescriptor">NSSortDescriptor</h2>
-<p>查找到的数据是杂乱无章的。而我们往往希望是具有一定顺序的返回结果。NSSortDescriptor就是用来指定排序的属性和方式的。把NSSortDescriptor生成设置好然后给NSFetchRequest设置。这样我们的结果就可以是按照我们希望的顺序返回回来。以便我们操作。</p>
-<h2 id="实例代码">实例代码</h2>
-<p>新建NSManagedObject</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] <span class="keyword">in</span>ManagedObjectContext:context];
-[newManagedObject <span class="keyword">set</span>Value:[NSDate date] <span class="keyword">for</span>Key:@<span class="string">"timeStamp"</span>];
-</pre></td></tr></table></figure>
-
-<p>删除NSManagedObject</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">[context deleteObject:managedObject]</span><span class="comment">;</span>
-</pre></td></tr></table></figure>
-
-<p>初始化NSPredicate</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="constant">NSUInteger</span>  numberOfServings = <span class="number">10</span>;
-<span class="constant">NSPredicate</span> *predicate = <span class="keyword">nil</span>;
-predicate = [<span class="constant">NSPredicate</span> <span class="symbol">predicateWithFormat:</span>@<span class="string">"serves &gt; %i"</span>, numberOfServings];
-</pre></td></tr></table></figure>
-
-<p>初始化NSSortDescriptor</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:<span class="string">@"name"</span> <span class="keyword">ascending</span>:YES];
-</pre></td></tr></table></figure>
-
-<p>初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>NSManagedObjectContext *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription entityForName:@"Recipe"
-                                                                                                                                                            inManagedObjectContext:moc]]</span>;
-</pre></td></tr></table></figure>
-
-<p>带有NSPredicate的初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>NSUInteger              numberOfServings = <span class="number">10</span>;
-NSManagedObjectContext  *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription    entityForName:@"Recipe"
-                                                                                                                                                                inManagedObjectContext:moc]]</span>;
-NSPredicate *predicate = <span class="keyword">nil</span>;
-predicate = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings]; [request setPredicate:predicate];
-</pre></td></tr></table></figure>
-
-<p>带有NSSortDescriptor的初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>NSFetchRequest *fetchRequest = <span class="keyword">nil</span>;
-fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@<span class="string">"Recipe"</span>];
-NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-[fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]]</span>;
-</pre></td></tr></table></figure>
-
 ]]></content>
     <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
   </entry>
