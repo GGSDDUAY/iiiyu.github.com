@@ -107,24 +107,24 @@
 <a id="more"></a>
 
 <h2 id="UbiquityStoreManager">UbiquityStoreManager</h2>
-<p><a href="https://github.com/lhunath/UbiquityStoreManager" target="_blank">UbiquityStoreManager</a>是一个core data持久化层的控制器。</p>
-<p>UbiquityStoreManager在iOS 6时代是使用GPLv3协议。所以好像使用者不是很多。iOS 7 Core Data 关于iCloud引入了新的机制和新API以后UbiquityStoreManager迅速跟进。并且更换了协议使用了Apache v2。所以如果你有iOS 7的App想使用iCloud + Core Data这种hard模式。UbiquityStoreManager是第一个应该推荐的库。</p>
+<p><a href="https://github.com/lhunath/UbiquityStoreManager" target="_blank">UbiquityStoreManager</a>是一个core data持久化层的控制器.</p>
+<p>UbiquityStoreManager在iOS 6时代是使用GPLv3协议。所以好像使用者不是很多。iOS 7 Core Data 关于iCloud引入了新的机制和新API以后UbiquityStoreManager迅速跟进。并且更换了协议使用了Apache v2。所以如果你有iOS 7的App想使用iCloud + Core Data这种hard模式。UbiquityStoreManager是第一个应该推荐的库.</p>
 <p>UbiquityStoreManager不同于其他解决方案。大部分都是在iCloud上面继续构建一层来保证数据同步的完整一致性。UbiquityStoreManager仅仅是解决了就只单纯使用iCloud就会遇到的问题。比如数据出错了怎么办。从本地数据迁移到iCloud数据。从修改日记来重建数据库等。</p>
 <h2 id="UbiquityStoreManager解决的问题">UbiquityStoreManager解决的问题</h2>
-<ol>
+<ul>
 <li>提供在iCloud和本地Store直接切换</li>
-<li>在用户没有iCloud store 的时候自动的把local data 合并到iCloud（使用本地数据重建iCloud）</li>
-<li>所有与iCloud有联系事件处理：切换iCloud帐号、 删除iCloud数据、删除本地数据、导入其他设备变换的ubiquitous、恢复有错误的transaction logs。</li>
-<li>其他的一些实用功能：1.从transaction logs重建cloud store 2. 从cloud store 重建transatction logs 3. 删除cloud store 4. Ability to nuke the entire cloud container 5. 把一个store里面全部的entities合并到另外一个store</li>
-</ol>
-<p>在iCloud+CoreData的官方解决方案中，对于开发者来说完全的黑箱子操作。难于开发和调试bug。而且经验不足完全会被很多坑拉进泥潭里面。使得开发更本无法进行下去。所以仔细研究UbiquityStoreManager。是我建议踏入iCloud + Core Data开发的必修课。</p>
+<li>在用户没有iCloud store 的时候自动的把local data 合并到iCloud(使用本地数据重建iCloud)</li>
+<li>所有与iCloud有联系的事件处理 iCloud帐号删除、iCloud数据删除、本地数据导入、其他设备变换ubiquitous、恢复有错误的transaction logs</li>
+<li>其他的一些实用功能：从transaction logs重建cloud store、 从cloud store 重建transaction logs、 删除cloud store、 Ability to nuke the entire cloud container、 把一个store里面全部的entities合并到另外一个store</li>
+</ul>
+<p>在iCloud + CoreData的官方解决方案中，对于开发者来说完全的黑箱子操作。难于开发和调试bug。而且经验不足完全会被很多坑拉进泥潭里面。使得开发更本无法进行下去。所以仔细研究UbiquityStoreManager。是我建议踏入iCloud + Core Data开发的必修课。</p>
 <h2 id="总结">总结</h2>
 <p>只是我学习中的一点笔记和注释翻译而已。留给自己看看。如果有不对的地方，欢迎指出。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/" data-id="zyl3b43wif0pz4dh" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/" data-id="nvqa55dd95ln6fw1" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/#disqus_thread" class="article-comment-link">Comments</a>
       
