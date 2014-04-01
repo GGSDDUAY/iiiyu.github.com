@@ -4,7 +4,7 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2014-03-25T16:07:29.201Z</updated>
+  <updated>2014-04-01T04:01:13.170Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
@@ -315,7 +315,7 @@ pod <span class="string">'NSDate-Extensions'</span>, <span class="string">'~&gt;
     <link href="http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/"/>
     <id>http://iiiyu.com/2013/12/25/learning-ios-notes-thirty-two/</id>
     <published>2013-12-25T15:22:33.000Z</published>
-    <updated>2014-02-17T04:20:43.000Z</updated>
+    <updated>2014-04-01T03:55:42.000Z</updated>
     <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
 <h2 id="开篇扯淡">开篇扯淡</h2>
 <p>现在都是进入互联网时代，一个互联网的App数据肯定是存在互联网上的。到处都是云，到处都是服务器。如果数据是存储在云端or服务器端。每次数据的读取和修改直接作用于服务器。这样不管你用多少设备，多少平台。数据都能保证是唯一的。但是还有些App需要一些更好的性能和效果的时候往往等不起网络的数据传来传去。这时候需要一些折中的办法来解决这些问题。iCloud就是Apple给出的解决方案。就普通用户来看，iCloud应该是在Apple系中的最优选择。但是从开发者的角度来看iCloud就是个无穷无尽的深渊。</p>
@@ -331,7 +331,7 @@ pod <span class="string">'NSDate-Extensions'</span>, <span class="string">'~&gt;
 <ol>
 <li>提供在iCloud和本地Store直接切换</li>
 <li>在用户没有iCloud store 的时候自动的把local data 合并到iCloud（使用本地数据重建iCloud）</li>
-<li>所有与iCloud有联系事件处理：1. 切换iCloud帐号 2. 删除iCloud数据 3. 删除本地数据 4. 导入其他设备变换的ubiquitous 5. 恢复有错误的transaction logs。</li>
+<li>所有与iCloud有联系事件处理：切换iCloud帐号、 删除iCloud数据、删除本地数据、导入其他设备变换的ubiquitous、恢复有错误的transaction logs。</li>
 <li>其他的一些实用功能：1.从transaction logs重建cloud store 2. 从cloud store 重建transatction logs 3. 删除cloud store 4. Ability to nuke the entire cloud container 5. 把一个store里面全部的entities合并到另外一个store</li>
 </ol>
 <p>在iCloud+CoreData的官方解决方案中，对于开发者来说完全的黑箱子操作。难于开发和调试bug。而且经验不足完全会被很多坑拉进泥潭里面。使得开发更本无法进行下去。所以仔细研究UbiquityStoreManager。是我建议踏入iCloud + Core Data开发的必修课。</p>
@@ -1125,7 +1125,7 @@ myButton<span class="variable">.rac_command</span> = [[RACCommand alloc] initWit
     <link href="http://iiiyu.com/2013/08/19/learning-ios-notes-twenty-five/"/>
     <id>http://iiiyu.com/2013/08/19/learning-ios-notes-twenty-five/</id>
     <published>2013-08-19T14:29:37.000Z</published>
-    <updated>2014-02-17T04:20:30.000Z</updated>
+    <updated>2014-04-01T03:48:59.000Z</updated>
     <content type="html"><![CDATA[<h2 id="什么是iCloud">什么是iCloud</h2>
 <p>iCloud是苹果公司提供的云服务的总称。每一个拥有Apple ID的用户都拥有5G大小的空间使用权。用户可以使用iCloud的空间来进行数据的备份，联系人备份，照片备份，应用备份等。好处就是当你有多台设备或者是换新的设备的时候。可以有无差别的体验。</p>
 <p>对于开发者来说，iCloud相当于提供了一种官方形式的云端存储形式。帮助你的App实现所谓理想的状态。不论用户在什么设备打开App。 里面的数据，设置，形状，大小。都跟他上次打开的一模一样。这样你的App会给你的用户非一般的体验。</p>
@@ -1891,7 +1891,7 @@ xctool <span class="attribute">-project</span> HelloAfterAddOCUnit<span class="b
     <link href="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/"/>
     <id>http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/</id>
     <published>2013-04-15T06:02:11.000Z</published>
-    <updated>2014-02-17T04:20:11.000Z</updated>
+    <updated>2014-04-01T03:56:26.000Z</updated>
     <content type="html"><![CDATA[<h1 id="UITableView简单解析">UITableView简单解析</h1>
 <h2 id="序">序</h2>
 <p>UITableView是在iOS开发中，展示大量内容的首选。我个人认为的原有有一下几点：</p>
@@ -1912,7 +1912,7 @@ xctool <span class="attribute">-project</span> HelloAfterAddOCUnit<span class="b
 
 <h2 id="关于数据的思考">关于数据的思考</h2>
 <h3 id="没有UITableView的时候我是这样想的">没有UITableView的时候我是这样想的</h3>
-<p>首先思考为什么会有UITableView这样的控件。我们做一个App的时候，就会有大量的数据需要显示。比如weibo的每一个状态。比如一个新闻App的很多条新闻。这些数据都会有一个特点就是他们的组织形式一样，只是内容变化。有时候我们可能会根据一些条件进行分组。使得看来了是分组的。例如 联系人里面会按照首字母来进行分组一样。我们还可能会点击数据以便查看更详细的内容。</p>
+<p>首先思考为什么会有UITableView这样的控件。我们做一个App的时候，就会有大量的数据需要显示。比如weibo的每一个状态。比如一个新闻App的很多条新闻。这些数据都会有一个特点就是他们的组织形式一样，只是内容变化。有时候我们可能会根据一些条件进行分组。使得看来了是分组的。例如：联系人里面会按照首字母来进行分组一样。我们还可能会点击数据以便查看更详细的内容。</p>
 <p>通过上面的简单描述，如果来自己实现一个类似UITableView的结构。需要得到最核心的：</p>
 <ol>
 <li>需要得到一共多少条数据</li>
