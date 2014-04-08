@@ -3,25 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (11) | 萧宸宇</title>
+  <title>Archives: 2014/4 | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (11)">
-<meta name="og:url" content="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/">
-<meta name="og:image" content="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg">
+<meta name="og:title">
+<meta name="og:url" content="http://iiiyu.com/archives/2014/04/">
+<meta name="og:image">
 <meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="关于Target-Action设计模式
-序
-上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。
-
-这次我们来说Target Action这种View跟Controller的交流方法。
-
-
-什么是selector
-官方解释请看这里
-在Objective-C里面, selector有两种意思:
-
-当用源码向一个对象发送消息的时候,表示简单的方法名字。">
+<meta name="og:description">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
@@ -86,158 +75,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-eleven" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/09/02/learning-ios-notes-eleven/" class="article-date">
-  <time datetime="2012-09-02T03:29:00.000Z" itemprop="datePublished">9月 2 2012</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      iOS笔记 (11)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2014" class="archive-year">2014</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2014/04/08/learning-ios-notes-thirty-five/" class="archive-article-date">
+  <time datetime="2014-04-08T14:49:48.000Z" itemprop="datePublished">4月 8</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于Target-Action设计模式">关于Target-Action设计模式</h1>
-<h2 id="序">序</h2>
-<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
-<p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
-<a id="more"></a>
-
-<h2 id="什么是selector">什么是selector</h2>
-<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html" target="_blank">这里</a></p>
-<p>在Objective-C里面, selector有两种意思:</p>
-<ol>
-<li>当用源码向一个对象发送消息的时候,表示简单的方法名字。</li>
-<li>作为一个方法的唯一标识符去替换源码编译的时候的方法。</li>
-</ol>
-<p>突然觉得我再怎么写也没有官方文档写的好。那就看文档把。</p>
-<p>总结几个我理解以后的要点</p>
-<ol>
-<li>SEL是一种类型，跟int float一样。</li>
-<li>@selector 其实就是取得一个SEL。</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>SEL   press;
-press = <span class="keyword">@selector</span>(pressed:);
-<span class="built_in">UIButton</span>*  btn = [<span class="built_in">UIButton</span> alloc]init];
-[btn addTarget:<span class="keyword">self</span> action:press forControlEvents:UIControlEventTouchUpInside];
--(<span class="keyword">void</span>)pressed:(<span class="keyword">id</span>)sender
-{
-    .....
-}
-</pre></td></tr></table></figure>
-
-<ol>
-<li>@selector()取得的其实一个ASCII的方法名字符串</li>
-<li>我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>id   helper = getTheReceiver();
-SEL  <span class="built_in">request</span> = getTheSelector();
-[helper performSelector:<span class="built_in">request</span>];
-</pre></td></tr></table></figure>
-
-<h2 id="什么是Target-Action设计模式">什么是Target-Action设计模式</h2>
-<p>官方解释在<a href="Target-Action设计模式">这里</a><br>target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
-<ul>
-<li>action selector，定义要调用的方法名称标识；</li>
-<li>target，接收消息的对象。</li>
-</ul>
-<p>当被称作action message的事件发生，将向target发送action selector定义的方法消息。</p>
-<p>target-action模式一般用于自定义的controller按照应用规范定义的方式处理action message。</p>
-<p><img src="http://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Art/target_action.jpg" alt="ta"></p>
-<h2 id="怎么用Target-Action">怎么用Target-Action</h2>
-<h3 id="UIButton用法">UIButton用法</h3>
-<p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents</span>
-</pre></td></tr></table></figure>
-
-<p>UIControl的子类都可以覆盖这个方法，来调用自己的事件对应的函数。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-[btn addTarget:<span class="keyword">self</span> action:@<span class="keyword">selector</span>(<span class="function"><span class="keyword">method</span>:</span>) forControlEvents:UIControlEventTouchUpInside];
-[view addSubview:btn];
-
-- (void)<span class="function"><span class="keyword">method</span>:</span>(id)sender
-<span class="comment">{
-// do something
-}</span>
-</pre></td></tr></table></figure>
-
-<p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。</p>
-<p>简单的用@selector还有另外一个应用场景就是Notification。这个另外写一篇把。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/" data-id="wuwgse35v8pzrqtw" class="article-share-link">Share</a>
-      
-        <a href="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2012/09/29/learning-ios-notes-twelve/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          iOS笔记 (12)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2012/08/13/learning-ios-notes-ten/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">iOS笔记 (10)</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+  
+  
+    </div></section>
+  
 </section>
         
           <aside id="sidebar">
@@ -326,13 +196,11 @@ SEL  <span class="built_in">request</span> = getTheSelector();
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
+    dsq.src = '//go.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

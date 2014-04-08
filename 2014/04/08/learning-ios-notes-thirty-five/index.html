@@ -3,25 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS笔记 (11) | 萧宸宇</title>
+  <title>iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮 | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (11)">
-<meta name="og:url" content="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/">
-<meta name="og:image" content="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg">
+<meta name="og:title" content="iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮">
+<meta name="og:url" content="http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/">
+<meta name="og:image" content="http://ww4.sinaimg.cn/large/a6d3226bgw1ef8l1icf7pj20hs0vkdgp.jpg">
 <meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="关于Target-Action设计模式
-序
-上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。
-
-这次我们来说Target Action这种View跟Controller的交流方法。
-
-
-什么是selector
-官方解释请看这里
-在Objective-C里面, selector有两种意思:
-
-当用源码向一个对象发送消息的时候,表示简单的方法名字。">
+<meta name="og:description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+说曹操，曹操到。嘛当，还说总结一下时间的问题。这不blog这个系列没有写完。又爆了出一个时间相关的Bug。我只能说编程路茫茫，吾将上下求索。这次就着热乎着，来说是一个遇到了什么问题。
+遇到">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
@@ -86,10 +78,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-eleven" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-learning-ios-notes-thirty-five" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/09/02/learning-ios-notes-eleven/" class="article-date">
-  <time datetime="2012-09-02T03:29:00.000Z" itemprop="datePublished">9月 2 2012</time>
+    <a href="/2014/04/08/learning-ios-notes-thirty-five/" class="article-date">
+  <time datetime="2014-04-08T14:49:48.000Z" itemprop="datePublished">4月 8 2014</time>
 </a>
     
   </div>
@@ -100,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS笔记 (11)
+      iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮
     </h1>
   
 
@@ -108,100 +100,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="关于Target-Action设计模式">关于Target-Action设计模式</h1>
-<h2 id="序">序</h2>
-<p>上回提到了在iOS的MVC中。delegate其实是一种View跟Controller直接交流的方式。</p>
-<p><img src="http://farm9.staticflickr.com/8448/7780946470_05ee760924.jpg" alt="keynote"></p>
-<p>这次我们来说Target Action这种View跟Controller的交流方法。</p>
+        <p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>说曹操，曹操到。嘛当，还说总结一下时间的问题。这不blog这个系列没有写完。又爆了出一个时间相关的Bug。我只能说编程路茫茫，吾将上下求索。这次就着热乎着，来说是一个遇到了什么问题。</p>
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>有日本用户反馈，新版本更新以后，他日历上的时间全部乱了。而且无法写入日记。经过与用户沟通（感谢喵神onevcat的日文人肉翻译）分析得到用户使用和历（日本日历）。然后debug进去果然日期全部乱了。跟进去debug了一番，发现是之前解决夏令时的函数只考虑了公历！！！而iOS系统默认有三种日历。公历、和历、佛历。又一次无情的证明了我是一个天朝土包子。</p>
 <a id="more"></a>
 
-<h2 id="什么是selector">什么是selector</h2>
-<p>官方解释请看<a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/Chapters/ocSelectors.html" target="_blank">这里</a></p>
-<p>在Objective-C里面, selector有两种意思:</p>
-<ol>
-<li>当用源码向一个对象发送消息的时候,表示简单的方法名字。</li>
-<li>作为一个方法的唯一标识符去替换源码编译的时候的方法。</li>
-</ol>
-<p>突然觉得我再怎么写也没有官方文档写的好。那就看文档把。</p>
-<p>总结几个我理解以后的要点</p>
-<ol>
-<li>SEL是一种类型，跟int float一样。</li>
-<li>@selector 其实就是取得一个SEL。</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>SEL   press;
-press = <span class="keyword">@selector</span>(pressed:);
-<span class="built_in">UIButton</span>*  btn = [<span class="built_in">UIButton</span> alloc]init];
-[btn addTarget:<span class="keyword">self</span> action:press forControlEvents:UIControlEventTouchUpInside];
--(<span class="keyword">void</span>)pressed:(<span class="keyword">id</span>)sender
-{
-    .....
-}
-</pre></td></tr></table></figure>
-
-<ol>
-<li>@selector()取得的其实一个ASCII的方法名字符串</li>
-<li>我们可以通过performSelector:, performSelector:withObject:, performSelector:withObject:withObject: 这三个方法去调用selector</li>
-</ol>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>id   helper = getTheReceiver();
-SEL  <span class="built_in">request</span> = getTheSelector();
-[helper performSelector:<span class="built_in">request</span>];
-</pre></td></tr></table></figure>
-
-<h2 id="什么是Target-Action设计模式">什么是Target-Action设计模式</h2>
-<p>官方解释在<a href="Target-Action设计模式">这里</a><br>target-action是个设计模式。对象保持必要的信息，当事件发生的时候发送消息给其他对象。所保持的信息有两部分数据组成：</p>
-<ul>
-<li>action selector，定义要调用的方法名称标识；</li>
-<li>target，接收消息的对象。</li>
-</ul>
-<p>当被称作action message的事件发生，将向target发送action selector定义的方法消息。</p>
-<p>target-action模式一般用于自定义的controller按照应用规范定义的方式处理action message。</p>
-<p><img src="http://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Art/target_action.jpg" alt="ta"></p>
-<h2 id="怎么用Target-Action">怎么用Target-Action</h2>
-<h3 id="UIButton用法">UIButton用法</h3>
-<p>在iOS里面有些控件是继承UIControl这个类的。比如UIButton,理论上只要继承这个UIControl这个类的子类都可以用Target-Action。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>addTarget:<span class="params">(id)</span>target action:<span class="params">(<span class="variable">SEL</span>)</span>action forControlEvents:<span class="params">(<span class="variable">UIControlEvents</span>)</span>controlEvents</span>
-</pre></td></tr></table></figure>
-
-<p>UIControl的子类都可以覆盖这个方法，来调用自己的事件对应的函数。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-[btn addTarget:<span class="keyword">self</span> action:@<span class="keyword">selector</span>(<span class="function"><span class="keyword">method</span>:</span>) forControlEvents:UIControlEventTouchUpInside];
-[view addSubview:btn];
-
-- (void)<span class="function"><span class="keyword">method</span>:</span>(id)sender
-<span class="comment">{
-// do something
-}</span>
-</pre></td></tr></table></figure>
-
-<p>解释一下addTarget:self。就是把要去哪里查找实现方法的目标。action:@selector(method:)就是把动作要执行什么方法。forControlEvents:就是要添加的事件是什么。而- (void)method:(id)sender这里的sender就是发出Event的这个东西。在这里就是我们的这个UIButton。</p>
-<p>简单的用@selector还有另外一个应用场景就是Notification。这个另外写一篇把。</p>
+<h2 id="iOS_&amp;&amp;_OS_X_支持的日历">iOS &amp;&amp; OS X 支持的日历</h2>
+<p>这个问题的出现提醒了我，地球上不同的人们其实是使用着不同的日历。（在这之前学习到的是地球上的人们过着不同的时区，有夏令时和没夏令时的时间）。</p>
+<p>iOS从Settings-&gt;General-&gt;International-&gt;Calendar。</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1ef8l1icf7pj20hs0vkdgp.jpg" alt=""></p>
+<p>可以看到是默认只是支持公历、和历、佛历。</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1ef8lfdww4aj20il0cewfz.jpg" alt=""></p>
+<p>OS X 要多一些…（好吧，大部分我都不认识）</p>
+<p>那到底iOS &amp;&amp; OS X支持哪些日历呢。</p>
+<p>看这里内建的有这些<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSLocale_Class/Reference/Reference.html#jumpTo_50" target="_blank">NSLocale Calendar Keys</a> (PS: 经过测试农历那个之前处于半残疾状态)</p>
+<h2 id="用代码测试一下">用代码测试一下</h2>
+<p>我遇到的问题是我获得00:00:00的方法是直接用string然后反向设置小时、分钟、秒数得来的。所以，当日历不同的时候date-&gt;string就不一样了！！！这样我只判断了公历的时候，和历和佛历就错了。</p>
+<p>详细代码可以查考这个<a href="https://github.com/iiiyu/TestNSDateFormatterOnMac" target="_blank">TestNSDateFormatterOnMac</a></p>
+<p>我fork了一个霓虹大神改动的。 添加了佛历的对比。</p>
+<p><img src="http://ww1.sinaimg.cn/large/a6d3226bgw1ef8m65ylz2j20lq0gtgo8.jpg" alt=""></p>
+<h2 id="总结">总结</h2>
+<p>做好一个App其实挺难的，做好一款全球化的App更是难上加难。特别是我这种天朝土鳖，写程序的时候脑子里面就没全球化的意识。</p>
+<p>附上一个今天在推上看到的心酸笑话：</p>
+<p>编历法的玛雅码农想「我做个日历做上一千年应该就够用了吧」；编UNIX的码农想「我写个OS能用到2038年应该就够用了吧」；编RFC791的码农想「我整个IP能给42.9亿人用应该就够用了吧」——都给全世界添了乱子。我们做码农的一定要引以为戒 #读日语推有感#</p>
+<h2 id="一些参考">一些参考</h2>
+<p><a href="http://zh.wikipedia.org/wiki/農曆" target="_blank">农历 wiki</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/希伯來曆" target="_blank">希伯來历 wiki</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 wiki</a></p>
+<p><a href="http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns" target="_blank">UNICODE LOCALE DATA MARKUP LANGUAGE (LDML)</a></p>
+<p><a href="http://balunsoftware.jp/info/2013/06/nsdateformatter-japanese/" target="_blank">NSDateFormatter で、和暦の変換に固定する</a></p>
+<p><a href="http://kevin-wu.net/ios-locale-and-calendar-tips/" target="_blank">在开发iOS程序时对日期处理的总结</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/" data-id="wuwgse35v8pzrqtw" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/" data-id="zmymebrvz8tnb7ta" class="article-share-link">Share</a>
       
-        <a href="http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -212,19 +149,10 @@ SEL  <span class="built_in">request</span> = getTheSelector();
     
 <nav id="article-nav">
   
-    <a href="/2012/09/29/learning-ios-notes-twelve/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          iOS笔记 (12)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2012/08/13/learning-ios-notes-ten/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2014/03/25/learn-ui-design-one/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">iOS笔记 (10)</div>
+      <div class="article-nav-title">学习UI设计笔记(一)</div>
     </a>
   
 </nav>
@@ -326,7 +254,7 @@ SEL  <span class="built_in">request</span> = getTheSelector();
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2012/09/02/learning-ios-notes-eleven/';
+  var disqus_url = 'http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/';
   
   (function(){
     var dsq = document.createElement('script');

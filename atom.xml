@@ -4,13 +4,54 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2014-04-01T04:28:28.062Z</updated>
+  <updated>2014-04-08T15:56:00.106Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
     <email><![CDATA[chenyuxiao@sumi-sumi.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮]]></title>
+    <link href="http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/"/>
+    <id>http://iiiyu.com/2014/04/08/learning-ios-notes-thirty-five/</id>
+    <published>2014-04-08T14:49:48.000Z</published>
+    <updated>2014-04-08T15:55:53.000Z</updated>
+    <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>说曹操，曹操到。嘛当，还说总结一下时间的问题。这不blog这个系列没有写完。又爆了出一个时间相关的Bug。我只能说编程路茫茫，吾将上下求索。这次就着热乎着，来说是一个遇到了什么问题。</p>
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>有日本用户反馈，新版本更新以后，他日历上的时间全部乱了。而且无法写入日记。经过与用户沟通（感谢喵神onevcat的日文人肉翻译）分析得到用户使用和历（日本日历）。然后debug进去果然日期全部乱了。跟进去debug了一番，发现是之前解决夏令时的函数只考虑了公历！！！而iOS系统默认有三种日历。公历、和历、佛历。又一次无情的证明了我是一个天朝土包子。</p>
+<a id="more"></a>
+
+<h2 id="iOS_&amp;&amp;_OS_X_支持的日历">iOS &amp;&amp; OS X 支持的日历</h2>
+<p>这个问题的出现提醒了我，地球上不同的人们其实是使用着不同的日历。（在这之前学习到的是地球上的人们过着不同的时区，有夏令时和没夏令时的时间）。</p>
+<p>iOS从Settings-&gt;General-&gt;International-&gt;Calendar。</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1ef8l1icf7pj20hs0vkdgp.jpg" alt=""></p>
+<p>可以看到是默认只是支持公历、和历、佛历。</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1ef8lfdww4aj20il0cewfz.jpg" alt=""></p>
+<p>OS X 要多一些…（好吧，大部分我都不认识）</p>
+<p>那到底iOS &amp;&amp; OS X支持哪些日历呢。</p>
+<p>看这里内建的有这些<a href="https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSLocale_Class/Reference/Reference.html#jumpTo_50" target="_blank">NSLocale Calendar Keys</a> (PS: 经过测试农历那个之前处于半残疾状态)</p>
+<h2 id="用代码测试一下">用代码测试一下</h2>
+<p>我遇到的问题是我获得00:00:00的方法是直接用string然后反向设置小时、分钟、秒数得来的。所以，当日历不同的时候date-&gt;string就不一样了！！！这样我只判断了公历的时候，和历和佛历就错了。</p>
+<p>详细代码可以查考这个<a href="https://github.com/iiiyu/TestNSDateFormatterOnMac" target="_blank">TestNSDateFormatterOnMac</a></p>
+<p>我fork了一个霓虹大神改动的。 添加了佛历的对比。</p>
+<p><img src="http://ww1.sinaimg.cn/large/a6d3226bgw1ef8m65ylz2j20lq0gtgo8.jpg" alt=""></p>
+<h2 id="总结">总结</h2>
+<p>做好一个App其实挺难的，做好一款全球化的App更是难上加难。特别是我这种天朝土鳖，写程序的时候脑子里面就没全球化的意识。</p>
+<p>附上一个今天在推上看到的心酸笑话：</p>
+<p>编历法的玛雅码农想「我做个日历做上一千年应该就够用了吧」；编UNIX的码农想「我写个OS能用到2038年应该就够用了吧」；编RFC791的码农想「我整个IP能给42.9亿人用应该就够用了吧」——都给全世界添了乱子。我们做码农的一定要引以为戒 #读日语推有感#</p>
+<h2 id="一些参考">一些参考</h2>
+<p><a href="http://zh.wikipedia.org/wiki/農曆" target="_blank">农历 wiki</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/希伯來曆" target="_blank">希伯來历 wiki</a></p>
+<p><a href="http://zh.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 wiki</a></p>
+<p><a href="http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns" target="_blank">UNICODE LOCALE DATA MARKUP LANGUAGE (LDML)</a></p>
+<p><a href="http://balunsoftware.jp/info/2013/06/nsdateformatter-japanese/" target="_blank">NSDateFormatter で、和暦の変換に固定する</a></p>
+<p><a href="http://kevin-wu.net/ios-locale-and-calendar-tips/" target="_blank">在开发iOS程序时对日期处理的总结</a></p>
+]]></content>
+    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[学习UI设计笔记(一)]]></title>
     <link href="http://iiiyu.com/2014/03/25/learn-ui-design-one/"/>
@@ -1883,162 +1924,6 @@ xctool <span class="attribute">-project</span> HelloAfterAddOCUnit<span class="b
 <p><img src="http://ww3.sinaimg.cn/large/a74ecc4cjw1e3tydp5hsqj208w0geabq.jpg" alt=""></p>
 <h2 id="总结">总结</h2>
 <p>写Blog实在是太累了. NSFetchedResultsController努力一天也才一点点.回去继续写. 下次要写NSFetchedResultsController通知方法.</p>
-]]></content>
-    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[iOS笔记(20)]]></title>
-    <link href="http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/"/>
-    <id>http://iiiyu.com/2013/04/15/learning-ios-notes-twenty/</id>
-    <published>2013-04-15T06:02:11.000Z</published>
-    <updated>2014-04-01T04:28:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="UITableView简单解析">UITableView简单解析</h1>
-<h2 id="序">序</h2>
-<p>UITableView是在iOS开发中，展示大量内容的首选。我个人认为的原有有一下几点：</p>
-<ol>
-<li>UITableView的展现形式是为移动设备专门设计过的。有较好的人机交互体验。</li>
-<li>从技术角度来说UITableView具有重用和延迟加载等特性。如果使用恰当。可以获得一个App流畅的用户体验。</li>
-</ol>
-<p>这样，使得UITableView在iOS App中随处可见。</p>
-<p>原生应用</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e3q5jk1wrtj.jpg" alt=""></p>
-<p>一些有名的App.图片信息较老</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74eed94jw1e3q5kl91luj.jpg" alt=""></p>
-<p>包括游戏</p>
-<p><img src="http://ww1.sinaimg.cn/large/a74e55b4jw1e3q5lb59vwj.jpg" alt=""></p>
-<p>这些都说明UITableView在一个App中其实是一个很常用的控件。我应该好好的学习它。</p>
-<a id="more"></a>
-
-
-<h2 id="关于数据的思考">关于数据的思考</h2>
-<h3 id="没有UITableView的时候我是这样想的">没有UITableView的时候我是这样想的</h3>
-<p>首先思考为什么会有UITableView这样的控件。我们做一个App的时候，就会有大量的数据需要显示。比如weibo的每一个状态。比如一个新闻App的很多条新闻。这些数据都会有一个特点就是他们的组织形式一样，只是内容变化。有时候我们可能会根据一些条件进行分组。使得看来了是分组的。例如：联系人里面会按照首字母来进行分组一样。我们还可能会点击数据以便查看更详细的内容。通过上面的简单描述，如果来自己实现一个类似UITableView的结构。需要得到最核心的：</p>
-<ol>
-<li>需要得到一共多少条数据</li>
-<li>数据的具体内容是什么</li>
-</ol>
-<p>如果我们数据需要更加仔细的描述展示：</p>
-<ol>
-<li>全部的数据一共有多少组</li>
-<li>每一组有多少个数据</li>
-<li>每一条数据的具体内容是什么</li>
-</ol>
-<h3 id="UITableView是怎么做的">UITableView是怎么做的</h3>
-<p>在UITableView中。最重要的就是data source中的两个方法。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(<span class="variable">NSInteger</span>)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView numberOfRowsInSection:<span class="params">(<span class="variable">NSInteger</span>)</span>section;
-
-- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;</span>
-</pre></td></tr></table></figure>
-
-<p>什么是data source。字面意思就是很明白，数据的来源。一般情况下我们会设置拥有UITableView的这个UIViewController为他的data source。因为根据MVC来说。UITableView是View，UIViewController是Controller。View需要的数据，应该是Controller去跟Model协调然后获得，以后由Controller去给View来进行显示。View永远的不去直接跟Model联系。这样当UITableView初始化的时候。他就会去问他的data source。我需要显示多少行数据啊。每一行的数据都是什么内容啊。这时候UIViewController应该已经从Model拿到了数据。然后通过- (NSInteger)tableView:(UITableView <em>)tableView numberOfRowsInSection:(NSInteger)section;告诉UITableview，恩你的这一组要显示n条数据。又用- (UITableViewCell </em>)tableView:(UITableView <em>)tableView cellForRowAtIndexPath:(NSIndexPath </em>)indexPath函数告诉UITableView说，第几组第几条数据的具体内容是什么。</p>
-<p>UITableView还有一个比较犀利的地方就是如果你的数据有10000条。它肯定不是把10000条都加载进来。而是只加载需要显示的条目数据。这样设计，使得UITableView的流畅程度大大提高。值得注意的是，如果Cell里面的数据是从网络 or Core Data等其他地方读取的。我们应该把读取动作写成异步的。不阻塞主线程。取到数据以后在回答主线程去刷新UI。</p>
-<p>UITableView从创建到显示的调用顺序如下图</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e3sfatxy0gj.jpg" alt=""></p>
-<ul>
-<li>(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView这个函数是最先调用，但是它默认返回1.所以并不是必须的。如果你的UITableView分了好几组，这个就是用来返回组的数量的。</li>
-</ul>
-<p>这样完成了设置UITableView的data source设置。在完成</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(<span class="variable">NSInteger</span>)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView numberOfRowsInSection:<span class="params">(<span class="variable">NSInteger</span>)</span>section;
-
-- <span class="params">(<span class="variable">UITableViewCell</span> *)</span>tableView:<span class="params">(<span class="variable">UITableView</span> *)</span>tableView cellForRowAtIndexPath:<span class="params">(<span class="variable">NSIndexPath</span> *)</span>indexPath;</span>
-</pre></td></tr></table></figure>
-
-<p>这两个函数。我们就可以得到一个能显示的UITableView了。</p>
-<p>现在是是仅仅解释了UITableView的数据是怎么来的，然后怎么对应到UITableView上面。</p>
-<h2 id="UITableViewCell">UITableViewCell</h2>
-<p>UITableViewCell具体的每一条数据展示的具体View。首先在UITableView里面有这样一个特点，每一个Cell的大概样子都长的差不多，只是里面具体的内容稍有变化。这样在UI里面我们应该是重用相同的部分，改变不同的部分。这样才能提高效率。因为在UiTableView这个视图里面，用户习惯性快速的滚动，视图和数据内容都会快速的变化，如果效率问题处理不好，很容易有卡顿的现象。造成用户体验的降低。</p>
-<p>如果使用默认的UITableViewCell风格，有以下四种</p>
-<p>UITableViewCellStyleDefault</p>
-<p><img src="http://ww2.sinaimg.cn/large/a74eed94jw1e3sha1cl2oj.jpg" alt=""></p>
-<p>UITableViewCellStyleSubtile</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74e55b4jw1e3shcdevpbj.jpg" alt=""></p>
-<p>UITableViewCellStyleValue1</p>
-<p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e3shcssq55j.jpg" alt=""></p>
-<p>UITableViewCellStyleValue2</p>
-<p><img src="http://ww4.sinaimg.cn/large/a74ecc4cjw1e3shdbgbrgj.jpg" alt=""></p>
-<p>当然如果是需要自定义Cell也是很简单。 用xib拖一个，完全可以GUI的方式来创建，很是方便。</p>
-<p>(Google一个栗子吧，写不动了)</p>
-<p>插一句，Cell的重用是需要下面这样的实现方法</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="code"><pre>- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath
-{
-    <span class="keyword">static</span> <span class="built_in">NSString</span> *Cell = @<span class="string">"MyCell"</span>;
-    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:Cell];
-    <span class="keyword">if</span> (!cell) {
-        cell = [[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Cell];
-    }
-    <span class="keyword">return</span> cell;
-}
-</pre></td></tr></table></figure>
-
-<p>重要的是UITableView的dequeueReusableCellWithIdentifier方法。</p>
-<p>dequeueReusableCellWithIdentifier去一个队列里面需找有没有相同ID的的Cell。如果有就提出来重用。可以重用的部分。如果没有就跳进if里面去创建。所以我们在if里面创建的时候，不会改变的内容都可以在里面创建，这样就只用创建一次。需要改变的内容我们就放到if后面去写。 这样我们就能完成高效的UITableView。当然，理论上来说，你可以不用这样的机制，而去直接每次创建一个Cell。不过这是非常浪费资源的一个做法，直接不提倡。</p>
-<h2 id="UITableView_Delegate">UITableView Delegate</h2>
-<p>当然，在写UITableView肯定想控制的更多。才能完成设计师们辛辛苦苦画出来的稿。这样我们可以去看看Data source里面剩下的函数和Delegate。</p>
-<p>当然就说一点</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="comment">//选中Cell响应事件</span>
-- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath
-{
-    <span class="comment">//选中后的反显颜色即刻消失</span>
-    [tableView deselectRowAtIndexPath:indexPath animated:<span class="literal">YES</span>];
-}
-</pre></td></tr></table></figure>
-
-<p>这个是选中Cell时候会的出发点。如果要点击以后做什么事情 就在这里做了。 </p>
-<p><a href="http://www.devdiv.com/home.php?mod=space&amp;uid=39974&amp;do=blog&amp;id=2573" target="_blank">找了篇目测还ok的中文blog可以先看看了解</a></p>
-<h2 id="数据刷新">数据刷新</h2>
-<p>如果我们的modle更新了。相应的要体现到UITableView上面。简单的我们可以reload整个TableView。这样做很方便，而且数据上没有问题。唯一的问题就是，reload整个TableView的效率太低了。而且，往往我们只是少数的Cell内容变化。所以没有必要去reload整个TableView。而是那条数据变化去刷新对应的Cell就好了。这样做效率提高很多。</p>
-<p>具体涉及到的几个函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="code"><pre><span class="pp">- <span class="params">(void)</span>beginUpdates;
-- <span class="params">(void)</span>endUpdates;
- 
-- <span class="params">(void)</span>insertSections:<span class="params">(<span class="variable">NSIndexSet</span> *)</span>sections withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
-- <span class="params">(void)</span>deleteSections:<span class="params">(<span class="variable">NSIndexSet</span> *)</span>sections withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
-- <span class="params">(void)</span>reloadSections:<span class="params">(<span class="variable">NSIndexSet</span> *)</span>sections withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
- 
-- <span class="params">(void)</span>insertRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation: <span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
-- <span class="params">(void)</span>deleteRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation: <span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;
-- <span class="params">(void)</span>reloadRowsAtIndexPaths:<span class="params">(<span class="variable">NSArray</span> *)</span>indexPaths withRowAnimation:<span class="params">(<span class="variable">UITableViewRowAnimation</span>)</span>animation;</span>
-</pre></td></tr></table></figure>
-
-<p><a href="http://www.cnblogs.com/smileEvday/archive/2012/06/28/tableView.html" target="_blank">这里有实例代码可以参考</a></p>
-<p><a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageInsertDeleteRow/ManageInsertDeleteRow.html#//apple_ref/doc/uid/TP40007451-CH10-SW1" target="_blank">官方教程</a></p>
-<p>里面写了如何优化UITableView：</p>
-<p><a href="http://www.keakon.net/2011/08/03/优化UITableView性能" target="_blank">又找了一篇blog写的很不错的样子，优化UITableView性能</a></p>
-<h2 id="后记">后记</h2>
-<p>总结就是UITableView是一个高度设计的控件。它具有重用，分组，异步加载数据等方面需要我们注意。</p>
-<p>其实这里插进来写UITableView是为了写NSFetchedResultsController。因为NSFetchedResultsController就是为UITableview量身打造的Core Data的类。 </p>
-<p>所以，先说明以下UITableView，然后再写NSFetchedResultsController。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
   </entry>
