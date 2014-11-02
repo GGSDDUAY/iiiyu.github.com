@@ -5,25 +5,33 @@
   
   <title>iOS笔记 (2) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (2)">
-<meta name="og:url" content="http://iiiyu.com/2012/03/05/learning-ios-notes-two/">
-<meta name="og:image">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
+  <meta name="description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
+iOS的MVC初级代码说明
+上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
+斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS笔记 (2)">
+<meta property="og:url" content="http://iiiyu.com/2012/03/05/learning-ios-notes-two/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
 iOS的MVC初级代码说明
 上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
 斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS笔记 (2)">
+<meta name="twitter:description" content="此笔记是观看斯坦福的IOS开发课程和自己思考以后的产物，如果有所偏差，还望指导更正。
+iOS的MVC初级代码说明
+上次说到MVC模式。那些都是理论。真正离写代码终究还是很大差距。特别是Xcode4 IOS5以后，变化很大，中文资料几乎全部过时。经过反复看了斯坦福老头的课程。终于有所顿悟。记录下来。
+斯坦福老头的课程前面12课都没有说道model。全部是view和controller。我也只是看到1">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -38,6 +46,7 @@ iOS的MVC初级代码说明
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -62,6 +71,8 @@ iOS的MVC初级代码说明
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -81,7 +92,7 @@ iOS的MVC初级代码说明
         <section id="main"><article id="post-learning-ios-notes-two" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/03/05/learning-ios-notes-two/" class="article-date">
-  <time datetime="2012-03-04T16:25:00.000Z" itemprop="datePublished">3月 5 2012</time>
+  <time datetime="2012-03-04T16:25:00.000Z" itemprop="datePublished">2012 3月 5日</time>
 </a>
     
   </div>
@@ -113,21 +124,11 @@ iOS的MVC初级代码说明
 <p>controller一直叫唤狗腿子view，叫view干啥view就干啥。某天，view出事情了，这时候view想在出事情的时候通知一下controller主子。controller主子也不是没有人性，在controller设置一个target。这时候要是出现了什么事情view这个狗腿子要发一个action给主子controller就好了。有时候view狗腿子要和主子controller步调保持一致。这个时候要怎么做呢。在controller里面设置view狗腿的delegate（代表）这个delegate就通过一个protocol来设置 </p>
 </blockquote>
 <p>在老头的视频教学里面我们可以看到。比如一个UILabel拖到storyboard上面的时候，这个UILabel仅仅是一个view，它和controller还没有产生任何关系。此时我们的主子controller要知道他有了一个狗腿UILabel这个view要怎么办呢。我们就按着Ctrl点击UILabel拖入XXXViewController.h文件里面，形成一个outlet。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;
-</pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *display;</div></pre></td></tr></table></figure>
 
 <p>这里我理解为狗腿子跟主子报告了一声，说hi 我在这里。</p>
 <p>这时候狗腿子说，hi 主子。我出了个事情要跟你汇报。就是视频里面按住Ctrl然后点UI控件会出来一个框里面有很多事件。然后点点击事件不放向<br>XXXViewController.m文件里面拖，就会形成一个Action。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>- (IBAction)digitPressed:(UIButton *)sender 
-{
-	<span class="keyword">...</span>
-}
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (IBAction)digitPressed:(UIButton *)sender </div><div class="line">{</div><div class="line">	<span class="keyword">...</span></div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>这就是狗腿出什么样的事情通知主子的地方。</p>
 <h2 id="一些小细节上的感悟">一些小细节上的感悟</h2>
@@ -149,26 +150,12 @@ iOS的MVC初级代码说明
 <h4 id="声明初始化类">声明初始化类</h4>
 <p>一句话:</p>
 <p>alloc后面永远跟着init</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>[[CalculatorBrain alloc] init];
-[[NSMutableArray alloc] init]
-<span class="keyword">...</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[[CalculatorBrain alloc] init];</div><div class="line">[[NSMutableArray alloc] init]</div><div class="line"><span class="keyword">...</span></div></pre></td></tr></table></figure>
 
 <h4 id="面向对象的封装">面向对象的封装</h4>
 <p>小时候还在用过几天java写web的时候，很纳闷为什么每一个属性都要写get、set方法。直到现在才慢慢明白这是封装。封装的好处。</p>
 <p>在IOS5编程里面。通常是用@property来声明属性，然后使用@synthesize来默认使用get、set方法。当然，再objective-c里面可以重写get、set方法。而且我觉得@property和@synthesize应该像alloc和init一样配套使用。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;
-
-
-<span class="keyword">@synthesize</span> operandStack = _operandStack;
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *operandStack;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@synthesize</span> operandStack = _operandStack;</div></pre></td></tr></table></figure>
 
 <h4 id="编译器的强大">编译器的强大</h4>
 <p>不管是ARC还是后面的get、set方法。都是再编译的时候编辑器加上去的。（猜测）然后各种听说Apple为了让App再IOS跑的更好更流畅。一直再不停的优化llvm。这也是搭载Android的设备硬件远超过IOS设备的情况下还是没有IOS用着爽的底层原因之一吧。 所以，我觉得应该百分百相信编译器。如果出错了。肯定是程序写的有问题。</p>
@@ -176,7 +163,7 @@ iOS的MVC初级代码说明
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/03/05/learning-ios-notes-two/" data-id="shgkjkdg8kh3zod2" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2012/03/05/learning-ios-notes-two/" data-id="3kj6krv10q5i79uw" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2012/03/05/learning-ios-notes-two/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -226,6 +213,14 @@ iOS的MVC初级代码说明
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -237,14 +232,6 @@ iOS的MVC初级代码说明
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -254,7 +241,7 @@ iOS的MVC初级代码说明
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -263,7 +250,7 @@ iOS的MVC初级代码说明
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -272,7 +259,7 @@ iOS的MVC初级代码说明
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -285,7 +272,7 @@ iOS的MVC初级代码说明
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -295,6 +282,8 @@ iOS的MVC初级代码说明
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -318,11 +307,14 @@ iOS的MVC初级代码说明
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

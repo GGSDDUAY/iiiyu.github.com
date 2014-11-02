@@ -5,27 +5,41 @@
   
   <title>iOS笔记(19) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记(19)">
-<meta name="og:url" content="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/">
-<meta name="og:image" content="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="Core Data (二)
+  <meta name="description" content="Core Data (二)
 序
 上次只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。
 NSManagedObject
 
 Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS笔记(19)">
+<meta property="og:url" content="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="Core Data (二)
+序
+上次只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。
+NSManagedObject
+
+Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对N">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/bfadf3bejw1e39z74y7j8j.jpg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS笔记(19)">
+<meta name="twitter:description" content="Core Data (二)
+序
+上次只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。
+NSManagedObject
+
+Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对N">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -40,6 +54,7 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -64,6 +79,8 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -83,7 +100,7 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
         <section id="main"><article id="post-learning-ios-notes-nineteen" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/04/01/learning-ios-notes-nineteen/" class="article-date">
-  <time datetime="2013-04-01T03:28:20.000Z" itemprop="datePublished">4月 1 2013</time>
+  <time datetime="2013-04-01T03:28:20.000Z" itemprop="datePublished">2013 4月 1日</time>
 </a>
     
   </div>
@@ -104,7 +121,7 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
       
         <h1 id="Core_Data_(二)">Core Data (二)</h1>
 <h1 id="序">序</h1>
-<p><a href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/">上次</a>只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。</p>
+<p><a href="http://iiiyu.com/2013/03/29/learning-ios-notes-eighteen/" target="_blank" rel="external">上次</a>只是说了三个Core Data栈基本类。这次准备介绍一下常用的类。</p>
 <h2 id="NSManagedObject">NSManagedObject</h2>
 <p><img src="http://ww1.sinaimg.cn/large/bfadf3bejw1e39yrt56ifj.jpg" alt=""></p>
 <p>Core Data是一次底层数据封装成面向对象的技术。最直接的表现就是在SQLite里面的一条记录在Core Data里面的表现是一个NSManagedObject对象。因此我们的增删改查都是基于操作对象的。恩这里多说一句，NSManagedObject是相对NSManagedObjectContext里面是唯一的。而真实的应用情况可能是NSManagedObjectContext会有多个。而NSManagedObjectContext线程不是安全的，所以可能有你多个NSManagedObjectContext里面各自有指向同一条数据的不同的NSManagedObject。这个情况需要你的程序设计和逻辑上去解决。暂时不讨论。</p>
@@ -117,7 +134,7 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
 <p><img src="http://ww4.sinaimg.cn/large/bfadf3bejw1e39z74y7j8j.jpg" alt=""></p>
 <p>next都按完了以后，会生成选择了的Entity对应的一个NSManagedObject子类。这样的话我们就可以用生成的类来进行增删改查。这样的话看起来代码里面也会变得清晰一些。我们也不必去写KVC的方法去访问修改属性。可以直接就访问修改。在我看来还是好处多多的。为了OO的原则，我们可能会对不同的Entity类去写一些只是公开接口的方法。但是这样生成的NSManagedObject子类是不好修改的。因此我们会去建立一个category类。来进行扩写自己的方法。这样项目里面就会出现一票category感觉不是很好的样子。</p>
 <p>第三种方法是我现在在使用的方法。<br>就是使用Mogenerator.</p>
-<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/">详细查看Mogenerator的初级使用</a><br>好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
+<p>Mogenerator已经写过一篇blog了。<a href="http://iiiyu.com/2013/02/22/learning-ios-notes-fifteen/" target="_blank" rel="external">详细查看Mogenerator的初级使用</a><br>好处是生成一次以后，再次生成并会在工程里面重复引用。而且机制上可以直接在生成的类里面进行方法的扩写。不用使用category类。这样整个工程就看起来高级素雅很多。</p>
 <h3 id="NSManagedObject其他注意事项">NSManagedObject其他注意事项</h3>
 <p>NSManagedObject就是我们拿来操作数据的基本单位。因此对应，增加一条数据是在NSManagedObjectContext新建一个NSManagedObject。查找数据是查找NSManagedObject。修改是修改NSManagedObject类的属性。删除是从NSManagedObjectContext里面删除NSManagedObject类。最后我们保存NSManagedObjectContext，然后一直向上传递到磁盘上面去。才是持久化的修改。</p>
 <h2 id="NSFetchRequest">NSFetchRequest</h2>
@@ -129,67 +146,31 @@ Core Data是一次底层数据封装成面向对象的技术。最直接的表�
 <p>查找到的数据是杂乱无章的。而我们往往希望是具有一定顺序的返回结果。NSSortDescriptor就是用来指定排序的属性和方式的。把NSSortDescriptor生成设置好然后给NSFetchRequest设置。这样我们的结果就可以是按照我们希望的顺序返回回来。以便我们操作。</p>
 <h2 id="实例代码">实例代码</h2>
 <p>新建NSManagedObject</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] <span class="keyword">in</span>ManagedObjectContext:context];
-[newManagedObject <span class="keyword">set</span>Value:[NSDate date] <span class="keyword">for</span>Key:@<span class="string">"timeStamp"</span>];
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] <span class="keyword">in</span>ManagedObjectContext:context];</div><div class="line">[newManagedObject <span class="keyword">set</span>Value:[NSDate date] <span class="keyword">for</span>Key:@<span class="string">"timeStamp"</span>];</div></pre></td></tr></table></figure>
 
 <p>删除NSManagedObject</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">[context deleteObject:managedObject]</span><span class="comment">;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">[context deleteObject:managedObject]</span><span class="comment">;</span></div></pre></td></tr></table></figure>
 
 <p>初始化NSPredicate</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="constant">NSUInteger</span>  numberOfServings = <span class="number">10</span>;
-<span class="constant">NSPredicate</span> *predicate = <span class="keyword">nil</span>;
-predicate = [<span class="constant">NSPredicate</span> <span class="symbol">predicateWithFormat:</span>@<span class="string">"serves &gt; %i"</span>, numberOfServings];
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSUInteger  <span class="variable">numberOfServings =</span> <span class="number">10</span>;</div><div class="line">NSPredicate *<span class="variable">predicate =</span> nil;</div><div class="line"><span class="variable">predicate =</span> [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings];</div></pre></td></tr></table></figure>
 
 <p>初始化NSSortDescriptor</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:<span class="string">@"name"</span> <span class="keyword">ascending</span>:YES];
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:<span class="string">@"name"</span> <span class="keyword">ascending</span>:YES];</div></pre></td></tr></table></figure>
 
 <p>初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>NSManagedObjectContext *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription entityForName:@"Recipe"
-                                                                                                                                                            inManagedObjectContext:moc]]</span>;
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSManagedObjectContext *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription entityForName:@"Recipe"</span></div><div class="line">                                                                                                                                                            inManagedObjectContext:moc]];</div></pre></td></tr></table></figure>
 
 <p>带有NSPredicate的初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>NSUInteger              numberOfServings = <span class="number">10</span>;
-NSManagedObjectContext  *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription    entityForName:@"Recipe"
-                                                                                                                                                                inManagedObjectContext:moc]]</span>;
-NSPredicate *predicate = <span class="keyword">nil</span>;
-predicate = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings]; [request setPredicate:predicate];
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSUInteger              numberOfServings = <span class="number">10</span>;</div><div class="line">NSManagedObjectContext  *moc = [self managedObjectContext]; NSFetchRequest *request = <span class="string">[[NSFetchRequest alloc] init]; [request setEntity:[NSEntityDescription    entityForName:@"Recipe"</span></div><div class="line">                                                                                                                                                                inManagedObjectContext:moc]];</div><div class="line">NSPredicate *predicate = <span class="keyword">nil</span>;</div><div class="line">predicate = [NSPredicate predicateWithFormat:@<span class="string">"serves &gt; %i"</span>, numberOfServings]; [request setPredicate:predicate];</div></pre></td></tr></table></figure>
 
 <p>带有NSSortDescriptor的初始化NSFetchRequest</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>NSFetchRequest *fetchRequest = <span class="keyword">nil</span>;
-fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@<span class="string">"Recipe"</span>];
-NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-[fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]]</span>;
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NSFetchRequest *fetchRequest = <span class="keyword">nil</span>;</div><div class="line">fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@<span class="string">"Recipe"</span>];</div><div class="line">NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];</span></div><div class="line">[fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];</div></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/" data-id="28f1slskdpn4b66u" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/" data-id="iui6cqe772tq8xa1" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/04/01/learning-ios-notes-nineteen/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -239,6 +220,14 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -250,14 +239,6 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -267,7 +248,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -276,7 +257,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -285,7 +266,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -298,7 +279,7 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -308,6 +289,8 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -331,11 +314,14 @@ NSSortDescriptor *sort = <span class="string">[[NSSortDescriptor alloc] initWith
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

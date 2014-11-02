@@ -5,30 +5,33 @@
   
   <title>iOS笔记 (8) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (8)">
-<meta name="og:url" content="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/">
-<meta name="og:image">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="iOS笔记 基于MKNetworkKit的断点续传
+  <meta name="description" content="iOS笔记 基于MKNetworkKit的断点续传
 背景
 上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。
-如果需要回顾一下ASIHTTPRequest的断点续传的在这里
-
-
-MKNetworkKit
-下载地址是
-https://github.c">
+如果需要回顾一下ASIHTTPRequest的断点续传的在这里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS笔记 (8)">
+<meta property="og:url" content="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="iOS笔记 基于MKNetworkKit的断点续传
+背景
+上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。
+如果需要回顾一下ASIHTTPRequest的断点续传的在这里">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS笔记 (8)">
+<meta name="twitter:description" content="iOS笔记 基于MKNetworkKit的断点续传
+背景
+上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。
+如果需要回顾一下ASIHTTPRequest的断点续传的在这里">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -43,6 +46,7 @@ https://github.c">
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -67,6 +71,8 @@ https://github.c">
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -86,7 +92,7 @@ https://github.c">
         <section id="main"><article id="post-learning-ios-notes-eight" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/07/07/learning-ios-notes-eight/" class="article-date">
-  <time datetime="2012-07-07T13:15:00.000Z" itemprop="datePublished">7月 7 2012</time>
+  <time datetime="2012-07-07T13:15:00.000Z" itemprop="datePublished">2012 7月 7日</time>
 </a>
     
   </div>
@@ -108,13 +114,13 @@ https://github.c">
         <h1 id="iOS笔记_基于MKNetworkKit的断点续传">iOS笔记 基于MKNetworkKit的断点续传</h1>
 <h2 id="背景">背景</h2>
 <p>上次写过用ASIHTTPRequest做断点续传的例子。但是一个是写的比较搓。一个是ASIHTTPRequest库已经不在维护。最后是扩展性不是很好。所以花了很长时间改写用MKNetworkKit来写。</p>
-<p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/" target="_blank">这里</a></p>
+<p>如果需要回顾一下ASIHTTPRequest的断点续传的在<a href="http://www.iiiyu.com/blog/2012/04/25/learning-ios-notes-six/" target="_blank" rel="external">这里</a></p>
 <a id="more"></a>
 
 <h2 id="MKNetworkKit">MKNetworkKit</h2>
 <p>下载地址是</p>
-<pre><code><span class="label">https:</span>//github<span class="preprocessor">.com</span>/MugunthKumar/MKNetworkKit
-</code></pre><p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">这里</a></p>
+<pre><code>http<span class="variable">s:</span>//github.<span class="keyword">com</span>/MugunthKumar/MKNetworkKit
+</code></pre><p>作者本人的臭屁介绍在<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank" rel="external">这里</a></p>
 <h3 id="使用MKNetworkKit">使用MKNetworkKit</h3>
 <ol>
 <li>首先把clone下来的MKNetworkKit文件夹拖进你的项目里面</li>
@@ -123,7 +129,7 @@ https://github.c">
 <li>如果是iOS，删除NSAlert+MKNetworkKitAdditions.h这个文件</li>
 <li>如果是Mac，删除UIAlertView+MKNetworkKitAdditions.h这个文件</li>
 </ol>
-<p>这样，再看看<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank">介绍</a>里面的例子。应该就能看懂普通用法了。然后畅快的使用MKNetworkKit库了。</p>
+<p>这样，再看看<a href="http://blog.mugunthkumar.com/products/ios-framework-introducing-mknetworkkit/" target="_blank" rel="external">介绍</a>里面的例子。应该就能看懂普通用法了。然后畅快的使用MKNetworkKit库了。</p>
 <h2 id="改写目标">改写目标</h2>
 <p>上次写的ASIHTTPRequest续传其实已经可以用了。但是为什么需要重新写呢。就是重用！！！</p>
 <p>一直都很少自己设计接口什么的。其实只是做了写体力的劳动，把一堆逻辑换成代码给堆了起来。觉得没有人会去重用自己的代码。很少去花心思想怎么样才能写好。</p>
@@ -139,239 +145,7 @@ https://github.c">
 <h2 id="实现">实现</h2>
 <h3 id="MKNetworkKit库修改">MKNetworkKit库修改</h3>
 <p>最开始使用MKNetworkKit库做下载的时候，progressview的数值一直不对。经过boss的观察，应该是某个东西写错地方了。然后 修改了某两个函数才可以的。详细如下：<br>找到MKNetworkOperation.m文件</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-</pre></td><td class="code"><pre>- (<span class="keyword">void</span>)connection:(<span class="built_in">NSURLConnection</span> *)connection didReceiveResponse:(NSURLResponse *)response {
- 
-  NSUInteger size = [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength] &lt; <span class="number">0</span> ? <span class="number">0</span> : [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength];
-  <span class="keyword">self</span><span class="variable">.response</span> = (NSHTTPURLResponse*) response;
- 
-  <span class="comment">// dont' save data if the operation was created to download directly to a stream.</span>
-  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>)
-    <span class="keyword">self</span><span class="variable">.mutableData</span> = [NSMutableData dataWithCapacity:size];
-  <span class="keyword">else</span>
-    <span class="keyword">self</span><span class="variable">.mutableData</span> = <span class="literal">nil</span>;
- 
-  <span class="keyword">for</span>(NSOutputStream *stream in <span class="keyword">self</span><span class="variable">.downloadStreams</span>)
-    [stream open];
- 
-  <span class="built_in">NSDictionary</span> *httpHeaders = [<span class="keyword">self</span><span class="variable">.response</span> allHeaderFields];
- 
-  <span class="comment">// if you attach a stream to the operation, MKNetworkKit will not cache the response.</span>
-  <span class="comment">// Streams are usually "big data chunks" that doesn't need caching anyways.</span>
- 
-  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.request</span><span class="variable">.HTTPMethod</span> isEqualToString:@<span class="string">"GET"</span>] && [<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>) {
-   
-    <span class="comment">// We have all this complicated cache handling since NSURLRequestReloadRevalidatingCacheData is not implemented</span>
-    <span class="comment">// do cache processing only if the request is a "GET" method</span>
-    <span class="built_in">NSString</span> *lastModified = [httpHeaders objectForKey:@<span class="string">"Last-Modified"</span>];
-    <span class="built_in">NSString</span> *eTag = [httpHeaders objectForKey:@<span class="string">"ETag"</span>];
-    <span class="built_in">NSString</span> *expiresOn = [httpHeaders objectForKey:@<span class="string">"Expires"</span>];
-   
-    <span class="built_in">NSString</span> *contentType = [httpHeaders objectForKey:@<span class="string">"Content-Type"</span>];
-    <span class="comment">// if contentType is image,</span>
-   
-    <span class="built_in">NSDate</span> *expiresOnDate = <span class="literal">nil</span>;
-   
-    <span class="keyword">if</span>([contentType rangeOfString:@<span class="string">"image"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {
-     
-      <span class="comment">// For images let's assume a expiry date of 7 days if there is no eTag or Last Modified.</span>
-      <span class="keyword">if</span>(!eTag && !lastModified)
-        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultImageCacheDuration];
-      <span class="keyword">else</span>   
-        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultImageHeadRequestDuration];
-    }
-   
-    <span class="built_in">NSString</span> *cacheControl = [httpHeaders objectForKey:@<span class="string">"Cache-Control"</span>]; <span class="comment">// max-age, must-revalidate, no-cache</span>
-    <span class="built_in">NSArray</span> *cacheControlEntities = [cacheControl componentsSeparatedByString:@<span class="string">","</span>];
-   
-    <span class="keyword">for</span>(<span class="built_in">NSString</span> *substring in cacheControlEntities) {
-     
-      <span class="keyword">if</span>([substring rangeOfString:@<span class="string">"max-age"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {
-       
-        <span class="comment">// do some processing to calculate expiresOn</span>
-        <span class="built_in">NSString</span> *maxAge = <span class="literal">nil</span>;
-        <span class="built_in">NSArray</span> *array = [substring componentsSeparatedByString:@<span class="string">"="</span>];
-        <span class="keyword">if</span>([array count] &gt; <span class="number">1</span>)
-          maxAge = [array objectAtIndex:<span class="number">1</span>];
-       
-        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:[maxAge intValue]];
-      }
-      <span class="keyword">if</span>([substring rangeOfString:@<span class="string">"no-cache"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {
-       
-        <span class="comment">// Don't cache this request</span>
-        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultCacheDuration];
-      }
-    }
-   
-    <span class="comment">// if there was a cacheControl entity, we would have a expiresOnDate that is not nil.       </span>
-    <span class="comment">// "Cache-Control" headers take precedence over "Expires" headers</span>
-   
-    expiresOn = [expiresOnDate rfc1123String];
-   
-    <span class="comment">// now remember lastModified, eTag and expires for this request in cache</span>
-    <span class="keyword">if</span>(expiresOn)
-      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:expiresOn forKey:@<span class="string">"Expires"</span>];
-    <span class="keyword">if</span>(lastModified)
-      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:lastModified forKey:@<span class="string">"Last-Modified"</span>];
-    <span class="keyword">if</span>(eTag)
-      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:eTag forKey:@<span class="string">"ETag"</span>];
-  }
-   
-    <span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.mutableData</span> length] == <span class="number">0</span> || [<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] &gt; <span class="number">0</span>) {
-        <span class="comment">// This is the first batch of data</span>
-        <span class="comment">// Check for a range header and make changes as neccesary</span>
-        <span class="built_in">NSString</span> *rangeString = [[<span class="keyword">self</span> request] valueForHTTPHeaderField:@<span class="string">"Range"</span>];
-        <span class="keyword">if</span> ([rangeString hasPrefix:@<span class="string">"bytes="</span>] && [rangeString hasSuffix:@<span class="string">"-"</span>]) {
-            <span class="built_in">NSString</span> *bytesText = [rangeString substringWithRange:NSMakeRange(<span class="number">6</span>, [rangeString length] - <span class="number">7</span>)];
-            <span class="keyword">self</span><span class="variable">.startPosition</span> = [bytesText integerValue];
-            <span class="keyword">self</span><span class="variable">.downloadedDataSize</span> = <span class="keyword">self</span><span class="variable">.startPosition</span>;
-            DLog(@<span class="string">"Resuming at %d bytes"</span>, <span class="keyword">self</span><span class="variable">.startPosition</span>);
-        }
-    }
-}
-
-- (<span class="keyword">void</span>)connection:(<span class="built_in">NSURLConnection</span> *)connection didReceiveData:(NSData *)data {
- 
-
- 
-  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>)
-    [<span class="keyword">self</span><span class="variable">.mutableData</span> appendData:data];
- 
-  <span class="keyword">for</span>(NSOutputStream *stream in <span class="keyword">self</span><span class="variable">.downloadStreams</span>) {
-   
-    <span class="keyword">if</span> ([stream hasSpaceAvailable]) {
-      <span class="keyword">const</span> uint8_t *dataBuffer = [data bytes];
-      [stream write:&dataBuffer[<span class="number">0</span>] maxLength:[data length]];
-    }       
-  }
- 
-  <span class="keyword">self</span><span class="variable">.downloadedDataSize</span> += [data length];
- 
-  <span class="keyword">for</span>(MKNKProgressBlock downloadProgressBlock in <span class="keyword">self</span><span class="variable">.downloadProgressChangedHandlers</span>) {
-   
-    <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength] &gt; <span class="number">0</span>) {
-     
-      <span class="keyword">double</span> progress = (<span class="keyword">double</span>)(<span class="keyword">self</span><span class="variable">.downloadedDataSize</span>) / (<span class="keyword">double</span>)(<span class="keyword">self</span><span class="variable">.startPosition</span> + [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength]);
-      downloadProgressBlock(progress);
-    }       
-  }
-}
-</pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)connection:(<span class="built_in">NSURLConnection</span> *)connection didReceiveResponse:(NSURLResponse *)response {</div><div class="line"> </div><div class="line">  NSUInteger size = [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength] &lt; <span class="number">0</span> ? <span class="number">0</span> : [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength];</div><div class="line">  <span class="keyword">self</span><span class="variable">.response</span> = (NSHTTPURLResponse*) response;</div><div class="line"> </div><div class="line">  <span class="comment">// dont' save data if the operation was created to download directly to a stream.</span></div><div class="line">  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>)</div><div class="line">    <span class="keyword">self</span><span class="variable">.mutableData</span> = [NSMutableData dataWithCapacity:size];</div><div class="line">  <span class="keyword">else</span></div><div class="line">    <span class="keyword">self</span><span class="variable">.mutableData</span> = <span class="literal">nil</span>;</div><div class="line"> </div><div class="line">  <span class="keyword">for</span>(NSOutputStream *stream <span class="keyword">in</span> <span class="keyword">self</span><span class="variable">.downloadStreams</span>)</div><div class="line">    [stream open];</div><div class="line"> </div><div class="line">  <span class="built_in">NSDictionary</span> *httpHeaders = [<span class="keyword">self</span><span class="variable">.response</span> allHeaderFields];</div><div class="line"> </div><div class="line">  <span class="comment">// if you attach a stream to the operation, MKNetworkKit will not cache the response.</span></div><div class="line">  <span class="comment">// Streams are usually "big data chunks" that doesn't need caching anyways.</span></div><div class="line"> </div><div class="line">  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.request</span><span class="variable">.HTTPMethod</span> isEqualToString:<span class="string">@"GET"</span>] && [<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>) {</div><div class="line">   </div><div class="line">    <span class="comment">// We have all this complicated cache handling since NSURLRequestReloadRevalidatingCacheData is not implemented</span></div><div class="line">    <span class="comment">// do cache processing only if the request is a "GET" method</span></div><div class="line">    <span class="built_in">NSString</span> *lastModified = [httpHeaders objectForKey:<span class="string">@"Last-Modified"</span>];</div><div class="line">    <span class="built_in">NSString</span> *eTag = [httpHeaders objectForKey:<span class="string">@"ETag"</span>];</div><div class="line">    <span class="built_in">NSString</span> *expiresOn = [httpHeaders objectForKey:<span class="string">@"Expires"</span>];</div><div class="line">   </div><div class="line">    <span class="built_in">NSString</span> *contentType = [httpHeaders objectForKey:<span class="string">@"Content-Type"</span>];</div><div class="line">    <span class="comment">// if contentType is image,</span></div><div class="line">   </div><div class="line">    <span class="built_in">NSDate</span> *expiresOnDate = <span class="literal">nil</span>;</div><div class="line">   </div><div class="line">    <span class="keyword">if</span>([contentType rangeOfString:<span class="string">@"image"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {</div><div class="line">     </div><div class="line">      <span class="comment">// For images let's assume a expiry date of 7 days if there is no eTag or Last Modified.</span></div><div class="line">      <span class="keyword">if</span>(!eTag && !lastModified)</div><div class="line">        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultImageCacheDuration];</div><div class="line">      <span class="keyword">else</span>   </div><div class="line">        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultImageHeadRequestDuration];</div><div class="line">    }</div><div class="line">   </div><div class="line">    <span class="built_in">NSString</span> *cacheControl = [httpHeaders objectForKey:<span class="string">@"Cache-Control"</span>]; <span class="comment">// max-age, must-revalidate, no-cache</span></div><div class="line">    <span class="built_in">NSArray</span> *cacheControlEntities = [cacheControl componentsSeparatedByString:<span class="string">@","</span>];</div><div class="line">   </div><div class="line">    <span class="keyword">for</span>(<span class="built_in">NSString</span> *substring <span class="keyword">in</span> cacheControlEntities) {</div><div class="line">     </div><div class="line">      <span class="keyword">if</span>([substring rangeOfString:<span class="string">@"max-age"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {</div><div class="line">       </div><div class="line">        <span class="comment">// do some processing to calculate expiresOn</span></div><div class="line">        <span class="built_in">NSString</span> *maxAge = <span class="literal">nil</span>;</div><div class="line">        <span class="built_in">NSArray</span> *array = [substring componentsSeparatedByString:<span class="string">@"="</span>];</div><div class="line">        <span class="keyword">if</span>([array count] &gt; <span class="number">1</span>)</div><div class="line">          maxAge = [array objectAtIndex:<span class="number">1</span>];</div><div class="line">       </div><div class="line">        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:[maxAge intValue]];</div><div class="line">      }</div><div class="line">      <span class="keyword">if</span>([substring rangeOfString:<span class="string">@"no-cache"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) {</div><div class="line">       </div><div class="line">        <span class="comment">// Don't cache this request</span></div><div class="line">        expiresOnDate = [[<span class="built_in">NSDate</span> date] dateByAddingTimeInterval:kMKNetworkKitDefaultCacheDuration];</div><div class="line">      }</div><div class="line">    }</div><div class="line">   </div><div class="line">    <span class="comment">// if there was a cacheControl entity, we would have a expiresOnDate that is not nil.       </span></div><div class="line">    <span class="comment">// "Cache-Control" headers take precedence over "Expires" headers</span></div><div class="line">   </div><div class="line">    expiresOn = [expiresOnDate rfc1123String];</div><div class="line">   </div><div class="line">    <span class="comment">// now remember lastModified, eTag and expires for this request in cache</span></div><div class="line">    <span class="keyword">if</span>(expiresOn)</div><div class="line">      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:expiresOn forKey:<span class="string">@"Expires"</span>];</div><div class="line">    <span class="keyword">if</span>(lastModified)</div><div class="line">      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:lastModified forKey:<span class="string">@"Last-Modified"</span>];</div><div class="line">    <span class="keyword">if</span>(eTag)</div><div class="line">      [<span class="keyword">self</span><span class="variable">.cacheHeaders</span> setObject:eTag forKey:<span class="string">@"ETag"</span>];</div><div class="line">  }</div><div class="line">   </div><div class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span><span class="variable">.mutableData</span> length] == <span class="number">0</span> || [<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] &gt; <span class="number">0</span>) {</div><div class="line">        <span class="comment">// This is the first batch of data</span></div><div class="line">        <span class="comment">// Check for a range header and make changes as neccesary</span></div><div class="line">        <span class="built_in">NSString</span> *rangeString = [[<span class="keyword">self</span> request] valueForHTTPHeaderField:<span class="string">@"Range"</span>];</div><div class="line">        <span class="keyword">if</span> ([rangeString hasPrefix:<span class="string">@"bytes="</span>] && [rangeString hasSuffix:<span class="string">@"-"</span>]) {</div><div class="line">            <span class="built_in">NSString</span> *bytesText = [rangeString substringWithRange:NSMakeRange(<span class="number">6</span>, [rangeString length] - <span class="number">7</span>)];</div><div class="line">            <span class="keyword">self</span><span class="variable">.startPosition</span> = [bytesText integerValue];</div><div class="line">            <span class="keyword">self</span><span class="variable">.downloadedDataSize</span> = <span class="keyword">self</span><span class="variable">.startPosition</span>;</div><div class="line">            DLog(<span class="string">@"Resuming at %d bytes"</span>, <span class="keyword">self</span><span class="variable">.startPosition</span>);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)connection:(<span class="built_in">NSURLConnection</span> *)connection didReceiveData:(NSData *)data {</div><div class="line"> </div><div class="line"></div><div class="line"> </div><div class="line">  <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.downloadStreams</span> count] == <span class="number">0</span>)</div><div class="line">    [<span class="keyword">self</span><span class="variable">.mutableData</span> appendData:data];</div><div class="line"> </div><div class="line">  <span class="keyword">for</span>(NSOutputStream *stream <span class="keyword">in</span> <span class="keyword">self</span><span class="variable">.downloadStreams</span>) {</div><div class="line">   </div><div class="line">    <span class="keyword">if</span> ([stream hasSpaceAvailable]) {</div><div class="line">      <span class="keyword">const</span> uint8_t *dataBuffer = [data bytes];</div><div class="line">      [stream write:&dataBuffer[<span class="number">0</span>] maxLength:[data length]];</div><div class="line">    }       </div><div class="line">  }</div><div class="line"> </div><div class="line">  <span class="keyword">self</span><span class="variable">.downloadedDataSize</span> += [data length];</div><div class="line"> </div><div class="line">  <span class="keyword">for</span>(MKNKProgressBlock downloadProgressBlock <span class="keyword">in</span> <span class="keyword">self</span><span class="variable">.downloadProgressChangedHandlers</span>) {</div><div class="line">   </div><div class="line">    <span class="keyword">if</span>([<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength] &gt; <span class="number">0</span>) {</div><div class="line">     </div><div class="line">      <span class="keyword">double</span> progress = (<span class="keyword">double</span>)(<span class="keyword">self</span><span class="variable">.downloadedDataSize</span>) / (<span class="keyword">double</span>)(<span class="keyword">self</span><span class="variable">.startPosition</span> + [<span class="keyword">self</span><span class="variable">.response</span> expectedContentLength]);</div><div class="line">      downloadProgressBlock(progress);</div><div class="line">    }       </div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>具体改了哪，忘记了。有心思对照源码看看。应该是属于MKNetworkKit的bug。也不知道新版改过来没有。但是你clone我的demo，这个版本是可以的。</p>
 <h2 id="断点下载库">断点下载库</h2>
@@ -380,7 +154,7 @@ https://github.c">
 <p>一个SIDownloadManager写成单例，继承于MKNetworkEngine。用来管理多任务下载。</p>
 <p>使用的时候就只用SIDownloadManager这个类来添加下载，暂停下载。然后想在下载的前后、出错时候、progressview改变时候对view作出改变。就实现它的delegate就好了。</p>
 <p>demo地址</p>
-<pre><code>git@github<span class="preprocessor">.com</span>:iiiyu/SIDownloader<span class="preprocessor">.git</span>
+<pre><code>git<span class="variable">@github</span>.<span class="symbol">com:</span>iiiyu/<span class="constant">SIDownloader</span>.git
 </code></pre><p>其实已经很简单了，照着demo改改就能自己用了。</p>
 <h2 id="总结">总结</h2>
 <p>这次改写以后，代码结构变的很清晰。复杂性和耦合性都有所降低。可用性提高。而且，反正我是没有google到可以直接拿来用的断点下载库。这次娃哈哈就有了。然后blog也2月没有更新，鄙视自己。以后应该会慢慢更新恢复正常。最后，希望对大家有所帮助。</p>
@@ -388,7 +162,7 @@ https://github.c">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/" data-id="1dg37l085z6s1bbt" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/" data-id="3isj5timch7x3i9w" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2012/07/07/learning-ios-notes-eight/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -438,6 +212,14 @@ https://github.c">
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -449,14 +231,6 @@ https://github.c">
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -466,7 +240,7 @@ https://github.c">
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -475,7 +249,7 @@ https://github.c">
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -484,7 +258,7 @@ https://github.c">
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -497,7 +271,7 @@ https://github.c">
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -507,6 +281,8 @@ https://github.c">
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -530,11 +306,14 @@ https://github.c">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

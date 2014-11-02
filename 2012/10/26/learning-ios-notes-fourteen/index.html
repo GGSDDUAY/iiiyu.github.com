@@ -5,30 +5,31 @@
   
   <title>iOS笔记 (14) | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title" content="iOS笔记 (14)">
-<meta name="og:url" content="http://iiiyu.com/2012/10/26/learning-ios-notes-fourteen/">
-<meta name="og:image" content="http://farm9.staticflickr.com/8185/8126953991_7164f1e696_b.jpg">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="使用CocoaPods
+  <meta name="description" content="使用CocoaPods
 序
-在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。
-
-
-之前的方式
-在使用CocoaPods一般情况下是这样应用第三方库的。
-
-人工">
+在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS笔记 (14)">
+<meta property="og:url" content="http://iiiyu.com/2012/10/26/learning-ios-notes-fourteen/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="使用CocoaPods
+序
+在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。">
+<meta property="og:image" content="http://farm9.staticflickr.com/8185/8126953991_7164f1e696_b.jpg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS笔记 (14)">
+<meta name="twitter:description" content="使用CocoaPods
+序
+在iOS开发中，经常性的引用第三方开源的库。github上大量的库为我们开发iOS提供了强大丰富多样的资源。从新手一直过来的我们，面对使用越来越多的第三方库。手足无措。CocoaPods的出现使得一切变得Hacker起来。使用CocoaPods一定会让每次copy文件到项目的你喜极而泣的。">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -43,6 +44,7 @@
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -67,6 +69,8 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -86,7 +90,7 @@
         <section id="main"><article id="post-learning-ios-notes-fourteen" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/10/26/learning-ios-notes-fourteen/" class="article-date">
-  <time datetime="2012-10-25T23:42:00.000Z" itemprop="datePublished">10月 26 2012</time>
+  <time datetime="2012-10-25T23:42:00.000Z" itemprop="datePublished">2012 10月 26日</time>
 </a>
     
   </div>
@@ -114,155 +118,55 @@
 <p>在使用CocoaPods一般情况下是这样应用第三方库的。</p>
 <ol>
 <li>人工copy —— 为了使用，首先用git clone到某个目录。然后自己手动copy到自己的项目里面。(之前的大部分时间里面我都是这么干的)缺点: 跟原来的版本控制失去联系，如果库有升级，你需要从头来一次才能进行升级。然后自己的项目也会顺带管理这些代码，显得臃肿。</li>
-<li>在尝试很多次人工copy以后，发现一些github上的第三方库使用git submodule来进行第三方库的版本管理。具体使用方法参考<a href="http://josephjiang.com/entry.php?id=342" target="_blank">这里</a>.这样我的第三方库也能保持更新而不用重新进行人工copy。缺点是，每次使用的时候我都需要打一堆我记不住的命令和打开浏览器查找第三方库的git地址。</li>
+<li>在尝试很多次人工copy以后，发现一些github上的第三方库使用git submodule来进行第三方库的版本管理。具体使用方法参考<a href="http://josephjiang.com/entry.php?id=342" target="_blank" rel="external">这里</a>.这样我的第三方库也能保持更新而不用重新进行人工copy。缺点是，每次使用的时候我都需要打一堆我记不住的命令和打开浏览器查找第三方库的git地址。</li>
 </ol>
 <h2 id="什么是CocoaPods">什么是CocoaPods</h2>
-<p><a href="http://cocoapods.org" target="_blank">CocoaPods</a>是Objective-C项目中最好用的第三方依赖包管理工具。只要安装好CocoaPods，在自己的iOS项目路径下建立一份Podfile配置文件，在里面说明要使用哪些第三方库，CocoaPods就会帮忙你搞定所有第三方库的相依性，从clone第三方库甚至到设定好Xcode的项目设置，一切都相当的轻松愉快。你能想像这些工作都是CocoaPods帮我们做好了。</p>
-<p><a href="http://www.cocoapods.org/" target="_blank">官网</a></p>
-<p><a href="https://github.com/CocoaPods/CocoaPods" target="_blank">项目地址</a></p>
+<p><a href="http://cocoapods.org" target="_blank" rel="external">CocoaPods</a>是Objective-C项目中最好用的第三方依赖包管理工具。只要安装好CocoaPods，在自己的iOS项目路径下建立一份Podfile配置文件，在里面说明要使用哪些第三方库，CocoaPods就会帮忙你搞定所有第三方库的相依性，从clone第三方库甚至到设定好Xcode的项目设置，一切都相当的轻松愉快。你能想像这些工作都是CocoaPods帮我们做好了。</p>
+<p><a href="http://www.cocoapods.org/" target="_blank" rel="external">官网</a></p>
+<p><a href="https://github.com/CocoaPods/CocoaPods" target="_blank" rel="external">项目地址</a></p>
 <h2 id="Get_Started">Get Started</h2>
 <p>CocoaPods 是一个 Ruby 的 Gem，所以只要在 Terminal 下输入一下就ok了。(因为os x自带了ruby，但是如果你要升级ruby这是另外一个事情了)</p>
 <h3 id="安装">安装</h3>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] gem install cocoapods
-<span class="variable">$ </span>pod setup
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ [<span class="built_in">sudo</span>] gem install cocoapods</div><div class="line">$ pod setup</div></pre></td></tr></table></figure>
 
 <h3 id="搜索">搜索</h3>
 <p>我们可以用cocoapods来先看看有没有我们需要添加的第三方库</p>
 <p>比如我们想用一个json库</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-</pre></td><td class="code"><pre>pod search json                                                                                                                                   
-
--<span class="ruby">&gt; <span class="constant">AnyJSON</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>)
-</span>   Encode / Decode JSON by any means possible.
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mattt</span><span class="regexp">/AnyJSON
-</span></span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mattt</span><span class="regexp">/AnyJSON.git
-</span></span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> [master repo]
-</span>
-
--<span class="ruby">&gt; <span class="constant">JSONKit</span> (<span class="number">1.5</span>pre)
-</span>   A Very High Performance Objective-C JSON Library.
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/johnezang</span><span class="regexp">/JSONKit
-</span></span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">git:</span>/<span class="regexp">/github.com/johnezang</span><span class="regexp">/JSONKit.git
-</span></span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">1.5</span>pre, <span class="number">1.4</span> [master repo]
-</span>
-
--<span class="ruby">&gt; <span class="constant">MTJSONDictionary</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">4</span>)
-</span>   An NSDictionary category for when you're working with it converting to/from JSON. DEPRECATED, use MTJSONUtils instead.
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONDictionary.git
-</span></span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONDictionary.git
-</span></span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">4</span>, <span class="number">0</span>.<span class="number">0</span>.<span class="number">3</span>, <span class="number">0</span>.<span class="number">0</span>.<span class="number">2</span> [master repo]
-</span>
-
--<span class="ruby">&gt; <span class="constant">MTJSONUtils</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>)
-</span>   NSObject category for working JSON convertions with suport keypaths ([dict valueForComplexKeyPath:@"parents[0].children[first].toys[last]"])
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONUtils.git
-</span></span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONUtils.git
-</span></span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> [master repo]
-</span>
-
--<span class="ruby">&gt; <span class="constant">SBJson</span> (<span class="number">3.1</span>.<span class="number">1</span>)
-</span>   This library implements strict JSON parsing and generation in Objective-C.
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">http:</span>/<span class="regexp">/stig.github.com/json</span>-framework/
-</span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/stig</span><span class="regexp">/json-framework.git
-</span></span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">3.1</span>.<span class="number">1</span>, <span class="number">3.1</span>, <span class="number">3.0</span>.<span class="number">4</span>, <span class="number">2.2</span>.<span class="number">3</span> [master repo]
-</span>
-
--<span class="ruby">&gt; <span class="constant">TouchJSON</span> (<span class="number">1.0</span>)
-</span>   TouchJSON is an Objective-C based parser and generator for JSON encoded data.
-   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/</span><span class="constant">TouchCode</span>/<span class="constant">TouchJSON</span>
-</span>   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/</span><span class="constant">TouchCode</span>/<span class="constant">TouchJSON</span>.git
-</span>   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">1.0</span> [master repo]</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">pod search json                                                                                                                                   </div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">AnyJSON</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>)</span></div><div class="line">   Encode / Decode JSON by any means possible.</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mattt</span><span class="regexp">/AnyJSON</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mattt</span><span class="regexp">/AnyJSON.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> [master repo]</span></div><div class="line"></div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">JSONKit</span> (<span class="number">1.5</span>pre)</span></div><div class="line">   A Very High Performance Objective-C JSON Library.</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/johnezang</span><span class="regexp">/JSONKit</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">git:</span>/<span class="regexp">/github.com/johnezang</span><span class="regexp">/JSONKit.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">1.5</span>pre, <span class="number">1.4</span> [master repo]</span></div><div class="line"></div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">MTJSONDictionary</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">4</span>)</span></div><div class="line">   An NSDictionary category for when you're working with it converting to/from JSON. DEPRECATED, use MTJSONUtils instead.</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONDictionary.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONDictionary.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">4</span>, <span class="number">0</span>.<span class="number">0</span>.<span class="number">3</span>, <span class="number">0</span>.<span class="number">0</span>.<span class="number">2</span> [master repo]</span></div><div class="line"></div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">MTJSONUtils</span> (<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>)</span></div><div class="line">   NSObject category for working JSON convertions with suport keypaths ([dict valueForComplexKeyPath:@"parents[0].children[first].toys[last]"])</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONUtils.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/mysterioustrousers</span><span class="regexp">/MTJSONUtils.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> [master repo]</span></div><div class="line"></div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">SBJson</span> (<span class="number">3.1</span>.<span class="number">1</span>)</span></div><div class="line">   This library implements strict JSON parsing and generation in Objective-C.</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">http:</span>/<span class="regexp">/stig.github.com/json</span>-framework/</span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/stig</span><span class="regexp">/json-framework.git</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">3.1</span>.<span class="number">1</span>, <span class="number">3.1</span>, <span class="number">3.0</span>.<span class="number">4</span>, <span class="number">2.2</span>.<span class="number">3</span> [master repo]</span></div><div class="line"></div><div class="line"></div><div class="line">-<span class="ruby">&gt; <span class="constant">TouchJSON</span> (<span class="number">1.0</span>)</span></div><div class="line">   TouchJSON is an Objective-C based parser and generator for JSON encoded data.</div><div class="line">   -<span class="ruby"> <span class="constant">Homepage</span><span class="symbol">:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/</span><span class="constant">TouchCode</span>/<span class="constant">TouchJSON</span></span></div><div class="line">   -<span class="ruby"> <span class="constant">Source</span><span class="symbol">:</span>   <span class="symbol">https:</span>/<span class="regexp">/github.com/</span><span class="constant">TouchCode</span>/<span class="constant">TouchJSON</span>.git</span></div><div class="line">   -<span class="ruby"> <span class="constant">Versions</span><span class="symbol">:</span> <span class="number">1.0</span> [master repo]</span></div></pre></td></tr></table></figure>
 
 <p>恩出现很多 我们选一个自己会用的就好了。</p>
 <h3 id="添加">添加</h3>
 <p>我们进入我们的iOS项目目录下，然后新建立一个配置文件Podfile</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>touch Podfile
-vim Podfile
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch Podfile</div><div class="line"><span class="keyword">vim</span> Podfile</div></pre></td></tr></table></figure>
 
 <p>然后加入我们想要的第三方库和库的Version号(Podfile内容)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>platform <span class="symbol">:ios</span>
-dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.5pre'</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">platform</span> :ios</div><div class="line">dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.5pre'</span></div></pre></td></tr></table></figure>
 
 <p>保存</p>
 <p>执行  </p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>pod <span class="keyword">install</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="operator"><span class="keyword">install</span></span></div></pre></td></tr></table></figure>
 
 <p>完成以后<br>你在目录下可以看见一个后缀为.xcworkspace的文件(其实是一个目录，代表着xCode的workspace) 然后。以后你写项目都打开这个就好了。<br><img src="http://farm9.staticflickr.com/8185/8126953991_7164f1e696_b.jpg" alt="xcworkspace"><br>打开看以后会发现其实cocoapods做了一个事情就是他把第三方库都编译成了一个库文件。然后你的项目中去包含头文件，libPods.a被作为framework集成到目标项目。Pods.xcconfig 中配置了XCode编译的查找路径，通过这种方式将所有的第三方包来引入到项目中。</p>
 <p>啊哈哈，立马感觉引入一个第三方包都变得很现代有木有。</p>
 <p>如果需要加入新的库编写Podfile里面 再次执行</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>pod <span class="keyword">install</span>
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="operator"><span class="keyword">install</span></span></div></pre></td></tr></table></figure>
 
 <p>就好了。</p>
 <h3 id="向cocoapods提交新的第三方库">向cocoapods提交新的第三方库</h3>
 <p>如果你在pod search里面没有找到你想要的库怎么弄。cocoapods允许你自己提交，然后他们审核发布。(太人性化了，感动的想哭啊)</p>
 <p>简单的说，Spec就是每个包在CocoaPods中的配置文件，其中包括Package的名字，版本号，每个版本对应的下载地址，编译时的参数。等等。</p>
-<p>这是该项目的地址，<a href="https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull" target="_blank">https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull</a> request提交所建的新包。</p>
-<p><a href="http://nsscreencast.com/episodes/28-creating-a-cocoapod" target="_blank">官方有视频教程</a></p>
-<p><a href="https://github.com/CocoaPods/CocoaPods/wiki" target="_blank">wiki</a></p>
+<p>这是该项目的地址，<a href="https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull" target="_blank" rel="external">https://github.com/CocoaPods/Specs，在页面上有介绍如何创新新的包，可以Fork该项目，然后通过pull</a> request提交所建的新包。</p>
+<p><a href="http://nsscreencast.com/episodes/28-creating-a-cocoapod" target="_blank" rel="external">官方有视频教程</a></p>
+<p><a href="https://github.com/CocoaPods/CocoaPods/wiki" target="_blank" rel="external">wiki</a></p>
 <h2 id="参考">参考</h2>
-<p><a href="http://josephjiang.com/entry.php?id=342" target="_blank">Git Submodule 的認識與正確使用！</a></p>
-<p><a href="http://tw.polydice.com/2012/07/04/cocoapods/" target="_blank">CocoaPods：管理 Objective-C 專案裡頭各種 Library 關聯性最棒的方式</a></p>
-<p><a href="http://www.cnblogs.com/dragonstreak_1/archive/2012/10/19/2730979.html" target="_blank">Use CocoaPods for Packages Management in Xcode</a></p>
+<p><a href="http://josephjiang.com/entry.php?id=342" target="_blank" rel="external">Git Submodule 的認識與正確使用！</a></p>
+<p><a href="http://tw.polydice.com/2012/07/04/cocoapods/" target="_blank" rel="external">CocoaPods：管理 Objective-C 專案裡頭各種 Library 關聯性最棒的方式</a></p>
+<p><a href="http://www.cnblogs.com/dragonstreak_1/archive/2012/10/19/2730979.html" target="_blank" rel="external">Use CocoaPods for Packages Management in Xcode</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/10/26/learning-ios-notes-fourteen/" data-id="xo9dcc7gd95a3iim" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2012/10/26/learning-ios-notes-fourteen/" data-id="1lc5t9la0khls4gr" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2012/10/26/learning-ios-notes-fourteen/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -312,6 +216,14 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -323,14 +235,6 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -340,7 +244,7 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -349,7 +253,7 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -358,7 +262,7 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -371,7 +275,7 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -381,6 +285,8 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -404,11 +310,14 @@ dependency <span class="string">'JSONKit'</span>, <span class="string">'~&gt; 1.
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

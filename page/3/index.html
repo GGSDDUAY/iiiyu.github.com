@@ -5,22 +5,24 @@
   
   <title>萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title">
-<meta name="og:url" content="http://iiiyu.com/page/3/">
-<meta name="og:image">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description">
+  <meta name="description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="萧宸宇">
+<meta property="og:url" content="http://iiiyu.com/page/3/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="萧宸宇">
+<meta name="twitter:description" content="iOS,Cocoa,OS X,如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -35,6 +37,7 @@
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -59,6 +62,8 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -77,10 +82,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-learning-ios-notes-thirty-one" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/19/learning-ios-notes-thirty-one/" class="article-date">
+  <time datetime="2013-12-19T12:11:16.000Z" itemprop="datePublished">2013 12月 19日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/19/learning-ios-notes-thirty-one/">iOS笔记(31) CocoaPods 手把手五分钟教你制作自己的podspec文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml" target="_blank" rel="external">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>圣诞渐进，各种App都在黑五一波冰点。可以遇见的是12月25号前也会有一大波来临。但是！！！今年买软件貌似已经花了很多钱了。而且，也没有几个想入的了。所以就忍忍吧。</p>
+<p>然后，做个宣传啊。我们国际化大厂Sumi的App Grid Diary在紧锣密鼓的开发2.0. 完全iOS7设计。各种给力。到时候希望能给大家带来一个好的App吧。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2013/12/19/learning-ios-notes-thirty-one/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/12/19/learning-ios-notes-thirty-one/" data-id="wqyqg7wzmnpp0z5c" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/12/19/learning-ios-notes-thirty-one/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-learning-ios-notes-thirty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/02/learning-ios-notes-thirty/" class="article-date">
+  <time datetime="2013-12-02T10:33:18.000Z" itemprop="datePublished">2013 12月 2日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/02/learning-ios-notes-thirty/">iOS学习笔记(30) Core Data是如何保存的？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml" target="_blank" rel="external">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2 id="开场扯淡">开场扯淡</h2>
+<p>恩 一个月没有写一篇blog了。恩。就这样把。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2013/12/02/learning-ios-notes-thirty/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/" data-id="pfa759gc5b53pcod" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-learning-ios-notes-twenty-nine" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/10/15/learning-ios-notes-twenty-nine/" class="article-date">
-  <time datetime="2013-10-15T13:53:11.000Z" itemprop="datePublished">10月 15 2013</time>
+  <time datetime="2013-10-15T13:53:11.000Z" itemprop="datePublished">2013 10月 15日</time>
 </a>
     
   </div>
@@ -111,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/10/15/learning-ios-notes-twenty-nine/" data-id="n4bdjxssa9hqt077" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/10/15/learning-ios-notes-twenty-nine/" data-id="uokepgvibiou4q25" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/10/15/learning-ios-notes-twenty-nine/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -128,7 +230,7 @@
     <article id="post-learning-ios-notes-twenty-eight" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/11/learning-ios-notes-twenty-eight/" class="article-date">
-  <time datetime="2013-09-11T12:45:13.000Z" itemprop="datePublished">9月 11 2013</time>
+  <time datetime="2013-09-11T12:45:13.000Z" itemprop="datePublished">2013 9月 11日</time>
 </a>
     
   </div>
@@ -159,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/" data-id="6h4buptdkpl6jtw4" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/" data-id="kspid8twldcebcqr" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/09/11/learning-ios-notes-twenty-eight/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -176,7 +278,7 @@
     <article id="post-learning-ios-notes-twenty-seven" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/02/learning-ios-notes-twenty-seven/" class="article-date">
-  <time datetime="2013-09-02T14:21:13.000Z" itemprop="datePublished">9月 2 2013</time>
+  <time datetime="2013-09-02T14:21:13.000Z" itemprop="datePublished">2013 9月 2日</time>
 </a>
     
   </div>
@@ -196,7 +298,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="什么是NSUserDefaults">什么是NSUserDefaults</h2>
-<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist" target="_blank">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
+<p>NSUserDefaults的持久化本体是一个<a href="http://zh.wikipedia.org/zh/Plist" target="_blank" rel="external">plist</a>.内存单例是一个操作类似NSDictionary的类。 而NSUserDefaults的出现我想是因为在每一个程序当中。我们都会设定一些选项。比如桌面壁纸、声音大小、提醒日期等，我们希望就算App关闭以后。我们再次打开的时候还在的东西。但是它并不适合存储App中关键的内容和用户自己产生的大量数据。 大量数据应该用更加合理的方式去做持久化(Document or Core Data).</p>
 
         
           <p class="article-more-link">
@@ -206,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/09/02/learning-ios-notes-twenty-seven/" data-id="kvexusq5jv9j3cpi" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2013/09/02/learning-ios-notes-twenty-seven/" data-id="veelqp0uucdst0gf" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2013/09/02/learning-ios-notes-twenty-seven/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -220,122 +322,9 @@
 
 
   
-    <article id="post-learning-ios-notes-twenty-six" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/08/26/learning-ios-notes-twenty-six/" class="article-date">
-  <time datetime="2013-08-26T14:43:11.000Z" itemprop="datePublished">8月 26 2013</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/08/26/learning-ios-notes-twenty-six/">iOS学习笔记(26) iCloud(二) 准备工作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开发支持iCloud的上半部分前期准备">开发支持iCloud的上半部分前期准备</h2>
-<ul>
-<li><p>需要申请一个开发者的帐号。理论上iOS和Mac OSX的都OK。考虑到我只有iOS的情况下，我的文章里面的例子默认只是iOS的。</p>
-</li>
-<li><p>你需要一台iOS设备，并且iOS版本必须大于等于5.最好大于等于6. 最最好大于等于7。</p>
-</li>
-<li><p>Xcode不用说至少是MAS里面最新的</p>
-</li>
-<li><p>然后去建立App Bundle ID的页面去把iCloud支持打开。</p>
-</li>
-</ul>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hq7q78aj20sa0g2tav.jpg" alt="1"></p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="2"></p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e88hqn9gdej20s60h2wgz.jpg" alt="3"></p>
-<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e88hts5dkpj20k70en75m.jpg" alt="4"></p>
-<ul>
-<li>bundle id需要生成带你测试设备的证书</li>
-</ul>
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e88htyxylrj20rw0egmzm.jpg" alt="5"></p>
-<p>(PS:截图太累了 换成文章描述)</p>
-<p>这样才能算iCloud的前期工作做完了一半。</p>
-<p><strong>以下涉及到NDA内容请自行屏蔽</strong><br>
-        
-          <p class="article-more-link">
-            <a href="/2013/08/26/learning-ios-notes-twenty-six/#more">阅读更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/" data-id="m9998ll38y8o51lr" class="article-share-link">Share</a>
-      
-        <a href="http://iiiyu.com/2013/08/26/learning-ios-notes-twenty-six/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tu-cao-duo-kan" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/08/22/tu-cao-duo-kan/" class="article-date">
-  <time datetime="2013-08-21T17:48:34.000Z" itemprop="datePublished">8月 22 2013</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/08/22/tu-cao-duo-kan/">深夜吐槽多看</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="深夜吐槽多看">深夜吐槽多看</h2>
-<p>好吧，作为一个喜欢看书的人和觉得多看做的确实好的普通用户。我把我个人的想法完整的表达一下。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2013/08/22/tu-cao-duo-kan/#more">阅读更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/08/22/tu-cao-duo-kan/" data-id="b8r2nkzkj6c72ftb" class="article-share-link">Share</a>
-      
-        <a href="http://iiiyu.com/2013/08/22/tu-cao-duo-kan/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/just-talk/">just-talk</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -349,6 +338,14 @@
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -360,14 +357,6 @@
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -377,7 +366,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -386,7 +375,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -395,7 +384,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -408,7 +397,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -418,6 +407,8 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -439,11 +430,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>

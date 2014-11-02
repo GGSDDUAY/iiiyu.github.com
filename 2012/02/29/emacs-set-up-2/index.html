@@ -5,37 +5,39 @@
   
   <title>调教Emacs(二)——更好 更强 更快 | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="og:type" content="blog">
-<meta name="og:title" content="调教Emacs(二)——更好 更强 更快">
-<meta name="og:url" content="http://iiiyu.com/2012/02/29/emacs-set-up-2/">
-<meta name="og:image">
-<meta name="og:site_name" content="萧宸宇">
-<meta name="og:description" content="更好 更强 更快
+  <meta name="description" content="更好 更强 更快
 上次的那些操作只能让你存活下来。
 现在让我们感觉更好一些。
 有时候，你可能按了一次C-c或者M-x。然后发现自己按错了。想消除这些命令这时候你可是使用
 C-g 取消操作
-如果你不确定你现在按没有按命令。你可以狂按几次C-g。
-
-
-光标移动
-更好的光标移动
-C-a 行首
-C-e 行尾
-M-f 下一个单词
-M-b 上一个单词
-更快的光标移动
-M-m 移动到第一个非空格字符 (back">
+如果你不确定你现在按没有按命令。你可以狂按几次C-g。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调教Emacs(二)——更好 更强 更快">
+<meta property="og:url" content="http://iiiyu.com/2012/02/29/emacs-set-up-2/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="更好 更强 更快
+上次的那些操作只能让你存活下来。
+现在让我们感觉更好一些。
+有时候，你可能按了一次C-c或者M-x。然后发现自己按错了。想消除这些命令这时候你可是使用
+C-g 取消操作
+如果你不确定你现在按没有按命令。你可以狂按几次C-g。">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="调教Emacs(二)——更好 更强 更快">
+<meta name="twitter:description" content="更好 更强 更快
+上次的那些操作只能让你存活下来。
+现在让我们感觉更好一些。
+有时候，你可能按了一次C-c或者M-x。然后发现自己按错了。想消除这些命令这时候你可是使用
+C-g 取消操作
+如果你不确定你现在按没有按命令。你可以狂按几次C-g。">
+<meta name="twitter:creator" content="@iyunsn">
+
   
     <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -50,6 +52,7 @@ M-m 移动到第一个非空格字符 (back">
 </script>
 
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -74,6 +77,8 @@ M-m 移动到第一个非空格字符 (back">
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
           <a class="main-nav-link" href="/about-me">About me</a>
         
       </nav>
@@ -93,7 +98,7 @@ M-m 移动到第一个非空格字符 (back">
         <section id="main"><article id="post-emacs-set-up-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/02/29/emacs-set-up-2/" class="article-date">
-  <time datetime="2012-02-29T08:38:00.000Z" itemprop="datePublished">2月 29 2012</time>
+  <time datetime="2012-02-29T08:38:00.000Z" itemprop="datePublished">2012 2月 29日</time>
 </a>
     
   </div>
@@ -122,30 +127,30 @@ M-m 移动到第一个非空格字符 (back">
 
 <h2 id="光标移动">光标移动</h2>
 <h3 id="更好的光标移动">更好的光标移动</h3>
-<pre><code>C<span class="attribute">-a</span> 行首
-C<span class="attribute">-e</span> 行尾
-M<span class="attribute">-f</span> 下一个单词
-M<span class="attribute">-b</span> 上一个单词
+<pre><code>C<span class="operator">-a</span> 行首
+C<span class="operator">-e</span> 行尾
+M<span class="operator">-f</span> 下一个单词
+M-b 上一个单词
 </code></pre><h3 id="更快的光标移动">更快的光标移动</h3>
-<pre><code>M<span class="attribute">-m</span> 移动到第一个非空格字符 (back<span class="attribute">-to</span><span class="attribute">-indentation</span>)
-M<span class="attribute">-a</span> 句子头
-M<span class="attribute">-e</span> 句子尾
-M<span class="subst">-</span>{ 段落头
-M<span class="subst">-</span>} 段落尾
-C<span class="attribute">-v</span> 下一页
-M<span class="attribute">-v</span> 上一页
-M<span class="subst">-&lt;</span> 文件头
-M<span class="subst">-&gt; </span>文件尾 
-M<span class="attribute">-r</span> 窗口中间
-M<span class="attribute">-x</span> goto<span class="attribute">-char</span> RET N 文件的第 N 字节
-M<span class="attribute">-x</span> goto<span class="attribute">-line</span> RET N 文件第 N 行
+<pre><code>M-m 移动到第一个非空格字符 (back-to-indentation)
+M-a 句子头
+M-e 句子尾
+M-<span class="list">{ 段落头
+M-}</span> 段落尾
+<span class="keyword">C</span>-v 下一页
+M-v 上一页
+M-&lt; 文件头
+M-&gt; 文件尾 
+M-r 窗口中间
+M-x goto-char RET <span class="keyword">N</span> 文件的第 <span class="keyword">N</span> 字节
+M-x goto-line RET <span class="keyword">N</span> 文件第 <span class="keyword">N</span> 行
 </code></pre><h3 id="更强的光标移动">更强的光标移动</h3>
-<pre><code>C<span class="attribute">-M</span><span class="attribute">-a</span> 到函数头
-C<span class="attribute">-M</span><span class="attribute">-e</span> 到函数尾
-C<span class="attribute">-M</span><span class="attribute">-f</span> 到下一个同级语法结构 
-C<span class="attribute">-M</span><span class="attribute">-b</span> 到上一个同级语法结构
-C<span class="attribute">-M</span><span class="attribute">-d</span> 进入到下一级结构里
-C<span class="attribute">-M</span><span class="attribute">-u</span> 进入到上一级结构里
+<pre><code><span class="keyword">C</span>-M-a 到函数头
+<span class="keyword">C</span>-M-e 到函数尾
+<span class="keyword">C</span>-M-f 到下一个同级语法结构 
+<span class="keyword">C</span>-M-b 到上一个同级语法结构
+<span class="keyword">C</span>-M-d 进入到下一级结构里
+<span class="keyword">C</span>-M-u 进入到上一级结构里
 </code></pre><p>   文档一般都有各种结构，比如LISP里有S表达式，C语言里的函数，LaTeX 里的 \begin{…}…\end{…} … 如果我们能够已文档的语法单位来移动，就会使操作非常高效。</p>
 <p>   defun。efun 在 LISP 里就是最高一级的 sexp，而在 C 语言里，它的含义就是函数。</p>
 <p>C-M-a   到 defun 头<br>C-M-e   到 defun 尾</p>
@@ -156,42 +161,40 @@ C<span class="attribute">-M</span><span class="attribute">-u</span> 进入到上
 <p>Gnus: 一个thread。包括所有的 Re:<br>其实 defun 可以被看作最高一级的 sexp。所以范围小一点的移动操作就是在同级 sexp 之间移动。</p>
 <p>C-M-f   到下一个同级语法结构<br>C-M-b   到上一个同级语法结构</p>
 <p>注意，这种移动不能越过语法结构的边界而进入上一级结构。所以，你如果在</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) { <span class="keyword">...</span>}
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) { <span class="keyword">...</span>}</div></pre></td></tr></table></figure>
 
 <p>的 for 循环的括号里向右移动，到达右边括号时，就会被提示到达边界。<br>注意，文档中的注释在这两个操作中会被跳过，这是非常方便的。</p>
 <p>进入和退出子结构:</p>
 <p>在LISP中，S表达式是嵌套的括号，进入子结构就是进入到这一级 (…) 里面。而在 C 语言中，进入子结构就是进入 (…), {…}, […] 的里面。 C-M-d: 进入到下一级结构里。C-M-u: 进入到上一级结构里。</p>
 <p>C-M-a, C-M-e, C-M-f, C-M-b, C-M-d, C-M-u 这几个命令组合起来可以迅速的在程序里移动。往往手可以按住 C-M 不放，所以还是很顺手的。</p>
-<p>如果你还对光标移动欲罢不能，<a href="http://mmmyddd.freeshell.net/wiki/emacs/moving-cursor.html" target="_blank">这里</a>有高清大图让你慢慢把玩。</p>
+<p>如果你还对光标移动欲罢不能，<a href="http://mmmyddd.freeshell.net/wiki/emacs/moving-cursor.html" target="_blank" rel="external">这里</a>有高清大图让你慢慢把玩。</p>
 <h2 id="操作">操作</h2>
-<pre><code>C<span class="attribute">-g</span> 取消操作
-C<span class="attribute">-space</span> <span class="subst">=</span> C<span class="subst">-</span>@ 选择操作区
-C<span class="attribute">-d</span> 删除一个字符
-M<span class="attribute">-d</span> 删除一个单词
-C<span class="attribute">-u</span> xxx 多次命令
-C<span class="attribute">-k</span> 删除到尾
-C<span class="attribute">-w</span> 删除区域
-M<span class="attribute">-w</span> 复制区域
-C<span class="attribute">-y</span> 粘贴
+<pre><code><span class="keyword">C</span>-g 取消操作
+<span class="keyword">C</span>-space = <span class="keyword">C</span>-@ 选择操作区
+<span class="keyword">C</span>-d 删除一个字符
+M-d 删除一个单词
+<span class="keyword">C</span>-u xxx 多次命令
+<span class="keyword">C</span>-k 删除到尾
+<span class="keyword">C</span>-w 删除区域
+M-w 复制区域
+<span class="keyword">C</span>-y 粘贴
 
-M<span class="subst">-</span><span class="number">0</span> C<span class="attribute">-y</span> 向前剪切
-M<span class="attribute">-z</span> x 从光标删除到第一x
+M-<span class="number">0</span> <span class="keyword">C</span>-y 向前剪切
+M-z x 从光标删除到第一x
 
 
-C<span class="attribute">-s</span> 搜索
-C<span class="attribute">-r</span> 逆向搜索
-C<span class="attribute">-M</span><span class="attribute">-s</span> 正则搜索
+<span class="keyword">C</span>-s 搜索
+<span class="keyword">C</span>-r 逆向搜索
+<span class="keyword">C</span>-M-s 正则搜索
 
-M<span class="attribute">-x</span> replace<span class="attribute">-string</span> 替换文本
+M-x replace-string 替换文本
 </code></pre><p>其实不管是Emacs还是Vim。这些动作你都要在不断的使用中变成下意识的动作。这样，你在键盘上的效率就会越来越高。</p>
 <p>随便说一句，推荐学Emacs的原因还有。在终端里面我用过的bash和zsh都是支持Emacs按键的。Mac OS里面所有的文本输入框也是部分支持Emacs的。虽然man等是支持vim的按键方式，可是我们不是还有info是Emacs的方式么。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2012/02/29/emacs-set-up-2/" data-id="hn8jxl460yqqpiho" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2012/02/29/emacs-set-up-2/" data-id="lp7pvzhmckyhnpx6" class="article-share-link">Share</a>
       
         <a href="http://iiiyu.com/2012/02/29/emacs-set-up-2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -241,6 +244,14 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
       <ul>
         
           <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
             <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
           </li>
         
@@ -252,14 +263,6 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
             <a href="/2014/03/19/learning-ios-notes-thirty-four/">iOS笔记(34) 格志周年系列之夏令时(二)</a>
           </li>
         
-          <li>
-            <a href="/2014/03/18/learning-ios-notes-thirty-three/">iOS笔记(33) 格志周年系列之夏令时(一)</a>
-          </li>
-        
-          <li>
-            <a href="/2014/01/08/read-jony-ive/">读 Jony Ive: The Genius Behind Apple&#39;s Greatest Products 笔记</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -269,7 +272,7 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read book notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -278,7 +281,7 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Design/" style="font-size: 10.00px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read book notes/" style="font-size: 15.00px;">read book notes</a>
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
     </div>
   </div>
 
@@ -287,7 +290,7 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">三月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12">十二月 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09">九月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08">八月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06">六月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05">五月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04">四月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03">三月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01">一月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">十一月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10">十月 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09">九月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07">七月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05">五月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04">四月 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03">三月 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02">二月 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -300,7 +303,7 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2014 萧宸宇<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
@@ -310,6 +313,8 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
   
     <a href="/about-me" class="mobile-nav-link">About me</a>
   
@@ -333,11 +338,14 @@ M<span class="attribute">-x</span> replace<span class="attribute">-string</span>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" src="/js/script.js"></script>
+
+<script src="/js/script.js" type="text/javascript"></script>
+
   </div>
 </body>
 </html>
