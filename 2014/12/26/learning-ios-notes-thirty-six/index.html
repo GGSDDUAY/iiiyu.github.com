@@ -144,7 +144,7 @@
 <p>根据常规代码来看:</p>
 <ol>
 <li>我们需要在每次输入词变化的时候进行搜索。</li>
-<li>需要在进入喝退出搜索的时候知道当前状态</li>
+<li>需要在进入和退出搜索的时候知道当前状态</li>
 </ol>
 <p>1对应的就是实现- (void)updateSearchResultsForSearchController:(UISearchController *)searchController</p>
 <p>2对应的是实现- (void)willPresentSearchController:(UISearchController <em>)searchController 和 - (void)willDismissSearchController:(UISearchController </em>)searchController。</p>
