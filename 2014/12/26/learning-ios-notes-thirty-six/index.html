@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate | 萧宸宇</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+最近又在看  ReactiveCocoa 了（下面用 RAC 来替代 ReactiveCocoa）。虽然依然是 hello world 级别。但是 hello world 也是可以分级别的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate">
+<meta property="og:url" content="http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/">
+<meta property="og:site_name" content="萧宸宇">
+<meta property="og:description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+最近又在看  ReactiveCocoa 了（下面用 RAC 来替代 ReactiveCocoa）。虽然依然是 hello world 级别。但是 hello world 也是可以分级别的">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/a6d3226bgw1enpq6o5sz5j20ai09uglz.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate">
+<meta name="twitter:description" content="本文仅作为个人学习记录使用,也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用RSS方式订阅本站,这样您将能在第一时间获取本站信息.
+开篇扯淡
+最近又在看  ReactiveCocoa 了（下面用 RAC 来替代 ReactiveCocoa）。虽然依然是 hello world 级别。但是 hello world 也是可以分级别的">
+<meta name="twitter:creator" content="@iyunsn">
+
+  
+    <link rel="alternative" href="/atom.xml" title="萧宸宇" type="application/atom+xml">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29764460-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">萧宸宇</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/iiiyu">GitHub</a>
+        
+          <a class="main-nav-link" href="/about-me">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://iiiyu.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning-ios-notes-thirty-six" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/26/learning-ios-notes-thirty-six/" class="article-date">
+  <time datetime="2014-12-26T10:36:31.000Z" itemprop="datePublished">2014 12月 26日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml" target="_blank" rel="external">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>最近又在看  ReactiveCocoa 了（下面用 RAC 来替代 ReactiveCocoa）。虽然依然是 hello world 级别。但是 hello world 也是可以分级别的。这次自我感觉是一个偏向中级的 hello world。</p>
+<p>我们先来张图：</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1enpq6o5sz5j20ai09uglz.jpg" alt=""></p>
+<p>在 RAC 的文档和一些介绍 RAC 的 Keynote 资料里面我们可以看到说 RACSignal 可以来替代 Delegate、 Block Callbacks、Target Action、KVO、Notifications。</p>
+<p>但是貌似没有一种 hello world 的方式来进行说明如何替代的。</p>
+<p>插嘴:在中文 blog 里面见过几个写 RAC 的比较好哒。一个是<a href="http://limboy.me" target="_blank" rel="external">limboy大大</a>的几篇深入浅出令人叹为观止，李忠大大不但研究透彻了然后还结合自己的实战经验写成很好的文章来分享。 另一个是<a href="http://blog.sunnyxx.com/tags/Reactive%20Cocoa%20Tutorial/" target="_blank" rel="external">sunnyxx的Reactive Cocoa Tutorial系列</a>这个系列比较偏向研究 RAC 是如何实现和工作的。</p>
+<p>我这个人比较笨，最喜欢写 hello world。那就找时间一个一个来写呗。</p>
+<p>写之前 Google 了一下。所以以下内容大量参考:<a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a>。能看原文就去看看。然后忽略掉以下的 hello world 就好了。</p>
+<a id="more"></a>
+
+
+<h2 id="实现功能说明">实现功能说明</h2>
+<p>本来想改成 TableView 的。改着改着感觉 TableView 的话。可能会牵扯到 MVVM 的问题。 才能架构出来一个正确的程序结构。而我只想说明简单的写清楚如何替代Delegate。所以相当于一个中文简化版本的 <a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a>了。</p>
+<p>那就跟他一样写搜索把。然后实现过程中发现 iOS 8 用新的 UISearchController 来替代了 UISearchDisplayController 了。 </p>
+<h2 id="UISearchController_Delegate_常规实现">UISearchController Delegate 常规实现</h2>
+<p>一般来说我们会设置protocol.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.searchController.searchResultsUpdater = <span class="keyword">self</span>;</div><div class="line"><span class="keyword">self</span>.searchController.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</div></pre></td></tr></table></figure>
+
+<p>然后去委托的类里面实现相关的方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#pragma mark - UISearchResultsUpdating</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)updateSearchResultsForSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> (searchController<span class="variable">.searchBar</span><span class="variable">.text</span><span class="variable">.length</span> &gt; <span class="number">0</span>) {</div><div class="line">        <span class="keyword">self</span><span class="variable">.searchResults</span> = [<span class="keyword">self</span> search:searchController<span class="variable">.searchBar</span><span class="variable">.text</span>];</div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">self</span><span class="variable">.searchResults</span> = <span class="keyword">self</span><span class="variable">.searchTexts</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#pragma mark - UISearchControllerDelegate</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)willPresentSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searching</span> = <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)willDismissSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searching</span> = <span class="literal">NO</span>;</div><div class="line">    [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>普通情况下我们就是这样来使用 Delegate 的。</p>
+<p>平淡无奇。下面我们来用 RACSignal 的实现方法。</p>
+<h2 id="UISearchController_Delegate_RACSignal_实现">UISearchController Delegate RACSignal 实现</h2>
+<p>第一个要明确的是：我们要做什么。</p>
+<h3 id="常规模式">常规模式</h3>
+<p>根据常规代码来看:</p>
+<ol>
+<li>我们需要在每次输入词变化的时候进行搜索。</li>
+<li>需要在进入喝退出搜索的时候知道当前状态</li>
+</ol>
+<p>1对应的就是实现- (void)updateSearchResultsForSearchController:(UISearchController *)searchController</p>
+<p>2对应的是实现- (void)willPresentSearchController:(UISearchController <em>)searchController 和 - (void)willDismissSearchController:(UISearchController </em>)searchController。</p>
+<p>现在，让我们来转换为 RAC 的思维模式思考问题。 </p>
+<h3 id="RAC_模式">RAC 模式</h3>
+<ol>
+<li>UI 上需要搜索结果的 NSArray</li>
+<li>搜索结果由搜索关键字得来。</li>
+<li>每次修改关键字都应该更新搜索结果。</li>
+</ol>
+<p>因此我们要想办法吧 UI 上需要的数据和修改关键字这个动作绑定起来。 </p>
+<p>同理可以很容易想到。我们也需要把当前 UI 是否处于搜索状态跟会改变搜索状态的动作绑定起来。 </p>
+<p>要怎么绑定呢？ 拥有刚刚 RAC 超过 Hello World 实力的我，想到，我需要构建出来两个RACSignal。</p>
+<p>然后进行类似：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="constant">RAC(self, searchResults)</span> = SignalA;</div><div class="line"><span class="constant">RAC(self, searching)</span> = SignalB;</div></pre></td></tr></table></figure>
+
+<p>这样的绑定就皆大欢喜了。 </p>
+<p>主要用到了下面两个 RAC 的方法：</p>
+<p><strong>rac_signalForSelector:fromProtocol:</strong></p>
+<p>这个方法主要是把 protocal 转为一个 Signal 便于使用。值得注意的是这个函数返回的是一个 RACTuple。 这个 RACTuple 包含了 Selector 方法里面所有的参数。这样需要用到的时候主要按照顺序来获取。</p>
+<p><strong>rac_liftSelector:withSignalsFromArray:</strong></p>
+<p>这个方法它的意思是当传入的 Signals 都至少sendNext过一次，接下来只要其中任意一个signal有了新的内容。就会去触发第一个 selector 参数的方法。</p>
+<p>构造两个 Signal 的代码如下 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  UISearchController+RAC.m</span></div><div class="line"></div><div class="line">- (RACSignal *)rac_textSignal</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searchResultsUpdater</span> = <span class="keyword">self</span>;</div><div class="line">    RACSignal *signal = objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</div><div class="line">    <span class="keyword">if</span> (signal != <span class="literal">nil</span>) {</div><div class="line">        <span class="keyword">return</span> signal;</div><div class="line">    }</div><div class="line"></div><div class="line">    signal = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(updateSearchResultsForSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchResultsUpdating</span>)] <span class="title">map</span>:^<span class="title">id</span>(<span class="title">RACTuple</span> *<span class="title">tuple</span>) </span>{</div><div class="line"></div><div class="line">        UISearchController *searchController = tuple<span class="variable">.first</span>;</div><div class="line">        <span class="keyword">return</span> searchController<span class="variable">.searchBar</span><span class="variable">.text</span>;</div><div class="line">    }];</div><div class="line"></div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, _cmd, signal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">    <span class="keyword">return</span> signal;</div><div class="line">}</div><div class="line"></div><div class="line">- (RACSignal *)rac_isActiveSignal</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.delegate</span> = <span class="keyword">self</span>;</div><div class="line">    RACSignal *signal = objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</div><div class="line">    <span class="keyword">if</span> (signal != <span class="literal">nil</span>) <span class="keyword">return</span> signal;</div><div class="line"></div><div class="line">    RACSignal *willPresentSearching = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(willPresentSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchControllerDelegate</span>)] <span class="title">mapReplace</span>:@<span class="title">YES</span>];</span></div><div class="line">    RACSignal *willDismissSearching = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(willDismissSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchControllerDelegate</span>)] <span class="title">mapReplace</span>:@<span class="title">NO</span>];</span></div><div class="line">    signal = [RACSignal merge:@[willPresentSearching, willDismissSearching]];</div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, _cmd, signal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">    <span class="keyword">return</span> signal;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>最终绑定代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  RACMasterViewController.m</span></div><div class="line"></div><div class="line">    RAC(<span class="keyword">self</span>, searchResults) = [<span class="keyword">self</span> rac_liftSelector:<span class="keyword">@selector</span>(search:) withSignalsFromArray:@[<span class="keyword">self</span><span class="variable">.searchController</span><span class="variable">.rac_textSignal</span>]];</div><div class="line">    [<span class="keyword">self</span><span class="variable">.searchController</span><span class="variable">.rac_textSignal</span> subscribeNext:^(<span class="keyword">id</span> x) {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">    }];</div><div class="line">    RAC(<span class="keyword">self</span>, searching) = [<span class="keyword">self</span><span class="variable">.searchController</span> rac_isActiveSignal];</div></pre></td></tr></table></figure>
+
+<p>这样我们就写完了一个用 RAC 来替代 Delegate （protocol） 的例子</p>
+<h2 id="总结">总结</h2>
+<p>使用 RAC 其实最重要的思维的转变。 这个转变在写代码的时候如果我没有思考的很清楚。 那我写出来就一团乱麻。还是需要多加锻炼 MVVM 的思维。</p>
+<p><a href="https://github.com/iiiyu/RACSignalDemo" target="_blank" rel="external">实例代码已经上传Github</a></p>
+<p>下集预告 用 RACSignal 替代 Block Callbacks。有人会期待么？</p>
+<h2 id="资料">资料</h2>
+<ol>
+<li><a href="http://limboy.me" target="_blank" rel="external">limboy大大</a></li>
+<li><a href="http://blog.sunnyxx.com/tags/Reactive%20Cocoa%20Tutorial/" target="_blank" rel="external">sunnyxx的Reactive Cocoa Tutorial系列</a></li>
+<li><a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a></li>
+<li><a href="https://speakerdeck.com/robpearson/reactivecocoa-lessons-learned" target="_blank" rel="external">ReactiveCocoa Lessons Learned</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/" data-id="fd09kbsqhi9fgw33" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/10/20/iCloud-and-iCloud-Drive/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iCloud 和 iCloud Drive</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/12/26/learning-ios-notes-thirty-six/">iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/08/learning-ios-notes-thirty-five/">iOS笔记(35) 格志周年系列之夏令时(三) 临时花絮</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/25/learn-ui-design-one/">学习UI设计笔记(一)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Design/" style="font-size: 12.50px;">Design</a><a href="/tags/Emacs/" style="font-size: 15.00px;">Emacs</a><a href="/tags/Mac/" style="font-size: 10.00px;">Mac</a><a href="/tags/Software/" style="font-size: 12.50px;">Software</a><a href="/tags/iOS/" style="font-size: 20.00px;">iOS</a><a href="/tags/just-talk/" style="font-size: 17.50px;">just-talk</a><a href="/tags/read-book-notes/" style="font-size: 15.00px;">read book notes</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 萧宸宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/iiiyu" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about-me" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'iiiyu';
+  
+  var disqus_url = 'http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

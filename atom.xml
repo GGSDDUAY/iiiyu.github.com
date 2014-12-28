@@ -4,13 +4,98 @@
   <subtitle><![CDATA[如果不能成为拯救世界的神，那就堕落到征服世界的魔吧。]]></subtitle>
   <link href="http://iiiyu.com/atom.xml" rel="self"/>
   <link href="http://iiiyu.com"/>
-  <updated>2014-11-07T17:08:48.732Z</updated>
+  <updated>2014-12-28T13:55:27.358Z</updated>
   <id>http://iiiyu.com/</id>
   <author>
     <name><![CDATA[萧宸宇]]></name>
     <email><![CDATA[apple.iiiyu@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[iOS 学习笔记 (36)  ReactiveCocoa 用 RACSignal 替代 Delegate]]></title>
+    <link href="http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/"/>
+    <id>http://iiiyu.com/2014/12/26/learning-ios-notes-thirty-six/</id>
+    <published>2014-12-26T10:36:31.000Z</published>
+    <updated>2014-12-28T13:55:18.000Z</updated>
+    <content type="html"><![CDATA[<p>本文仅作为个人学习记录使用,也欢迎在<a href="http://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助,您可以使用<a href="http://iiiyu.com/atom.xml" target="_blank" rel="external">RSS</a>方式订阅本站,这样您将能在第一时间获取本站信息.</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>最近又在看  ReactiveCocoa 了（下面用 RAC 来替代 ReactiveCocoa）。虽然依然是 hello world 级别。但是 hello world 也是可以分级别的。这次自我感觉是一个偏向中级的 hello world。</p>
+<p>我们先来张图：</p>
+<p><img src="http://ww4.sinaimg.cn/large/a6d3226bgw1enpq6o5sz5j20ai09uglz.jpg" alt=""></p>
+<p>在 RAC 的文档和一些介绍 RAC 的 Keynote 资料里面我们可以看到说 RACSignal 可以来替代 Delegate、 Block Callbacks、Target Action、KVO、Notifications。</p>
+<p>但是貌似没有一种 hello world 的方式来进行说明如何替代的。</p>
+<p>插嘴:在中文 blog 里面见过几个写 RAC 的比较好哒。一个是<a href="http://limboy.me" target="_blank" rel="external">limboy大大</a>的几篇深入浅出令人叹为观止，李忠大大不但研究透彻了然后还结合自己的实战经验写成很好的文章来分享。 另一个是<a href="http://blog.sunnyxx.com/tags/Reactive%20Cocoa%20Tutorial/" target="_blank" rel="external">sunnyxx的Reactive Cocoa Tutorial系列</a>这个系列比较偏向研究 RAC 是如何实现和工作的。</p>
+<p>我这个人比较笨，最喜欢写 hello world。那就找时间一个一个来写呗。</p>
+<p>写之前 Google 了一下。所以以下内容大量参考:<a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a>。能看原文就去看看。然后忽略掉以下的 hello world 就好了。</p>
+<a id="more"></a>
+
+
+<h2 id="实现功能说明">实现功能说明</h2>
+<p>本来想改成 TableView 的。改着改着感觉 TableView 的话。可能会牵扯到 MVVM 的问题。 才能架构出来一个正确的程序结构。而我只想说明简单的写清楚如何替代Delegate。所以相当于一个中文简化版本的 <a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a>了。</p>
+<p>那就跟他一样写搜索把。然后实现过程中发现 iOS 8 用新的 UISearchController 来替代了 UISearchDisplayController 了。 </p>
+<h2 id="UISearchController_Delegate_常规实现">UISearchController Delegate 常规实现</h2>
+<p>一般来说我们会设置protocol.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.searchController.searchResultsUpdater = <span class="keyword">self</span>;</div><div class="line"><span class="keyword">self</span>.searchController.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</div></pre></td></tr></table></figure>
+
+<p>然后去委托的类里面实现相关的方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#pragma mark - UISearchResultsUpdating</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)updateSearchResultsForSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> (searchController<span class="variable">.searchBar</span><span class="variable">.text</span><span class="variable">.length</span> &gt; <span class="number">0</span>) {</div><div class="line">        <span class="keyword">self</span><span class="variable">.searchResults</span> = [<span class="keyword">self</span> search:searchController<span class="variable">.searchBar</span><span class="variable">.text</span>];</div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">self</span><span class="variable">.searchResults</span> = <span class="keyword">self</span><span class="variable">.searchTexts</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#pragma mark - UISearchControllerDelegate</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)willPresentSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searching</span> = <span class="literal">YES</span>;</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)willDismissSearchController:(UISearchController *)searchController</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searching</span> = <span class="literal">NO</span>;</div><div class="line">    [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>普通情况下我们就是这样来使用 Delegate 的。</p>
+<p>平淡无奇。下面我们来用 RACSignal 的实现方法。</p>
+<h2 id="UISearchController_Delegate_RACSignal_实现">UISearchController Delegate RACSignal 实现</h2>
+<p>第一个要明确的是：我们要做什么。</p>
+<h3 id="常规模式">常规模式</h3>
+<p>根据常规代码来看:</p>
+<ol>
+<li>我们需要在每次输入词变化的时候进行搜索。</li>
+<li>需要在进入喝退出搜索的时候知道当前状态</li>
+</ol>
+<p>1对应的就是实现- (void)updateSearchResultsForSearchController:(UISearchController *)searchController</p>
+<p>2对应的是实现- (void)willPresentSearchController:(UISearchController <em>)searchController 和 - (void)willDismissSearchController:(UISearchController </em>)searchController。</p>
+<p>现在，让我们来转换为 RAC 的思维模式思考问题。 </p>
+<h3 id="RAC_模式">RAC 模式</h3>
+<ol>
+<li>UI 上需要搜索结果的 NSArray</li>
+<li>搜索结果由搜索关键字得来。</li>
+<li>每次修改关键字都应该更新搜索结果。</li>
+</ol>
+<p>因此我们要想办法吧 UI 上需要的数据和修改关键字这个动作绑定起来。 </p>
+<p>同理可以很容易想到。我们也需要把当前 UI 是否处于搜索状态跟会改变搜索状态的动作绑定起来。 </p>
+<p>要怎么绑定呢？ 拥有刚刚 RAC 超过 Hello World 实力的我，想到，我需要构建出来两个RACSignal。</p>
+<p>然后进行类似：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="constant">RAC(self, searchResults)</span> = SignalA;</div><div class="line"><span class="constant">RAC(self, searching)</span> = SignalB;</div></pre></td></tr></table></figure>
+
+<p>这样的绑定就皆大欢喜了。 </p>
+<p>主要用到了下面两个 RAC 的方法：</p>
+<p><strong>rac_signalForSelector:fromProtocol:</strong></p>
+<p>这个方法主要是把 protocal 转为一个 Signal 便于使用。值得注意的是这个函数返回的是一个 RACTuple。 这个 RACTuple 包含了 Selector 方法里面所有的参数。这样需要用到的时候主要按照顺序来获取。</p>
+<p><strong>rac_liftSelector:withSignalsFromArray:</strong></p>
+<p>这个方法它的意思是当传入的 Signals 都至少sendNext过一次，接下来只要其中任意一个signal有了新的内容。就会去触发第一个 selector 参数的方法。</p>
+<p>构造两个 Signal 的代码如下 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  UISearchController+RAC.m</span></div><div class="line"></div><div class="line">- (RACSignal *)rac_textSignal</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.searchResultsUpdater</span> = <span class="keyword">self</span>;</div><div class="line">    RACSignal *signal = objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</div><div class="line">    <span class="keyword">if</span> (signal != <span class="literal">nil</span>) {</div><div class="line">        <span class="keyword">return</span> signal;</div><div class="line">    }</div><div class="line"></div><div class="line">    signal = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(updateSearchResultsForSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchResultsUpdating</span>)] <span class="title">map</span>:^<span class="title">id</span>(<span class="title">RACTuple</span> *<span class="title">tuple</span>) </span>{</div><div class="line"></div><div class="line">        UISearchController *searchController = tuple<span class="variable">.first</span>;</div><div class="line">        <span class="keyword">return</span> searchController<span class="variable">.searchBar</span><span class="variable">.text</span>;</div><div class="line">    }];</div><div class="line"></div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, _cmd, signal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">    <span class="keyword">return</span> signal;</div><div class="line">}</div><div class="line"></div><div class="line">- (RACSignal *)rac_isActiveSignal</div><div class="line">{</div><div class="line">    <span class="keyword">self</span><span class="variable">.delegate</span> = <span class="keyword">self</span>;</div><div class="line">    RACSignal *signal = objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</div><div class="line">    <span class="keyword">if</span> (signal != <span class="literal">nil</span>) <span class="keyword">return</span> signal;</div><div class="line"></div><div class="line">    RACSignal *willPresentSearching = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(willPresentSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchControllerDelegate</span>)] <span class="title">mapReplace</span>:@<span class="title">YES</span>];</span></div><div class="line">    RACSignal *willDismissSearching = [[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(willDismissSearchController:) fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UISearchControllerDelegate</span>)] <span class="title">mapReplace</span>:@<span class="title">NO</span>];</span></div><div class="line">    signal = [RACSignal merge:@[willPresentSearching, willDismissSearching]];</div><div class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, _cmd, signal, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">    <span class="keyword">return</span> signal;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>最终绑定代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  RACMasterViewController.m</span></div><div class="line"></div><div class="line">    RAC(<span class="keyword">self</span>, searchResults) = [<span class="keyword">self</span> rac_liftSelector:<span class="keyword">@selector</span>(search:) withSignalsFromArray:@[<span class="keyword">self</span><span class="variable">.searchController</span><span class="variable">.rac_textSignal</span>]];</div><div class="line">    [<span class="keyword">self</span><span class="variable">.searchController</span><span class="variable">.rac_textSignal</span> subscribeNext:^(<span class="keyword">id</span> x) {</div><div class="line">        [<span class="keyword">self</span><span class="variable">.tableView</span> reloadData];</div><div class="line">    }];</div><div class="line">    RAC(<span class="keyword">self</span>, searching) = [<span class="keyword">self</span><span class="variable">.searchController</span> rac_isActiveSignal];</div></pre></td></tr></table></figure>
+
+<p>这样我们就写完了一个用 RAC 来替代 Delegate （protocol） 的例子</p>
+<h2 id="总结">总结</h2>
+<p>使用 RAC 其实最重要的思维的转变。 这个转变在写代码的时候如果我没有思考的很清楚。 那我写出来就一团乱麻。还是需要多加锻炼 MVVM 的思维。</p>
+<p><a href="https://github.com/iiiyu/RACSignalDemo" target="_blank" rel="external">实例代码已经上传Github</a></p>
+<p>下集预告 用 RACSignal 替代 Block Callbacks。有人会期待么？</p>
+<h2 id="资料">资料</h2>
+<ol>
+<li><a href="http://limboy.me" target="_blank" rel="external">limboy大大</a></li>
+<li><a href="http://blog.sunnyxx.com/tags/Reactive%20Cocoa%20Tutorial/" target="_blank" rel="external">sunnyxx的Reactive Cocoa Tutorial系列</a></li>
+<li><a href="http://spin.atomicobject.com/2014/02/03/objective-c-delegate-pattern/" target="_blank" rel="external">Replacing the Objective-C “Delegate Pattern” with ReactiveCocoa</a></li>
+<li><a href="https://speakerdeck.com/robpearson/reactivecocoa-lessons-learned" target="_blank" rel="external">ReactiveCocoa Lessons Learned</a></li>
+</ol>
+]]></content>
+    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[iCloud 和 iCloud Drive]]></title>
     <link href="http://iiiyu.com/2014/10/20/iCloud-and-iCloud-Drive/"/>
@@ -1052,124 +1137,6 @@
 <p>希望这些对你有所帮助。</p>
 <p>顺便说一句：Tab直接的切换可以使用快捷键 Command + Shift + ([, ]) 其实这个快捷键适用于绝大部分有Tab的App。 都可以完成切换功能</p>
 <p>再顺便说一句： xCode本身内存消耗很大，开Tab。感觉很是消耗内存。如果内存吃紧的话。应该去升级内存了。不然开多个Tab只会降低工作效率并不会提高。</p>
-]]></content>
-    <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[iOS笔记(23) iOS进行单元测试OCUnit+xctool]]></title>
-    <link href="http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/"/>
-    <id>http://iiiyu.com/2013/05/23/learning-ios-notes-twenty-three/</id>
-    <published>2013-05-23T06:51:31.000Z</published>
-    <updated>2014-02-17T04:20:14.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="iOS进行单元测试OCUnit+xctool">iOS进行单元测试OCUnit+xctool</h1>
-<h2 id="单元测试">单元测试</h2>
-<h3 id="什么是单元测试">什么是单元测试</h3>
-<p><a href="http://zh.wikipedia.org/wiki/单元测试" target="_blank" rel="external">wiki解释</a></p>
-<p>简单说来就是为你的方法多专门写一个测试函数。以保证你的方法在不停的修改开发中。保持正确。如果出错，第一时间让你知道，这样从最小单位开始监控来保证软件的质量。</p>
-<h3 id="我为什么要单元测试">我为什么要单元测试</h3>
-<p>其实要开始写单元测试的原因是，由于我的原因格志的存储逻辑一直有问题。 一个是代码写的比较搓，一个是修改存储的逻辑的话。影响面比较大。可能修复了一个bug而引入了未知的多个bug。为了Sumi早日达到国际化大厂的标准。决定上单元测试于格志。其实最根本的目的还是想要项目变的更加可靠。</p>
-<h3 id="单元测试的一般方法">单元测试的一般方法</h3>
-<p>关于测试的书，一搜就一大把。都有高深的理论和方法来指导怎么写单元测试的方法。我觉得嘛不用搞了这么复杂。 无非就3种时候会去想写测试：</p>
-<ol>
-<li>代码完成以后</li>
-<li>开始写代码之前</li>
-<li>修复了一个bug以后</li>
-</ol>
-<p>第一种是完成了代码，恩我要测试一下我写的这些方法可靠不可靠。那这时候可以写测试。</p>
-<p>第二种一个著名的方法论TDD。主要思想就是在写代码之前，就全部设计好借口。函数名字什么的。然后在写能通过测试的函数。</p>
-<p>第三种就是发现了bug，我修复了这个bug。为了确保修复是成功的。那就写个测试吧。</p>
-<p>我觉得啊，着三种都没有什么好或差。能写测试的少年都是好少年。何必这么在意什么时候去写呢。</p>
-<p>一个完整的测试类组成像下图</p>
-<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58jl2toiej20fh0a1aam.jpg" alt=""></p>
-<p>在一开始可能测试方法里面需要一些上下文环境。这些可以在Setup里面去完成。然后才可是执行自己写的测试方法。 然后测试结束以后，可能产生了一些垃圾数据文件什么的。这时候你可以在TearDown方法里面把他们处理掉。</p>
-<p>以上大部分都是我自己的粗浅理解，如果你需要更多关于单元测试请阅读更加系统专业的书籍。</p>
-<a id="more"></a>
-
-
-<h2 id="OCUnit">OCUnit</h2>
-<p>OCUnit是xCode里面自己带的单元测试框架。不必安装第三方的其他库就可以使用。最简单的就是创建项目的时候你把单元测试的那个勾点上。xCode就会自动的为你加入一个单元测试的target。快捷键Command + U。就可以运行测试。最喜欢这样方便又好用的东西了。当然运行OCUnit的测试输出的内容实在惨不忍睹。</p>
-<h3 id="创建一个OCUnit的Unit_Test">创建一个OCUnit的Unit Test</h3>
-<h4 id="新项目使用OCUnit">新项目使用OCUnit</h4>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58kyt9nyhj20k80dnabp.jpg" alt=""></p>
-<p>选上Unit Test</p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58kzfmxkij20ei0c93zt.jpg" alt=""></p>
-<p>会自动的建立一个Target</p>
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58l0l72wvj20uf0b4q51.jpg" alt=""></p>
-<p>自动的为你添加好需要的类库</p>
-<p><img src="http://ww3.sinaimg.cn/large/686e6613jw1e58l164wjkj20al0d7dh0.jpg" alt=""></p>
-<p>为你添加一个Unit Test的类</p>
-<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58l1uogchj20an03cq39.jpg" alt=""></p>
-<p>看一眼Scheme 只有一个。</p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58l315fwmj20jg0d70ua.jpg" alt=""></p>
-<p>看看Scheme里面是怎么写的。</p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58l4n4ozrj209c04vdg1.jpg" alt=""></p>
-<p>用Command + U运行一下测试看看结果。这是没有通过的。因为自动生成的模板就是不通过的。具体一会儿分析代码。</p>
-<p><img src="http://ww3.sinaimg.cn/large/686e6613jw1e58l6bue5gj20zc070mze.jpg" alt=""></p>
-<p>看看终端的输出。渣一般的难看。根本无法高识别度的分清。</p>
-<h4 id="已经存在的项目使用OCUnit">已经存在的项目使用OCUnit</h4>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58t46ki0fj20770cgdgd.jpg" alt=""></p>
-<p>这是一个一开始没有选择过Unit Test的项目</p>
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58t52kpxhj20ce0jg0tn.jpg" alt=""></p>
-<p>点击增加Target</p>
-<p><img src="http://ww2.sinaimg.cn/large/686e6613jw1e58t5vnb0bj20k80dndhf.jpg" alt=""></p>
-<p>选择Unit testing Bundle</p>
-<p><img src="http://ww1.sinaimg.cn/large/686e6613jw1e58t6jsonij20k80dnmys.jpg" alt=""></p>
-<p>为我们的测试bundle取一个名字</p>
-<p><img src="http://ww3.sinaimg.cn/large/686e6613jw1e58t75sbt3j20bq03h3yu.jpg" alt=""></p>
-<p>我们可以看到Scehme多出来了一个。这时候如果选择的是App的Scehme。Command + U。是没有运行测试的。要选择我们新建立的Test Scehme。再按Command + U.就运行了测试了。</p>
-<p><img src="http://ww3.sinaimg.cn/large/686e6613jw1e58t96mpj1j20jg0d775q.jpg" alt=""></p>
-<p>如何为App的Scehme添加Test。使得不用切换Scehme，就可以运行Unit Test。</p>
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58thyodnkj20b40cswet.jpg" alt=""></p>
-<p>然后选择你建立的Unit Test bundle。 打完收工。</p>
-<h3 id="OCUnit使用的宏">OCUnit使用的宏</h3>
-<p>STAssertEqualObjects(a1, a2, description, …)</p>
-<p>STAssertEquals(a1, a2, description, …)</p>
-<p>STAssertEqualsWithAccuracy(a1, a2, accuracy,description, …)</p>
-<p>STFail(description, …)</p>
-<p>STAssertNil(a1, description, …)</p>
-<p>STAssertNotNil(a1, description, …)</p>
-<p>STAssertTrue(expr, description, …)</p>
-<p>STAssertTrueNoThrow(expr, description, …)</p>
-<p>STAssertFalse(expr, description, …)</p>
-<p>STAssertFalseNoThrow(expr, description, …)</p>
-<p>STAssertThrows(expr, description, …)</p>
-<p>STAssertThrowsSpecific(expr, specificException, description, …)</p>
-<p>STAssertThrowsSpecificNamed(expr, specificException, aName, description, …)</p>
-<p>STAssertNoThrow(expr, description, …)</p>
-<p>STAssertNoThrowSpecific(expr, specificException, description, …)</p>
-<p>STAssertNoThrowSpecificNamed(expr, specificException, aName, description, …)</p>
-<h3 id="比较经常使用的宏">比较经常使用的宏</h3>
-<p>STAssertTrue(expr, description, …)<br>STAssertFalse(expr, description, …)<br>STAssertNil(a1, description, …)<br>STAssertNotNil(a1, description, …)<br>STAssertEqualObjects(a1, a2, description, …)<br>STAssertEquals(a1, a2, description, …)<br>STFail(description, …)<br>STAssertThrows(expr, description, …)</p>
-<h3 id="写了几个测试方法的例子">写了几个测试方法的例子</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)testOne {</div><div class="line">	<span class="built_in">NSString</span> *string1 = <span class="string">@"test"</span>;</div><div class="line">	<span class="built_in">NSString</span> *string2 = <span class="string">@"test"</span>;</div><div class="line">	STAssertThrows([string1 isEqualToString:string2], <span class="string">@"FAILURE"</span>);</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testTwo</div><div class="line">{</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</div><div class="line">    STAssertTrue(i &lt; j, <span class="string">@" i: %d, j: %d"</span>, i,j);</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testThree</div><div class="line">{</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *oneStr = <span class="string">@"hello"</span>;</div><div class="line">    <span class="built_in">NSString</span> *twoStr = <span class="string">@"world"</span>;</div><div class="line">    STAssertFalse([oneStr isEqualToString:twoStr], <span class="string">@"oneStr:%@, twoStr:%@"</span>, oneStr, twoStr);</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testFour</div><div class="line">{</div><div class="line">    <span class="built_in">NSArray</span> *array = <span class="literal">nil</span>;</div><div class="line">    STAssertNil(array, <span class="string">@"array:%@"</span>, array);</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testFive</div><div class="line">{</div><div class="line">    <span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"hello"</span>: <span class="string">@"word"</span>};</div><div class="line">    STAssertNotNil(dict, <span class="string">@"dict:%@"</span>, dict);</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testSix</div><div class="line">{</div><div class="line">    <span class="built_in">NSNumber</span> *oneNum = @<span class="number">100</span>;</div><div class="line">    <span class="built_in">NSNumber</span> *twoNum = @<span class="number">200</span>;</div><div class="line">    STAssertEqualObjects(oneNum, twoNum, <span class="string">@"oneNum:%@ twoNum:%@"</span>,oneNum, twoNum);</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testSeven</div><div class="line">{</div><div class="line">    <span class="built_in">NSArray</span> *oneArray = @[@<span class="number">11</span>, @<span class="number">22</span>, @<span class="number">33</span>];</div><div class="line">    <span class="built_in">NSArray</span> *twoArray = [oneArray <span class="keyword">copy</span>];</div><div class="line">    STAssertEqualObjects(oneArray, twoArray, <span class="string">@"oneArray:%@, twoArray:%@"</span>, oneArray, twoArray);</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)testEight</div><div class="line">{</div><div class="line">    NSUInteger uint_1 = <span class="number">4</span>;</div><div class="line">	NSUInteger uint_2 = <span class="number">4</span>;</div><div class="line">	STAssertEquals(uint_1, uint_2, <span class="string">@"FAILURE"</span>);</div><div class="line">}</div><div class="line">    </div><div class="line">    </div><div class="line">- (<span class="keyword">void</span>)testExample</div><div class="line">{</div><div class="line">    STFail(<span class="string">@"Unit tests are not implemented yet in HelloAfterAddOCUnitUnitTest"</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>一会儿用xctool跑个华丽丽的出来看。</p>
-<h2 id="xctool">xctool</h2>
-<h3 id="xctool是什么">xctool是什么</h3>
-<p>xctool是Facebook开源的一个命令行工具，用来替代苹果的xcodebuild工具。</p>
-<p><a href="https://github.com/facebook/xctool" target="_blank" rel="external">github</a></p>
-<p>官方演示</p>
-<p><img src="https://fpotter_public.s3.amazonaws.com/xctool-uicatalog.gif" alt=""></p>
-<p>你可以用它来Build你的App。跑Tests。而且它跑Test输出是华丽丽的彩色。比xCode自带的不知好看多少倍。OCUnit本来被吐槽无数，遇上了xctool以后就逆袭了啊。</p>
-<p>世界上最最牛的SNS出品，肯定不会坑爹啊。</p>
-<h3 id="安装xctool">安装xctool</h3>
-<p>最方便 最推荐的是用Homebrew。如果你的Mac里面没有安装Homebrew我觉得是你的损失。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew <span class="operator"><span class="keyword">update</span></span></div><div class="line">brew <span class="keyword">install</span> xctool</div></pre></td></tr></table></figure>
-
-<h3 id="使用xctool来跑OCUnit测试">使用xctool来跑OCUnit测试</h3>
-<p>关于如何使用xctool，你去看官方文档肯定要比我结束好的多。 我就是过来跑测试的例子给你看而已。</p>
-<h4 id="测试一">测试一</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xctool -project HelloOCUnit.xcodeproj -scheme HelloOCUnit  <span class="keyword">test</span></div></pre></td></tr></table></figure>
-
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58zjmagi8j20eh0li0wx.jpg" alt=""></p>
-<h4 id="测试二">测试二</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">xctool -project HelloAfterAddOCUnit.xcodeproj -scheme HelloAfterAddOCUnit  <span class="keyword">test</span></div><div class="line"></div><div class="line">xctool -project HelloAfterAddOCUnit.xcodeproj -scheme HelloAfterAddOCUnitUnitTest  <span class="keyword">test</span></div></pre></td></tr></table></figure>
-
-<p><img src="http://ww4.sinaimg.cn/large/686e6613jw1e58zk5dk34j20h70li43i.jpg" alt=""></p>
-<p><a href="http://d.pr/f/EUCR" target="_blank" rel="external">项目一下载</a></p>
-<p><a href="http://d.pr/f/LPaY" target="_blank" rel="external">项目二下载</a></p>
-<h2 id="总结">总结</h2>
-<p>以上就是OCUnit的使用建议。建议OCunit+xctool。来进行你的单元测试构建。更多信息请阅读相关资料。我这里只是写了入门而已。接下来的测试之路就靠你了。</p>
 ]]></content>
     <category scheme="http://iiiyu.com/tags/iOS/" term="iOS"/>
   </entry>
