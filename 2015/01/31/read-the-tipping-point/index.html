@@ -3,23 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS学习笔记(30) Core Data是如何保存的？ | 萧宸宇</title>
+  <title>读书笔记 「引爆点」 | 萧宸宇</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文仅作为个人记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
-开场扯淡
-恩 一个月没有写一篇blog了。恩。就这样把。">
+  <meta name="description" content="本文仅作为个人学习记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
+开篇扯淡
+嗯，在一月的最后一天的最后一个小时开始写这篇读书笔记。也就算做这个月输出了3篇 blog。如果对比2014年这种令人发指的输出量来说。对于自己不得不说是一个巨大的进步。
+这本「引爆点」是在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS学习笔记(30) Core Data是如何保存的？">
-<meta property="og:url" content="http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/">
+<meta property="og:title" content="读书笔记 「引爆点」">
+<meta property="og:url" content="http://iiiyu.com/2015/01/31/read-the-tipping-point/">
 <meta property="og:site_name" content="萧宸宇">
-<meta property="og:description" content="本文仅作为个人记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
-开场扯淡
-恩 一个月没有写一篇blog了。恩。就这样把。">
+<meta property="og:description" content="本文仅作为个人学习记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
+开篇扯淡
+嗯，在一月的最后一天的最后一个小时开始写这篇读书笔记。也就算做这个月输出了3篇 blog。如果对比2014年这种令人发指的输出量来说。对于自己不得不说是一个巨大的进步。
+这本「引爆点」是在">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS学习笔记(30) Core Data是如何保存的？">
-<meta name="twitter:description" content="本文仅作为个人记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
-开场扯淡
-恩 一个月没有写一篇blog了。恩。就这样把。">
+<meta name="twitter:title" content="读书笔记 「引爆点」">
+<meta name="twitter:description" content="本文仅作为个人学习记录使用，也欢迎在许可协议范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用RSS方式订阅本站，这样您将能在第一时间获取本站信息。
+开篇扯淡
+嗯，在一月的最后一天的最后一个小时开始写这篇读书笔记。也就算做这个月输出了3篇 blog。如果对比2014年这种令人发指的输出量来说。对于自己不得不说是一个巨大的进步。
+这本「引爆点」是在">
 <meta name="twitter:creator" content="@iyunsn">
 
   
@@ -86,10 +89,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-learning-ios-notes-thirty" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-read-the-tipping-point" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/12/02/learning-ios-notes-thirty/" class="article-date">
-  <time datetime="2013-12-02T10:33:18.000Z" itemprop="datePublished">2013 12月 2日</time>
+    <a href="/2015/01/31/read-the-tipping-point/" class="article-date">
+  <time datetime="2015-01-31T15:08:19.000Z" itemprop="datePublished">2015 1月 31日</time>
 </a>
     
   </div>
@@ -100,7 +103,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS学习笔记(30) Core Data是如何保存的？
+      读书笔记 「引爆点」
     </h1>
   
 
@@ -108,40 +111,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文仅作为个人记录使用，也欢迎在<a href="http://creativecommons.org/licenses/by-nc/3.0/deed.zh" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu.com/atom.xml" target="_blank" rel="external">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
-<h2 id="开场扯淡">开场扯淡</h2>
-<p>恩 一个月没有写一篇blog了。恩。就这样把。</p>
+        <p>本文仅作为个人学习记录使用，也欢迎在<a href="http://creativecommons%E3%80%82org/licenses/by-nc/4%E3%80%820/deed%E3%80%82zh_TW" target="_blank" rel="external">许可协议</a>范围内转载或使用，请尊重版权并且保留原文链接，谢谢您的理解合作。如果您觉得本站对您能有帮助，您可以使用<a href="http://iiiyu%E3%80%82com/atom%E3%80%82xml" target="_blank" rel="external">RSS</a>方式订阅本站，这样您将能在第一时间获取本站信息。</p>
+<h2 id="开篇扯淡">开篇扯淡</h2>
+<p>嗯，在一月的最后一天的最后一个小时开始写这篇读书笔记。也就算做这个月输出了3篇 blog。如果对比2014年这种令人发指的输出量来说。对于自己不得不说是一个巨大的进步。</p>
+<p>这本「引爆点」是在去上海开年会的来回路程上扫完的。顺便说一句，Sumi 除了Kevin Cao。其它全部在上海喝了残血回程的。 我还内伤了回来在医院躺了2天。 这是后话了。可见战斗力下降的厉害。</p>
+<p>最近我看书，一边看、一边会去联系一堆事物进行思考。因此现在的读书笔记也是想到什么写什么。并不是上学时候那种读书笔记顺序条例整齐的。算做观后随笔之类的吧。</p>
+<p>最后的一句扯淡，我不应该怎么晚才看到这本书。</p>
 <a id="more"></a>
 
-<p>学习使用Core Data也一年多了。之前以为3个月就可以登堂入室。事实是我图样图森破。到现在我也才勉强hello world而已。</p>
-<p>比如这个问题 <strong>Core Data是如何保存的</strong>。</p>
-<p>一直使用<a href="http://github.com/magicalpanda/MagicalRecord" target="_blank" rel="external">MagicalRecord</a> 都被宠习惯了。 直接就调用MR_saveToPersistentStoreAndWait。反正能存进去，也没有太仔细的思考。</p>
-<p>恩 最近对Core Data的技能点在进行增加中。所以还是多记录一些。</p>
-<p>恰好看见了 DM大神的 blog <a href="http://mentalfaculty.tumblr.com/post/65682908577/how-does-core-data-save" target="_blank" rel="external">How Does Core Data Save?</a></p>
-<p>也不算翻译，就是自己写个自己的精简版本看看。</p>
-<h2 id="Core_Data是如何保存的">Core Data是如何保存的</h2>
-<ol>
-<li>当然是NSManagedObjectContext调用save方法的时候。</li>
-<li>这时候context里面持有的那些NSManagedObject将会自己调用自己的willSave方法。</li>
-<li>NSManagedObjectContextWillSaveNotification发出。</li>
-<li>开始验证。这个验证可能是你在data model里面写的。也可以是在NSManagedObject里面代码写的。</li>
-<li>验证结束以后数据就合并到NSPersistentStoreCoordinator和NSPersistentStore里面。</li>
-<li>如果你在合并的时候更改了数据。这时候会重新验证数据。</li>
-<li>这个时候已经把需要验证过的合并数据存到持久化介质当中。</li>
-<li>最后NSManagedObjectContextDidSaveNotification这个通知发出。</li>
-</ol>
-<h2 id="参考资料">参考资料</h2>
-<p><a href="http://mentalfaculty.tumblr.com/post/65682908577/how-does-core-data-save" target="_blank" rel="external">How Does Core Data Save?</a></p>
+<h2 id="关于本书">关于本书</h2>
+<p>由于我断网了，所以我无法查询到「引爆点」的成书时间。不过根据书里面的各种信息透露。我推断「引爆点」成书应该在2000年之前，1996年以后。说这个的原因是说，现在的和过去不久的一些流行过的概念。应该都出自此书。比如影响里面最深刻的破窗效应。比如罗永浩说过的搞定最前面的一拨人就能引发流行的理论。（插一句2014年的老罗单口相声还没看呢）</p>
+<p>所以，很多人应该很早前就看过本书。并且从书里面学到了很多智慧来运用在日常的生活当中。而且就拿出里面的片段出来都可以变成单独的流行文章。所以，我不应该怎么晚才看到这本书。暴露出自己最近10年来的阅读量远远小于自己设定的的阅读量。</p>
+<p>如果还没有看过「引爆点」，强烈推荐。</p>
+<h2 id="依旧是在研究人啊">依旧是在研究人啊</h2>
+<p>前两天才说过，貌似除了自然学科。其他的都是在研究人。对人和人性的探究，从 DNA 到思想。</p>
+<p>我觉得「引爆点」的作者马尔科姆·格拉德威尔应该是试图从科学的角度系统的说明为何一个东西会在某个标准性的时间或者事件以后成为流行的原因。</p>
+<p>马尔科姆·格拉德威尔选择的所有例子都是围绕着社会问题来进行选择的。美国独立战争的开端、普通大众流行的鞋子、及其成功学前儿童所看的电视节目、吸烟吸毒、整顿地铁降低犯罪率、小岛上的自杀等等。方向并不单一。而且我经常在国外的书里面看到，在大学里面进行的志愿者实验来佐证自己的观点。我从来没有听说过我的大学有进行过类似为了科学研究一个事情用这样的随机普通样本进行的试验。仅从这点上来看，天朝的大学离现代正在的大学差距不是一星半点。当然可能我读的大学和能接触到的大学都比较low。有以偏概全的嫌疑。不过我还是坚持这种天朝所有大学离真正的科学、民主、自由的现代大学有十万八千里的距离的观点。</p>
+<p>继续扯远一些，其实现代文明社会和天朝都有在研究人。但是给我的感觉是孑然不同的。我的感觉现代文明社会研究人，把每个人都当作一个独立的个体来研究。不管怎么样，是伟大、普通平凡、还是十恶不赦。在当作科学来研究的时候。都是平等的。但是天朝不是，天朝是啥。就自己感受吧。</p>
+<h2 id="「引爆点」和_「厚黑学」">「引爆点」和 「厚黑学」</h2>
+<p>两个毫不相关的书，在我心里却有一些联系。</p>
+<p>「引爆点」看完以后我发现其实它根本没有直接跟互联网跟移动互联网有半毛钱的关系。但是它确实是在这个圈子里倍受推崇。看封面和封腰都有一堆大佬什么联袂推荐，很是反感。为什么呢，因为如果理解了流行的趋势，做出了倍受欢迎的互联网产品这都是金灿灿的钱钱啊，能不倍受推崇么。可是在我心里就有这么觉得变扭呢。我觉得马尔科姆·格拉德威尔写这本书，更加想解决的是能不能降低未成年人吸烟吸毒的人数。能不能提高儿童学习的效率。能不能降低城市的犯罪概率等等。简单来说就是如何运用这些原理来拯救世界。但是却被安利来做赚钱的东西。简单说来就是杀鸡用牛刀、高射炮打蚊子。说不出的别扭。</p>
+<p>同样的情况发生在我看完「厚黑学」以后。在看之前我对「厚黑学」的想象是这是一本教人如何黑心假面的书。如何教人变成一个油腔滑调的人的书。在我的幼稚的心智里面觉得是一本贬义的书，一本黑暗的书。但是我某天无聊买回来看完以后觉得我靠真的可以算一本奇书。书里提到的方法和写下的当时的环境。作者提出的厚黑之术居然是为了拯救当时千疮百孔、摇摇欲坠的中国。而且按照我认知里面推算，应该是可行的方案。也就是说，「厚黑学」我觉得能算做国术，是有大智慧的。一个具有大智慧的治国之术在天朝大地流行的原因跟无数人挤破脑袋要去考公务员的原因是一样的时候，心中泛起当下所在的天朝是多么的荒诞无稽。</p>
+<p>所以这两本书都给我一种作者是心怀天下交出了绝世武功本想要世人拯救世界，却被世人天天拿来打野鸡烤了吃。</p>
+<h2 id="总结">总结</h2>
+<p>貌似我的记忆方法一直有问题，所以我有些事情会相当的记不住。人名就算一个。特别是国外翻译的人名。我脑子里面几乎就没几个。挤破脑袋只能想起K·K叫凯文·凯利。现在，我应该郑重的多记忆几次马尔科姆·格拉德威尔。今年应该会把他的几本书都扫一遍。</p>
+<p>最后 ，「引爆点」5星推荐。并不是因为它可以让你一下就能做出个淘宝爆款出来。而是书里用科学的态度来说明了我们世界里面一些真实运作的原理。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/" data-id="pfa759gc5b53pcod" class="article-share-link">Share</a>
+      <a data-url="http://iiiyu.com/2015/01/31/read-the-tipping-point/" data-id="cijvhq5522q7dfb7" class="article-share-link">Share</a>
       
-        <a href="http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://iiiyu.com/2015/01/31/read-the-tipping-point/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/read-book-notes/">read book notes</a></li></ul>
 
     </footer>
   </div>
@@ -149,19 +153,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2013/12/19/learning-ios-notes-thirty-one/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          iOS笔记(31) CocoaPods 手把手五分钟教你制作自己的podspec文件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/10/15/learning-ios-notes-twenty-nine/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/01/20/2014-oh-my-star-app-annual-summary/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">iOS学习笔记(29) 爱不释手的ReactiveCocoa之UIButton</div>
+      <div class="article-nav-title">2014年 Oh My Star 总结</div>
     </a>
   
 </nav>
@@ -265,7 +260,7 @@
 <script>
   var disqus_shortname = 'iiiyu';
   
-  var disqus_url = 'http://iiiyu.com/2013/12/02/learning-ios-notes-thirty/';
+  var disqus_url = 'http://iiiyu.com/2015/01/31/read-the-tipping-point/';
   
   (function(){
     var dsq = document.createElement('script');

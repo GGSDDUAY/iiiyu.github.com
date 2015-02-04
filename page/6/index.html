@@ -82,6 +82,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-learning-ios-notes-twenty-one" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/17/learning-ios-notes-twenty-one/" class="article-date">
+  <time datetime="2013-04-17T07:06:24.000Z" itemprop="datePublished">2013 4月 17日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/17/learning-ios-notes-twenty-one/">iOS笔记(21) CoreData (三) NSFetchedResultsController</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CoreData_(三)">CoreData (三)</h1>
+<h2 id="NSFetchedResultsController">NSFetchedResultsController</h2>
+<h3 id="什么是NSFetchedResultsController">什么是NSFetchedResultsController</h3>
+<p>NSFetchedResultsController是一个让人爱恨交加的一个类。如果使用得当，NSFetchedResultsController能帮组减少很多代码。如果使用不当，整个App就随时崩溃。</p>
+<p>NSFetchedResultsController我觉得最初的设计应该是为了配合UITableView来使用的。因为UITableView在iOS的应用App中出场次数实在是太高了.而且UITableView是重要的数据展示View,所以需要频繁的向Model去请求数据,但是根据MVC来说,V不应该直接跟M联系的.这样就在Core Data下面出现了一个C—NSFetchedResultsController来把V和M协调起来. NSFetchedResultsController就是这个C. </p>
+<p>NSFetchedResultsController是有两个重要的功能。</p>
+<p>第一:NSFetchedResultsController是作用在Core Data上的,通过NSFetchRequest来查询Core Data里面的数据.可以返回按照组分好的数据.这样便于UITableView来显示.</p>
+<p>第二:但Modle改变的时候NSFetchedResultsController能及时的发出通知.准确的说,应该是当NSManagedObjectContext发生改变的时候,NSFetchedResultsController能知道这些变化,然后发出通知出来.以便UITableview能及时的更新.</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2013/04/17/learning-ios-notes-twenty-one/#more">阅读更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/" data-id="qglyu9a8779rx947" class="article-share-link">Share</a>
+      
+        <a href="http://iiiyu.com/2013/04/17/learning-ios-notes-twenty-one/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-learning-ios-notes-twenty" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/04/15/learning-ios-notes-twenty/" class="article-date">
@@ -301,63 +354,6 @@
 
 
   
-    <article id="post-learning-ios-notes-seventeen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/03/11/learning-ios-notes-seventeen/" class="article-date">
-  <time datetime="2013-03-11T15:18:49.000Z" itemprop="datePublished">2013 3月 11日</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/03/11/learning-ios-notes-seventeen/">iOS笔记(17)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="iOS读写文件">iOS读写文件</h1>
-<h2 id="序">序</h2>
-<p>由于iOS App的机制和限定，我们在App里面的权限就仅限于App内部。这个打包好的内部称为沙箱。沙箱有利有弊。我觉得这个世界上没有绝对的好坏。虽然沙箱的作用限制了一些功能的实现。但是也确保了iPhone的安全机制。对于普通用户来说我觉得的利大于弊的。(MAS上架的软件也接受这一约束)</p>
-<h2 id="第一步_路径">第一步 路径</h2>
-<p>不管是读文件还是写文件我们都要需要知道文件的位置。这个位置在iOS里面就是沙箱的Document文件夹的位置。关于沙箱里面各个文件夹的功能和作用。Apple的某文档里面写的很清楚建议Google以后详细查看（懒得去找来贴了）。获取代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span>  *paths              = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, <span class="literal">YES</span>);</div><div class="line"><span class="built_in">NSString</span> *documentsDirectory = [paths objectAtIndex:<span class="number">0</span>];</div></pre></td></tr></table></figure>
-
-<p>NSDocumentDirectoryz这个参数你点过去可以找到一堆类似的定义比如常用的NSLibraryDirectory，NSApplicationDirectory。这样就可以直接获取到对应的文件夹路径。其他的你照抄就好。想知道意思就点过去看呗。其实看变量名也可以猜测一二。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *filePath = [documentsDirectory stringByAppendingString:<span class="string">@"/hello.txt"</span>];</div></pre></td></tr></table></figure>
-
-<p>然后我们加上我们文件名字构成一个完整的路径。注意文件名字前有一个/。</p>
-<p>这样我们就获得一个文件路径了。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2013/03/11/learning-ios-notes-seventeen/#more">阅读更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iiiyu.com/2013/03/11/learning-ios-notes-seventeen/" data-id="90qzews82lhs5gv8" class="article-share-link">Share</a>
-      
-        <a href="http://iiiyu.com/2013/03/11/learning-ios-notes-seventeen/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -372,6 +368,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/01/31/read-the-tipping-point/">读书笔记 「引爆点」</a>
+          </li>
         
           <li>
             <a href="/2015/01/20/2014-oh-my-star-app-annual-summary/">2014年 Oh My Star 总结</a>
@@ -389,10 +389,6 @@
             <a href="/2014/10/20/iCloud-and-iCloud-Drive/">iCloud 和 iCloud Drive</a>
           </li>
         
-          <li>
-            <a href="/2014/04/23/learn-ui-design-two/">怎样使用Sketch 3切图 —— 从想入设计大门的菜逼进化到切图仔（未完成）</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -402,7 +398,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design/">Design</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emacs/">Emacs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac/">Mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software/">Software</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/just-talk/">just-talk</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read-book-notes/">read book notes</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -420,7 +416,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
